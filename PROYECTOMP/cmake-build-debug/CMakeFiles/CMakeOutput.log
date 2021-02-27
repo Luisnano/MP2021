@@ -1,4 +1,4 @@
-The system is: Windows - 10.0.19042 - AMD64
+The system is: Windows - 10.0.18363 - AMD64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler: D:/Program Files (x86)/mingw64/bin/gcc.exe 
 Build flags: 
@@ -10,6 +10,7 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.exe"
 
+<<<<<<< Updated upstream
 The C compiler identification is GNU, found in "C:/MP2021/MP2021/PROYECTOMP/cmake-build-debug/CMakeFiles/3.17.5/CompilerIdC/a.exe"
 
 Determining if the C compiler works passed with the following output:
@@ -183,4 +184,7 @@ Parsed C implicit link information from above output:
   implicit dirs: []
   implicit fwks: []
 
+=======
+The C compiler identification is GNU, found in "C:/Users/aleja/Desktop/Universidad/1º Año/MP/TRABAJOMP2021/MP2021/PROYECTOMP/cmake-build-debug/CMakeFiles/3.17.5/CompilerIdC/a.exe"
+>>>>>>> Stashed changes
 
