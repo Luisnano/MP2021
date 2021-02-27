@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Luis Fernando/Desktop/ESI/MP/MP2021/PROYECTOMP
+# Install script for directory: C:/MP2021/MP2021/PROYECTOMP
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Luis Fernando/Desktop/ESI/MP/MP2021/PROYECTOMP/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/MP2021/MP2021/PROYECTOMP/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/Users/Luis Fernando/Desktop/ESI/MP/MP2021/PROYECTOMP/main.c" "C:/Users/Luis Fernando/Desktop/ESI/MP/MP2021/PROYECTOMP/cmake-build-debug/CMakeFiles/PROYECTOMP.dir/main.c.obj"
+  "C:/MP2021/MP2021/PROYECTOMP/main.c" "C:/MP2021/MP2021/PROYECTOMP/cmake-build-debug/CMakeFiles/PROYECTOMP.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
