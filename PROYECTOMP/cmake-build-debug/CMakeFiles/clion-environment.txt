@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 ToolSet: w64 6.0 (local)@D:\Program Files (x86)\mingw64
-=======
-ToolSet: 5.4 (local)@C:\MinGW
->>>>>>> Stashed changes
 Options: 
 
 Options:
