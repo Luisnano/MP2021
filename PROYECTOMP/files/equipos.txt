@@ -1,0 +1,40 @@
+01
+Alaves
+02
+Athletic Club
+03
+Atletico de Madrid
+04
+Barcelona
+05
+Cadiz
+06
+Celta de Vigo
+07
+Eibar
+08
+Elche
+09
+Getafe
+10
+Granada CF
+11
+Huesca
+12
+Levante
+13
+Osasuna
+14
+Real Betis
+15
+Real Madrid
+16
+Real Sociedad
+17
+Real Valladolid
+18
+Sevilla
+19
+Valencia CF
+20
+Villareal
