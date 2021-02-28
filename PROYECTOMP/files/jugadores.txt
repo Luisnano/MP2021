@@ -248,3 +248,250 @@ Yan Eteki
 Roberto Soldado
 1
 00
+51
+11
+Alvaro Fernandez
+3
+00
+52
+11
+Denis Vavro
+4
+00
+53
+11
+Idrissa Doumbia
+3,5
+00
+54
+11
+Pedro Lopez
+0,1
+00
+55
+11
+Andres Fernandez
+0,6
+00
+56
+12
+Jose Campaña
+22
+00
+57
+12
+Aitor Fernandez
+8
+00
+58
+12
+Ruen Vezo 
+8
+00
+59
+12
+Nemanja Radoja
+3
+00
+60
+12
+Jose Luis Morales
+5
+00
+61
+13
+Chimy Avila
+10
+00
+62
+13
+David Garcia
+7,5
+00
+63
+13
+Jon Moncayola
+3
+00
+64
+13
+Jony
+4
+00
+65
+13
+Roberto Torres
+6
+00
+66
+14
+Sergio Canales
+20
+00
+67
+14
+Guido Rogdriguez
+15
+00
+68
+14
+Alex Moreno
+9
+00
+69
+14
+Marc Bartra
+10
+00
+70
+14 
+Joel Robles
+4
+00
+71
+15
+Eden Hazard
+50
+00
+72
+15
+Andrin Lunin
+3
+00
+73
+15
+Alvaro Odriozola
+10
+00
+74
+15
+Marcelo
+10
+00
+75
+15
+Sergio Ramos
+14
+00
+76
+16
+Alex Remiro
+20
+00
+77
+16
+Miguel Angel Moya
+1
+00
+78
+16
+Robin Le Normand
+20
+00
+79
+16
+Aritz Elustondo
+15
+00
+80
+16
+Aihen Muñoz
+6
+00
+81
+17
+Joaquin Fernandez
+3
+00
+82
+17
+Kiko Olivas
+1
+00
+83
+17
+Lucas Olaza
+6
+00
+84
+17
+Bruno Gonzalez
+1
+00
+85
+17
+Ruben Alcaraz
+6
+00
+86
+18
+Bono
+15
+00
+87
+18
+Tomas Vaclik
+8
+00
+88
+18
+Jules Kounde
+50
+00
+89
+18
+Marcos Acuña
+14
+00
+90
+18
+Sergio Escudero
+3
+00
+91
+19
+Jaume Domenech
+6
+00
+92
+19
+Gabriel Pulista
+15
+00
+93
+19
+Eliaquim Mangala
+4
+00
+94
+19
+Toni Lato
+3
+00
+95
+19
+Daniel Wass
+8
+00
+96
+20
+Raul Albiol
+3
+00
+97
+20
+Francis Coquelin
+6
+00
+98
+20
+Ruben Peña
+4
+00
+99
+20
+Jaume Costa
+2
+00
+
+
