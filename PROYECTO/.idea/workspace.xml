@@ -12,7 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="192f44ea-ea3b-4232-8d5f-baac03e9f870" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/files/equipos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/files/equipos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/jugadores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/files/jugadores.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +70,7 @@
       <updated>1614593186707</updated>
       <workItem from="1614593192326" duration="151000" />
       <workItem from="1614594408523" duration="636000" />
-      <workItem from="1614597212230" duration="119000" />
+      <workItem from="1614597212230" duration="218000" />
     </task>
     <servers />
   </component>
