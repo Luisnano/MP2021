@@ -1,10 +1,10 @@
 01
-Pepe Piña De La Huerta
+Pepe_Piña_Huerta
 administrador
 admin
 ubuntu88
 02
-Antonio Roldán Becerra
+Antonio_Roldán_Becerra
 cronista
 croni
 indiviningin4
