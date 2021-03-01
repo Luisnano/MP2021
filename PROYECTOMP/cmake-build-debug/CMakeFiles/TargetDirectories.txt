@@ -1,3 +1,0 @@
-C:/MP2021/MP2021/PROYECTOMP/cmake-build-debug/CMakeFiles/PROYECTOMP.dir
-C:/MP2021/MP2021/PROYECTOMP/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/MP2021/MP2021/PROYECTOMP/cmake-build-debug/CMakeFiles/rebuild_cache.dir
