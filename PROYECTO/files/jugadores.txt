@@ -1,56 +1,56 @@
 01
 01
-Fernando Pacheco
+Fernando_Pacheco
 14
 00
 02
 01
-Rodrigo Ely
-3
+Rodrigo_Ely
+03
 00
 03
 01
-Luis Rioja
-2
+Luis_Rioja
+02
 00
 04
 01
 Joselu
-4
+04
 00
 05
 01
-Lucas Perez
-6
+Lucas_Perez
+06
 00
 06
 02
-Unai Simon
+Unai_Simon
 30
 00
 07
 02
-Yeray Alvarez
+Yeray_Alvarez
 20
-0
+00
 08
 02
-Dani Garcia
-4
+Dani_Garcia
+04
 00
 09
 02
-Iker Muniain
+Iker_Muniain
 14
-0
+00
 10
 02
 Raul Garcia
-4
+04
 00
 11
 03
-Jan Oblack
+Jan_Oblack
 90
 00
 12
@@ -66,26 +66,26 @@ Koke
 14
 03
 Vitolo
-8
+08
 00
 15
-Luis Suarez
+Luis_Suarez
 15
 04
 00
 16
 04
-Ter Stegen
+Ter_Stegen
 75
 00
 17
 04
-Gerard Pique
+Gerard_Pique
 12
 00
 18
 04
-Frenkie de Jong
+Frenkie_de_Jong
 65
 00
 19
@@ -95,272 +95,272 @@ Pedri
 00
 20
 04
-Lionel Messi
+Lionel_Messi
 80
 00
 21
 05
-David Gil
-1
+David_Gil
+01
 00
 22
 05
-Marcos Mauro
+Marcos_Mauro
 1
 00
 23
 05
-Jens Jonsson
-2
+Jens_Jonsson
+02
 00
 24
 05
-Alberto Perea
-1
+Alberto_Perea
+01
 00
 25
 05
-Alvaro Negredo
-1
+Alvaro_Negredo
+01
 00
 26
 06
-Ruben Blanco
-7
+Ruben_Blanco
+07
 00
 27
 06
-Joseh Aidoo
-7
+Joseh_Aidoo
+07
 00
 28
 06
-Hugo Mallo
-5
+Hugo_Mallo
+05
 00
 29
 06
 Nolito
-2
+02
 00
 30
 06
-Iago Aspas
+Iago_Aspas
 10
 00
 31
 07
-Joel Rodriguez
-1
+Joel_Rodriguez
+01
 00
 32
 07
-Pape Diop
-1
+Pape_Diop
+01
 00
 33
 07
 Recio
-2
+02
 00
 34
 07
-Takashi Inui
-2
+Takashi_Inui
+02
 00
 35
 07
-Pedro Leon
-1
+Pedro_Leon
+01
 00
 36
 08
-Edgar Badia
-2
+Edgar_Badia
+02
 00
 37
 08
-Ivan Marcone
-3
+Ivan_Marcone
+03
 00
 38
 08
-Raul Guti
-5
+Raul_Guti
+05
 00
 39
 08
 Josan
-1
+01
 00
 40
 08
 Nino
-1
+01
 00
 41
 09
-David Soria
-9
+David_Soria
+09
 00
 42
 09
-Allan Nyom
-3
+Allan_Nyom
+03
 00
 43
 09
-Francisco Portillo
-2
+Francisco_Portillo
+02
 00
 44
 09
 Cucho
-9
+09
 00
 45
 09
-Angel Rodriguez
-4
+Angel_Rodriguez
+04
 00
 46
 10
-Rui Silva
+Rui_Silva
 10
 00
 47
 10
-German Sanchez
-1
+German_Sanchez
+01
 00
 48
 10
-Victor Diaz
-1
+Victor_Diaz
+01
 00
 49
 10
-Yan Eteki
-2
+Yan_Eteki
+02
 00
 50
 10
-Roberto Soldado
-1
+Roberto_Soldado
+01
 00
 51
 11
-Alvaro Fernandez
-3
+Alvaro_Fernandez
+03
 00
 52
 11
-Denis Vavro
-4
+Denis_Vavro
+04
 00
 53
 11
-Idrissa Doumbia
-3,5
+Idrissa_Doumbia
+3
 00
 54
 11
-Pedro Lopez
-0,1
+Pedro_Lopez
+01
 00
 55
 11
-Andres Fernandez
-0,6
+Andres_Fernandez
+01
 00
 56
 12
-Jose Campaña
+Jose_Campaña
 22
 00
 57
 12
-Aitor Fernandez
-8
+Aitor_Fernandez
+08
 00
 58
 12
-Ruen Vezo 
-8
+Ruen_Vezo 
+08
 00
 59
 12
-Nemanja Radoja
-3
+Nemanja_Radoja
+03
 00
 60
 12
-Jose Luis Morales
-5
+Jose_Luis_Morales
+05
 00
 61
 13
-Chimy Avila
+Chimy_Avila
 10
 00
 62
 13
-David Garcia
-7,5
+David_Garcia
+7
 00
 63
 13
-Jon Moncayola
-3
+Jon_Moncayola
+03
 00
 64
 13
 Jony
-4
+04
 00
 65
 13
-Roberto Torres
-6
+Roberto_Torres
+06
 00
 66
 14
-Sergio Canales
+Sergio_Canales
 20
 00
 67
 14
-Guido Rogdriguez
+Guido_Rogdriguez
 15
 00
 68
 14
-Alex Moreno
-9
+Alex_Moreno
+09
 00
 69
 14
-Marc Bartra
+Marc_Bartra
 10
 00
 70
 14 
-Joel Robles
-4
+Joel_Robles
+04
 00
 71
 15
-Eden Hazard
+Eden_Hazard
 50
 00
 72
 15
-Andrin Lunin
-3
+Andrin_Lunin
+03
 00
 73
 15
-Alvaro Odriozola
+Alvaro_Odriozola
 10
 00
 74
@@ -370,58 +370,58 @@ Marcelo
 00
 75
 15
-Sergio Ramos
+Sergio_Ramos
 14
 00
 76
 16
-Alex Remiro
+Alex_Remiro
 20
 00
 77
 16
-Miguel Angel Moya
-1
+Miguel_Angel_Moya
+01
 00
 78
 16
-Robin Le Normand
+Robin_Le_Normand
 20
 00
 79
 16
-Aritz Elustondo
+Aritz_Elustondo
 15
 00
 80
 16
-Aihen Muñoz
-6
+Aihen_Muñoz
+06
 00
 81
 17
-Joaquin Fernandez
-3
+Joaquin_Fernandez
+03
 00
 82
 17
-Kiko Olivas
-1
+Kiko_Olivas
+01
 00
 83
 17
-Lucas Olaza
-6
+Lucas_Olaza
+06
 00
 84
 17
-Bruno Gonzalez
-1
+Bruno_Gonzalez
+01
 00
 85
 17
-Ruben Alcaraz
-6
+Ruben_Alcaraz
+06
 00
 86
 18
@@ -430,68 +430,66 @@ Bono
 00
 87
 18
-Tomas Vaclik
-8
+Tomas_Vaclik
+08
 00
 88
 18
-Jules Kounde
+Jules_Kounde
 50
 00
 89
 18
-Marcos Acuña
+Marcos_Acuña
 14
 00
 90
 18
-Sergio Escudero
-3
+Sergio_Escudero
+03
 00
 91
 19
-Jaume Domenech
-6
+Jaume_Domenech
+06
 00
 92
 19
-Gabriel Pulista
+Gabriel_Pulista
 15
 00
 93
 19
-Eliaquim Mangala
-4
+Eliaquim_Mangala
+04
 00
 94
 19
-Toni Lato
-3
+Toni_Lato
+03
 00
 95
 19
-Daniel Wass
-8
+Daniel_Wass
+08
 00
 96
 20
-Raul Albiol
-3
+Raul_Albiol
+03
 00
 97
 20
-Francis Coquelin
-6
+Francis_Coquelin
+06
 00
 98
 20
-Ruben Peña
-4
+Ruben_Peña
+04
 00
 99
 20
-Jaume Costa
-2
+Jaume_Costa
+02
 00
-
-
