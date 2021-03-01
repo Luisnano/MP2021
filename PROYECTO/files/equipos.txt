@@ -1,15 +1,15 @@
 01
 Alaves
 02
-Athletic Club
+Athletic_Club
 03
-Atletico de Madrid
+Atletico_de_Madrid
 04
 Barcelona
 05
 Cadiz
 06
-Celta de Vigo
+Celta_de_Vigo
 07
 Eibar
 08
@@ -17,7 +17,7 @@ Elche
 09
 Getafe
 10
-Granada CF
+Granada_CF
 11
 Huesca
 12
@@ -25,16 +25,16 @@ Levante
 13
 Osasuna
 14
-Real Betis
+Real_Betis
 15
-Real Madrid
+Real_Madrid
 16
-Real Sociedad
+Real_Sociedad
 17
-Real Valladolid
+Real_Valladolid
 18
 Sevilla
 19
-Valencia CF
+Valencia_CF
 20
 Villareal
