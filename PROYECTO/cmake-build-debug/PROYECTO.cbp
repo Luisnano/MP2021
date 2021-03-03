@@ -77,6 +77,9 @@
 		<Unit filename="D:/MP/MP2021/PROYECTO/librerias/admin.h">
 			<Option target="PROYECTO"/>
 		</Unit>
+		<Unit filename="D:/MP/MP2021/PROYECTO/librerias/core.h">
+			<Option target="PROYECTO"/>
+		</Unit>
 		<Unit filename="D:/MP/MP2021/PROYECTO/main.c">
 			<Option target="PROYECTO"/>
 		</Unit>
