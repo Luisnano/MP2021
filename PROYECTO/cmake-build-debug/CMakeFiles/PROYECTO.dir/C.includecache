@@ -6,7 +6,11 @@
 
 #IncludeRegexTransform: 
 
+<<<<<<< Updated upstream
 D:/MP/MP2021/PROYECTO/main.c
+=======
+C:/Users/aleja/Desktop/MP2021/PROYECTO/main.c
+>>>>>>> Stashed changes
 stdio.h
 -
 
