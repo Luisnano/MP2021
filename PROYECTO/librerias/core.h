@@ -2,6 +2,7 @@
 #define PROYECTO_CORE_H     // Definicion del modulo
 
 //Inclusion de librerias
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -232,7 +233,7 @@ void mostrar_configuracion(){
 void mostrar_futbolistas(futbolistas *estruc_fut){
 
     int i;
-    for(i=0 ;i<99;i++){
+    for(i=0 ;i<=sizeof(*estruc_fut);i++){
 
         printf("%i,",estruc_fut[i].futbolista_id);
         printf("%i,",estruc_fut[i].equipo_id);
@@ -242,6 +243,15 @@ void mostrar_futbolistas(futbolistas *estruc_fut){
     }
 }
 
+void mostrar_equipos(equipos *estruc_equ){
+
+    int i;
+    for(i=0 ; i<=sizeof(*estruc_equ);i++){
+
+        printf("%i,",estruc_equ[i].equipo_id);
+        printf("%s\n",estruc_equ[i].nombre_equipo);
+    }
+}
 
 #endif //PROYECTO_CORE_H    // Si no hay + codigo abajo lo acaba
 
