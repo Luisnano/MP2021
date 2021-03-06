@@ -58,60 +58,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe"
-
-# The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f
-=======
-CMAKE_COMMAND = "D:\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe"
-
-# The command to remove a file.
-RM = "D:\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f
->>>>>>> Stashed changes
-=======
 CMAKE_COMMAND = "D:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
 RM = "D:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f
->>>>>>> Stashed changes
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-CMAKE_SOURCE_DIR = "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO"
-
-# The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO\cmake-build-debug"
-=======
-CMAKE_SOURCE_DIR = D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO
-
-# The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\cmake-build-debug
->>>>>>> Stashed changes
-=======
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-CMAKE_SOURCE_DIR = C:\Users\aleja\Desktop\MP2021\PROYECTO
-
-# The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug
-<<<<<<< Updated upstream
->>>>>>> master
-=======
-=======
 CMAKE_SOURCE_DIR = D:\MP\MP2021\PROYECTO
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = D:\MP\MP2021\PROYECTO\cmake-build-debug
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -119,15 +78,7 @@ CMAKE_BINARY_DIR = D:\MP\MP2021\PROYECTO\cmake-build-debug
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-	"C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
-=======
-	"D:\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
->>>>>>> Stashed changes
-=======
 	"D:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available."
->>>>>>> Stashed changes
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -138,15 +89,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-	"C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-=======
-	"D:\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
->>>>>>> Stashed changes
-=======
 	"D:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
->>>>>>> Stashed changes
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -156,33 +99,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO\cmake-build-debug\CMakeFiles" "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO\cmake-build-debug\CMakeFiles\progress.marks"
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO\cmake-build-debug\CMakeFiles" 0
-=======
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\cmake-build-debug\CMakeFiles D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\cmake-build-debug\CMakeFiles\progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\cmake-build-debug\CMakeFiles 0
->>>>>>> Stashed changes
-=======
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug\CMakeFiles C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug\CMakeFiles\progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug\CMakeFiles 0
->>>>>>> master
-=======
-<<<<<<< Updated upstream
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug\CMakeFiles C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug\CMakeFiles\progress.marks
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug\CMakeFiles 0
-=======
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\MP\MP2021\PROYECTO\cmake-build-debug\CMakeFiles D:\MP\MP2021\PROYECTO\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\MP\MP2021\PROYECTO\cmake-build-debug\CMakeFiles 0
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 .PHONY : all
 
 # The main clean target

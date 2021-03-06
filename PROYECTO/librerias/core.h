@@ -74,7 +74,7 @@ void escribir_configuracion();
 void mostrar_configuracion();
 void volcar_futbolistas();
 void escribir_futbolistas(futbolistas *);
-void mostrar_futbolistas(futbolistas *)
+void mostrar_futbolistas(futbolistas *);
 void volcar_equipos();
 void escribir_equipos(equipos *);
 void mostrar_equipos(equipos *);
@@ -112,7 +112,7 @@ void volcar_futbolistas(){
     for (i=0; i<estructura_config.max_futbolistas; i++){
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_id);
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].equipo_id);
-        fscanf(f_futbolistas, "%s", &estructura_futbolistas[i].nombre_futbolista);
+        fscanf(f_futbolistas, "%s", estructura_futbolistas[i].nombre_futbolista);
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_precio);
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].valoracion);
     }
@@ -220,7 +220,6 @@ void escribir_equipos(equipos *estruc_equ){
 
     free(estruc_equ);
 }
-
 void mostrar_configuracion(){
 
     printf("El numero maximo de equipos es: %i \n",estructura_config.max_equipos);
@@ -233,7 +232,7 @@ void mostrar_configuracion(){
 void mostrar_futbolistas(futbolistas *estruc_fut){
 
     int i;
-    for(i=0 ; i<estruc_fut.size();i++){
+    for(i=0 ;i<99;i++){
 
         printf("%i,",estruc_fut[i].futbolista_id);
         printf("%i,",estruc_fut[i].equipo_id);
@@ -241,8 +240,8 @@ void mostrar_futbolistas(futbolistas *estruc_fut){
         printf("%i,",estruc_fut[i].futbolista_precio);
         printf("%i\n",estruc_fut[i].valoracion);
     }
-
 }
+
 
 #endif //PROYECTO_CORE_H    // Si no hay + codigo abajo lo acaba
 
