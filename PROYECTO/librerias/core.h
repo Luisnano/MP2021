@@ -87,6 +87,7 @@ void escribir_configuracion();
 void leer_futbolistas();
 void escribir_futbolistas(futbolistas *);
 void leer_equipos();
+void escribir_equipos(equipos *);
 
 //FUNciones
 >>>>>>> master
