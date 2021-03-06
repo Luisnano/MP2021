@@ -43,7 +43,23 @@ void leer_configuracion(){
     fclose(f_configuracion);
 }
 
+void escribir_configuracion(){
 
+    configuracion estructura_config;
+    FILE *f_configuracion;
+    f_configuracion = fopen("files/configuracion.txt","r+");
+    assert(f_configuracion != NULL || printf("Error apertura fichero_configuracion\n"));
+
+    fprintf(f_configuracion,"%i",estructura_config.max_equipos);
+    fprintf(f_configuracion,"%s","\n");
+    fprintf(f_configuracion,"%i",estructura_config.presupuesto_defecto);
+    fprintf(f_configuracion,"%s","\n");
+    fprintf(f_configuracion,"%i",estructura_config.max_futbolistas_plantilla);
+    fprintf(f_configuracion,"%s","\n");
+    fprintf(f_configuracion,"%i",estructura_config.max_plantillas_participante);
+
+    fclose(f_configuracion);
+}
 
 
 
