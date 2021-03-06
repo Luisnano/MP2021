@@ -95,17 +95,18 @@ void leer_configuracion(){
 void leer_jugadores(){
 
     int i;
-    futbolistas estructura_futbolistas;
     configuracion estructura_config;
+    futbolistas estructura_futbolistas[estructura_config.max_futbolistas_plantilla];
+
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/jugadores.txt", "r");
     assert(f_futbolistas != NULL || printf("Error apertura fichero_futbolistas\n"));
     for (i=0; i<estructura_config.max_futbolistas_plantilla; i++){
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas.futbolista_id);
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas.equipo_id);
-        fscanf(f_futbolistas, "%s", &estructura_futbolistas.nombre_futbolista);
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas.futbolista_precio);
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas.valoracion);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_id);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].equipo_id);
+        fscanf(f_futbolistas, "%s", &estructura_futbolistas[i].nombre_futbolista);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_precio);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].valoracion);
     }
     fclose(f_futbolistas);
 
