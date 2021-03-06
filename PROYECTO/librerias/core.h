@@ -31,6 +31,8 @@ typedef struct{
 
 }configuracion;
 
+configuracion estructura_config;
+
 typedef struct{
 
     int usuario_id;
@@ -79,10 +81,9 @@ typedef struct{
 
 void leer_configuracion(){
 
-    configuracion estructura_config;
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","r");
-    assert(f_configuracion != NULL || printf("Error apertura fichero_configuracion\n"));
+    assert(f_configuracion != NULL || puts("Fallo de apertura de fichero"));
 
     fscanf(f_configuracion,"%i",&estructura_config.max_equipos);
     fscanf(f_configuracion,"%i",&estructura_config.presupuesto_defecto);
@@ -95,12 +96,13 @@ void leer_configuracion(){
 void leer_jugadores(){
 
     int i;
-    configuracion estructura_config;
-    futbolistas estructura_futbolistas[estructura_config.max_futbolistas_plantilla];
 
+    futbolistas *estructura_futbolistas;
+    estructura_futbolistas = (futbolistas*)malloc(estructura_config.max_futbolistas_plantilla*sizeof (int));
+    assert(estructura_futbolistas == NULL || puts("Fallo de asignacion de memoria"));
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/jugadores.txt", "r");
-    assert(f_futbolistas != NULL || printf("Error apertura fichero_futbolistas\n"));
+    assert(f_futbolistas != NULL || puts("Fallo de apertura de fichero"));
     for (i=0; i<estructura_config.max_futbolistas_plantilla; i++){
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_id);
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].equipo_id);
@@ -114,7 +116,6 @@ void leer_jugadores(){
 
 void escribir_configuracion(){
 
-    configuracion estructura_config;
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","r+");
     assert(f_configuracion != NULL || printf("Error apertura fichero_configuracion\n"));
@@ -134,7 +135,6 @@ void escribir_jugadores(){
 
     int i;
     futbolistas estructura_futbolistas;
-    configuracion estructura_config;
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/jugadores.txt", "r+");
     assert(f_futbolistas != NULL || printf("Error apertura fichero_futbolistas\n"));
@@ -150,7 +150,6 @@ void escribir_jugadores(){
         fprintf(f_futbolistas, "i", estructura_futbolistas.valoracion);
     }
     fclose(f_futbolistas);
-
 }
 
 
