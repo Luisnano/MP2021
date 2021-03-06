@@ -20,6 +20,8 @@ typedef struct{
 
 }configuracion;
 
+//Funciones
+
 void leer_configuracion(){
 
     configuracion estructura_config;
