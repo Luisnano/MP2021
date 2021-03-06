@@ -53,15 +53,16 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "D:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "D:\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "D:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = "D:\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 CMAKE_SOURCE_DIR = D:\MP\MP2021\PROYECTO
 
@@ -80,6 +81,12 @@ CMAKE_SOURCE_DIR = C:\Users\aleja\Desktop\MP2021\PROYECTO
 CMAKE_BINARY_DIR = C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
+=======
+CMAKE_SOURCE_DIR = D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\cmake-build-debug
+>>>>>>> master
 
 # Include any dependencies generated for this target.
 include CMakeFiles/PROYECTO.dir/depend.make
@@ -92,6 +99,7 @@ include CMakeFiles/PROYECTO.dir/flags.make
 
 CMakeFiles/PROYECTO.dir/main.c.obj: CMakeFiles/PROYECTO.dir/flags.make
 CMakeFiles/PROYECTO.dir/main.c.obj: ../main.c
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\MP\MP2021\PROYECTO\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/PROYECTO.dir/main.c.obj"
 	"D:\Program Files (x86)\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PROYECTO.dir\main.c.obj   -c D:\MP\MP2021\PROYECTO\main.c
@@ -100,13 +108,18 @@ CMakeFiles/PROYECTO.dir/main.c.obj: ../main.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/PROYECTO.dir/main.c.obj"
 	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PROYECTO.dir\main.c.obj   -c "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO\main.c"
 >>>>>>> Stashed changes
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/PROYECTO.dir/main.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\PROYECTO.dir\main.c.obj   -c D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\main.c
+>>>>>>> master
 
 CMakeFiles/PROYECTO.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/PROYECTO.dir/main.c.i"
-	"D:\Program Files (x86)\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\MP\MP2021\PROYECTO\main.c > CMakeFiles\PROYECTO.dir\main.c.i
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\main.c > CMakeFiles\PROYECTO.dir\main.c.i
 
 CMakeFiles/PROYECTO.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/PROYECTO.dir/main.c.s"
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 	"D:\Program Files (x86)\mingw64\bin\gcc.exe" $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\MP\MP2021\PROYECTO\main.c -o CMakeFiles\PROYECTO.dir\main.c.s
 =======
@@ -124,6 +137,9 @@ CMakeFiles/PROYECTO.dir/main.c.s: cmake_force
 	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\aleja\Desktop\MP2021\PROYECTO\main.c -o CMakeFiles\PROYECTO.dir\main.c.s
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
+=======
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\main.c -o CMakeFiles\PROYECTO.dir\main.c.s
+>>>>>>> master
 
 # Object files for target PROYECTO
 PROYECTO_OBJECTS = \
@@ -137,6 +153,7 @@ PROYECTO.exe: CMakeFiles/PROYECTO.dir/build.make
 PROYECTO.exe: CMakeFiles/PROYECTO.dir/linklibs.rsp
 PROYECTO.exe: CMakeFiles/PROYECTO.dir/objects1.rsp
 PROYECTO.exe: CMakeFiles/PROYECTO.dir/link.txt
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\MP\MP2021\PROYECTO\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable PROYECTO.exe"
 =======
@@ -146,6 +163,9 @@ PROYECTO.exe: CMakeFiles/PROYECTO.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable PROYECTO.exe"
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable PROYECTO.exe"
+>>>>>>> master
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\PROYECTO.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -158,6 +178,7 @@ CMakeFiles/PROYECTO.dir/clean:
 .PHONY : CMakeFiles/PROYECTO.dir/clean
 
 CMakeFiles/PROYECTO.dir/depend:
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" D:\MP\MP2021\PROYECTO D:\MP\MP2021\PROYECTO D:\MP\MP2021\PROYECTO\cmake-build-debug D:\MP\MP2021\PROYECTO\cmake-build-debug D:\MP\MP2021\PROYECTO\cmake-build-debug\CMakeFiles\PROYECTO.dir\DependInfo.cmake --color=$(COLOR)
 =======
@@ -167,5 +188,8 @@ CMakeFiles/PROYECTO.dir/depend:
 	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\aleja\Desktop\MP2021\PROYECTO C:\Users\aleja\Desktop\MP2021\PROYECTO C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug\CMakeFiles\PROYECTO.dir\DependInfo.cmake --color=$(COLOR)
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
+=======
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\cmake-build-debug D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\cmake-build-debug D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\cmake-build-debug\CMakeFiles\PROYECTO.dir\DependInfo.cmake --color=$(COLOR)
+>>>>>>> master
 .PHONY : CMakeFiles/PROYECTO.dir/depend
 

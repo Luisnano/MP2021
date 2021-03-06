@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 # Install script for directory: D:/MP/MP2021/PROYECTO
 =======
@@ -7,6 +8,9 @@
 # Install script for directory: C:/Users/aleja/Desktop/MP2021/PROYECTO
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
+=======
+# Install script for directory: D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO
+>>>>>>> master
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -48,6 +52,7 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 file(WRITE "D:/MP/MP2021/PROYECTO/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
 =======
@@ -57,4 +62,7 @@ file(WRITE "C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-bui
 file(WRITE "C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
+=======
+file(WRITE "D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> master
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
