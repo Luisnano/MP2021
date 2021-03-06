@@ -18,6 +18,9 @@
 //Definicion de funciones y estructuras
 
 void leer_configuracion();
+void escribir_configuracion();
+void leer_jugadores();
+void escribir_jugadores();
 
 typedef struct{
 
@@ -72,6 +75,8 @@ typedef struct{
 
 }equipos;
 
+//FUNciones
+
 void leer_configuracion(){
 
     configuracion estructura_config;
@@ -85,6 +90,25 @@ void leer_configuracion(){
     fscanf(f_configuracion,"%i",&estructura_config.max_plantillas_participante);
 
     fclose(f_configuracion);
+}
+
+void leer_jugadores(){
+
+    int i;
+    futbolistas estructura_futbolistas;
+    configuracion estructura_config;
+    FILE *f_futbolistas;
+    f_futbolistas = fopen("files/jugadores.txt", "r");
+    assert(f_futbolistas != NULL || printf("Error apertura fichero_futbolistas\n"));
+    for (i=0; i<estructura_config.max_futbolistas_plantilla; i++){
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas.futbolista_id);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas.equipo_id);
+        fscanf(f_futbolistas, "%s", &estructura_futbolistas.nombre_futbolista);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas.futbolista_precio);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas.valoracion);
+    }
+    fclose(f_futbolistas);
+
 }
 
 void escribir_configuracion(){
@@ -104,5 +128,30 @@ void escribir_configuracion(){
 
     fclose(f_configuracion);
 }
+
+void escribir_jugadores(){
+
+    int i;
+    futbolistas estructura_futbolistas;
+    configuracion estructura_config;
+    FILE *f_futbolistas;
+    f_futbolistas = fopen("files/jugadores.txt", "r+");
+    assert(f_futbolistas != NULL || printf("Error apertura fichero_futbolistas\n"));
+    for (i=0; i<estructura_config.max_futbolistas_plantilla; i++){
+        fprintf(f_futbolistas, "i", estructura_futbolistas.futbolista_id);
+        fprintf(f_futbolistas,"%s","\n");
+        fprintf(f_futbolistas, "i", estructura_futbolistas.equipo_id);
+        fprintf(f_futbolistas,"%s","\n");
+        fprintf(f_futbolistas, "s", estructura_futbolistas.nombre_futbolista);
+        fprintf(f_futbolistas,"%s","\n");
+        fprintf(f_futbolistas, "i", estructura_futbolistas.futbolista_precio);
+        fprintf(f_futbolistas,"%s","\n");
+        fprintf(f_futbolistas, "i", estructura_futbolistas.valoracion);
+    }
+    fclose(f_futbolistas);
+
+}
+
+
 #endif //PROYECTO_CORE_H    // Si no hay + cosigo abajo lo acaba
 
