@@ -1,8 +1,8 @@
-//
-// Created by as952 on 03/03/2021.
-//
-
 #ifndef PROYECTO_CORE_H
 #define PROYECTO_CORE_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
 
 #endif //PROYECTO_CORE_H
