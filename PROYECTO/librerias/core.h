@@ -19,8 +19,8 @@
 
 void leer_configuracion();
 void escribir_configuracion();
-void leer_jugadores();
-void escribir_jugadores();
+void leer_futbolistas();
+void escribir_futbolistas();
 
 typedef struct{
 
@@ -69,6 +69,7 @@ typedef struct{
     int valoracion;
 
 }futbolistas;
+futbolistas estructura_futbolistas;
 
 typedef struct{
 
@@ -93,7 +94,7 @@ void leer_configuracion(){
     fclose(f_configuracion);
 }
 
-void leer_jugadores(){
+void leer_futbolistas(){
 
     int i;
 
@@ -131,27 +132,27 @@ void escribir_configuracion(){
     fclose(f_configuracion);
 }
 
-void escribir_jugadores(){
+void escribir_futbolistas(futbolistas *estruc_fut){
 
     int i;
-    futbolistas estructura_futbolistas;
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/jugadores.txt", "r+");
     assert(f_futbolistas != NULL || printf("Error apertura fichero_futbolistas\n"));
     for (i=0; i<estructura_config.max_futbolistas_plantilla; i++){
-        fprintf(f_futbolistas, "i", estructura_futbolistas.futbolista_id);
+        fprintf(f_futbolistas, "%i", estruc_fut[i].futbolista_id);
         fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "i", estructura_futbolistas.equipo_id);
+        fprintf(f_futbolistas, "%i", estruc_fut[i].equipo_id);
         fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "s", estructura_futbolistas.nombre_futbolista);
+        fprintf(f_futbolistas, "%s", estruc_fut[i].nombre_futbolista);
         fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "i", estructura_futbolistas.futbolista_precio);
+        fprintf(f_futbolistas, "%i", estruc_fut[i].futbolista_precio);
         fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "i", estructura_futbolistas.valoracion);
+        fprintf(f_futbolistas, "%i", estruc_fut[i].valoracion);
+        fprintf(f_futbolistas,"%s","\n");
     }
     fclose(f_futbolistas);
 }
 
 
-#endif //PROYECTO_CORE_H    // Si no hay + cosigo abajo lo acaba
+#endif //PROYECTO_CORE_H    // Si no hay + codigo abajo lo acaba
 
