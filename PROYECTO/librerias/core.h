@@ -83,10 +83,9 @@ typedef struct{
 
 }equipos;
 
-<<<<<<< HEAD
-=======
-//FUNciones
->>>>>>> master
+
+//Funciones
+
 
 void leer_configuracion(){
 
