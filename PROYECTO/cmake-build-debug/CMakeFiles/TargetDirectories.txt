@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/PROYECTO.dir
 C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/edit_cache.dir
@@ -7,3 +8,8 @@ D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/
 D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/edit_cache.dir
 D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 >>>>>>> Stashed changes
+=======
+C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/PROYECTO.dir
+C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+>>>>>>> master

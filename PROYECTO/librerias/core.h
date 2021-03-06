@@ -74,7 +74,6 @@ typedef struct{
     int valoracion;
 
 }futbolistas;
-futbolistas estructura_futbolistas;
 
 typedef struct{
 

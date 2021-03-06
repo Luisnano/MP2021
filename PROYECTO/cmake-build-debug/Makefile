@@ -74,6 +74,7 @@ RM = "D:\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 CMAKE_SOURCE_DIR = "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO"
 
@@ -85,6 +86,12 @@ CMAKE_SOURCE_DIR = D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\cmake-build-debug
 >>>>>>> Stashed changes
+=======
+CMAKE_SOURCE_DIR = C:\Users\aleja\Desktop\MP2021\PROYECTO
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug
+>>>>>>> master
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -121,6 +128,7 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO\cmake-build-debug\CMakeFiles" "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO\cmake-build-debug\CMakeFiles\progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
@@ -130,6 +138,11 @@ all: cmake_check_build_system
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO\cmake-build-debug\CMakeFiles 0
 >>>>>>> Stashed changes
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug\CMakeFiles C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug\CMakeFiles\progress.marks
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\aleja\Desktop\MP2021\PROYECTO\cmake-build-debug\CMakeFiles 0
+>>>>>>> master
 .PHONY : all
 
 # The main clean target

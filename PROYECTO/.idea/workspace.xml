@@ -14,7 +14,55 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+    <list default="true" id="192f44ea-ea3b-4232-8d5f-baac03e9f870" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/documentacion/documentacion.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/librerias/admin.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/PROYECTO.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/PROYECTO.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/configuracion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/files/configuracion.txt" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeCCompiler.cmake" afterDir="false" />
+=======
+>>>>>>> Stashed changes
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CompilerIdC/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.17.5/CompilerIdC/a.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROYECTO.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROYECTO.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROYECTO.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROYECTO.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROYECTO.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/PROYECTO.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/PROYECTO.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/PROYECTO.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/files/jugadores.txt" beforeDir="false" afterPath="$PROJECT_DIR$/files/jugadores.txt" afterDir="false" />
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+    </list>
+=======
+    <list default="true" id="192f44ea-ea3b-4232-8d5f-baac03e9f870" name="Default Changelist" comment="" />
+>>>>>>> master
+=======
+<<<<<<< Updated upstream
+    <list default="true" id="192f44ea-ea3b-4232-8d5f-baac03e9f870" name="Default Changelist" comment="" />
+=======
+=======
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> master
     <list default="true" id="192f44ea-ea3b-4232-8d5f-baac03e9f870" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/documentacion/documentacion.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/librerias/admin.h" afterDir="false" />
@@ -114,7 +162,10 @@
 <<<<<<< HEAD
 >>>>>>> Stashed changes
 >>>>>>> master
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> master
 >>>>>>> master
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +200,19 @@
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
+<<<<<<< HEAD
+    <configuration name="PROYECTO" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PROYECTO" TARGET_NAME="PROYECTO" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PROYECTO" RUN_TARGET_NAME="PROYECTO">
+<<<<<<< Updated upstream
+=======
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+>>>>>>> Stashed changes
+=======
     <configuration name="PROYECTO" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PROYECTO" TARGET_NAME="PROYECTO" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PROYECTO" RUN_TARGET_NAME="PROYECTO">
+>>>>>>> master
 >>>>>>> master
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -174,6 +237,7 @@
       <workItem from="1614594408523" duration="636000" />
 <<<<<<< Updated upstream
       <workItem from="1614597212230" duration="218000" />
+<<<<<<< Updated upstream
       <workItem from="1614598222520" duration="706000" />
       <workItem from="1614600319307" duration="26000" />
 <<<<<<< Updated upstream
@@ -183,6 +247,18 @@
       <workItem from="1614723271396" duration="193000" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+      <workItem from="1614788454120" duration="422000" />
+=======
+=======
+      <workItem from="1614597681000" duration="1003000" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+=======
+      <workItem from="1614788454120" duration="726000" />
+>>>>>>> master
+=======
+=======
 <<<<<<< HEAD
 <<<<<<< HEAD
       <workItem from="1614788454120" duration="58000" />
@@ -205,6 +281,7 @@
       <workItem from="1615024362617" duration="149000" />
 >>>>>>> master
 =======
+>>>>>>> master
 <<<<<<< Updated upstream
       <workItem from="1614788454120" duration="726000" />
 =======
@@ -221,9 +298,12 @@
 >>>>>>> Stashed changes
 >>>>>>> Stashed changes
 >>>>>>> master
+<<<<<<< HEAD
+=======
 =======
       <updated>1615028653063</updated>
       <workItem from="1615028655408" duration="1039000" />
+>>>>>>> master
 >>>>>>> master
     </task>
     <servers />
