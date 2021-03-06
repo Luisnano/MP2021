@@ -76,7 +76,7 @@ typedef struct{
 
 //Funciones_definiciones
 
-=======
+
 void leer_configuracion();
 void escribir_configuracion();
 void leer_futbolistas();
@@ -159,7 +159,7 @@ void escribir_configuracion(){
 
 void escribir_futbolistas(futbolistas *estruc_fut){
 
-    int i = 0, j;
+    int i = 1, j;
     char c;
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/futbolistas.txt", "r+");
@@ -190,7 +190,7 @@ void escribir_futbolistas(futbolistas *estruc_fut){
 
 void escribir_equipos(equipos *estruc_equ){
 
-    int i = 0, j;
+    int i = 1, j;
     char c;
     FILE *f_equipos;
     f_equipos = fopen("files/equipos.txt","r+");
