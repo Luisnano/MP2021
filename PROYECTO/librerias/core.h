@@ -17,11 +17,6 @@
 
 //Definicion de funciones y estructuras
 
-void leer_configuracion();
-void escribir_configuracion();
-void leer_futbolistas();
-void escribir_futbolistas();
-
 typedef struct{
 
     int max_equipos;
@@ -76,6 +71,11 @@ typedef struct{
     char nombre_equipo[21];
 
 }equipos;
+
+void leer_configuracion();
+void escribir_configuracion();
+void leer_futbolistas();
+void escribir_futbolistas(futbolistas *);
 
 //FUNciones
 
