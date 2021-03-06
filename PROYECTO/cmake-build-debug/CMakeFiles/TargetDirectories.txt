@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< Updated upstream
 C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/PROYECTO.dir
@@ -13,3 +14,14 @@ C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/PROYECTO.dir
 C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 >>>>>>> master
+=======
+<<<<<<< Updated upstream
+C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/PROYECTO.dir
+C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+=======
+D:/MP/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/PROYECTO.dir
+D:/MP/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/MP/MP2021/PROYECTO/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
