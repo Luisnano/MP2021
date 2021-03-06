@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 "C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO"
 -- The C compiler identification is GNU 6.3.0
 -- Check for working C compiler: C:/MinGW/bin/gcc.exe
@@ -9,3 +10,9 @@
 -- Configuring done
 -- Generating done
 -- Build files have been written to: C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug
+=======
+"D:\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO
+-- Configuring done
+-- Generating done
+-- Build files have been written to: D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug
+>>>>>>> Stashed changes

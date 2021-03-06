@@ -28,9 +28,9 @@ typedef struct{
 
 }configuracion;
 
-<<<<<<< HEAD
+
 //Funciones
-=======
+
 typedef struct{
 
     int usuario_id;
@@ -74,7 +74,7 @@ typedef struct{
     char nombre_equipo[21];
 
 }equipos;
->>>>>>> master
+
 
 void leer_configuracion(){
 
