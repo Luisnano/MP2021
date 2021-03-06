@@ -28,6 +28,50 @@ typedef struct{
 
 }configuracion;
 
+typedef struct{
+
+    int usuario_id;
+    char nombre_usuario[21];
+    char usuario_perfil[15];
+    char usuario_nick[6];
+    char usuario_password[9];
+
+}usuarios;
+
+typedef struct{
+
+    int usuario_id;
+    int plantilla_id;
+    char nombre_plantilla[31];
+    int presupuesto_disp;
+    int puntuacion_acum;
+
+}plantillas;
+
+typedef struct{
+
+    int jugador_platilla_id;
+    int plantilla_id;
+
+}jugadores_platillas;
+
+typedef struct{
+
+    int futbolista_id;
+    int equipo_id;
+    char nombre_futbolista[21];
+    int futbolista_precio;
+    int valoracion;
+
+}futbolistas;
+
+typedef struct{
+
+    int equipo_id;
+    char nombre_equipo[21];
+
+}equipos;
+
 void leer_configuracion(){
 
     configuracion estructura_config;
@@ -60,9 +104,5 @@ void escribir_configuracion(){
 
     fclose(f_configuracion);
 }
-
-
-
-
 #endif //PROYECTO_CORE_H    // Si no hay + cosigo abajo lo acaba
 >>>>>>> master
