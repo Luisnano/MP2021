@@ -1,20 +1,20 @@
-<<<<<<< HEAD
-#ifndef PROYECTO_CORE_H
-#define PROYECTO_CORE_H
-=======
+
+
+
+
 #ifndef PROYECTO_CORE_H     // Si no esta definido el modulo lo crea
 #define PROYECTO_CORE_H     // Definicion del modulo
 
 //Inclusion de librerias
->>>>>>> master
+
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 
-<<<<<<< HEAD
-#endif //PROYECTO_CORE_H
-=======
+
+
+
 //Definicion de funciones y estructuras
 
 void leer_configuracion();
@@ -105,4 +105,4 @@ void escribir_configuracion(){
     fclose(f_configuracion);
 }
 #endif //PROYECTO_CORE_H    // Si no hay + cosigo abajo lo acaba
->>>>>>> master
+
