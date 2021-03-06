@@ -11,6 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="192f44ea-ea3b-4232-8d5f-baac03e9f870" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/documentacion/documentacion.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/librerias/admin.h" afterDir="false" />
@@ -56,6 +57,9 @@
       <change beforePath="$PROJECT_DIR$/files/configuracion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/files/configuracion.txt" afterDir="false" />
 >>>>>>> master
     </list>
+=======
+    <list default="true" id="192f44ea-ea3b-4232-8d5f-baac03e9f870" name="Default Changelist" comment="" />
+>>>>>>> master
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -127,6 +131,7 @@
       <workItem from="1614625533243" duration="16000" />
       <workItem from="1614723271396" duration="193000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1614788454120" duration="58000" />
 =======
 =======
@@ -136,6 +141,9 @@
 >>>>>>> Stashed changes
 =======
       <workItem from="1614788454120" duration="422000" />
+>>>>>>> master
+=======
+      <workItem from="1614788454120" duration="726000" />
 >>>>>>> master
     </task>
     <servers />
