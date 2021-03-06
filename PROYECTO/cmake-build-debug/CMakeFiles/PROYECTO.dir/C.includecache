@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/aleja/Desktop/MP2021/PROYECTO/librerias/core.h
+stdio.h
+-
+stdlib.h
+-
+assert.h
+-
+
+C:/Users/aleja/Desktop/MP2021/PROYECTO/main.c
+stdio.h
+-
+librerias/core.h
+C:/Users/aleja/Desktop/MP2021/PROYECTO/librerias/core.h
+
