@@ -26,12 +26,7 @@ typedef struct{
 
 }configuracion;
 
-<<<<<<< HEAD
-
-//Funciones
-=======
 configuracion estructura_config;
->>>>>>> master
 
 typedef struct{
 
@@ -77,9 +72,9 @@ typedef struct{
 
 }equipos;
 
-<<<<<<< HEAD
 
-//Funciones
+
+//Funciones_definiciones
 
 =======
 void leer_configuracion();
@@ -89,8 +84,8 @@ void escribir_futbolistas(futbolistas *);
 void leer_equipos();
 void escribir_equipos(equipos *);
 
-//FUNciones
->>>>>>> master
+//Funciones
+
 
 void leer_configuracion(){
 
