@@ -8,38 +8,6 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-				<Option working_dir="D:/MP/MP2021/PROYECTO/cmake-build-debug"/>
-=======
-<<<<<<< Updated upstream
-				<Option working_dir="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug"/>
->>>>>>> Stashed changes
-=======
-				<Option working_dir="D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug"/>
->>>>>>> master
-=======
-				<Option working_dir="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug"/>
->>>>>>> master
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="PROYECTO">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-				<Option output="D:/MP/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/MP/MP2021/PROYECTO/cmake-build-debug"/>
-=======
-				<Option output="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug"/>
-=======
 				<Option working_dir="C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
@@ -52,16 +20,6 @@
 			<Target title="PROYECTO">
 				<Option output="C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug"/>
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-=======
-				<Option output="D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug"/>
->>>>>>> master
-=======
-				<Option output="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug"/>
->>>>>>> master
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -69,36 +27,8 @@
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-					<Build command="D:/Program Files (x86)/mingw64/bin/mingw32-make.exe -f &quot;D:/MP/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 PROYECTO"/>
-					<CompileFile command="D:/Program Files (x86)/mingw64/bin/mingw32-make.exe -f &quot;D:/MP/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Program Files (x86)/mingw64/bin/mingw32-make.exe -f &quot;D:/MP/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Program Files (x86)/mingw64/bin/mingw32-make.exe -f &quot;D:/MP/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="PROYECTO/fast">
-				<Option output="D:/MP/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/MP/MP2021/PROYECTO/cmake-build-debug"/>
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> master
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 PROYECTO"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-<<<<<<< HEAD
-				</MakeCommands>
-			</Target>
-			<Target title="PROYECTO/fast">
-				<Option output="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug"/>
-=======
 					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 PROYECTO"/>
 					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -108,26 +38,6 @@
 			<Target title="PROYECTO/fast">
 				<Option output="C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug"/>
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-=======
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 PROYECTO"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="PROYECTO/fast">
-				<Option output="D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug"/>
->>>>>>> master
-=======
-				</MakeCommands>
-			</Target>
-			<Target title="PROYECTO/fast">
-				<Option output="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug"/>
->>>>>>> master
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -135,76 +45,8 @@
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
-					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-					<Build command="D:/Program Files (x86)/mingw64/bin/mingw32-make.exe -f &quot;D:/MP/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 PROYECTO/fast"/>
-					<CompileFile command="D:/Program Files (x86)/mingw64/bin/mingw32-make.exe -f &quot;D:/MP/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="D:/Program Files (x86)/mingw64/bin/mingw32-make.exe -f &quot;D:/MP/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="D:/Program Files (x86)/mingw64/bin/mingw32-make.exe -f &quot;D:/MP/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> master
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 PROYECTO/fast"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 PROYECTO/fast"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
->>>>>>> master
-=======
->>>>>>> master
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-		</Build>
-		<Unit filename="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/librerias/admin.h">
-			<Option target="PROYECTO"/>
-		</Unit>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-		<Unit filename="D:/MP/MP2021/PROYECTO/librerias/core.h">
-			<Option target="PROYECTO"/>
-		</Unit>
->>>>>>> master
-		<Unit filename="D:/MP/MP2021/PROYECTO/main.c">
-			<Option target="PROYECTO"/>
-		</Unit>
-		<Unit filename="D:/MP/MP2021/PROYECTO/CMakeLists.txt">
-=======
-		<Unit filename="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/CMakeLists.txt">
-=======
 					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 PROYECTO/fast"/>
 					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -232,34 +74,22 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/aleja/Desktop/MP2021/PROYECTO/librerias/admin.h">
+			<Option target="PROYECTO"/>
+		</Unit>
+		<Unit filename="C:/Users/aleja/Desktop/MP2021/PROYECTO/librerias/core.h">
+			<Option target="PROYECTO"/>
+		</Unit>
+		<Unit filename="C:/Users/aleja/Desktop/MP2021/PROYECTO/librerias/cronista.h">
+			<Option target="PROYECTO"/>
+		</Unit>
+		<Unit filename="C:/Users/aleja/Desktop/MP2021/PROYECTO/librerias/participantes.h">
+			<Option target="PROYECTO"/>
+		</Unit>
 		<Unit filename="C:/Users/aleja/Desktop/MP2021/PROYECTO/main.c">
 			<Option target="PROYECTO"/>
 		</Unit>
 		<Unit filename="C:/Users/aleja/Desktop/MP2021/PROYECTO/CMakeLists.txt">
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-=======
-		<Unit filename="D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/librerias/core.h">
-=======
-		<Unit filename="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/librerias/core.h">
->>>>>>> master
-			<Option target="PROYECTO"/>
-		</Unit>
-		<Unit filename="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/librerias/cronista.h">
-			<Option target="PROYECTO"/>
-		</Unit>
-<<<<<<< HEAD
-		<Unit filename="D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/CMakeLists.txt">
->>>>>>> master
-=======
-		<Unit filename="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/librerias/participantes.h">
-			<Option target="PROYECTO"/>
-		</Unit>
-		<Unit filename="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/main.c">
-			<Option target="PROYECTO"/>
-		</Unit>
-		<Unit filename="C:/Users/Luis Fernando/Desktop/ESI/MP/POXD/MP2021/PROYECTO/CMakeLists.txt">
->>>>>>> master
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
