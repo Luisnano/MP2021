@@ -17,11 +17,6 @@
 
 //Definicion de funciones y estructuras
 
-void leer_configuracion();
-void escribir_configuracion();
-void leer_futbolistas();
-void escribir_futbolistas();
-
 typedef struct{
 
     int max_equipos;
@@ -82,9 +77,19 @@ typedef struct{
 
 }equipos;
 
+<<<<<<< HEAD
 
 //Funciones
 
+=======
+void leer_configuracion();
+void escribir_configuracion();
+void leer_futbolistas();
+void escribir_futbolistas(futbolistas *);
+void leer_equipos();
+
+//FUNciones
+>>>>>>> master
 
 void leer_configuracion(){
 
@@ -105,10 +110,10 @@ void leer_futbolistas(){
     int i;
 
     futbolistas *estructura_futbolistas;
-    estructura_futbolistas = (futbolistas*)malloc(estructura_config.max_futbolistas_plantilla*sizeof (int));
+    estructura_futbolistas = (futbolistas*)malloc(estructura_config.max_futbolistas_plantilla*sizeof(int));
     assert(estructura_futbolistas == NULL || puts("Fallo de asignacion de memoria"));
     FILE *f_futbolistas;
-    f_futbolistas = fopen("files/jugadores.txt", "r");
+    f_futbolistas = fopen("files/futbolistas.txt", "r");
     assert(f_futbolistas != NULL || puts("Fallo de apertura de fichero"));
     for (i=0; i<estructura_config.max_futbolistas_plantilla; i++){
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_id);
@@ -118,6 +123,24 @@ void leer_futbolistas(){
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].valoracion);
     }
     fclose(f_futbolistas);
+
+}
+
+void leer_equipos(){
+
+    int i;
+
+    equipos *estructura_equipos;
+    estructura_equipos = (equipos*)malloc(estructura_config.max_equipos*sizeof(int));
+    assert(estructura_equipos == NULL || puts("Fallo de asignacion de memoria"));
+    FILE *f_equipos;
+    f_equipos = fopen("files/equipos.txt", "r");
+    assert(f_equipos != NULL || puts("Fallo de apertura de fichero"));
+    for (i=0; i<estructura_config.max_equipos; i++){
+        fscanf(f_equipos, "%i", &estructura_equipos[i].equipo_id);
+        fscanf(f_equipos, "%s", &estructura_equipos[i].nombre_equipo);
+    }
+    fclose(f_equipos);
 
 }
 
@@ -140,11 +163,18 @@ void escribir_configuracion(){
 
 void escribir_futbolistas(futbolistas *estruc_fut){
 
-    int i;
+    int i = 0, j;
+    char c;
     FILE *f_futbolistas;
-    f_futbolistas = fopen("files/jugadores.txt", "r+");
+    f_futbolistas = fopen("files/futbolistas.txt", "r+");
     assert(f_futbolistas != NULL || printf("Error apertura fichero_futbolistas\n"));
-    for (i=0; i<estructura_config.max_futbolistas_plantilla; i++){
+    while(c != EOF){
+        c = fgetc(f_futbolistas);
+        if(c == '\n'){
+            i++;
+        }
+    }
+    for (j=0; j<i; j++){
         fprintf(f_futbolistas, "%i", estruc_fut[i].futbolista_id);
         fprintf(f_futbolistas,"%s","\n");
         fprintf(f_futbolistas, "%i", estruc_fut[i].equipo_id);
@@ -156,7 +186,35 @@ void escribir_futbolistas(futbolistas *estruc_fut){
         fprintf(f_futbolistas, "%i", estruc_fut[i].valoracion);
         fprintf(f_futbolistas,"%s","\n");
     }
+
     fclose(f_futbolistas);
+
+    free(estruc_fut);
+}
+
+void escribir_equipos(equipos *estruc_equ){
+
+    int i = 0, j;
+    char c;
+    FILE *f_equipos;
+    f_equipos = fopen("files/equipos.txt","r+");
+    assert(f_equipos != NULL || printf("Error apertura fichero_equipos\n"));
+    while(c != EOF){
+        c = fgetc(f_equipos);
+        if(c == '\n'){
+            i++;
+        }
+    }
+    for (j=0; j<i; j++){
+        fprintf(f_equipos, "%i", estruc_equ[i].equipo_id);
+        fprintf(f_equipos, "%s", "\n");
+        fprintf(f_equipos, "%s", estruc_equ[i].nombre_equipo);
+        fprintf(f_equipos, "%s", "\n");
+    }
+
+    fclose(f_equipos);
+
+    free(estruc_equ);
 }
 
 
