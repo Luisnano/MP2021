@@ -128,7 +128,7 @@ void volcar_futbolistas(){
     f_futbolistas = fopen("files/futbolistas.txt", "r");
     assert(f_futbolistas != NULL || printf("Fallo de apertura de fichero\n"));
 
-    for (i=0; i<estructura_config.max_futbolistas; i++){
+    for (i=0; i<1; i++){
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_id);
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].equipo_id);
         fscanf(f_futbolistas, "%s", &estructura_futbolistas[i].nombre_futbolista);
@@ -151,11 +151,11 @@ void volcar_equipos(){
     assert(f_equipos != NULL || printf("Fallo de apertura de fichero\n"));
 
     for (i=0; i<estructura_config.max_equipos; i++){
+
         fscanf(f_equipos, "%i", &estructura_equipos[i].equipo_id);
         fscanf(f_equipos, "%s", &estructura_equipos[i].nombre_equipo);
     }
     fclose(f_equipos);
-
 }
 
 void volcar_usuarios(){

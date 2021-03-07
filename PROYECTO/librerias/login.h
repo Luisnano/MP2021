@@ -66,7 +66,21 @@ void registro(){
     assert(estructura_usuarios == NULL || puts("Fallo de reserva de memoria"));
 
     printf("A continuacion se le pediran sus datos necesarios para el registro\n\n");
+    scanf("%i",&estructura_usuarios[sizeof(estructura_usuarios)].usuario_id);
+    printf("\nDime tu nombre y primer apellido:");
+    fgets(estructura_usuarios[sizeof(estructura_usuarios)].nombre_usuario,21,stdin);
+    fflush(stdin);
+    printf("\n¿Que tipo de usuario vas a ser? Puedes ser participante, cronista y participante: ");
+    fgets(estructura_usuarios[sizeof(estructura_usuarios)].usuario_perfil,15,stdin);
+    fflush(stdin);
+    printf("\nTu nombre de usuario(no mayor a 5 caracteres): ");
+    fgets(estructura_usuarios[sizeof(estructura_usuarios)].usuario_nick,6,stdin);
+    fflush(stdin);
+    printf("\nPor ultimo, tu contraseña(no mayor a 8 caracteres): ");
+    fgets(estructura_usuarios[sizeof(estructura_usuarios)].usuario_password,9,stdin);
+    fflush(stdin);
 
+    printf("\n\nEl resgistro ha sido realizado con exito, ya puedes seleccionar la opcion de acceder al sistema del menu principal\n\n");
 
 }
 
