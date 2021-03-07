@@ -11,13 +11,13 @@
 
 //DEFINICIONES_FUNCIONES
 
-void acceso_sistema(usuarios *);
-void registro(usuarios *);
+void acceso_sistema();
+void registro();
 
 
 //FUNCIONES
 
-void acceso_sistema(usuarios *estruc_usu) {
+void acceso_sistema() {
 
     int i = 0,j = 0,aux;
     char u[6],p[9];                    //Mismos tamaños que el campo nick/password_usuario en usuario.txt
@@ -26,9 +26,9 @@ void acceso_sistema(usuarios *estruc_usu) {
     fgets(u,6,stdin);
     fflush(stdin);
 
-    while(i<=sizeof(estruc_usu)){
+    while(i<=sizeof(estructura_usuarios)){
 
-        if(strcmp(u,estruc_usu[i].usuario_nick)==0){
+        if(strcmp(u,estructura_usuarios[i].usuario_nick)==0){
 
             j = 1;
             aux = i;                //Guardo en aux el usuario para poder referirme a sus campos mas adelante
@@ -39,14 +39,14 @@ void acceso_sistema(usuarios *estruc_usu) {
 
     if(j==1){
 
-        printf("\nBienvenid@ %s, a continuacion introduzca su password: ",estruc_usu[aux].nombre_usuario);
+        printf("\nBienvenid@ %s, a continuacion introduzca su password: ",estructura_usuarios[aux].nombre_usuario);
         etiqueta1:
         fgets(p,9,stdin);
         fflush(stdin);
 
-        if(strcmp(p,estruc_usu[aux].usuario_password)==1){
+        if(strcmp(p,estructura_usuarios[aux].usuario_password)==1){
 
-            printf("\nPassword correcta, puede acceder al sistema como %s",estruc_usu[aux].usuario_perfil);
+            printf("\nPassword correcta, puede acceder al sistema como %s",estructura_usuarios[aux].usuario_perfil);
         }
         else{
 
@@ -60,10 +60,10 @@ void acceso_sistema(usuarios *estruc_usu) {
     }
 }
 
-void registro(usuarios *estruc_usu){
+void registro(){
 
-    estruc_usu = (usuarios*)realloc(estruc_usu,(sizeof(*estruc_usu)+1)*sizeof(int));    //Le damos un espacio mas al vector dinamico usuarios
-    assert(estruc_usu == NULL || puts("Fallo de reserva de memoria"));
+    estructura_usuarios = (usuarios*)realloc(estructura_usuarios,(sizeof(estructura_usuarios)+1)*sizeof(int));    //Le damos un espacio mas al vector dinamico usuarios
+    assert(estructura_usuarios == NULL || puts("Fallo de reserva de memoria"));
 
     printf("A continuacion se le pediran sus datos necesarios para el registro\n\n");
 

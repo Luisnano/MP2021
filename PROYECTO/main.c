@@ -1,6 +1,7 @@
 //LIBRERIAS
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "librerias/core.h"
 #include "librerias/login.h"
 
