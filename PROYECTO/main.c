@@ -12,12 +12,12 @@
 
 int main() {
 
-    void volcar_configuracion();
-    void volcar_futbolistas();
-    void volcar_equipos();
-    void volcar_usuarios();
-    void volcar_plantillas();
-    void volcar_jugadores_plantillas();
+    volcar_configuracion();
+    volcar_futbolistas();
+    volcar_equipos();
+    volcar_usuarios();
+    volcar_plantillas();
+    volcar_jugadores_plantillas();
 
     printf("¡¡Bienvenid@ a la liga fantastica!!\n\n");
     printf("1) Acceso al sistema (cuenta ya existente)\n");

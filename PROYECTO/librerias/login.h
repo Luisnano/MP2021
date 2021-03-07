@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include "librerias/core.h"
+#include "core.h"
 
 //DEFINICIONES_FUNCIONES
 
@@ -66,7 +66,7 @@ void registro(usuarios *estruc_usu){
     assert(estruc_usu == NULL || puts("Fallo de reserva de memoria"));
 
     printf("A continuacion se le pediran sus datos necesarios para el registro\n\n");
-    
+
 
 }
 
