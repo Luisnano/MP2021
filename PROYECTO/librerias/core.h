@@ -110,10 +110,9 @@ void volcar_configuracion(){
 void volcar_futbolistas(){
 
     int i;
-
     futbolistas *estructura_futbolistas;
     estructura_futbolistas = (futbolistas*)malloc(estructura_config.max_futbolistas*sizeof(int));
-    assert(estructura_futbolistas == NULL || puts("Fallo de reserva de memoria"));
+    assert(estructura_futbolistas != NULL || puts("Fallo de reserva de memoria"));
 
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/futbolistas.txt", "r");
@@ -136,7 +135,7 @@ void volcar_equipos(){
 
     equipos *estructura_equipos;
     estructura_equipos = (equipos*)malloc(estructura_config.max_equipos*sizeof(int));
-    assert(estructura_equipos == NULL || puts("Fallo de reserva de memoria"));
+    assert(estructura_equipos != NULL || puts("Fallo de reserva de memoria"));
 
     FILE *f_equipos;
     f_equipos = fopen("files/equipos.txt", "r");
@@ -156,7 +155,7 @@ void volcar_usuarios(){
 
     usuarios *estructura_usuarios;
     estructura_usuarios =(usuarios*)malloc(3*sizeof(int));  // El 3 es porque al principio hay solo 3 usuarios en el fichero
-    assert(estructura_usuarios == NULL || puts("Fallo de reserva de memoria"));
+    assert(estructura_usuarios != NULL || puts("Fallo de reserva de memoria"));
 
     FILE *f_usuarios;
     f_usuarios = fopen("files/usuarios.txt", "r");
@@ -177,14 +176,14 @@ void volcar_plantillas(){       // Fichero plantillas empieza vacio , creamos un
 
     plantillas *estructura_plantillas;
     estructura_plantillas = (plantillas*)malloc(1*sizeof(int));     // Le damos 1 espacio al vector dinamico, si se añaden plantillas se aumentara el tamano
-    assert(estructura_plantillas == NULL || puts("Fallo de reserva de memoria"));
+    assert(estructura_plantillas != NULL || puts("Fallo de reserva de memoria"));
 }
 
 void volcar_jugadores_plantillas(){        //Fichero jugadores_plantillas empieza vacio, creamos unicamente la variable estructura
 
     jugadores_plantillas *estructura_jugadores_plantillas;
     estructura_jugadores_plantillas = (jugadores_plantillas*)malloc(1*sizeof(int));     //Le damos un espacio al vector dinamico, si se añaden futbolistas a las plantillas se aumentara el tamaño
-    assert(estructura_jugadores_plantillas == NULL || puts("Fallo de reserva de memoria"));
+    assert(estructura_jugadores_plantillas != NULL || puts("Fallo de reserva de memoria"));
 }
 
 void escribir_configuracion(){
