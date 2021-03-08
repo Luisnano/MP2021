@@ -156,6 +156,7 @@ void volcar_equipos(){
         fscanf(f_equipos, "%s", estructura_equipos[i].nombre_equipo);
     }
 
+
     fclose(f_equipos);
 }
 
