@@ -6,33 +6,3 @@
 
 #IncludeRegexTransform: 
 
-D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/librerias/core.h
-stdio.h
--
-stdlib.h
--
-assert.h
--
-
-D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/librerias/login.h
-stdio.h
--
-stdlib.h
--
-string.h
--
-assert.h
--
-core.h
-D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/librerias/core.h
-
-D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/main.c
-stdio.h
--
-stdlib.h
--
-librerias/core.h
-D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/librerias/core.h
-librerias/login.h
-D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/librerias/login.h
-

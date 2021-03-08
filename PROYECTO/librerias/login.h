@@ -63,7 +63,7 @@ void acceso_sistema() {
 void registro(){
 
     estructura_usuarios = (usuarios*)realloc(estructura_usuarios,(sizeof(estructura_usuarios)+1)*sizeof(int));    //Le damos un espacio mas al vector dinamico usuarios
-    assert(estructura_usuarios == NULL || puts("Fallo de reserva de memoria"));
+    assert(estructura_usuarios != NULL || puts("Fallo de reserva de memoria"));
 
     printf("A continuacion se le pediran sus datos necesarios para el registro\n\n");
     scanf("%i",&estructura_usuarios[sizeof(estructura_usuarios)].usuario_id);

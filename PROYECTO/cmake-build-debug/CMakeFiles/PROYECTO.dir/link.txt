@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 "D:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\PROYECTO.dir/objects.a
 "D:\Program Files (x86)\mingw64\bin\ar.exe" cr CMakeFiles\PROYECTO.dir/objects.a @CMakeFiles\PROYECTO.dir\objects1.rsp
@@ -12,4 +13,15 @@ C:\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\PROYECTO.dir/objects.a 
 "D:\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\PROYECTO.dir/objects.a
 C:\MinGW\bin\ar.exe cr CMakeFiles\PROYECTO.dir/objects.a @CMakeFiles\PROYECTO.dir\objects1.rsp
 C:\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\PROYECTO.dir/objects.a -Wl,--no-whole-archive  -o PROYECTO.exe -Wl,--out-implib,libPROYECTO.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\PROYECTO.dir\linklibs.rsp
+>>>>>>> master
+=======
+<<<<<<< Updated upstream
+"C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\PROYECTO.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\PROYECTO.dir/objects.a @CMakeFiles\PROYECTO.dir\objects1.rsp
+C:\MinGW\bin\gcc.exe -g   -Wl,--whole-archive CMakeFiles\PROYECTO.dir/objects.a -Wl,--no-whole-archive  -o PROYECTO.exe -Wl,--out-implib,libPROYECTO.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\PROYECTO.dir\linklibs.rsp
+=======
+"D:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\PROYECTO.dir/objects.a
+"D:\Program Files (x86)\mingw64\bin\ar.exe" cr CMakeFiles\PROYECTO.dir/objects.a @CMakeFiles\PROYECTO.dir\objects1.rsp
+"D:\Program Files (x86)\mingw64\bin\gcc.exe" -g   -Wl,--whole-archive CMakeFiles\PROYECTO.dir/objects.a -Wl,--no-whole-archive  -o PROYECTO.exe -Wl,--out-implib,libPROYECTO.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\PROYECTO.dir\linklibs.rsp
+>>>>>>> Stashed changes
 >>>>>>> master

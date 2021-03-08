@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 set(CMAKE_RC_COMPILER "D:/Program Files (x86)/mingw64/bin/windres.exe")
 =======
 set(CMAKE_RC_COMPILER "C:/MinGW/bin/windres.exe")
+>>>>>>> master
+=======
+set(CMAKE_RC_COMPILER "D:/Program Files (x86)/mingw64/bin/windres.exe")
 >>>>>>> master
 set(CMAKE_RC_COMPILER_ARG1 "")
 set(CMAKE_RC_COMPILER_LOADED 1)

@@ -128,10 +128,10 @@ void volcar_futbolistas(){
     f_futbolistas = fopen("files/futbolistas.txt", "r");
     assert(f_futbolistas != NULL || printf("Fallo de apertura de fichero\n"));
 
-    for (i=0; i<1; i++){
+    for (i=0; i<estructura_config.max_futbolistas; i++){
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_id);
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].equipo_id);
-        fscanf(f_futbolistas, "%s", &estructura_futbolistas[i].nombre_futbolista);
+        fscanf(f_futbolistas, "%s", estructura_futbolistas[i].nombre_futbolista);
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_precio);
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].valoracion);
     }
@@ -153,8 +153,10 @@ void volcar_equipos(){
     for (i=0; i<estructura_config.max_equipos; i++){
 
         fscanf(f_equipos, "%i", &estructura_equipos[i].equipo_id);
-        fscanf(f_equipos, "%s", &estructura_equipos[i].nombre_equipo);
+        fscanf(f_equipos, "%s", estructura_equipos[i].nombre_equipo);
     }
+
+
     fclose(f_equipos);
 }
 
@@ -172,10 +174,10 @@ void volcar_usuarios(){
     for (i=0;i<3;i++){
 
         fscanf(f_usuarios,"%i",&estructura_usuarios[i].usuario_id);
-        fscanf(f_usuarios,"%s",&estructura_usuarios[i].nombre_usuario);
-        fscanf(f_usuarios,"%s",&estructura_usuarios[i].usuario_perfil);
-        fscanf(f_usuarios,"%s",&estructura_usuarios[i].usuario_nick);
-        fscanf(f_usuarios,"%s",&estructura_usuarios[i].usuario_password);
+        fscanf(f_usuarios,"%s",estructura_usuarios[i].nombre_usuario);
+        fscanf(f_usuarios,"%s",estructura_usuarios[i].usuario_perfil);
+        fscanf(f_usuarios,"%s",estructura_usuarios[i].usuario_nick);
+        fscanf(f_usuarios,"%s",estructura_usuarios[i].usuario_password);
     }
     fclose(f_usuarios);
 }
