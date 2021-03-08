@@ -54,19 +54,33 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
+<<<<<<< Updated upstream
 CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
 RM = "C:\Program Files\JetBrains\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -E rm -f
+=======
+CMAKE_COMMAND = "D:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe"
+
+# The command to remove a file.
+RM = "D:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E rm -f
+>>>>>>> Stashed changes
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< Updated upstream
 CMAKE_SOURCE_DIR = "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO"
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO\cmake-build-debug"
+=======
+CMAKE_SOURCE_DIR = D:\MP\MP2021\PROYECTO
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = D:\MP\MP2021\PROYECTO\cmake-build-debug
+>>>>>>> Stashed changes
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -93,14 +107,24 @@ clean: CMakeFiles/PROYECTO.dir/clean
 CMakeFiles/PROYECTO.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROYECTO.dir\build.make CMakeFiles/PROYECTO.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PROYECTO.dir\build.make CMakeFiles/PROYECTO.dir/build
+<<<<<<< Updated upstream
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO\cmake-build-debug\CMakeFiles" --progress-num=1,2 "Built target PROYECTO"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\MP\MP2021\PROYECTO\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target PROYECTO"
+>>>>>>> Stashed changes
 .PHONY : CMakeFiles/PROYECTO.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/PROYECTO.dir/rule: cmake_check_build_system
+<<<<<<< Updated upstream
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO\cmake-build-debug\CMakeFiles" 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/PROYECTO.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\Luis Fernando\Desktop\ESI\MP\POXD\MP2021\PROYECTO\cmake-build-debug\CMakeFiles" 0
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\MP\MP2021\PROYECTO\cmake-build-debug\CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/PROYECTO.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\MP\MP2021\PROYECTO\cmake-build-debug\CMakeFiles 0
+>>>>>>> Stashed changes
 .PHONY : CMakeFiles/PROYECTO.dir/rule
 
 # Convenience name for target.
