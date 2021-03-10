@@ -95,9 +95,13 @@ void mostrar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_pla
 
 void volcar_configuracion(configuracion *estructura_config){
 
+    //Apertura del fichero
+
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","r");
     assert(f_configuracion != NULL || printf("Fallo de apertura de fichero\n"));
+
+    //Vuelcan datos del fichero
 
     fscanf(f_configuracion,"%i",&estructura_config->max_equipos);
     fscanf(f_configuracion,"%i",&estructura_config->presupuesto_defecto);
@@ -110,14 +114,22 @@ void volcar_configuracion(configuracion *estructura_config){
 
 void volcar_futbolistas(futbolistas *estructura_futbolistas, configuracion *estructura_config){
 
+    //Usamos la estructura_config ya que necesitamos el parametro max_jugadores para saber el tamaño del vector dinamicos
+
     int i;
+
+    //Reservamos la memoria dinámica
 
     estructura_futbolistas = (futbolistas*)malloc(estructura_config->max_futbolistas*sizeof(int));
     assert(estructura_futbolistas != NULL || printf("Fallo de reserva de memoria\n"));
 
+    //Apertura del fichero
+
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/futbolistas.txt", "r");
     assert(f_futbolistas != NULL || printf("Fallo de apertura de fichero\n"));
+
+    //Rellena estructura_futbolistas
 
     for (i=0; i<estructura_config->max_futbolistas; i++){
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_id);
@@ -134,12 +146,18 @@ void volcar_equipos(equipos *estructura_equipos,configuracion *estructura_config
 
     int i;
 
+    //Reserva memoria al vector dinamico
+
     estructura_equipos = (equipos*)malloc(estructura_config->max_equipos*sizeof(int));
     assert(estructura_equipos != NULL || printf("Fallo de reserva de memoria\n"));
+
+    //Apertura_fichero
 
     FILE *f_equipos;
     f_equipos = fopen("files/equipos.txt", "r");
     assert(f_equipos != NULL || printf("Fallo de apertura de fichero\n"));
+
+    //Rellena la estructura_equipos
 
     for (i=0; i<estructura_config->max_equipos; i++){
 
@@ -155,12 +173,18 @@ void volcar_usuarios(usuarios *estructura_usuarios){
 
     int i;
 
+    //Reserva memoria en el vector dinamico
+
     estructura_usuarios =(usuarios*)malloc(3*sizeof(int));  // El 3 es porque al principio hay solo 3 usuarios en el fichero
     assert(estructura_usuarios != NULL || printf("Fallo de reserva de memoria\n"));
+
+    //Apertura del fichero
 
     FILE *f_usuarios;
     f_usuarios = fopen("files/usuarios.txt", "r");
     assert(f_usuarios != NULL || printf("Fallo de apertura de fichero\n"));
+
+    //Rellena la estructura_usuarios
 
     for (i=0;i<3;i++){
 
@@ -175,11 +199,14 @@ void volcar_usuarios(usuarios *estructura_usuarios){
 
 void volcar_plantillas(plantillas *estructura_plantillas){       // Fichero plantillas empieza vacio , creamos unicamente la variable estructura
 
+
     estructura_plantillas = (plantillas*)malloc(1*sizeof(int));     // Le damos 1 espacio al vector dinamico, si se añaden plantillas se aumentara el tamano
     assert(estructura_plantillas != NULL || printf("Fallo de reserva de memoria\n"));
 }
 
 void volcar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas){        //Fichero jugadores_plantillas empieza vacio, creamos unicamente la variable estructura
+
+
 
     estructura_jugadores_plantillas = (jugadores_plantillas*)malloc(1*sizeof(int));     //Le damos un espacio al vector dinamico, si se añaden futbolistas a las plantillas se aumentara el tamaño
     assert(estructura_jugadores_plantillas != NULL || printf("Fallo de reserva de memoria\n"));
@@ -187,9 +214,13 @@ void volcar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plan
 
 void escribir_configuracion(configuracion *estructura_config){
 
+    //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
+
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","w");
     assert(f_configuracion != NULL || printf("Error apertura fichero_configuracion\n"));
+
+    //Escribir datos del vector estructura_configuracion en el fichero configuracion
 
     fprintf(f_configuracion,"%i",estructura_config->max_equipos);
     fprintf(f_configuracion,"%s","\n");
@@ -208,9 +239,13 @@ void escribir_futbolistas(futbolistas *estructura_futbolistas){
 
     int i ;
 
+    //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
+
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/futbolistas.txt", "w");
     assert(f_futbolistas != NULL || printf("Error apertura fichero_futbolistas\n"));
+
+    //Escribimos en el fichero futbolistas los datos de estructura_futbolistas
 
     for (i=0; i<=sizeof(estructura_futbolistas); i++){
         fprintf(f_futbolistas, "%i", estructura_futbolistas[i].futbolista_id);
@@ -227,6 +262,8 @@ void escribir_futbolistas(futbolistas *estructura_futbolistas){
 
     fclose(f_futbolistas);
 
+    //Liberamos la memoria del vector dinamico
+
     free(estructura_futbolistas);
 }
 
@@ -234,9 +271,13 @@ void escribir_equipos(equipos *estructura_equipos){
 
     int i;
 
+    //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
+
     FILE *f_equipos;
     f_equipos = fopen("files/equipos.txt","w");
     assert(f_equipos != NULL || printf("Error apertura fichero_equipos\n"));
+
+    //Escribimos los datos de la estructura_equipos en el fichero equipos
 
     for (i=0; i<=sizeof(estructura_equipos); i++){
         fprintf(f_equipos, "%i", estructura_equipos[i].equipo_id);
@@ -247,6 +288,8 @@ void escribir_equipos(equipos *estructura_equipos){
 
     fclose(f_equipos);
 
+    //Liberamos la memoria del vector dinamico
+
     free(estructura_equipos);
 }
 
@@ -254,9 +297,13 @@ void escribir_usuarios(usuarios *estructura_usuarios){
 
     int i;
 
+    //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
+
     FILE *f_usuarios;
     f_usuarios = fopen("files/usuarios.txt", "w");
     assert(f_usuarios != NULL || printf("Error apertura fichero_equipos\n"));
+
+    //Escribimos en el fichero usuarios los datos de su respectiva estructura
 
     for(i=0 ; i<=sizeof(estructura_usuarios) ; i++){
 
@@ -274,6 +321,8 @@ void escribir_usuarios(usuarios *estructura_usuarios){
     }
     fclose(f_usuarios);
 
+    //Liberamos la memoria del vector dinámico
+
     free(estructura_usuarios);
 }
 
@@ -281,10 +330,13 @@ void escribir_plantillas(plantillas *estructura_plantillas){
 
     int i;
 
+    //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
+
     FILE *f_plantillas;
     f_plantillas = fopen("files/plantillas.txt", "w");
     assert(f_plantillas != NULL || printf("Error apertura de fichero\n"));
 
+    //Escribimos en el fichero plantillas el vector dinamico estructura_plantillas
 
     for(i=0 ; i<=sizeof(estructura_plantillas) ; i++){
 
@@ -302,6 +354,8 @@ void escribir_plantillas(plantillas *estructura_plantillas){
 
     fclose(f_plantillas);
 
+    //Liberamos la memoria del vector
+
     free(estructura_plantillas);
 }
 
@@ -309,9 +363,13 @@ void escribir_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_pl
 
     int i;
 
+    //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
+
     FILE *f_jugadores_plantillas;
     f_jugadores_plantillas = fopen("files/jugadores_plantillas.txt", "w");
     assert(f_jugadores_plantillas != NULL || printf("Error apertura fichero_jugadores_plantillas\n"));
+
+    //Escribimos en el fichero jugadores_plantillas los datos del vector dinamico estrucutura_jugadores_plantillas
 
     for(i=0 ; i<=sizeof(estructura_jugadores_plantillas) ; i++){
 
@@ -322,9 +380,12 @@ void escribir_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_pl
     }
     fclose(f_jugadores_plantillas);
 
+    //Liberamos la memoria del vector
+
     free(estructura_jugadores_plantillas);
 
 }
+//Mostrar los parametros actuales de estructura_config
 
 void mostrar_configuracion(configuracion *estructura_config){
 
@@ -334,6 +395,8 @@ void mostrar_configuracion(configuracion *estructura_config){
     printf("El numero maximo de plantillas por participantes: %i \n",estructura_config->max_plantillas_participante);
     printf("El numero maximo de futbolistas es: %i \n",estructura_config->max_futbolistas);
 }
+
+//Mostrar los datos de los futbolistas actuales de estructura_futbolistas
 
 void mostrar_futbolistas(futbolistas *estructura_futbolistas){
 
@@ -348,6 +411,8 @@ void mostrar_futbolistas(futbolistas *estructura_futbolistas){
     }
 }
 
+//Mostrar los datos de los equipos actules de la estructura_equipos
+
 void mostrar_equipos(equipos *estructura_equipos){
 
     int i;
@@ -357,6 +422,8 @@ void mostrar_equipos(equipos *estructura_equipos){
         printf("%s\n",estructura_equipos[i].nombre_equipo);
     }
 }
+
+//Mostrar los usuarios actuales de estructura_usuarios
 
 void mostrar_usuarios(usuarios *estructura_usuarios){
 
@@ -374,6 +441,8 @@ void mostrar_usuarios(usuarios *estructura_usuarios){
 
 }
 
+//Mostrar las plantillas actuales de estructura_plantillas
+
 void mostrar_plantillas(plantillas *estructura_plantillas){
 
     int i;
@@ -389,6 +458,8 @@ void mostrar_plantillas(plantillas *estructura_plantillas){
     }
 
 }
+
+//Mostrar los jugadores actuales asignados a las plantillas en la estructura_jugadores_plantillas
 
 void mostrar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas){
 
