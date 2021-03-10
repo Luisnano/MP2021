@@ -11,13 +11,13 @@
 
 //DEFINICIONES_FUNCIONES
 
-void acceso_sistema();
-void registro();
+void acceso_sistema(usuarios *estructura_usuarios);
+void registro(usuarios *estructura_usuarios);
 
 
 //FUNCIONES
 
-void acceso_sistema() {
+void acceso_sistema(usuarios *estructura_usuarios) {
 
     int i = 0,j = 0,aux;
     char u[6],p[9];                    //Mismos tamaños que el campo nick/password_usuario en usuario.txt
@@ -60,7 +60,7 @@ void acceso_sistema() {
     }
 }
 
-void registro(){
+void registro(usuarios *estructura_usuarios){
 
     estructura_usuarios = (usuarios*)realloc(estructura_usuarios,(sizeof(estructura_usuarios)+1)*sizeof(int));    //Le damos un espacio mas al vector dinamico usuarios
     assert(estructura_usuarios != NULL || puts("Fallo de reserva de memoria"));
