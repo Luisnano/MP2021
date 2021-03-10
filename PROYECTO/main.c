@@ -5,17 +5,11 @@
 #include "librerias/core.h"
 #include "librerias/login.h"
 
-
-//ESTRUCTURAS
-
-
-//DEFINICIONES_FUNCIONES
-
-
 //MAIN PROGRAM
 
 int main() {
 
+    //Creamos las variables tipo estructuras
     configuracion estructura_config;
     usuarios *estructura_usuarios;
     plantillas *estructura_plantillas;
@@ -23,6 +17,7 @@ int main() {
     futbolistas *estructura_futbolistas;
     equipos *estructura_equipos;
 
+    //Volcamos todos los datos de los ficheros en sus respectivas variables estructuras anteriormente declaradas
     volcar_configuracion(&estructura_config);
     volcar_futbolistas(&estructura_futbolistas,&estructura_config);
     volcar_equipos(&estructura_equipos,&estructura_config);
