@@ -17,41 +17,41 @@ void registro(usuarios *estructura_usuarios);
 
 //FUNCIONES
 
-void acceso_sistema(usuarios *estructura_usuarios) {
+void acceso_sistema(usuarios *estructura_usuarios) {    //Funcion que permitira a los usuarios registrados acceder al sistema
 
     int i = 0,j = 0,aux;
-    char u[6],p[9];                    //Mismos tamaños que el campo nick/password_usuario en usuario.txt
+    char u[6],p[9];                    //Mismos tamaños(6 y 9) que el campo nick_usuario/password_usuario en usuario.txt
 
     printf("Introduzca su usuario: ");
     fgets(u,6,stdin);
     fflush(stdin);
 
-    while(i<=sizeof(estructura_usuarios)){
+    while(i<=sizeof(estructura_usuarios)){          //Recorre todo el vector dinamico de usuarios para verificar si existe algun susuario con ese nick
 
-        if(strcmp(u,estructura_usuarios[i].usuario_nick)==0){
+        if(strcmp(u,estructura_usuarios[i].usuario_nick)==0){   //Verifica si hay coincidencia
 
-            j = 1;
+            j = 1;                  //Para afirmar que se ha encontrado coincidencia
             aux = i;                //Guardo en aux el usuario para poder referirme a sus campos mas adelante
         }
 
         i++;
     }
 
-    if(j==1){
+    if(j==1){           //Si se ha encontrado el nick del usuario:
 
         printf("\nBienvenid@ %s, a continuacion introduzca su password: ",estructura_usuarios[aux].nombre_usuario);
-        etiqueta1:
+        etiqueta1:          //Esta etiqueta me servirá para volver a ella en caso de que posteriormente escriba mala contraseña, así podrá intentarlo de nuevo
         fgets(p,9,stdin);
         fflush(stdin);
 
-        if(strcmp(p,estructura_usuarios[aux].usuario_password)==1){
+        if(strcmp(p,estructura_usuarios[aux].usuario_password)==1){         //Comprueba la coincidencia de la contraseña
 
             printf("\nPassword correcta, puede acceder al sistema como %s",estructura_usuarios[aux].usuario_perfil);
         }
         else{
 
             printf("\nPassword incorrecta,vuelve a introducirla: ");
-            goto etiqueta1;
+            goto etiqueta1;                                             //Va a la etiqueta para volver a introducir la contraseña
         }
 
     }
@@ -60,23 +60,23 @@ void acceso_sistema(usuarios *estructura_usuarios) {
     }
 }
 
-void registro(usuarios *estructura_usuarios){
+void registro(usuarios *estructura_usuarios){       //Funcion para que los usuarios se puedan registrar
 
     estructura_usuarios = (usuarios*)realloc(estructura_usuarios,(sizeof(estructura_usuarios)+1)*sizeof(int));    //Le damos un espacio mas al vector dinamico usuarios
     assert(estructura_usuarios != NULL || puts("Fallo de reserva de memoria"));
 
     printf("A continuacion se le pediran sus datos necesarios para el registro\n\n");
-    scanf("%i",&estructura_usuarios[sizeof(estructura_usuarios)].usuario_id);
+    scanf("%i",&estructura_usuarios[sizeof(estructura_usuarios)].usuario_id);           //El ID del usuario no lo elige él, le asignamos el siguiente numero disponible, es decir, el del tamaño del vector ya q le hemos sumado uno a esa cantidad
     printf("\nDime tu nombre y primer apellido:");
     fgets(estructura_usuarios[sizeof(estructura_usuarios)].nombre_usuario,21,stdin);
     fflush(stdin);
     printf("\n¿Que tipo de usuario vas a ser? Puedes ser participante, cronista y participante: ");
     fgets(estructura_usuarios[sizeof(estructura_usuarios)].usuario_perfil,15,stdin);
     fflush(stdin);
-    printf("\nTu nombre de usuario(no mayor a 5 caracteres): ");
+    printf("\nTu nombre de usuario(no mayor a 5 caracteres): ");                    //Ya que el ultimo elemento del string está reservado
     fgets(estructura_usuarios[sizeof(estructura_usuarios)].usuario_nick,6,stdin);
     fflush(stdin);
-    printf("\nPor ultimo, tu contraseña(no mayor a 8 caracteres): ");
+    printf("\nPor ultimo, tu contraseña(no mayor a 8 caracteres): ");                   //Ya que el ultimo elemento del string está reservado
     fgets(estructura_usuarios[sizeof(estructura_usuarios)].usuario_password,9,stdin);
     fflush(stdin);
 
