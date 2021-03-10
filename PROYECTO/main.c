@@ -6,6 +6,9 @@
 #include "librerias/login.h"
 
 
+//ESTRUCTURAS
+
+
 //DEFINICIONES_FUNCIONES
 
 
@@ -13,14 +16,20 @@
 
 int main() {
 
-/*
-    volcar_configuracion();
-    volcar_futbolistas();
-    volcar_equipos();
-    volcar_usuarios();
-    volcar_plantillas();
-    volcar_jugadores_plantillas();
-*/
+    configuracion estructura_config;
+    usuarios *estructura_usuarios;
+    plantillas *estructura_plantillas;
+    jugadores_plantillas *estructura_jugadores_plantillas;
+    futbolistas *estructura_futbolistas;
+    equipos *estructura_equipos;
+
+    volcar_configuracion(&estructura_config);
+    volcar_futbolistas(&estructura_futbolistas,&estructura_config);
+    volcar_equipos(&estructura_equipos,&estructura_config);
+    volcar_usuarios(&estructura_usuarios);
+    volcar_plantillas(&estructura_plantillas);
+    volcar_jugadores_plantillas(&estructura_jugadores_plantillas);
+
 
     printf("Bienvenid@ a la liga fantastica!!\n\n");
     printf("1) Acceso al sistema (cuenta ya existente)\n");
