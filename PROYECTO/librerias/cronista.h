@@ -31,6 +31,8 @@ void menu_cronista(equipos *estructura_equipos){
     printf("      3.-Salir del programa\n");
     printf("                          \n");
     printf(".....SELECCIONE UNA OPCION.....\n");
+    printf("                           \n");
+    printf(">");
     scanf("%d", &selec);
     do {
         switch (selec) {
@@ -60,6 +62,8 @@ void valorar_equipos(futbolistas *estructura_futbolistas){
     int selec;
     etiqueta_seleccion_equipos:                               //ETIQUETA QUE UTILIZAREMOS MAS TARDE POR SI EL USUARIO QUIERE CAMBIAR DE EQUIPO
     printf(".....INTRODUZCA UN ID DE EQUIPO.....\n");
+    printf("                           \n");
+    printf(">");
     scanf("%d", &id_equipo);
 
     etiqueta_vuelta_valoracion:                               //ETIQUETA QUE UTILIZAREMOS MAS TARDE POR SI EL USUARIO QUIERE CAMBIAR DE JUGADOR A VALORAR(DENTRO DEL MISMO EQUIPO)
@@ -79,6 +83,8 @@ void valorar_equipos(futbolistas *estructura_futbolistas){
     for (i=0; i<sizeof (estructura_futbolistas); i++){        //LO PRINCIPAL: EL USUARIO INTRODUCIRA EL ID DEL JUGADOR DEL CUAL DESEA CAMBIAR LA VALORACION
         if(id_futbolista == estructura_futbolistas[i].futbolista_id){
             printf(".....INTRODUZCA LA NUEVA VALORACION DEL FUTBOLISTA.....\n");
+            printf("                           \n");
+            printf(">");
             scanf("%d", &estructura_futbolistas[i].valoracion);
         }
     }
@@ -88,6 +94,7 @@ void valorar_equipos(futbolistas *estructura_futbolistas){
     printf("       2.- CAMBIAR DE EQUIPO\n");
     printf("       3.- SALIR DE VALORAR EQUIPOS\n");
     printf("                           \n");
+    printf(">");
     scanf("%d", &selec);
     do {
         switch (selec) {
