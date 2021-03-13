@@ -89,6 +89,7 @@ void mostrar_plantillas(plantillas *estructura_plantillas);
 void volcar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas);
 void escribir_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas);
 void mostrar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas);
+int salir_programa(configuracion *estructura_config,futbolistas *estructura_futbolistas,equipos *estructura_equipos,usuarios *estructura_usuarios,plantillas *estructura_plantillas,jugadores_plantillas *estructura_jugadores_plantillas);
 
 //FUNCIONES
 
@@ -470,6 +471,18 @@ void mostrar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_pla
         printf("%i,",estructura_jugadores_plantillas[i].jugador_platilla_id);
         printf("%i \n",estructura_jugadores_plantillas[i].plantilla_id);
     }
+
+}
+
+int salir_programa(configuracion *estructura_config,futbolistas *estructura_futbolistas,equipos *estructura_equipos,usuarios *estructura_usuarios,plantillas *estructura_plantillas,jugadores_plantillas *estructura_jugadores_plantillas){
+
+    escribir_configuracion(estructura_config);
+    escribir_futbolistas(estructura_futbolistas);
+    escribir_equipos(estructura_equipos);
+    escribir_usuarios(estructura_usuarios);
+    escribir_plantillas(estructura_plantillas);
+    escribir_jugadores_plantillas(estructura_jugadores_plantillas);
+    return 0;
 
 }
 
