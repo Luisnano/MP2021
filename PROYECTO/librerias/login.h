@@ -47,7 +47,7 @@ int acceso_sistema(usuarios *estructura_usuarios) {    //Funcion que permitira a
         if(strcmp(p,estructura_usuarios[aux].usuario_password)==1){         //Comprueba la coincidencia de la contraseña
 
             printf("\nPassword correcta, puede acceder al sistema como %s",estructura_usuarios[aux].usuario_perfil);
-            return estructura_usuarios[aux].usuario_perfil;                 //Devuelvo el perfil del usuario para saber que menú usa
+            return estructura_usuarios[aux].usuario_id;                 //Devuelvo el perfil del usuario para saber que menú usa
         }
         else{
 
