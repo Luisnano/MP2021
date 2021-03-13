@@ -11,13 +11,13 @@
 
 //DEFINICIONES_FUNCIONES
 
-void acceso_sistema(usuarios *estructura_usuarios);
+int acceso_sistema(usuarios *estructura_usuarios);
 void registro(usuarios *estructura_usuarios);
 
 
 //FUNCIONES
 
-void acceso_sistema(usuarios *estructura_usuarios) {    //Funcion que permitira a los usuarios registrados acceder al sistema
+int acceso_sistema(usuarios *estructura_usuarios) {    //Funcion que permitira a los usuarios registrados acceder al sistema
 
     int i = 0,j = 0,aux;
     char u[6],p[9];                    //Mismos tamaños(6 y 9) que el campo nick_usuario/password_usuario en usuario.txt
@@ -47,6 +47,7 @@ void acceso_sistema(usuarios *estructura_usuarios) {    //Funcion que permitira 
         if(strcmp(p,estructura_usuarios[aux].usuario_password)==1){         //Comprueba la coincidencia de la contraseña
 
             printf("\nPassword correcta, puede acceder al sistema como %s",estructura_usuarios[aux].usuario_perfil);
+            return estructura_usuarios[aux].usuario_perfil;                 //Devuelvo el perfil del usuario para saber que menú usa
         }
         else{
 
@@ -57,6 +58,7 @@ void acceso_sistema(usuarios *estructura_usuarios) {    //Funcion que permitira 
     }
     else{
         printf("\nNo existe ningun usuario con tu nick, registrate primero");
+        return 1;                   //En caso de que no esté registrado el usuario, devuelve 1
     }
 }
 
@@ -70,8 +72,8 @@ void registro(usuarios *estructura_usuarios){       //Funcion para que los usuar
     printf("\nDime tu nombre y primer apellido:");
     fgets(estructura_usuarios[sizeof(estructura_usuarios)].nombre_usuario,21,stdin);
     fflush(stdin);
-    printf("\n¿Que tipo de usuario vas a ser? Puedes ser participante, cronista y participante: ");
-    fgets(estructura_usuarios[sizeof(estructura_usuarios)].usuario_perfil,15,stdin);
+    printf("\nPor defecto serás usuario tipo participante");
+    strcpy(estructura_usuarios[sizeof(estructura_usuarios)].usuario_perfil,"participante");     //Le asigno el perfil participante
     fflush(stdin);
     printf("\nTu nombre de usuario(no mayor a 5 caracteres): ");                    //Ya que el ultimo elemento del string está reservado
     fgets(estructura_usuarios[sizeof(estructura_usuarios)].usuario_nick,6,stdin);
