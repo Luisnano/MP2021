@@ -68,7 +68,7 @@ void registro(usuarios *estructura_usuarios){       //Funcion para que los usuar
     assert(estructura_usuarios != NULL || puts("Fallo de reserva de memoria"));
 
     printf("A continuacion se le pediran sus datos necesarios para el registro\n\n");
-    scanf("%i",&estructura_usuarios[sizeof(estructura_usuarios)].usuario_id);           //El ID del usuario no lo elige él, le asignamos el siguiente numero disponible, es decir, el del tamaño del vector ya q le hemos sumado uno a esa cantidad
+    estructura_usuarios[sizeof(estructura_usuarios)].usuario_id = sizeof(estructura_usuarios);  //El ID del usuario no lo elige él, le asignamos el siguiente numero disponible, es decir, el del tamaño del vector ya q le hemos sumado uno a esa cantidad
     printf("\nDime tu nombre y primer apellido:");
     fgets(estructura_usuarios[sizeof(estructura_usuarios)].nombre_usuario,21,stdin);
     fflush(stdin);

@@ -5,6 +5,7 @@
 #include <string.h>
 #include "librerias/core.h"
 #include "librerias/login.h"
+#include "librerias/participantes.h"
 
 //MAIN PROGRAM
 
@@ -20,11 +21,11 @@ int main() {
 
     //Volcamos todos los datos de los ficheros en sus respectivas variables estructuras anteriormente declaradas
     volcar_configuracion(&estructura_config);
-    volcar_futbolistas(&estructura_futbolistas,&estructura_config);
-    volcar_equipos(&estructura_equipos,&estructura_config);
-    volcar_usuarios(&estructura_usuarios);
-    volcar_plantillas(&estructura_plantillas);
-    volcar_jugadores_plantillas(&estructura_jugadores_plantillas);
+    volcar_futbolistas(estructura_futbolistas,&estructura_config);
+    volcar_equipos(estructura_equipos,&estructura_config);
+    volcar_usuarios(estructura_usuarios);
+    volcar_plantillas(estructura_plantillas);
+    volcar_jugadores_plantillas(estructura_jugadores_plantillas);
 
     //VARIABLES_LOCALES
 
@@ -58,7 +59,7 @@ int main() {
         }
         if (strcmp(perfil,"participante")==0){
 
-            menu_participante(id,estructura_jugadores_plantillas,estructura_futbolistas,estructura_plantillas);
+            menu_participantes(&id,&estructura_config,estructura_jugadores_plantillas,estructura_equipos,estructura_usuarios,estructura_futbolistas,estructura_plantillas);
 
         }
 
