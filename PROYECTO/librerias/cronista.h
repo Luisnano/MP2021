@@ -17,7 +17,7 @@ void valorar_equipos(equipos *estructura_equipos);
 
 void menu_cronista(equipos *estructura_equipos){
     int selec;
-    etiqueta_vuelta:
+    etiqueta_vuelta:                                            //UNA ETIQUETA QUE UTILIZAREMOS MAS TARDE POR SI EL USUSARIO QUIERE VOLVER AL MENU PRINCIPAL
     printf("---------MENU CRONISTA----------\n");
     printf("                          \n");
     printf("      1.-Listar equipos    \n");
@@ -29,7 +29,7 @@ void menu_cronista(equipos *estructura_equipos){
     switch (selec) {
         case 1: escribir_equipos(estructura_equipos); break;
         case 2: valorar_equipos(estructura_equipos); break;
-        case 3: salir_programa(configuracion *estructura_config,futbolistas *estructura_futbolistas,equipos *estructura_equipos,usuarios *estructura_usuarios,plantillas *estructura_plantillas,jugadores_plantillas *estructura_jugadores_plantillas); break; //SALIR DEL PROGRAMA
+        case 3: salir_programa(estructura_config,estructura_futbolistas,estructura_equipos,estructura_usuarios,estructura_plantillas,estructura_jugadores_plantillas); break; //SALIR DEL PROGRAMA
         default:
             goto etiqueta_vuelta;break ;//FINAL DE PROGRAMA
     }
