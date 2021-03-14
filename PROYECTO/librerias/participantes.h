@@ -66,7 +66,7 @@ void menu_participantes(int *id, configuracion *estructura_config, jugadores_pla
             break;
 
             }
-        }while(opcion < 0 || opcion > 7);
+        }while(opcion > 0 && opcion < 7);
 
     }
 
@@ -90,6 +90,7 @@ void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plant
         printf("Se procede a crear una plantilla: \n");
 
             estructura_plantillas = (plantillas *)realloc(estructura_plantillas, (sizeof(estructura_plantillas)+1)*sizeof(int));
+            if(estructura_plantillas==NULL){printf("Fallo de reserva de memoria\n"));}
 
             estructura_plantillas[sizeof(estructura_plantillas)].usuario_id = id;
 
@@ -110,6 +111,44 @@ void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plant
 
 }
 
+void configurar_plantillas(jugadores_plantillas *estructura_jugadores_plantillas, futbolistas *estructura_futbolistas,
+                           plantillas *estructura_plantillas){
+
+    int opcion;
+
+    printf("MENU CONFIGURAR-PLANTILLA\n\n");
+
+    printf("1.- Lista de jugadores en plantilla\n");
+    printf("2.- Lista de jugadores disponibles\n");
+    printf("3.- Añadir jugador a plantilla\n");
+    printf("4.- Eliminar jugador de plantilla\n");
+    printf("5.- Volver\n");
+
+    printf("Seleccione una opcion: ");
+    scanf("%i", &opcion);
+
+    do {
+        switch(opcion){
+
+            case 1:
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
+
+            case 4:
+                break;
+
+            case 5:
+                break;
+
+        }
+    }while(opcion > 0 && opcion < 6);
+
+}
 
 
 

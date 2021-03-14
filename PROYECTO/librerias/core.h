@@ -5,7 +5,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
 
 //ESTRUCTURAS
 
@@ -100,7 +99,7 @@ void volcar_configuracion(configuracion *estructura_config){
 
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","r");
-    assert(f_configuracion != NULL || printf("Fallo de apertura de fichero\n"));
+    if(f_configuracion==NUL){printf("Fallo de apertura de fichero\n"));}
 
     //Vuelcan datos del fichero
 
@@ -122,13 +121,13 @@ void volcar_futbolistas(futbolistas *estructura_futbolistas, configuracion *estr
     //Reservamos la memoria dinámica
 
     estructura_futbolistas = (futbolistas*)malloc(estructura_config->max_futbolistas*sizeof(int));
-    assert(estructura_futbolistas != NULL || printf("Fallo de reserva de memoria\n"));
+    if(estructura_futbolistas==NULL){printf("Fallo de reserva de memoria\n"));}
 
     //Apertura del fichero
 
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/futbolistas.txt", "r");
-    assert(f_futbolistas != NULL || printf("Fallo de apertura de fichero\n"));
+    if(f_futbolistas==NUL){printf("Fallo de apertura de fichero\n"));}
 
     //Rellena estructura_futbolistas
 
@@ -150,13 +149,13 @@ void volcar_equipos(equipos *estructura_equipos,configuracion *estructura_config
     //Reserva memoria al vector dinamico
 
     estructura_equipos = (equipos*)malloc(estructura_config->max_equipos*sizeof(int));
-    assert(estructura_equipos != NULL || printf("Fallo de reserva de memoria\n"));
+    if(estructura_equipos==NULL){printf("Fallo de reserva de memoria\n"));}
 
     //Apertura_fichero
 
     FILE *f_equipos;
     f_equipos = fopen("files/equipos.txt", "r");
-    assert(f_equipos != NULL || printf("Fallo de apertura de fichero\n"));
+    if(f_equipos==NUL){printf("Fallo de apertura de fichero\n"));}
 
     //Rellena la estructura_equipos
 
@@ -177,13 +176,13 @@ void volcar_usuarios(usuarios *estructura_usuarios){
     //Reserva memoria en el vector dinamico
 
     estructura_usuarios =(usuarios*)malloc(3*sizeof(int));  // El 3 es porque al principio hay solo 3 usuarios en el fichero
-    assert(estructura_usuarios != NULL || printf("Fallo de reserva de memoria\n"));
+    if(estructura_usuarios==NULL){printf("Fallo de reserva de memoria\n"));}
 
     //Apertura del fichero
 
     FILE *f_usuarios;
     f_usuarios = fopen("files/usuarios.txt", "r");
-    assert(f_usuarios != NULL || printf("Fallo de apertura de fichero\n"));
+    if(f_usuarios==NUL){printf("Fallo de apertura de fichero\n"));}
 
     //Rellena la estructura_usuarios
 
@@ -202,7 +201,7 @@ void volcar_plantillas(plantillas *estructura_plantillas){       // Fichero plan
 
 
     estructura_plantillas = (plantillas*)malloc(1*sizeof(int));     // Le damos 1 espacio al vector dinamico, si se añaden plantillas se aumentara el tamano
-    assert(estructura_plantillas != NULL || printf("Fallo de reserva de memoria\n"));
+    if(estructura_plantillas==NULL){printf("Fallo de reserva de memoria\n"));}
 }
 
 void volcar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas){        //Fichero jugadores_plantillas empieza vacio, creamos unicamente la variable estructura
@@ -210,7 +209,7 @@ void volcar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plan
 
 
     estructura_jugadores_plantillas = (jugadores_plantillas*)malloc(1*sizeof(int));     //Le damos un espacio al vector dinamico, si se añaden futbolistas a las plantillas se aumentara el tamaño
-    assert(estructura_jugadores_plantillas != NULL || printf("Fallo de reserva de memoria\n"));
+    if(estructura_jugadores_plantillas==NULL){printf("Fallo de reserva de memoria\n"));}
 }
 
 void escribir_configuracion(configuracion *estructura_config){
@@ -219,7 +218,7 @@ void escribir_configuracion(configuracion *estructura_config){
 
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","w");
-    assert(f_configuracion != NULL || printf("Error apertura fichero_configuracion\n"));
+    if(f_configuracion==NUL){printf("Fallo de apertura de fichero\n"));}
 
     //Escribir datos del vector estructura_configuracion en el fichero configuracion
 
@@ -244,7 +243,7 @@ void escribir_futbolistas(futbolistas *estructura_futbolistas){
 
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/futbolistas.txt", "w");
-    assert(f_futbolistas != NULL || printf("Error apertura fichero_futbolistas\n"));
+    if(f_futbolistas==NUL){printf("Fallo de apertura de fichero\n"));}
 
     //Escribimos en el fichero futbolistas los datos de estructura_futbolistas
 
@@ -276,7 +275,7 @@ void escribir_equipos(equipos *estructura_equipos){
 
     FILE *f_equipos;
     f_equipos = fopen("files/equipos.txt","w");
-    assert(f_equipos != NULL || printf("Error apertura fichero_equipos\n"));
+    if(f_equipos==NUL){printf("Fallo de apertura de fichero\n"));}
 
     //Escribimos los datos de la estructura_equipos en el fichero equipos
 
@@ -302,7 +301,7 @@ void escribir_usuarios(usuarios *estructura_usuarios){
 
     FILE *f_usuarios;
     f_usuarios = fopen("files/usuarios.txt", "w");
-    assert(f_usuarios != NULL || printf("Error apertura fichero_equipos\n"));
+    if(f_usuarios==NUL){printf("Fallo de apertura de fichero\n"));}
 
     //Escribimos en el fichero usuarios los datos de su respectiva estructura
 
@@ -335,7 +334,7 @@ void escribir_plantillas(plantillas *estructura_plantillas){
 
     FILE *f_plantillas;
     f_plantillas = fopen("files/plantillas.txt", "w");
-    assert(f_plantillas != NULL || printf("Error apertura de fichero\n"));
+    if(f_plantillas==NUL){printf("Fallo de apertura de fichero\n"));}
 
     //Escribimos en el fichero plantillas el vector dinamico estructura_plantillas
 
@@ -368,7 +367,7 @@ void escribir_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_pl
 
     FILE *f_jugadores_plantillas;
     f_jugadores_plantillas = fopen("files/jugadores_plantillas.txt", "w");
-    assert(f_jugadores_plantillas != NULL || printf("Error apertura fichero_jugadores_plantillas\n"));
+    if(f_jugadores_plantillas==NUL){printf("Fallo de apertura de fichero\n"));}
 
     //Escribimos en el fichero jugadores_plantillas los datos del vector dinamico estrucutura_jugadores_plantillas
 
