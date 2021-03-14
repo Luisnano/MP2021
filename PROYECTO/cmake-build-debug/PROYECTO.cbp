@@ -8,6 +8,7 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
+<<<<<<< Updated upstream
 				<Option working_dir="C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
@@ -20,13 +21,33 @@
 			<Target title="PROYECTO">
 				<Option output="C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug"/>
+=======
+				<Option working_dir="D:/MP/MP2021/PROYECTO/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="D:/Program Files (x86)/mingw64/bin/mingw32-make.exe -f &quot;D:/MP/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="D:/Program Files (x86)/mingw64/bin/mingw32-make.exe -f &quot;D:/MP/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="D:/Program Files (x86)/mingw64/bin/mingw32-make.exe -f &quot;D:/MP/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="D:/Program Files (x86)/mingw64/bin/mingw32-make.exe -f &quot;D:/MP/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PROYECTO">
+				<Option output="D:/MP/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/MP/MP2021/PROYECTO/cmake-build-debug"/>
+>>>>>>> Stashed changes
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+<<<<<<< Updated upstream
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
+=======
+					<Add directory="D:/Program Files (x86)/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="D:/Program Files (x86)/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="D:/Program Files (x86)/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+>>>>>>> Stashed changes
 				</Compiler>
 				<MakeCommands>
 					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 PROYECTO"/>
@@ -36,15 +57,26 @@
 				</MakeCommands>
 			</Target>
 			<Target title="PROYECTO/fast">
+<<<<<<< Updated upstream
 				<Option output="C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug"/>
+=======
+				<Option output="D:/MP/MP2021/PROYECTO/cmake-build-debug/PROYECTO.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="D:/MP/MP2021/PROYECTO/cmake-build-debug"/>
+>>>>>>> Stashed changes
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+<<<<<<< Updated upstream
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/../../../../include"/>
 					<Add directory="c:\mingw\bin\../lib/gcc/mingw32/6.3.0/include-fixed"/>
+=======
+					<Add directory="D:/Program Files (x86)/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="D:/Program Files (x86)/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="D:/Program Files (x86)/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+>>>>>>> Stashed changes
 				</Compiler>
 				<MakeCommands>
 					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug/Makefile&quot;  VERBOSE=1 PROYECTO/fast"/>
@@ -92,7 +124,11 @@
 		<Unit filename="C:/Users/aleja/Desktop/MP2021/PROYECTO/main.c">
 			<Option target="PROYECTO"/>
 		</Unit>
+<<<<<<< Updated upstream
 		<Unit filename="C:/Users/aleja/Desktop/MP2021/PROYECTO/CMakeLists.txt">
+=======
+		<Unit filename="D:/MP/MP2021/PROYECTO/CMakeLists.txt">
+>>>>>>> Stashed changes
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

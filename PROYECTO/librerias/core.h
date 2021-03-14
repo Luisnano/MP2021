@@ -16,6 +16,7 @@ typedef struct{
     int max_futbolistas_plantilla;
     int max_plantillas_participante;
     int max_futbolistas;
+    int max_usuarios;
 
 }configuracion;
 
@@ -71,6 +72,7 @@ typedef struct{
 //DEFINICIONES_FUNCIONES
 
 
+
 void volcar_configuracion(configuracion *estructura_config);
 void escribir_configuracion(configuracion *estructura_config);
 void mostrar_configuracion(configuracion *estructura_config);
@@ -91,6 +93,25 @@ void escribir_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_pl
 void mostrar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas);
 int salir_programa(configuracion *estructura_config,futbolistas *estructura_futbolistas,equipos *estructura_equipos,usuarios *estructura_usuarios,plantillas *estructura_plantillas,jugadores_plantillas *estructura_jugadores_plantillas);
 
+void volcar_configuracion(configuracion *);
+void escribir_configuracion(configuracion *);
+void mostrar_configuracion(configuracion *);
+void volcar_futbolistas(futbolistas **,configuracion *);
+void escribir_futbolistas(futbolistas **, configuracion *);
+void mostrar_futbolistas(futbolistas **, configuracion *);
+void volcar_equipos(equipos **,configuracion *);
+void escribir_equipos(equipos **, configuracion *);
+void mostrar_equipos(equipos **, configuracion *);
+void volcar_usuarios(usuarios **, configuracion *);
+void escribir_usuarios(usuarios **, configuracion *);
+void mostrar_usuarios(usuarios **, configuracion *);
+void volcar_plantillas(plantillas **, configuracion *);
+void escribir_plantillas(plantillas **, configuracion *);
+void mostrar_plantillas(plantillas **, configuracion *);
+void volcar_jugadores_plantillas(jugadores_plantillas **);
+void escribir_jugadores_plantillas(jugadores_plantillas **);
+void mostrar_jugadores_plantillas(jugadores_plantillas **);
+
 //FUNCIONES
 
 
@@ -100,7 +121,7 @@ void volcar_configuracion(configuracion *estructura_config){
 
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","r");
-    assert(f_configuracion != NULL || printf("Fallo de apertura de fichero\n"));
+    assert(f_configuracion != NULL || printf("Fallo de apertura del fichero de configuracion\n"));
 
     //Vuelcan datos del fichero
 
@@ -109,20 +130,20 @@ void volcar_configuracion(configuracion *estructura_config){
     fscanf(f_configuracion,"%i",&estructura_config->max_futbolistas_plantilla);
     fscanf(f_configuracion,"%i",&estructura_config->max_plantillas_participante);
     fscanf(f_configuracion,"%i",&estructura_config->max_futbolistas);
+    fscanf(f_configuracion,"%i",&estructura_config->max_usuarios);
 
     fclose(f_configuracion);
 }
 
-void volcar_futbolistas(futbolistas *estructura_futbolistas, configuracion *estructura_config){
+void volcar_futbolistas(futbolistas **estructura_futbolistas, configuracion *estructura_config){
 
     //Usamos la estructura_config ya que necesitamos el parametro max_jugadores para saber el tamaño del vector dinamicos
 
     int i;
-
     //Reservamos la memoria dinámica
 
-    estructura_futbolistas = (futbolistas*)malloc(estructura_config->max_futbolistas*sizeof(int));
-    assert(estructura_futbolistas != NULL || printf("Fallo de reserva de memoria\n"));
+    *estructura_futbolistas = (futbolistas*)malloc(estructura_config->max_futbolistas*sizeof(futbolistas));
+    assert(*estructura_futbolistas != NULL || printf("Fallo de reserva de memoria\n"));
 
     //Apertura del fichero
 
@@ -133,23 +154,23 @@ void volcar_futbolistas(futbolistas *estructura_futbolistas, configuracion *estr
     //Rellena estructura_futbolistas
 
     for (i=0; i<estructura_config->max_futbolistas; i++){
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_id);
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].equipo_id);
-        fscanf(f_futbolistas, "%s", estructura_futbolistas[i].nombre_futbolista);
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_precio);
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].valoracion);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->futbolista_id);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->equipo_id);
+        fscanf(f_futbolistas, "%s", estructura_futbolistas[i]->nombre_futbolista);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->futbolista_precio);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->valoracion);
     }
     fclose(f_futbolistas);
 
 }
 
-void volcar_equipos(equipos *estructura_equipos,configuracion *estructura_config){
+void volcar_equipos(equipos **estructura_equipos,configuracion *estructura_config){
 
     int i;
 
     //Reserva memoria al vector dinamico
 
-    estructura_equipos = (equipos*)malloc(estructura_config->max_equipos*sizeof(int));
+    *estructura_equipos = (equipos*)malloc(estructura_config->max_equipos*sizeof(equipos));
     assert(estructura_equipos != NULL || printf("Fallo de reserva de memoria\n"));
 
     //Apertura_fichero
@@ -162,21 +183,21 @@ void volcar_equipos(equipos *estructura_equipos,configuracion *estructura_config
 
     for (i=0; i<estructura_config->max_equipos; i++){
 
-        fscanf(f_equipos, "%i", &estructura_equipos[i].equipo_id);
-        fscanf(f_equipos, "%s", estructura_equipos[i].nombre_equipo);
+        fscanf(f_equipos, "%i", &estructura_equipos[i]->equipo_id);
+        fscanf(f_equipos, "%s", estructura_equipos[i]->nombre_equipo);
     }
 
 
     fclose(f_equipos);
 }
 
-void volcar_usuarios(usuarios *estructura_usuarios){
+void volcar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_config){
 
     int i;
 
     //Reserva memoria en el vector dinamico
 
-    estructura_usuarios =(usuarios*)malloc(3*sizeof(int));  // El 3 es porque al principio hay solo 3 usuarios en el fichero
+    *estructura_usuarios =(usuarios*)malloc(estructura_config->max_usuarios *sizeof(usuarios));  // El 3 es porque al principio hay solo 3 usuarios en el fichero
     assert(estructura_usuarios != NULL || printf("Fallo de reserva de memoria\n"));
 
     //Apertura del fichero
@@ -189,27 +210,27 @@ void volcar_usuarios(usuarios *estructura_usuarios){
 
     for (i=0;i<3;i++){
 
-        fscanf(f_usuarios,"%i",&estructura_usuarios[i].usuario_id);
-        fscanf(f_usuarios,"%s",estructura_usuarios[i].nombre_usuario);
-        fscanf(f_usuarios,"%s",estructura_usuarios[i].usuario_perfil);
-        fscanf(f_usuarios,"%s",estructura_usuarios[i].usuario_nick);
-        fscanf(f_usuarios,"%s",estructura_usuarios[i].usuario_password);
+        fscanf(f_usuarios,"%i",&estructura_usuarios[i]->usuario_id);
+        fscanf(f_usuarios,"%s",estructura_usuarios[i]->nombre_usuario);
+        fscanf(f_usuarios,"%s",estructura_usuarios[i]->usuario_perfil);
+        fscanf(f_usuarios,"%s",estructura_usuarios[i]->usuario_nick);
+        fscanf(f_usuarios,"%s",estructura_usuarios[i]->usuario_password);
     }
     fclose(f_usuarios);
 }
 
-void volcar_plantillas(plantillas *estructura_plantillas){       // Fichero plantillas empieza vacio , creamos unicamente la variable estructura
+void volcar_plantillas(plantillas **estructura_plantillas, configuracion *estructura_config){       // Fichero plantillas empieza vacio , creamos unicamente la variable estructura
 
 
-    estructura_plantillas = (plantillas*)malloc(1*sizeof(int));     // Le damos 1 espacio al vector dinamico, si se añaden plantillas se aumentara el tamano
+    *estructura_plantillas = (plantillas*)malloc(1 * sizeof(plantillas));     // Le damos 1 espacio al vector dinamico, si se añaden plantillas se aumentara el tamano
     assert(estructura_plantillas != NULL || printf("Fallo de reserva de memoria\n"));
 }
 
-void volcar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas){        //Fichero jugadores_plantillas empieza vacio, creamos unicamente la variable estructura
+void volcar_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_plantillas){        //Fichero jugadores_plantillas empieza vacio, creamos unicamente la variable estructura
 
 
 
-    estructura_jugadores_plantillas = (jugadores_plantillas*)malloc(1*sizeof(int));     //Le damos un espacio al vector dinamico, si se añaden futbolistas a las plantillas se aumentara el tamaño
+    *estructura_jugadores_plantillas = (jugadores_plantillas*)malloc( 1 *sizeof (jugadores_plantillas));     //Le damos un espacio al vector dinamico, si se añaden futbolistas a las plantillas se aumentara el tamaño
     assert(estructura_jugadores_plantillas != NULL || printf("Fallo de reserva de memoria\n"));
 }
 
@@ -236,7 +257,7 @@ void escribir_configuracion(configuracion *estructura_config){
     fclose(f_configuracion);
 }
 
-void escribir_futbolistas(futbolistas *estructura_futbolistas){
+void escribir_futbolistas(futbolistas **estructura_futbolistas, configuracion *estructura_config){
 
     int i ;
 
@@ -249,15 +270,15 @@ void escribir_futbolistas(futbolistas *estructura_futbolistas){
     //Escribimos en el fichero futbolistas los datos de estructura_futbolistas
 
     for (i=0; i<=sizeof(estructura_futbolistas); i++){
-        fprintf(f_futbolistas, "%i", estructura_futbolistas[i].futbolista_id);
+        fprintf(f_futbolistas, "%i", estructura_futbolistas[i]->futbolista_id);
         fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "%i", estructura_futbolistas[i].equipo_id);
+        fprintf(f_futbolistas, "%i", estructura_futbolistas[i]->equipo_id);
         fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "%s", estructura_futbolistas[i].nombre_futbolista);
+        fprintf(f_futbolistas, "%s", estructura_futbolistas[i]->nombre_futbolista);
         fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "%i", estructura_futbolistas[i].futbolista_precio);
+        fprintf(f_futbolistas, "%i", estructura_futbolistas[i]->futbolista_precio);
         fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "%i", estructura_futbolistas[i].valoracion);
+        fprintf(f_futbolistas, "%i", estructura_futbolistas[i]->valoracion);
         fprintf(f_futbolistas,"%s","\n");
     }
 
@@ -268,7 +289,7 @@ void escribir_futbolistas(futbolistas *estructura_futbolistas){
     free(estructura_futbolistas);
 }
 
-void escribir_equipos(equipos *estructura_equipos){
+void escribir_equipos(equipos **estructura_equipos, configuracion *estructura_config){
 
     int i;
 
@@ -281,9 +302,9 @@ void escribir_equipos(equipos *estructura_equipos){
     //Escribimos los datos de la estructura_equipos en el fichero equipos
 
     for (i=0; i<=sizeof(estructura_equipos); i++){
-        fprintf(f_equipos, "%i", estructura_equipos[i].equipo_id);
+        fprintf(f_equipos, "%i", estructura_equipos[i]->equipo_id);
         fprintf(f_equipos, "%s", "\n");
-        fprintf(f_equipos, "%s", estructura_equipos[i].nombre_equipo);
+        fprintf(f_equipos, "%s", estructura_equipos[i]->nombre_equipo);
         fprintf(f_equipos, "%s", "\n");
     }
 
@@ -294,7 +315,7 @@ void escribir_equipos(equipos *estructura_equipos){
     free(estructura_equipos);
 }
 
-void escribir_usuarios(usuarios *estructura_usuarios){
+void escribir_usuarios(usuarios **estructura_usuarios, configuracion *estructura_config){
 
     int i;
 
@@ -308,15 +329,15 @@ void escribir_usuarios(usuarios *estructura_usuarios){
 
     for(i=0 ; i<=sizeof(estructura_usuarios) ; i++){
 
-        fprintf(f_usuarios,"%i",estructura_usuarios[i].usuario_id);
+        fprintf(f_usuarios,"%i",estructura_usuarios[i]->usuario_id);
         fprintf(f_usuarios, "%s", "\n");
-        fprintf(f_usuarios,"%s",estructura_usuarios[i].nombre_usuario);
+        fprintf(f_usuarios,"%s",estructura_usuarios[i]->nombre_usuario);
         fprintf(f_usuarios, "%s", "\n");
-        fprintf(f_usuarios,"%s",estructura_usuarios[i].usuario_perfil);
+        fprintf(f_usuarios,"%s",estructura_usuarios[i]->usuario_perfil);
         fprintf(f_usuarios, "%s", "\n");
-        fprintf(f_usuarios,"%s",estructura_usuarios[i].usuario_nick);
+        fprintf(f_usuarios,"%s",estructura_usuarios[i]->usuario_nick);
         fprintf(f_usuarios, "%s", "\n");
-        fprintf(f_usuarios,"%s",estructura_usuarios[i].usuario_password);
+        fprintf(f_usuarios,"%s",estructura_usuarios[i]->usuario_password);
         fprintf(f_usuarios, "%s", "\n");
 
     }
@@ -327,7 +348,7 @@ void escribir_usuarios(usuarios *estructura_usuarios){
     free(estructura_usuarios);
 }
 
-void escribir_plantillas(plantillas *estructura_plantillas){
+void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estructura_configq){
 
     int i;
 
@@ -341,15 +362,15 @@ void escribir_plantillas(plantillas *estructura_plantillas){
 
     for(i=0 ; i<=sizeof(estructura_plantillas) ; i++){
 
-        fprintf(f_plantillas,"%i",estructura_plantillas[i].usuario_id);
+        fprintf(f_plantillas,"%i",estructura_plantillas[i]->usuario_id);
         fprintf(f_plantillas, "%s", "\n");
-        fprintf(f_plantillas,"%i",estructura_plantillas[i].plantilla_id);
+        fprintf(f_plantillas,"%i",estructura_plantillas[i]->plantilla_id);
         fprintf(f_plantillas, "%s", "\n");
-        fprintf(f_plantillas,"%s",estructura_plantillas[i].nombre_plantilla);
+        fprintf(f_plantillas,"%s",estructura_plantillas[i]->nombre_plantilla);
         fprintf(f_plantillas, "%s", "\n");
-        fprintf(f_plantillas,"%i",estructura_plantillas[i].presupuesto_disp);
+        fprintf(f_plantillas,"%i",estructura_plantillas[i]->presupuesto_disp);
         fprintf(f_plantillas, "%s", "\n");
-        fprintf(f_plantillas,"%i",estructura_plantillas[i].puntuacion_acum);
+        fprintf(f_plantillas,"%i",estructura_plantillas[i]->puntuacion_acum);
         fprintf(f_plantillas, "%s", "\n");
     }
 
@@ -360,7 +381,7 @@ void escribir_plantillas(plantillas *estructura_plantillas){
     free(estructura_plantillas);
 }
 
-void escribir_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas){
+void escribir_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_plantillas){
 
     int i;
 
@@ -374,9 +395,9 @@ void escribir_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_pl
 
     for(i=0 ; i<=sizeof(estructura_jugadores_plantillas) ; i++){
 
-        fprintf(f_jugadores_plantillas,"%i",estructura_jugadores_plantillas[i].jugador_platilla_id);
+        fprintf(f_jugadores_plantillas,"%i",estructura_jugadores_plantillas[i]->jugador_platilla_id);
         fprintf(f_jugadores_plantillas, "%s", "\n");
-        fprintf(f_jugadores_plantillas,"%i",estructura_jugadores_plantillas[i].plantilla_id);
+        fprintf(f_jugadores_plantillas,"%i",estructura_jugadores_plantillas[i]->plantilla_id);
         fprintf(f_jugadores_plantillas, "%s", "\n");
     }
     fclose(f_jugadores_plantillas);
@@ -399,44 +420,44 @@ void mostrar_configuracion(configuracion *estructura_config){
 
 //Mostrar los datos de los futbolistas actuales de estructura_futbolistas
 
-void mostrar_futbolistas(futbolistas *estructura_futbolistas){
+void mostrar_futbolistas(futbolistas **estructura_futbolistas, configuracion *estructura_config){
 
     int i;
-    for(i=0 ;i<=sizeof(estructura_futbolistas);i++){
+    for(i=0 ;i<estructura_config->max_futbolistas;i++){
 
-        printf("%i,",estructura_futbolistas[i].futbolista_id);
-        printf("%i,",estructura_futbolistas[i].equipo_id);
-        printf("%s,",estructura_futbolistas[i].nombre_futbolista);
-        printf("%i,",estructura_futbolistas[i].futbolista_precio);
-        printf("%i\n",estructura_futbolistas[i].valoracion);
+        printf("%i,",estructura_futbolistas[i]->futbolista_id);
+        printf("%i,",estructura_futbolistas[i]->equipo_id);
+        printf("%s,",estructura_futbolistas[i]->nombre_futbolista);
+        printf("%i,",estructura_futbolistas[i]->futbolista_precio);
+        printf("%i\n",estructura_futbolistas[i]->valoracion);
     }
 }
 
 //Mostrar los datos de los equipos actules de la estructura_equipos
 
-void mostrar_equipos(equipos *estructura_equipos){
+void mostrar_equipos(equipos **estructura_equipos, configuracion * estructura_config){
 
     int i;
     for(i=0 ; i<=sizeof(estructura_equipos);i++){
 
-        printf("%i,",estructura_equipos[i].equipo_id);
-        printf("%s\n",estructura_equipos[i].nombre_equipo);
+        printf("%i,",estructura_equipos[i]->equipo_id);
+        printf("%s\n",estructura_equipos[i]->nombre_equipo);
     }
 }
 
 //Mostrar los usuarios actuales de estructura_usuarios
 
-void mostrar_usuarios(usuarios *estructura_usuarios){
+void mostrar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_config){
 
     int i;
 
     for(i=0 ; i<=sizeof(estructura_usuarios) ; i++){
 
-        printf("%i,",estructura_usuarios[i].usuario_id);
-        printf("%s,",estructura_usuarios[i].nombre_usuario);
-        printf("%s,",estructura_usuarios[i].usuario_perfil);
-        printf("%s,",estructura_usuarios[i].usuario_nick);
-        printf("%s \n",estructura_usuarios[i].usuario_password);
+        printf("%i,",estructura_usuarios[i]->usuario_id);
+        printf("%s,",estructura_usuarios[i]->nombre_usuario);
+        printf("%s,",estructura_usuarios[i]->usuario_perfil);
+        printf("%s,",estructura_usuarios[i]->usuario_nick);
+        printf("%s \n",estructura_usuarios[i]->usuario_password);
 
     }
 
@@ -444,17 +465,17 @@ void mostrar_usuarios(usuarios *estructura_usuarios){
 
 //Mostrar las plantillas actuales de estructura_plantillas
 
-void mostrar_plantillas(plantillas *estructura_plantillas){
+void mostrar_plantillas(plantillas **estructura_plantillas, configuracion *estructura_config){
 
     int i;
 
     for(i=0 ; i<=sizeof(estructura_plantillas) ; i++){
 
-        printf("%i,",estructura_plantillas[i].usuario_id);
-        printf("%i,",estructura_plantillas[i].plantilla_id);
-        printf("%s,",estructura_plantillas[i].nombre_plantilla);
-        printf("%i,",estructura_plantillas[i].presupuesto_disp);
-        printf("%i \n",estructura_plantillas[i].puntuacion_acum);
+        printf("%i,",estructura_plantillas[i]->usuario_id);
+        printf("%i,",estructura_plantillas[i]->plantilla_id);
+        printf("%s,",estructura_plantillas[i]->nombre_plantilla);
+        printf("%i,",estructura_plantillas[i]->presupuesto_disp);
+        printf("%i \n",estructura_plantillas[i]->puntuacion_acum);
 
     }
 
@@ -462,14 +483,14 @@ void mostrar_plantillas(plantillas *estructura_plantillas){
 
 //Mostrar los jugadores actuales asignados a las plantillas en la estructura_jugadores_plantillas
 
-void mostrar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas){
+void mostrar_jugadores_plantillas(jugadores_plantillas ** estructura_jugadores_plantillas){
 
     int i ;
 
     for(i=0 ; i<sizeof(estructura_jugadores_plantillas) ; i++ ){
 
-        printf("%i,",estructura_jugadores_plantillas[i].jugador_platilla_id);
-        printf("%i \n",estructura_jugadores_plantillas[i].plantilla_id);
+        printf("%i,",estructura_jugadores_plantillas[i]->jugador_platilla_id);
+        printf("%i \n",estructura_jugadores_plantillas[i]->plantilla_id);
     }
 
 }
@@ -487,4 +508,3 @@ int salir_programa(configuracion *estructura_config,futbolistas *estructura_futb
 }
 
 #endif //PROYECTO_CORE_H    // Si no hay + codigo abajo lo acaba
-
