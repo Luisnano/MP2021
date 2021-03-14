@@ -62,6 +62,11 @@ int main() {
             menu_participantes(&id,&estructura_config,estructura_jugadores_plantillas,estructura_equipos,estructura_usuarios,estructura_futbolistas,estructura_plantillas);
 
         }
+        if (strcmp(perfil,"cronista")==0){
+
+            menu_cronista(estructura_equipos);
+
+        }
 
     }
     

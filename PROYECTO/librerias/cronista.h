@@ -21,8 +21,11 @@ void valorar_equipos(equipos *estructura_equipos);
 //      1.- Listar Equipos
 //      2.- Valorar Equipos
 //      3.- Salir del programa
+
 void menu_cronista(equipos *estructura_equipos){
+
     int selec;
+
     printf("---------MENU CRONISTA----------\n");
     printf("                          \n");
     printf("      1.-Listar equipos    \n");
@@ -33,6 +36,7 @@ void menu_cronista(equipos *estructura_equipos){
     printf("                           \n");
     printf(">");
     scanf("%d", &selec);
+
     do {
         switch (selec) {
             case 1:
@@ -46,20 +50,26 @@ void menu_cronista(equipos *estructura_equipos){
                                estructura_plantillas, estructura_jugadores_plantillas);
                 break; //FUNCION SALIR DEL PROGRAMA (DECLARADA EN CORE.H)
         }
-    } while (selec != 1 || selec != 2 || selec != 3)
+    } while (selec > 0 && selec < 4);
 }
+
 //FUNCION VALORAR EQUIPOS:
 //      Permitirá al cronista actualizar las valoraciones de los futbolistas. Para ello,
 //      el cronista seleccionará un identificador de un equipo y posteriormente le aparecerá la lista
 //      de futbolistas de dicho equipo junto con su valoración actual. A continuación, el cronista irá
 //      seleccionando futbolistas e introduciendo sus nuevas valoraciones (0-10).
+
 void valorar_equipos(futbolistas *estructura_futbolistas){
+
     int valoracion;
     int id_equipo;
     int id_futbolista;
     int i;
     int selec;
-    etiqueta_seleccion_equipos:                               //ETIQUETA QUE UTILIZAREMOS MAS TARDE POR SI EL USUARIO QUIERE CAMBIAR DE EQUIPO
+
+    //ETIQUETA QUE UTILIZAREMOS MAS TARDE POR SI EL USUARIO QUIERE CAMBIAR DE EQUIPO
+    etiqueta_seleccion_equipos:
+
     printf(".....INTRODUZCA UN ID DE EQUIPO.....\n");
     printf("                           \n");
     printf(">");
@@ -77,8 +87,10 @@ void valorar_equipos(futbolistas *estructura_futbolistas){
             printf("-------------------------------\n");
         }
     }
+
     printf(".....INTRODUZCA EL ID DEL FUTBOLISTA A VALORAR.....\n");
     scanf("%d", &id_futbolista);
+
     for (i=0; i<sizeof (estructura_futbolistas); i++){        //LO PRINCIPAL: EL USUARIO INTRODUCIRA EL ID DEL JUGADOR DEL CUAL DESEA CAMBIAR LA VALORACION
         if(id_futbolista == estructura_futbolistas[i].futbolista_id){
             printf(".....INTRODUZCA LA NUEVA VALORACION DEL FUTBOLISTA.....\n");
@@ -95,6 +107,7 @@ void valorar_equipos(futbolistas *estructura_futbolistas){
     printf("                           \n");
     printf(">");
     scanf("%d", &selec);
+
     do {
         switch (selec) {
             case 1:
@@ -107,7 +120,8 @@ void valorar_equipos(futbolistas *estructura_futbolistas){
                 goto etiqueta_final;
                 break;
         }
-    } while (selec != 1 || selec != 2 || selec != 3);
+    } while (selec > 0 && selec < 4 );
+
     etiqueta_final:                                         //ETIQUETA PARA TERMINAR YA ESTA FUNCION
 }
 
