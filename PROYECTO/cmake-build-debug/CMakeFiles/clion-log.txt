@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 "D:\CLion 2020.3.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\ESI\CONTENIDO\MP\Liga_cancerigena\PROYECTO\MP2021\PROYECTO
 CMake Error: Parse error in cache file D:/ESI/CONTENIDO/MP/Liga_cancerigena/PROYECTO/MP2021/PROYECTO/cmake-build-debug/CMakeCache.txt on line 2. Offending entry: <<<<<<< Updated upstream
@@ -30,21 +31,21 @@ CMake Error at CMakeLists.txt:6:
 -- Check for working C compiler: C:/MinGW/bin/gcc.exe
 -- Check for working C compiler: C:/MinGW/bin/gcc.exe - works
 =======
+=======
+>>>>>>> Stashed changes
 "D:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" D:\MP\MP2021\PROYECTO
 -- The C compiler identification is GNU 8.1.0
 -- Check for working C compiler: D:/Program Files (x86)/mingw64/bin/gcc.exe
 -- Check for working C compiler: D:/Program Files (x86)/mingw64/bin/gcc.exe - works
->>>>>>> Stashed changes
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
 -- Detecting C compile features
 -- Detecting C compile features - done
 -- Configuring done
 -- Generating done
-<<<<<<< Updated upstream
--- Build files have been written to: C:/Users/aleja/Desktop/MP2021/PROYECTO/cmake-build-debug
->>>>>>> Stashed changes
-=======
 -- Build files have been written to: D:/MP/MP2021/PROYECTO/cmake-build-debug
+<<<<<<< Updated upstream
 >>>>>>> Stashed changes
 >>>>>>> master
+=======
+>>>>>>> Stashed changes
