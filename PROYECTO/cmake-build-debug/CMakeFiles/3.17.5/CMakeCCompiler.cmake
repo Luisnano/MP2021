@@ -70,7 +70,13 @@ endif()
 
 
 
+<<<<<<< Updated upstream
 set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "C:/MinGW/lib/gcc/mingw32/6.3.0/include;C:/MinGW/include;C:/MinGW/lib/gcc/mingw32/6.3.0/include-fixed")
 set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "mingw32;gcc;moldname;mingwex;advapi32;shell32;user32;kernel32;mingw32;gcc;moldname;mingwex")
 set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "C:/MinGW/lib/gcc/mingw32/6.3.0;C:/MinGW/lib/gcc;C:/MinGW/mingw32/lib;C:/MinGW/lib")
+=======
+set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "D:/Program Files (x86)/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include;D:/Program Files (x86)/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed;D:/Program Files (x86)/mingw64/x86_64-w64-mingw32/include")
+set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "")
+set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "")
+>>>>>>> Stashed changes
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

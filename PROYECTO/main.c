@@ -21,6 +21,7 @@ int main() {
 
     //Volcamos todos los datos de los ficheros en sus respectivas variables estructuras anteriormente declaradas
     volcar_configuracion(&estructura_config);
+
     volcar_futbolistas(estructura_futbolistas,&estructura_config);
     volcar_equipos(estructura_equipos,&estructura_config);
     volcar_usuarios(estructura_usuarios);
@@ -36,10 +37,24 @@ int main() {
 
     etiqueta1:
 
+
+    volcar_futbolistas(estructura_futbolistas,&estructura_config);
+    /*
+    volcar_equipos(&estructura_equipos,&estructura_config);
+    volcar_usuarios(&estructura_usuarios, &estructura_config);
+    volcar_plantillas(&estructura_plantillas, &estructura_config);
+    volcar_jugadores_plantillas(&estructura_jugadores_plantillas);
+*/
+    //mostrar_configuracion(&estructura_config);
+    //escribir_configuracion(&estructura_config);
+    //mostrar_futbolistas(&estructura_futbolistas, estructura_config);
+    /*
+
     printf("Bienvenid@ a la liga fantastica!!\n\n");
     printf("1) Acceso al sistema (cuenta ya existente)\n");
     printf("2) Registrarse (cuenta no existente)\n\n");
     printf("Selecciona una de las opciones posibles: ");
+
     scanf("%i",&i);
 
     if(i==1){
@@ -83,6 +98,9 @@ int main() {
         }
     }
 
+
+
+*/
 
     return 0;
 }
