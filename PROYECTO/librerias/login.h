@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <assert.h>
 #include "core.h"
 
 //DEFINICIONES_FUNCIONES
@@ -65,10 +64,10 @@ int acceso_sistema(usuarios *estructura_usuarios) {    //Funcion que permitira a
 void registro(usuarios *estructura_usuarios){       //Funcion para que los usuarios se puedan registrar
 
     estructura_usuarios = (usuarios*)realloc(estructura_usuarios,(sizeof(estructura_usuarios)+1)*sizeof(int));    //Le damos un espacio mas al vector dinamico usuarios
-    assert(estructura_usuarios != NULL || puts("Fallo de reserva de memoria"));
+    if(estructura_usuarios==NULL){printf("Fallo de reserva de memoria\n"));}
 
     printf("A continuacion se le pediran sus datos necesarios para el registro\n\n");
-    scanf("%i",&estructura_usuarios[sizeof(estructura_usuarios)].usuario_id);           //El ID del usuario no lo elige él, le asignamos el siguiente numero disponible, es decir, el del tamaño del vector ya q le hemos sumado uno a esa cantidad
+    estructura_usuarios[sizeof(estructura_usuarios)].usuario_id = sizeof(estructura_usuarios);  //El ID del usuario no lo elige él, le asignamos el siguiente numero disponible, es decir, el del tamaño del vector ya q le hemos sumado uno a esa cantidad
     printf("\nDime tu nombre y primer apellido:");
     fgets(estructura_usuarios[sizeof(estructura_usuarios)].nombre_usuario,21,stdin);
     fflush(stdin);

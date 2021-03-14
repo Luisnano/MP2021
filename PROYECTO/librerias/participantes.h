@@ -10,15 +10,24 @@
 
 //DEFINICIÓN DE FUNCIONES
 
-void menu_participantes(int *id, jugadores_plantillas *estructura_jugadores_plantillas, futbolistas *estructura_futbolistas, plantillas *estructura_plantillas);
-void crear_plantillas(plantillas *estructura_plantillas);
-void configurar_plantillas(jugadores_plantillas *estructura_jugadores_plantillas, futbolistas *estructura_futbolistas, plantillas *estructura_plantillas);
+void menu_participantes(int *id, configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
+                        equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
+                        plantillas *estructura_plantillas);
+void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
+                      equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
+                      plantillas *estructura_plantillas);
+void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_plantillas *estructura_jugadores_plantillas);
+void configurar_plantillas(jugadores_plantillas *estructura_jugadores_plantillas, futbolistas *estructura_futbolistas,
+                           plantillas *estructura_plantillas);
 void eliminar_plantillas(plantillas *estructura_plantillas, jugadores_plantillas *estructura_jugadores_plantillas);
 void ranking(plantillas *estructura_plantillas);
 
+
 //FUNCIONES
 
-void menu_participantes(jugadores_plantillas *estructura_jugadores_plantillas, futbolistas *estructura_futbolistas, plantillas *estructura_plantillas){
+void menu_participantes(int *id, configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
+                        equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
+                        plantillas *estructura_plantillas){
 
     int opcion;
 
@@ -37,32 +46,139 @@ void menu_participantes(jugadores_plantillas *estructura_jugadores_plantillas, f
     do {
         switch(opcion){
 
-            case 1: crear_plantillas(estructura_plantillas); break;
-            case 2: configurar_plantillas(estructura_jugadores_plantillas,estructura_futbolistas,estructura_plantillas); break;
-            case 3: mostrar_plantillas(estructura_plantillas); break;
-            case 4: eliminar_plantillas(estructura_plantillas,estructura_jugadores_plantillas); break;
-            case 5: ranking(estructura_plantillas); break;
-            case 6: salir_programa(estructura_config,estructura_futbolistas,estructura_equipos,estructura_usuarios,estructura_plantillas,estructura_jugadores_plantillas); break;
+            case 1: crear_plantillas(id, estructura_config,estructura_jugadores_plantillas,estructura_equipos,
+                                     estructura_usuarios,estructura_futbolistas,estructura_plantillas);
+            break;
+
+            case 2: configurar_plantillas(estructura_jugadores_plantillas,estructura_futbolistas,estructura_plantillas);
+            break;
+
+            case 3: mostrar_plantillas(estructura_plantillas);
+            break;
+
+            case 4: eliminar_plantillas(estructura_plantillas,estructura_jugadores_plantillas);
+            break;
+
+            case 5: ranking(estructura_plantillas);
+            break;
+
+            case 6: salir_programa(estructura_config,estructura_futbolistas,estructura_equipos,estructura_usuarios,
+                                   estructura_plantillas,
+                                   estructura_jugadores_plantillas);
+            break;
 
             }
-        }while(opcion > 0 || opcion < 7);
+        }while(opcion > 0 && opcion < 7);
 
     }
 
-}
-
-void crear_plantillas(plantillas *estructura_plantillas){
+void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
+                      equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
+                      plantillas *estructura_plantillas){
 
     int i, num_plantillas = 0;
 
     for(i = 0; i <= sizeof(estructura_plantillas); i++){
-        if(estructura_plantillas[i].usuario_id == )
+        if(estructura_plantillas[i].usuario_id == *id){
+            num_plantillas++;
+        }
+    }
+    if(num_plantillas == 3){
+        printf("Numero maximo de plantillas alcanzado.\n");
+        menu_participantes(id,estructura_config,estructura_jugadores_plantillas,estructura_equipos,estructura_usuarios,
+                           estructura_futbolistas,estructura_plantillas);
+    }
+    else{
+        printf("Se procede a crear una plantilla: \n");
+
+            estructura_plantillas = (plantillas *)realloc(estructura_plantillas, (sizeof(estructura_plantillas)+1)*sizeof(int));
+            if(estructura_plantillas==NULL){printf("Fallo de reserva de memoria\n"));}
+
+            estructura_plantillas[sizeof(estructura_plantillas)].usuario_id = id;
+
+            estructura_plantillas[sizeof(estructura_plantillas)].plantilla_id = sizeof(estructura_plantillas);
+
+            printf("\nIntroduce el nombre de la plantilla: ");
+            fgets(estructura_plantillas[sizeof(estructura_plantillas)].nombre_plantilla,31,stdin);
+            fflush(stdin);
+
+            estructura_plantillas[sizeof(estructura_plantillas)].presupuesto_disp = estructura_config->presupuesto_defecto;
+
+            estructura_plantillas[sizeof(estructura_plantillas)].puntuacion_acum = 0;
+
+        printf("\nLa plantilla se ha creado con exito.\n");
+        menu_participantes(id,estructura_config,estructura_jugadores_plantillas,estructura_equipos,estructura_usuarios,
+                           estructura_futbolistas,estructura_plantillas);
     }
 
 }
 
+void configurar_plantillas(jugadores_plantillas *estructura_jugadores_plantillas, futbolistas *estructura_futbolistas,
+                           plantillas *estructura_plantillas){
 
+    int opcion;
 
+    printf("MENU CONFIGURAR-PLANTILLA\n\n");
+
+    printf("1.- Lista de jugadores en plantilla\n");
+    printf("2.- Lista de jugadores disponibles\n");
+    printf("3.- Añadir jugador a plantilla\n");
+    printf("4.- Eliminar jugador de plantilla\n");
+    printf("5.- Volver\n");
+
+    printf("Seleccione una opcion: ");
+    scanf("%i", &opcion);
+
+    do {
+        switch(opcion){
+
+            case 1:
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
+
+            case 4:     listar_jugadores_disponibles(estructura_futbolistas,estructura_jugadores_plantillas);
+                break;
+
+            case 5:     menu_participantes(&id,&estructura_config,estructura_jugadores_plantillas,estructura_equipos,
+                                           estructura_usuarios,estructura_futbolistas,estructura_plantillas);
+                break;
+
+        }
+    }while(opcion > 0 && opcion < 6);
+
+}
+
+void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_plantillas *estructura_jugadores_plantillas){
+
+    int i,j,aux;
+
+    for(i=0 ; i<=sizeof(estructura_futbolistas) ; i++){
+
+        if(aux==1){
+
+            Printf("%i , %i , %s , %i , %i\n",estructura_futbolistas[i-1].futbolista_id,estructura_futbolistas[i-1].equipo_id,
+                   estructura_futbolistas[i-1].nombre_futbolista,estructura_futbolistas[i-1].futbolista_precio,
+                   estructura_futbolistas[i-1].valoracion);
+        }
+
+        aux = 1;
+
+        for(j=0 ; j<=sizeof(estructura_jugadores_plantillas) && aux == 1 ; j++){
+
+            if(estructura_futbolistas[i].futbolista_id == estructura_jugadores_plantillas[j].jugador_platilla_id){
+
+                aux = 0;
+
+            }
+        }
+    }
+
+}
 
 
 
