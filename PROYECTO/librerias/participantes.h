@@ -16,10 +16,12 @@ void menu_participantes(int *id, configuracion *estructura_config, jugadores_pla
 void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
                       equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
                       plantillas *estructura_plantillas);
+void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_plantillas *estructura_jugadores_plantillas);
 void configurar_plantillas(jugadores_plantillas *estructura_jugadores_plantillas, futbolistas *estructura_futbolistas,
                            plantillas *estructura_plantillas);
 void eliminar_plantillas(plantillas *estructura_plantillas, jugadores_plantillas *estructura_jugadores_plantillas);
 void ranking(plantillas *estructura_plantillas);
+
 
 //FUNCIONES
 
@@ -139,10 +141,11 @@ void configurar_plantillas(jugadores_plantillas *estructura_jugadores_plantillas
             case 3:
                 break;
 
-            case 4:
+            case 4:     listar_jugadores_disponibles(estructura_futbolistas,estructura_jugadores_plantillas);
                 break;
 
-            case 5:
+            case 5:     menu_participantes(&id,&estructura_config,estructura_jugadores_plantillas,estructura_equipos,
+                                           estructura_usuarios,estructura_futbolistas,estructura_plantillas);
                 break;
 
         }
@@ -150,7 +153,32 @@ void configurar_plantillas(jugadores_plantillas *estructura_jugadores_plantillas
 
 }
 
+void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_plantillas *estructura_jugadores_plantillas){
 
+    int i,j,aux;
+
+    for(i=0 ; i<=sizeof(estructura_futbolistas) ; i++){
+
+        if(aux==1){
+
+            Printf("%i , %i , %s , %i , %i\n",estructura_futbolistas[i-1].futbolista_id,estructura_futbolistas[i-1].equipo_id,
+                   estructura_futbolistas[i-1].nombre_futbolista,estructura_futbolistas[i-1].futbolista_precio,
+                   estructura_futbolistas[i-1].valoracion);
+        }
+
+        aux = 1;
+
+        for(j=0 ; j<=sizeof(estructura_jugadores_plantillas) && aux == 1 ; j++){
+
+            if(estructura_futbolistas[i].futbolista_id == estructura_jugadores_plantillas[j].jugador_platilla_id){
+
+                aux = 0;
+
+            }
+        }
+    }
+
+}
 
 
 
