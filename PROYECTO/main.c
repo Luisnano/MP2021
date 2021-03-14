@@ -35,20 +35,21 @@ int main() {
 
     //INICIO
 
-    etiqueta1:
+
 
 
     volcar_futbolistas(estructura_futbolistas,&estructura_config);
-    /*
+
     volcar_equipos(&estructura_equipos,&estructura_config);
     volcar_usuarios(&estructura_usuarios, &estructura_config);
     volcar_plantillas(&estructura_plantillas, &estructura_config);
     volcar_jugadores_plantillas(&estructura_jugadores_plantillas);
-*/
-    //mostrar_configuracion(&estructura_config);
-    //escribir_configuracion(&estructura_config);
-    //mostrar_futbolistas(&estructura_futbolistas, estructura_config);
-    /*
+
+    mostrar_configuracion(&estructura_config);
+    escribir_configuracion(&estructura_config);
+    mostrar_futbolistas(&estructura_futbolistas, estructura_config);
+
+    etiqueta1:
 
     printf("Bienvenid@ a la liga fantastica!!\n\n");
     printf("1) Acceso al sistema (cuenta ya existente)\n");
@@ -100,7 +101,7 @@ int main() {
 
 
 
-*/
+
 
     return 0;
 }
