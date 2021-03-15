@@ -4,15 +4,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "core.h"
+#include <string.h>
 
 void listarEquipos(equipos *, configuracion *);
 void modificarEquipos( equipos *, configuracion *);
 void addEquipos(equipos *, configuracion *);
 void eliminarEquipos(equipos *, configuracion *);
-void listarusuarios(futbolistas *, configuracion *);
-void modificarusuarios(futbolistas *, configuracion *);
-void addusuarios(futbolistas *, configuracion *);
-void eliminarusuarios(futbolistas *, configuracion *);
+void listarUsuarios(futbolistas *, configuracion *);
+void modificarUsuarios(futbolistas *, configuracion *);
+void addUsuarios(futbolistas *, configuracion *);
+void eliminarUsuarios(futbolistas *, configuracion *);
 void modificarConfiguracion(configuracion *);
 int op;
 
@@ -54,7 +55,17 @@ do{
                 printf("2.- Modificar usuarios\n");
                 printf("3.- Annadir usuarios\n");
                 printf("4.- Eliminar usuarios\n");
-                    scanf("%d",&op2);break;
+                scanf("%d",&op2);
+                switch(op2){
+                    case 1:
+                    listarUsuarios(&estructura_usuarios,&estructura_config);break;
+                    case 2:
+                    modificarUsuarios(&estructura_usuarios,&estructura_config);break;
+                    case 3:
+                    addUsuarios(&estructura_usuarios,&estructura_config);break;
+                    case 4:
+                    eliminarUsuarios(&estructura_usuarios,&estructura_config);break;
+}
 
         case 3:
                 printf("Bienvenido al menú de configuracion\n");
@@ -100,7 +111,7 @@ void modificarEquipos( equipos *estructura_equipos, configuracion *estructura_co
                 }
             }
         }
-    } while(error != 1);
+    } while(error == 1);
 }
 
 void addEquipos(equipos *estructura_equipos, configuracion *estructura_config){
@@ -121,7 +132,7 @@ void addEquipos(equipos *estructura_equipos, configuracion *estructura_config){
                 estructura_equipos[i].nombre_equipo = new_nombre;
             }else printf("El nombre del equipo ya existe");error = 1;
         }
-    }while(error != 1);
+    }while(error == 1);
 }
 
 void eliminarEquipos(equipos *estructura_equipos, configuracion *estructura_config){
@@ -135,7 +146,64 @@ void eliminarEquipos(equipos *estructura_equipos, configuracion *estructura_conf
                 estructura_equipos[i].nombre_equipo = "";
             }else printf("El equipo seleccionado no existe");error = 1;
         }
-    }while(error != 1);
+    }while(error == 1);
+}
+
+void listarUsuarios(usuarios *estructura_usuarios, configuracion *estructura_config){
+
+    for(int i=0;i<estructura_config->max_usuarios;i++){
+        printf("Usuario %d",i+1);
+        printf("Id: %d.\n",estructura_usuarios[i].usuario_id);
+        printf("Nombre: %s.\n",estructura_usuarios[i].nombre_usuario);
+        printf("Perfil: %s.\n",estructura_usuarios[i].usuario_perfil);
+        printf("Nick: %s.\n",estructura_usuarios[i].usuario_nick);
+        printf("Password: %s.\n",estructura_usuarios[i].usuario_password);
+        puts("");
+    }
+}
+
+void modificarUsuarios(usuarios *estructura_usuarios, configuracion *estructura_config) {
+    int error = 0, new_id;
+    char nombre[21], new_nombre[21], new_perfil[15], new_nick[6], new_passwd[9];
+    do {
+        printf("\nIntroduce el nombre del usuario a modificar: ");
+        scanf("%s", nombre);
+        for (int i = 0; i < estructura_config.max_usuarios; i++) {
+            if (strcmp(nombre, estructura_usuarios[i].nombre_usuario) == 0) {
+                printf("\nIntroduce un nuevo id de usuario: ");
+                scanf("%d", &new_id);
+                for (int j = 0; j < estructura_config.max_usuarios; j++) {
+                    if (new_id != estructura_usuarios[j].usuario_id) {
+                        estructura_usuarios[j].usuario_id = new_id;
+                    } else error = 1;
+                }
+                printf("\nIntroduce un nuevo nombre de usuario: ");
+                scanf("%s", new_nombre);
+                for (int k = 0; k < estructura_config.max_usuarios; k++) {
+                    if (strcmp(new_nombre, estructura_usuarios[k].nombre_usuario) != 0)
+                        estructura_usuarios[i].nombre_usuario = new_nombre;
+                }else error = 1;
+                printf("\nIntroduce un nuevo perfil de usuario: ");
+                scanf("%s", new_perfil);
+                perfil:
+                if(strcmp(new_perfil,"Participante") != 0 || strcmp(new_perfil,"Cronista") != 0 || strcmp(new_perfil,"Administrador") != 0){
+                    printf("\nperfil de usuario invalido");goto perfil;
+                }else estructura_usuarios[i].usuario_nick = new_perfil;
+                printf("\nIntroduce un nuevo nick para el usuario: ");
+                scanf("%s", new_nick);
+                nick:
+                if(strcmp(new_nick,"Part%d") != 0 || strcmp(new_nick,"Croni") != 0 || strcmp(new_nick,"Admin") != 0){
+                    printf("\nnick de usuario invalido");goto nick;
+            }
+                passwd:
+                printf("Introduce una nueva password para el usuario: ");
+                scanf("%s",new_passwd);
+                if(strcmp(estructura_usuarios[i].usuario_password,new_passwd) == 0){
+                    printf("\nLa password introducida es la misma");goto passwd;
+                }else estructura_usuarios[i].usuario_password = new_passwd;
+            }
+        }
+    }while (error == 1);
 }
 
 void modificarConfiguracion(configuracion * estructura_config){
