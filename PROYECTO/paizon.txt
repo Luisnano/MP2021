@@ -72,3 +72,28 @@ Para elmiminar el ultimo elemento de la lista ponemos    milista.pop()
 Para unir dos listas doferentes, ponemos una tercera lista que será igual a al union de las 2 anteriores:   milista3= milista1 + milista2
 
 Si le pongo un * fuera de la lista en la declaracion, se repite tantas veces como el numero q ponga a la derecha del *, ej:      milista1=[1,2,3,4,5] *3  entonces milista seria 1,2,3,4,5,1,2,3,4,5,1,2,3,4,5
+
+
+Las Tuplas son listas que no cambian a lo largo del tiempo, no podemos añadir, eliminar etc , pero si permite extraer un elemento creando una nueva tupla q será el resultado de la extaccion, y no se puede buscar dentro (no index)
+
+Pero si permitte comprobar si hay un elemento dentro
+
+Es decir solo permiten las tuplas extraer y comprobar(in)
+
+Las tuplas son mas rapidas q las listas , GRAN DATA
+
+Sintaxis_tupla ---> nombretupla=(elem1,elemt2...)  las tuplas entre parentesis, listas entre corchetes
+
+podemos convertir una tupla en una lista ----> milista =list(mitupla)
+
+	de la misma manera se puede convertir lo q era una lista en una tupla ---> mitupla = tuple(milista)
+
+Para preguntar cuantas veces aparece un elemento en una tupla/lista se usa print(mitupla.count(1))  es decir, cuantas veces aparece el 1
+
+para saber la longitud de una tupla/lista se usa ej: print(len(mitupla))
+
+se puede crear una tupla con un unico elemento poniendo una coma aqui: mitupla=("MarioL0L",)
+
+	Poner los parentesis en la definicion de una tupla es opcional, si no ponemos parentesis entonces el programa lo considera una tupla: ej: mitupla: 1,2,"L0L"
+
+Puedo asignar a una tupla la sucesion de unos parametros: ej:   nombre,fecha,mes = mitupla  entonces mi tupla estará formada por esas tres variables
