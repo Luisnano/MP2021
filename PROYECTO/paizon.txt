@@ -1,0 +1,74 @@
+printf ---> print
+
+no hay ;
+
+\n x defecto
+
+comentarios con #
+
+no se pone tipo variable al declararlas
+
+se puede inicializar una cadena del tiron con " " , ej dou = "L0L!"
+
+Puedo mostrar el valor de variables con print (sin usar %), o del tiron poniendo el nombre de la variable
+
+Operadores:	Division con decimales : /
+		Division entera : //
+		Exponente: **
+		Modulo: %
+		Aqui el ||(o) es el OR
+		Aquí el &&(y) es el AND
+
+El programa le asigna un tipo a la variable cuando le das un valor, hasta entonces no sabe q tipo es
+
+Con type(variable) te dice el tipo de variable q es
+
+En bucles no se usan parentesis en la condicion, y esta se acaba con :
+
+La diferencia de = y == es la misma q en C
+
+Sintaxis de las funciones: def nombre(parametros(si los tiene)):
+Pueden o no tener return, depende d si devuelve o no parametros
+
+Para llamar a la funcion se pone nombre(parametros si los tiene)
+
+Para indicar que has acabado una fucnion, pulsas la tecla de retroceso, ya que todo lo q haya dentro de uan funcion debe estar tabulado
+
+Los parametros en la funcion no van con su tipo XD
+
+Con el print tambien podemos imprimir lo q devuelve una funcion
+
+Listas: Nos permiten guardan varias variables de diferentes tipos (al contrario q los vectores), se pueden expandir dinamicamente
+
+	Sintaxis lista ---> Nombrelista = [elem1,elem2...]
+
+Listas y vectores empiezan por 0
+
+Para imprimir todos los elemetos de la lista ej: print(miLista[:])
+	
+	para imprimir un elemento se pone entre el corchete el numero q queremo imprimir
+
+	si ponemos el indice en negativo empieza a contar desde el final de la lista hacyia atras: -2 seria el penultimo elemento de la lista
+
+	si ponemos un rango tal que 0:3 , esto incluye la 0,1 y 2 , la ultima (3) no la pone, pero la primera (0) sí
+
+	si ponemos [2:] entonces imprime desde el elemento 2 (cuidao con el 0) hasta el final
+
+	
+Para añadir un elemento a la lista ponemos -->   milista.append()    Se pone al principio de la lista
+
+Para añadir un elemento en una posicion concreta, es decir entre dos valores se pone milista.insert[posicion(ej:2) , dato ]
+
+Para añadir varios elementos al final de la lista se pone milista.extend[1,2,3,4] , despues del final de la lista pone esos elementos al final
+
+Para devolver el indice de un elemento de la lista podemos usar ej:   print(milista.index("Pepe"))  dice en q indice está el pepe, si el pepe aparece +1 vez, devuelve 0
+
+Una funcion que imprime true o false si aparece o no en la lista,  ej : print("pepe" in milista)
+
+Para eliminar un elemento de la lista --->  milista.remove(5) , borra el 5 ( no el elemento 5, sino algun elemento que sea literalmente 5)
+
+Para elmiminar el ultimo elemento de la lista ponemos    milista.pop()
+
+Para unir dos listas doferentes, ponemos una tercera lista que será igual a al union de las 2 anteriores:   milista3= milista1 + milista2
+
+Si le pongo un * fuera de la lista en la declaracion, se repite tantas veces como el numero q ponga a la derecha del *, ej:      milista1=[1,2,3,4,5] *3  entonces milista seria 1,2,3,4,5,1,2,3,4,5,1,2,3,4,5
