@@ -149,8 +149,13 @@ NO HAY DEFINICIONES DE FUNCIONES
 
 EN EL PROTOTIPO DE FUNCION PODEMOS PONER EL TIPO DE VARIABLE A LA VARIABLE Q NOS LLEVAMOS, CAMBIANDOLE ASÍ SU TIPO, ES DECIR SI LLEVAMOS A UNA FUNCION UNA CADENA Y EN EL PROTOTIPO PONEMOS INT AHORA LO INTERPRETA COMO UN ENTERO
 
+si ponemos delante del input por ejemplo int interpretara el resultado del input que en un comienzo lo asimila como una cadena a pasar a considerarlo como un entero, ej: edad = int(input(Introduce edad:))
+
+EL ELIF Y ELSE FUNCIONAN IGUAL QUE EN C , sin novedades en sitaxis 
+
+Podemos poner dentro de un condicional este tipo de condiciones 0<x<100 en vez de dos && o || (q tambien se pueden poner)
 
 
-
-
-	
+En los print cuando queremos imprimir algo con texto ej: print("Hola, tengo:" + edad + "años") edad es tipo int , en phyton no se puede mezclar en un print una dacena como en este caso HOLA TENGO, Y AÑOS con edad q es entero, 
+							hay q ponerle a edad delante una funcion para que lo interprete como un string y no de fallo, quedaria: print("Hola tengo:" + str(edad) + "años")
+							El str es temporal, no cmabia su valor a cadena, solo lo interpreta como cadena en el print
