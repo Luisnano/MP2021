@@ -159,3 +159,33 @@ Podemos poner dentro de un condicional este tipo de condiciones 0<x<100 en vez d
 En los print cuando queremos imprimir algo con texto ej: print("Hola, tengo:" + edad + "años") edad es tipo int , en phyton no se puede mezclar en un print una dacena como en este caso HOLA TENGO, Y AÑOS con edad q es entero, 
 							hay q ponerle a edad delante una funcion para que lo interprete como un string y no de fallo, quedaria: print("Hola tengo:" + str(edad) + "años")
 							El str es temporal, no cmabia su valor a cadena, solo lo interpreta como cadena en el print
+
+
+Se puede usar AND Y OR tal cual en un condicional, su funcionamiento es el q hemos aprendido
+
+en el IF se puede poner IN , ej if x in (1,2,3) : significa q se ejecuta el cuerpo del if si x vale 1,2 o 3
+
+Podemos transformar el valor de una cadena a mayusculas o minusculas con estas funciones ej:   asignatura = cadena1.lower()  es decir, asignatura sera cadena1 en minusculas
+													    cadena1.upper() , para mayus
+
+LOS FOR sintaxis -----> For x in [1,2,3] , x no está inicializada, para las 3 ejecucuiones sera 1,2,3
+				 ["hola","adios"] x se ejecuta 2 veces, en la primera x= "hola" y luego "adios"
+
+Si al final de un print pones end="" entonces no hay salto de linea     ej: print("Dou", end="")
+
+Otro ejemplo for -----> for i in "Mi nombre es tupac":   imprime lo de dentro del bucle tantas veces como caracteres tenga mi nombre es tupac   
+
+lo mismo si pongo for x in cadena1:     y cadena 1 es una cadena con un valor, se ejecuta como tantos caracteres tenga la cadena1
+
+Otro uso for:     for i in range(5):  lo imprime 5 veces , yendo del 0 al 4 la i en cada iteracion
+
+con in range se puede usar intervalo, ej: for x in range(5,10): i valdrá 5,6,7,8,9
+
+si le ponemos un tercer parametro al rango con el in range, ese numero significa el numero de saltos q da para imprimir el rango de numero a numero, ej --->   for x in range(5,28,3): imprime del 5 al 27 en saltos de 3
+
+Tambien podemos usar dentro del rango el tamaño de uan avriable , es decir, len()
+
+
+
+
+
