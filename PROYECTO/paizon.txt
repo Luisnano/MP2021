@@ -137,4 +137,20 @@ Y para saber la longitud print(len(midiccionario))
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+En cuanto a condicionales:
 
+	sintaxis IF    if x < y :    Sin parentesis, y : al final
+
+
+EL INPUT es un scanf     ej: x = input("Escribe algo L0L":)    toma x de lo que pongamos del teclado 
+			PERO LO INTERPRETA COMO UNA CADENA, aunque metas un entero por ejemplo, será de tipo cadena esa variable
+
+NO HAY DEFINICIONES DE FUNCIONES
+
+EN EL PROTOTIPO DE FUNCION PODEMOS PONER EL TIPO DE VARIABLE A LA VARIABLE Q NOS LLEVAMOS, CAMBIANDOLE ASÍ SU TIPO, ES DECIR SI LLEVAMOS A UNA FUNCION UNA CADENA Y EN EL PROTOTIPO PONEMOS INT AHORA LO INTERPRETA COMO UN ENTERO
+
+
+
+
+
+	
