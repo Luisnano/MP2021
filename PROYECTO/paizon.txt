@@ -23,6 +23,8 @@ El programa le asigna un tipo a la variable cuando le das un valor, hasta entonc
 
 Con type(variable) te dice el tipo de variable q es
 
+---------------------------------------------------------------------------------------------------------------
+
 En bucles no se usan parentesis en la condicion, y esta se acaba con :
 
 La diferencia de = y == es la misma q en C
@@ -37,6 +39,8 @@ Para indicar que has acabado una fucnion, pulsas la tecla de retroceso, ya que t
 Los parametros en la funcion no van con su tipo XD
 
 Con el print tambien podemos imprimir lo q devuelve una funcion
+
+-------------------------------------------------------------------------------------------------------------------------
 
 Listas: Nos permiten guardan varias variables de diferentes tipos (al contrario q los vectores), se pueden expandir dinamicamente
 
@@ -74,11 +78,14 @@ Para unir dos listas doferentes, ponemos una tercera lista que será igual a al 
 Si le pongo un * fuera de la lista en la declaracion, se repite tantas veces como el numero q ponga a la derecha del *, ej:      milista1=[1,2,3,4,5] *3  entonces milista seria 1,2,3,4,5,1,2,3,4,5,1,2,3,4,5
 
 
-Las Tuplas son listas que no cambian a lo largo del tiempo, no podemos añadir, eliminar etc , pero si permite extraer un elemento creando una nueva tupla q será el resultado de la extaccion, y no se puede buscar dentro (no index)
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Las Tuplas son listas que no cambian a lo largo del tiempo, no podemos añadir, eliminar etc , pero si permite extraer un elemento creando una nueva tupla q será el resultado de la extaccion
 
 Pero si permitte comprobar si hay un elemento dentro
 
-Es decir solo permiten las tuplas extraer y comprobar(in)
+Es decir solo permiten las tuplas extraer , buscar(index) y comprobar(in)
 
 Las tuplas son mas rapidas q las listas , GRAN DATA
 
@@ -97,3 +104,37 @@ se puede crear una tupla con un unico elemento poniendo una coma aqui: mitupla=(
 	Poner los parentesis en la definicion de una tupla es opcional, si no ponemos parentesis entonces el programa lo considera una tupla: ej: mitupla: 1,2,"L0L"
 
 Puedo asignar a una tupla la sucesion de unos parametros: ej:   nombre,fecha,mes = mitupla  entonces mi tupla estará formada por esas tres variables
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Los diccionarios son estructuras de datos q pueden guardar todo tipo de datos diferentes, incluso listas, tuplas y otros diccionarios ,
+	
+Cada elemento del diccionario tiene la siguiente forma de asociacion  clave : valor, la clave es única
+
+	Sintaxis: va entre llaves    midiccionario {"Alemania : "Berlin" , "Francia":"Paris", 23:"AlejandroParada"}
+		
+		para imprimir valor: print(midiccionario["Francia"])  pues imprime Paris
+
+Agregar elementos al diccionario    midiccionario["Italia"] = "Roma"
+
+Para sobreescribir una clave ---> le damos otro valor y listo
+
+Eliminar elementos   ---> del midiccionario["Francia"]    es decir, el primer elemento (la clave) entre corchetes
+
+Ejemplo con tuplas en el diccionario:
+		
+	mitupla=(1,6,"dou")
+
+midiccionario = {mitupla[0]: "Madrid", mitupla[1] : "L0L" ....}
+
+puedo darle a un elemento del diccionario el valor de una tupla sin poner el nombre ej: middicionario:{"L0L": (2,3,4,1,5),}
+
+con print(middionario.keys()) imprimimos todas las claves del diccionarios, no los valores, para los avlores ponemos .values () en vez de keys()
+
+Y para saber la longitud print(len(midiccionario))
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
