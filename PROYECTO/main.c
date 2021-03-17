@@ -6,6 +6,7 @@
 #include "librerias/core.h"
 #include "librerias/login.h"
 #include "librerias/participantes.h"
+#include "librerias/cronista.h"
 
 //MAIN PROGRAM
 
@@ -24,8 +25,8 @@ int main() {
     //Volcamos todos los datos de los ficheros en sus respectivas variables estructuras anteriormente declaradas
 
     volcar_configuracion(&estructura_config);
-    volcar_futbolistas(&estructura_futbolistas,&estructura_config);
-    volcar_equipos(estructura_equipos,&estructura_config);
+    volcar_futbolistas(&estructura_futbolistas);
+    volcar_equipos(estructura_equipos);
     volcar_usuarios(&estructura_usuarios);
     volcar_plantillas(&estructura_plantillas);
     volcar_jugadores_plantillas(&estructura_jugadores_plantillas);
@@ -68,7 +69,9 @@ int main() {
         }
         if (strcmp(perfil,"cronista")==0){
 
-            menu_cronista(estructura_equipos);
+            menu_cronista(&estructura_config, estructura_futbolistas, estructura_equipos,
+                          estructura_usuarios, estructura_plantillas,
+                          estructura_jugadores_plantillas);
 
         }
     }

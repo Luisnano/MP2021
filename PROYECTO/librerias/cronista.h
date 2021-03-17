@@ -1,7 +1,7 @@
 #ifndef PROYECTO_CRONISTA_H
 #define PROYECTO_CRONISTA_H
 
-#include <iostream>
+
 #include <string.h>
 #include <stdlib.h>
 #include "core.h"
@@ -9,8 +9,10 @@
 //DECLARACION DE FUNCIONES
 
 
-void menu_cronista(equipos *estructura_equipos);
-void valorar_equipos(equipos *estructura_equipos);
+void menu_cronista(configuracion *estructura_config, futbolistas *estructura_futbolistas, equipos *estructura_equipos,
+                   usuarios *estructura_usuarios, plantillas *estructura_plantillas,
+                   jugadores_plantillas *estructura_jugadores_plantillas);
+void valorar_equipos(futbolistas *estructura_jugadores);
 
 //FUNCIONES
 
@@ -22,7 +24,9 @@ void valorar_equipos(equipos *estructura_equipos);
 //      2.- Valorar Equipos
 //      3.- Salir del programa
 
-void menu_cronista(equipos *estructura_equipos){
+void menu_cronista(configuracion *estructura_config, futbolistas *estructura_futbolistas, equipos *estructura_equipos,
+                   usuarios *estructura_usuarios, plantillas *estructura_plantillas,
+                   jugadores_plantillas *estructura_jugadores_plantillas){
 
     int selec;
 
@@ -107,7 +111,7 @@ void valorar_equipos(futbolistas *estructura_futbolistas){
             printf("                           \n");
             printf(">");
             scanf("%d", &selec);
-        }while(selec == 1)
+        }while(selec == 1);
     }while (selec == 2);
 }
 
