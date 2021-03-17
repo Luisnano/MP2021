@@ -17,7 +17,8 @@ void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plant
                       equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
                       plantillas *estructura_plantillas);
 void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_plantillas *estructura_jugadores_plantillas);
-void configurar_plantillas(jugadores_plantillas *estructura_jugadores_plantillas, futbolistas *estructura_futbolistas,
+void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
+                           equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
                            plantillas *estructura_plantillas);
 void eliminar_plantillas(plantillas *estructura_plantillas, jugadores_plantillas *estructura_jugadores_plantillas);
 void ranking(plantillas *estructura_plantillas);
@@ -50,7 +51,8 @@ void menu_participantes(int *id, configuracion *estructura_config, jugadores_pla
                                      estructura_usuarios,estructura_futbolistas,estructura_plantillas);
             break;
 
-            case 2: configurar_plantillas(estructura_jugadores_plantillas,estructura_futbolistas,estructura_plantillas);
+            case 2: configurar_plantillas(id, estructura_config, estructura_jugadores_plantillas, estructura_equipos,
+                                          estructura_usuarios, estructura_futbolistas,estructura_plantillas);
             break;
 
             case 3: mostrar_plantillas(estructura_plantillas);
@@ -92,7 +94,9 @@ void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plant
         printf("Se procede a crear una plantilla: \n");
 
             estructura_plantillas = (plantillas *)realloc(estructura_plantillas, (sizeof(estructura_plantillas)+1)*sizeof(int));
-            if(estructura_plantillas==NULL){printf("Fallo de reserva de memoria\n"));}
+            if(estructura_plantillas==NULL){
+                printf("Fallo de reserva de memoria\n");
+            }
 
             estructura_plantillas[sizeof(estructura_plantillas)].usuario_id = id;
 
@@ -113,10 +117,18 @@ void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plant
 
 }
 
-void configurar_plantillas(jugadores_plantillas *estructura_jugadores_plantillas, futbolistas *estructura_futbolistas,
+void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
+                           equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
                            plantillas *estructura_plantillas){
 
-    int opcion;
+    int opcion, i;
+
+    printf("A continuacion, mostraremos tus plantillas actuales. Selecciona una de ellas para configurarla.");
+
+    for(i = 0; i <= sizeof(estructura_plantillas); i++){
+        printf("%i, %s, presupuesto: %i, puntuacion: %i", estructura_plantillas[i].plantilla_id, estructura_plantillas[i].nombre_plantilla,
+               estructura_plantillas[i].presupuesto_disp, estructura_plantillas[i].puntuacion_acum);
+    }
 
     printf("MENU CONFIGURAR-PLANTILLA\n\n");
 
@@ -135,13 +147,13 @@ void configurar_plantillas(jugadores_plantillas *estructura_jugadores_plantillas
             case 1:
                 break;
 
-            case 2:
+            case 2:     listar_jugadores_disponibles(estructura_futbolistas,estructura_jugadores_plantillas);
                 break;
 
             case 3:
                 break;
 
-            case 4:     listar_jugadores_disponibles(estructura_futbolistas,estructura_jugadores_plantillas);
+            case 4:
                 break;
 
             case 5:     menu_participantes(&id,&estructura_config,estructura_jugadores_plantillas,estructura_equipos,
@@ -161,7 +173,7 @@ void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_
 
         if(aux==1){
 
-            Printf("%i , %i , %s , %i , %i\n",estructura_futbolistas[i-1].futbolista_id,estructura_futbolistas[i-1].equipo_id,
+            printf("%i , %i , %s , %i , %i\n",estructura_futbolistas[i-1].futbolista_id,estructura_futbolistas[i-1].equipo_id,
                    estructura_futbolistas[i-1].nombre_futbolista,estructura_futbolistas[i-1].futbolista_precio,
                    estructura_futbolistas[i-1].valoracion);
         }
