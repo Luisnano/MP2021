@@ -72,10 +72,10 @@ typedef struct{
 
 
 
-void volcar_configuracion(configuracion *estructura_config);
-void escribir_configuracion(configuracion *estructura_config);
-void mostrar_configuracion(configuracion *estructura_config);
-void volcar_futbolistas(futbolistas *estructura_futbolistas,configuracion *estructura_config);
+void volcar_configuracion(configuracion *);
+void escribir_configuracion(configuracion *);
+void mostrar_configuracion(configuracion *);
+void volcar_futbolistas(futbolistas **,configuracion *);
 void escribir_futbolistas(futbolistas *estructura_futbolistas);
 void mostrar_futbolistas(futbolistas *estructura_futbolistas);
 void volcar_equipos(equipos *estructura_equipos,configuracion *estructura_config);
@@ -92,24 +92,6 @@ void escribir_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_pl
 void mostrar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas);
 int salir_programa(configuracion *estructura_config,futbolistas *estructura_futbolistas,equipos *estructura_equipos,usuarios *estructura_usuarios,plantillas *estructura_plantillas,jugadores_plantillas *estructura_jugadores_plantillas);
 
-void volcar_configuracion(configuracion *);
-void escribir_configuracion(configuracion *);
-void mostrar_configuracion(configuracion *);
-void volcar_futbolistas(futbolistas **,configuracion *);
-void escribir_futbolistas(futbolistas **, configuracion *);
-void mostrar_futbolistas(futbolistas **, configuracion *);
-void volcar_equipos(equipos **,configuracion *);
-void escribir_equipos(equipos **, configuracion *);
-void mostrar_equipos(equipos **, configuracion *);
-void volcar_usuarios(usuarios **, configuracion *);
-void escribir_usuarios(usuarios **, configuracion *);
-void mostrar_usuarios(usuarios **, configuracion *);
-void volcar_plantillas(plantillas **, configuracion *);
-void escribir_plantillas(plantillas **, configuracion *);
-void mostrar_plantillas(plantillas **, configuracion *);
-void volcar_jugadores_plantillas(jugadores_plantillas **);
-void escribir_jugadores_plantillas(jugadores_plantillas **);
-void mostrar_jugadores_plantillas(jugadores_plantillas **);
 
 //FUNCIONES
 
@@ -120,11 +102,16 @@ void volcar_configuracion(configuracion *estructura_config){
 
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","r");
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     if(f_configuracion==NUL){printf("Fallo de apertura de fichero\n"));}
 =======
     assert(f_configuracion != NULL || printf("Fallo de apertura del fichero de configuracion\n"));
 >>>>>>> master
+=======
+    if(f_configuracion == NULL){
+        printf("Error de apertura del fichero de configuracion");
+>>>>>>> Stashed changes
 
     //Vuelcan datos del fichero
 
@@ -138,7 +125,7 @@ void volcar_configuracion(configuracion *estructura_config){
     fclose(f_configuracion);
 }
 
-void volcar_futbolistas(futbolistas **estructura_futbolistas, configuracion *estructura_config){
+void volcar_futbolistas(futbolistas **estructura_futbolistas,configuracion *estructura_config){
 
     //Usamos la estructura_config ya que necesitamos el parametro max_jugadores para saber el tamaño del vector dinamicos
 
@@ -157,7 +144,11 @@ void volcar_futbolistas(futbolistas **estructura_futbolistas, configuracion *est
 
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/futbolistas.txt", "r");
+<<<<<<< Updated upstream
     if(f_futbolistas==NUL){printf("Fallo de apertura de fichero\n"));}
+=======
+    if(f_futbolistas == NULL) printf("Error de apertura del fichero de futbolistas");
+>>>>>>> Stashed changes
 
     //Rellena estructura_futbolistas
 
@@ -169,7 +160,6 @@ void volcar_futbolistas(futbolistas **estructura_futbolistas, configuracion *est
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->valoracion);
     }
     fclose(f_futbolistas);
-
 }
 
 void volcar_equipos(equipos **estructura_equipos,configuracion *estructura_config){
@@ -190,7 +180,12 @@ void volcar_equipos(equipos **estructura_equipos,configuracion *estructura_confi
 
     FILE *f_equipos;
     f_equipos = fopen("files/equipos.txt", "r");
+<<<<<<< Updated upstream
     if(f_equipos==NUL){printf("Fallo de apertura de fichero\n"));}
+=======
+    if(f_equipos == NULL){
+        printf("Error de apertura del fichero de equipos");
+>>>>>>> Stashed changes
 
     //Rellena la estructura_equipos
 
@@ -222,7 +217,12 @@ void volcar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_c
 
     FILE *f_usuarios;
     f_usuarios = fopen("files/usuarios.txt", "r");
+<<<<<<< Updated upstream
     if(f_usuarios==NUL){printf("Fallo de apertura de fichero\n"));}
+=======
+    if(f_usuarios == NULL){
+        printf("Error de apertura del fichero de usuarios");
+>>>>>>> Stashed changes
 
     //Rellena la estructura_usuarios
 
@@ -268,7 +268,12 @@ void escribir_configuracion(configuracion *estructura_config){
 
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","w");
+<<<<<<< Updated upstream
     if(f_configuracion==NUL){printf("Fallo de apertura de fichero\n"));}
+=======
+    if(f_configuracion == NULL){
+        printf("Error de apertura del fichero de configuracion");
+>>>>>>> Stashed changes
 
     //Escribir datos del vector estructura_configuracion en el fichero configuracion
 
@@ -293,7 +298,12 @@ void escribir_futbolistas(futbolistas **estructura_futbolistas, configuracion *e
 
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/futbolistas.txt", "w");
+<<<<<<< Updated upstream
     if(f_futbolistas==NUL){printf("Fallo de apertura de fichero\n"));}
+=======
+    if(f_futbolistas == NULL){
+        printf("Error de apertura del fichero de futbolistas");
+>>>>>>> Stashed changes
 
     //Escribimos en el fichero futbolistas los datos de estructura_futbolistas
 
@@ -325,7 +335,12 @@ void escribir_equipos(equipos **estructura_equipos, configuracion *estructura_co
 
     FILE *f_equipos;
     f_equipos = fopen("files/equipos.txt","w");
+<<<<<<< Updated upstream
     if(f_equipos==NUL){printf("Fallo de apertura de fichero\n"));}
+=======
+    if(f_equipos == NULL){
+        printf("Error de apertura del fichero de equipos");
+>>>>>>> Stashed changes
 
     //Escribimos los datos de la estructura_equipos en el fichero equipos
 
@@ -351,7 +366,12 @@ void escribir_usuarios(usuarios **estructura_usuarios, configuracion *estructura
 
     FILE *f_usuarios;
     f_usuarios = fopen("files/usuarios.txt", "w");
+<<<<<<< Updated upstream
     if(f_usuarios==NUL){printf("Fallo de apertura de fichero\n"));}
+=======
+    if(f_usuarios == NULL){
+        printf("Error de apertura del fichero de usuarios");
+>>>>>>> Stashed changes
 
     //Escribimos en el fichero usuarios los datos de su respectiva estructura
 
@@ -376,7 +396,7 @@ void escribir_usuarios(usuarios **estructura_usuarios, configuracion *estructura
     free(estructura_usuarios);
 }
 
-void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estructura_configq){
+void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estructura_configq) {
 
     int i;
 
@@ -384,6 +404,7 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
     FILE *f_plantillas;
     f_plantillas = fopen("files/plantillas.txt", "w");
+<<<<<<< Updated upstream
     if(f_plantillas==NUL){printf("Fallo de apertura de fichero\n"));}
 
     //Escribimos en el fichero plantillas el vector dinamico estructura_plantillas
@@ -401,138 +422,168 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
         fprintf(f_plantillas,"%i",estructura_plantillas[i]->puntuacion_acum);
         fprintf(f_plantillas, "%s", "\n");
     }
+=======
+    if (f_plantillas == NULL) {
+        printf("Error de apertura del fichero de plantillas");
+>>>>>>> Stashed changes
 
-    fclose(f_plantillas);
+        //Escribimos en el fichero plantillas el vector dinamico estructura_plantillas
 
-    //Liberamos la memoria del vector
+        for (i = 0; i <= sizeof(estructura_plantillas); i++) {
 
-    free(estructura_plantillas);
-}
+            fprintf(f_plantillas, "%i", estructura_plantillas[i]->usuario_id);
+            fprintf(f_plantillas, "%s", "\n");
+            fprintf(f_plantillas, "%i", estructura_plantillas[i]->plantilla_id);
+            fprintf(f_plantillas, "%s", "\n");
+            fprintf(f_plantillas, "%s", estructura_plantillas[i]->nombre_plantilla);
+            fprintf(f_plantillas, "%s", "\n");
+            fprintf(f_plantillas, "%i", estructura_plantillas[i]->presupuesto_disp);
+            fprintf(f_plantillas, "%s", "\n");
+            fprintf(f_plantillas, "%i", estructura_plantillas[i]->puntuacion_acum);
+            fprintf(f_plantillas, "%s", "\n");
+        }
 
-void escribir_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_plantillas){
+        fclose(f_plantillas);
 
-    int i;
+        //Liberamos la memoria del vector
 
-    //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
+        free(estructura_plantillas);
+    }
 
+<<<<<<< Updated upstream
     FILE *f_jugadores_plantillas;
     f_jugadores_plantillas = fopen("files/jugadores_plantillas.txt", "w");
     if(f_jugadores_plantillas==NUL){printf("Fallo de apertura de fichero\n"));}
+=======
+    void escribir_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_plantillas) {
+>>>>>>> Stashed changes
 
-    //Escribimos en el fichero jugadores_plantillas los datos del vector dinamico estrucutura_jugadores_plantillas
+        int i;
 
-    for(i=0 ; i<=sizeof(estructura_jugadores_plantillas) ; i++){
+        //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
 
-        fprintf(f_jugadores_plantillas,"%i",estructura_jugadores_plantillas[i]->jugador_platilla_id);
-        fprintf(f_jugadores_plantillas, "%s", "\n");
-        fprintf(f_jugadores_plantillas,"%i",estructura_jugadores_plantillas[i]->plantilla_id);
-        fprintf(f_jugadores_plantillas, "%s", "\n");
+        FILE *f_jugadores_plantillas;
+        f_jugadores_plantillas = fopen("files/jugadores_plantillas.txt", "w");
+        assert(f_jugadores_plantillas != NULL || printf("Error apertura fichero_jugadores_plantillas\n"));
+
+        //Escribimos en el fichero jugadores_plantillas los datos del vector dinamico estrucutura_jugadores_plantillas
+
+        for (i = 0; i <= sizeof(estructura_jugadores_plantillas); i++) {
+
+            fprintf(f_jugadores_plantillas, "%i", estructura_jugadores_plantillas[i]->jugador_platilla_id);
+            fprintf(f_jugadores_plantillas, "%s", "\n");
+            fprintf(f_jugadores_plantillas, "%i", estructura_jugadores_plantillas[i]->plantilla_id);
+            fprintf(f_jugadores_plantillas, "%s", "\n");
+        }
+        fclose(f_jugadores_plantillas);
+
+        //Liberamos la memoria del vector
+
+        free(estructura_jugadores_plantillas);
+
     }
-    fclose(f_jugadores_plantillas);
-
-    //Liberamos la memoria del vector
-
-    free(estructura_jugadores_plantillas);
-
-}
 //Mostrar los parametros actuales de estructura_config
 
-void mostrar_configuracion(configuracion *estructura_config){
+    void mostrar_configuracion(configuracion *estructura_config) {
 
-    printf("El numero maximo de equipos es: %i \n",estructura_config->max_equipos);
-    printf("El presupuesto por defecto es: %i \n",estructura_config->presupuesto_defecto);
-    printf("El numero maximo de futbolistas por plantilla es: %i \n",estructura_config->max_futbolistas_plantilla);
-    printf("El numero maximo de plantillas por participantes: %i \n",estructura_config->max_plantillas_participante);
-    printf("El numero maximo de futbolistas es: %i \n",estructura_config->max_futbolistas);
-}
+        printf("El numero maximo de equipos es: %i \n", estructura_config->max_equipos);
+        printf("El presupuesto por defecto es: %i \n", estructura_config->presupuesto_defecto);
+        printf("El numero maximo de futbolistas por plantilla es: %i \n", estructura_config->max_futbolistas_plantilla);
+        printf("El numero maximo de plantillas por participantes: %i \n",
+               estructura_config->max_plantillas_participante);
+        printf("El numero maximo de futbolistas es: %i \n", estructura_config->max_futbolistas);
+    }
 
 //Mostrar los datos de los futbolistas actuales de estructura_futbolistas
 
-void mostrar_futbolistas(futbolistas **estructura_futbolistas, configuracion *estructura_config){
+    void mostrar_futbolistas(futbolistas **estructura_futbolistas, configuracion *estructura_config) {
 
-    int i;
-    for(i=0 ;i<estructura_config->max_futbolistas;i++){
+        int i;
+        for (i = 0; i < estructura_config->max_futbolistas; i++) {
 
-        printf("%i,",estructura_futbolistas[i]->futbolista_id);
-        printf("%i,",estructura_futbolistas[i]->equipo_id);
-        printf("%s,",estructura_futbolistas[i]->nombre_futbolista);
-        printf("%i,",estructura_futbolistas[i]->futbolista_precio);
-        printf("%i\n",estructura_futbolistas[i]->valoracion);
+            printf("%i,", estructura_futbolistas[i]->futbolista_id);
+            printf("%i,", estructura_futbolistas[i]->equipo_id);
+            printf("%s,", estructura_futbolistas[i]->nombre_futbolista);
+            printf("%i,", estructura_futbolistas[i]->futbolista_precio);
+            printf("%i\n", estructura_futbolistas[i]->valoracion);
+        }
     }
-}
 
 //Mostrar los datos de los equipos actules de la estructura_equipos
 
-void mostrar_equipos(equipos **estructura_equipos, configuracion * estructura_config){
+    void mostrar_equipos(equipos **estructura_equipos, configuracion *estructura_config) {
 
-    int i;
-    for(i=0 ; i<=sizeof(estructura_equipos);i++){
+        int i;
+        for (i = 0; i <= sizeof(estructura_equipos); i++) {
 
-        printf("%i,",estructura_equipos[i]->equipo_id);
-        printf("%s\n",estructura_equipos[i]->nombre_equipo);
+            printf("%i,", estructura_equipos[i]->equipo_id);
+            printf("%s\n", estructura_equipos[i]->nombre_equipo);
+        }
     }
-}
 
 //Mostrar los usuarios actuales de estructura_usuarios
 
-void mostrar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_config){
+    void mostrar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_config) {
 
-    int i;
+        int i;
 
-    for(i=0 ; i<=sizeof(estructura_usuarios) ; i++){
+        for (i = 0; i <= sizeof(estructura_usuarios); i++) {
 
-        printf("%i,",estructura_usuarios[i]->usuario_id);
-        printf("%s,",estructura_usuarios[i]->nombre_usuario);
-        printf("%s,",estructura_usuarios[i]->usuario_perfil);
-        printf("%s,",estructura_usuarios[i]->usuario_nick);
-        printf("%s \n",estructura_usuarios[i]->usuario_password);
+            printf("%i,", estructura_usuarios[i]->usuario_id);
+            printf("%s,", estructura_usuarios[i]->nombre_usuario);
+            printf("%s,", estructura_usuarios[i]->usuario_perfil);
+            printf("%s,", estructura_usuarios[i]->usuario_nick);
+            printf("%s \n", estructura_usuarios[i]->usuario_password);
+
+        }
 
     }
-
-}
 
 //Mostrar las plantillas actuales de estructura_plantillas
 
-void mostrar_plantillas(plantillas **estructura_plantillas, configuracion *estructura_config){
+    void mostrar_plantillas(plantillas **estructura_plantillas, configuracion *estructura_config) {
 
-    int i;
+        int i;
 
-    for(i=0 ; i<=sizeof(estructura_plantillas) ; i++){
+        for (i = 0; i <= sizeof(estructura_plantillas); i++) {
 
-        printf("%i,",estructura_plantillas[i]->usuario_id);
-        printf("%i,",estructura_plantillas[i]->plantilla_id);
-        printf("%s,",estructura_plantillas[i]->nombre_plantilla);
-        printf("%i,",estructura_plantillas[i]->presupuesto_disp);
-        printf("%i \n",estructura_plantillas[i]->puntuacion_acum);
+            printf("%i,", estructura_plantillas[i]->usuario_id);
+            printf("%i,", estructura_plantillas[i]->plantilla_id);
+            printf("%s,", estructura_plantillas[i]->nombre_plantilla);
+            printf("%i,", estructura_plantillas[i]->presupuesto_disp);
+            printf("%i \n", estructura_plantillas[i]->puntuacion_acum);
+
+        }
 
     }
-
-}
 
 //Mostrar los jugadores actuales asignados a las plantillas en la estructura_jugadores_plantillas
 
-void mostrar_jugadores_plantillas(jugadores_plantillas ** estructura_jugadores_plantillas){
+    void mostrar_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_plantillas) {
 
-    int i ;
+        int i;
 
-    for(i=0 ; i<sizeof(estructura_jugadores_plantillas) ; i++ ){
+        for (i = 0; i < sizeof(estructura_jugadores_plantillas); i++) {
 
-        printf("%i,",estructura_jugadores_plantillas[i]->jugador_platilla_id);
-        printf("%i \n",estructura_jugadores_plantillas[i]->plantilla_id);
+            printf("%i,", estructura_jugadores_plantillas[i]->jugador_platilla_id);
+            printf("%i \n", estructura_jugadores_plantillas[i]->plantilla_id);
+        }
+
     }
 
-}
+    int
+    salir_programa(configuracion *estructura_config, futbolistas *estructura_futbolistas, equipos *estructura_equipos,
+                   usuarios *estructura_usuarios, plantillas *estructura_plantillas,
+                   jugadores_plantillas *estructura_jugadores_plantillas) {
 
-int salir_programa(configuracion *estructura_config,futbolistas *estructura_futbolistas,equipos *estructura_equipos,usuarios *estructura_usuarios,plantillas *estructura_plantillas,jugadores_plantillas *estructura_jugadores_plantillas){
+        escribir_configuracion(estructura_config);
+        escribir_futbolistas(estructura_futbolistas);
+        escribir_equipos(estructura_equipos);
+        escribir_usuarios(estructura_usuarios);
+        escribir_plantillas(estructura_plantillas);
+        escribir_jugadores_plantillas(estructura_jugadores_plantillas);
+        return 0;
 
-    escribir_configuracion(estructura_config);
-    escribir_futbolistas(estructura_futbolistas);
-    escribir_equipos(estructura_equipos);
-    escribir_usuarios(estructura_usuarios);
-    escribir_plantillas(estructura_plantillas);
-    escribir_jugadores_plantillas(estructura_jugadores_plantillas);
-    return 0;
-
-}
-
+    }
+}s
 #endif //PROYECTO_CORE_H    // Si no hay + codigo abajo lo acaba

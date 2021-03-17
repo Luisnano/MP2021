@@ -1,0 +1,191 @@
+printf ---> print
+
+no hay ;
+
+\n x defecto
+
+comentarios con #
+
+no se pone tipo variable al declararlas
+
+se puede inicializar una cadena del tiron con " " , ej dou = "L0L!"
+
+Puedo mostrar el valor de variables con print (sin usar %), o del tiron poniendo el nombre de la variable
+
+Operadores:	Division con decimales : /
+		Division entera : //
+		Exponente: **
+		Modulo: %
+		Aqui el ||(o) es el OR
+		Aquí el &&(y) es el AND
+
+El programa le asigna un tipo a la variable cuando le das un valor, hasta entonces no sabe q tipo es
+
+Con type(variable) te dice el tipo de variable q es
+
+---------------------------------------------------------------------------------------------------------------
+
+En bucles no se usan parentesis en la condicion, y esta se acaba con :
+
+La diferencia de = y == es la misma q en C
+
+Sintaxis de las funciones: def nombre(parametros(si los tiene)):
+Pueden o no tener return, depende d si devuelve o no parametros
+
+Para llamar a la funcion se pone nombre(parametros si los tiene)
+
+Para indicar que has acabado una fucnion, pulsas la tecla de retroceso, ya que todo lo q haya dentro de uan funcion debe estar tabulado
+
+Los parametros en la funcion no van con su tipo XD
+
+Con el print tambien podemos imprimir lo q devuelve una funcion
+
+-------------------------------------------------------------------------------------------------------------------------
+
+Listas: Nos permiten guardan varias variables de diferentes tipos (al contrario q los vectores), se pueden expandir dinamicamente
+
+	Sintaxis lista ---> Nombrelista = [elem1,elem2...]
+
+Listas y vectores empiezan por 0
+
+Para imprimir todos los elemetos de la lista ej: print(miLista[:])
+	
+	para imprimir un elemento se pone entre el corchete el numero q queremo imprimir
+
+	si ponemos el indice en negativo empieza a contar desde el final de la lista hacyia atras: -2 seria el penultimo elemento de la lista
+
+	si ponemos un rango tal que 0:3 , esto incluye la 0,1 y 2 , la ultima (3) no la pone, pero la primera (0) sí
+
+	si ponemos [2:] entonces imprime desde el elemento 2 (cuidao con el 0) hasta el final
+
+	
+Para añadir un elemento a la lista ponemos -->   milista.append()    Se pone al principio de la lista
+
+Para añadir un elemento en una posicion concreta, es decir entre dos valores se pone milista.insert[posicion(ej:2) , dato ]
+
+Para añadir varios elementos al final de la lista se pone milista.extend[1,2,3,4] , despues del final de la lista pone esos elementos al final
+
+Para devolver el indice de un elemento de la lista podemos usar ej:   print(milista.index("Pepe"))  dice en q indice está el pepe, si el pepe aparece +1 vez, devuelve 0
+
+Una funcion que imprime true o false si aparece o no en la lista,  ej : print("pepe" in milista)
+
+Para eliminar un elemento de la lista --->  milista.remove(5) , borra el 5 ( no el elemento 5, sino algun elemento que sea literalmente 5)
+
+Para elmiminar el ultimo elemento de la lista ponemos    milista.pop()
+
+Para unir dos listas doferentes, ponemos una tercera lista que será igual a al union de las 2 anteriores:   milista3= milista1 + milista2
+
+Si le pongo un * fuera de la lista en la declaracion, se repite tantas veces como el numero q ponga a la derecha del *, ej:      milista1=[1,2,3,4,5] *3  entonces milista seria 1,2,3,4,5,1,2,3,4,5,1,2,3,4,5
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Las Tuplas son listas que no cambian a lo largo del tiempo, no podemos añadir, eliminar etc , pero si permite extraer un elemento creando una nueva tupla q será el resultado de la extaccion
+
+Pero si permitte comprobar si hay un elemento dentro
+
+Es decir solo permiten las tuplas extraer , buscar(index) y comprobar(in)
+
+Las tuplas son mas rapidas q las listas , GRAN DATA
+
+Sintaxis_tupla ---> nombretupla=(elem1,elemt2...)  las tuplas entre parentesis, listas entre corchetes
+
+podemos convertir una tupla en una lista ----> milista =list(mitupla)
+
+	de la misma manera se puede convertir lo q era una lista en una tupla ---> mitupla = tuple(milista)
+
+Para preguntar cuantas veces aparece un elemento en una tupla/lista se usa print(mitupla.count(1))  es decir, cuantas veces aparece el 1
+
+para saber la longitud de una tupla/lista se usa ej: print(len(mitupla))
+
+se puede crear una tupla con un unico elemento poniendo una coma aqui: mitupla=("MarioL0L",)
+
+	Poner los parentesis en la definicion de una tupla es opcional, si no ponemos parentesis entonces el programa lo considera una tupla: ej: mitupla: 1,2,"L0L"
+
+Puedo asignar a una tupla la sucesion de unos parametros: ej:   nombre,fecha,mes = mitupla  entonces mi tupla estará formada por esas tres variables
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Los diccionarios son estructuras de datos q pueden guardar todo tipo de datos diferentes, incluso listas, tuplas y otros diccionarios ,
+	
+Cada elemento del diccionario tiene la siguiente forma de asociacion  clave : valor, la clave es única
+
+	Sintaxis: va entre llaves    midiccionario {"Alemania : "Berlin" , "Francia":"Paris", 23:"AlejandroParada"}
+		
+		para imprimir valor: print(midiccionario["Francia"])  pues imprime Paris
+
+Agregar elementos al diccionario    midiccionario["Italia"] = "Roma"
+
+Para sobreescribir una clave ---> le damos otro valor y listo
+
+Eliminar elementos   ---> del midiccionario["Francia"]    es decir, el primer elemento (la clave) entre corchetes
+
+Ejemplo con tuplas en el diccionario:
+		
+	mitupla=(1,6,"dou")
+
+midiccionario = {mitupla[0]: "Madrid", mitupla[1] : "L0L" ....}
+
+puedo darle a un elemento del diccionario el valor de una tupla sin poner el nombre ej: middicionario:{"L0L": (2,3,4,1,5),}
+
+con print(middionario.keys()) imprimimos todas las claves del diccionarios, no los valores, para los avlores ponemos .values () en vez de keys()
+
+Y para saber la longitud print(len(midiccionario))
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+En cuanto a condicionales:
+
+	sintaxis IF    if x < y :    Sin parentesis, y : al final
+
+
+EL INPUT es un scanf     ej: x = input("Escribe algo L0L":)    toma x de lo que pongamos del teclado 
+			PERO LO INTERPRETA COMO UNA CADENA, aunque metas un entero por ejemplo, será de tipo cadena esa variable
+
+NO HAY DEFINICIONES DE FUNCIONES
+
+EN EL PROTOTIPO DE FUNCION PODEMOS PONER EL TIPO DE VARIABLE A LA VARIABLE Q NOS LLEVAMOS, CAMBIANDOLE ASÍ SU TIPO, ES DECIR SI LLEVAMOS A UNA FUNCION UNA CADENA Y EN EL PROTOTIPO PONEMOS INT AHORA LO INTERPRETA COMO UN ENTERO
+
+si ponemos delante del input por ejemplo int interpretara el resultado del input que en un comienzo lo asimila como una cadena a pasar a considerarlo como un entero, ej: edad = int(input(Introduce edad:))
+
+EL ELIF Y ELSE FUNCIONAN IGUAL QUE EN C , sin novedades en sitaxis 
+
+Podemos poner dentro de un condicional este tipo de condiciones 0<x<100 en vez de dos && o || (q tambien se pueden poner)
+
+
+En los print cuando queremos imprimir algo con texto ej: print("Hola, tengo:" + edad + "años") edad es tipo int , en phyton no se puede mezclar en un print una dacena como en este caso HOLA TENGO, Y AÑOS con edad q es entero, 
+							hay q ponerle a edad delante una funcion para que lo interprete como un string y no de fallo, quedaria: print("Hola tengo:" + str(edad) + "años")
+							El str es temporal, no cmabia su valor a cadena, solo lo interpreta como cadena en el print
+
+
+Se puede usar AND Y OR tal cual en un condicional, su funcionamiento es el q hemos aprendido
+
+en el IF se puede poner IN , ej if x in (1,2,3) : significa q se ejecuta el cuerpo del if si x vale 1,2 o 3
+
+Podemos transformar el valor de una cadena a mayusculas o minusculas con estas funciones ej:   asignatura = cadena1.lower()  es decir, asignatura sera cadena1 en minusculas
+													    cadena1.upper() , para mayus
+
+LOS FOR sintaxis -----> For x in [1,2,3] , x no está inicializada, para las 3 ejecucuiones sera 1,2,3
+				 ["hola","adios"] x se ejecuta 2 veces, en la primera x= "hola" y luego "adios"
+
+Si al final de un print pones end="" entonces no hay salto de linea     ej: print("Dou", end="")
+
+Otro ejemplo for -----> for i in "Mi nombre es tupac":   imprime lo de dentro del bucle tantas veces como caracteres tenga mi nombre es tupac   
+
+lo mismo si pongo for x in cadena1:     y cadena 1 es una cadena con un valor, se ejecuta como tantos caracteres tenga la cadena1
+
+Otro uso for:     for i in range(5):  lo imprime 5 veces , yendo del 0 al 4 la i en cada iteracion
+
+con in range se puede usar intervalo, ej: for x in range(5,10): i valdrá 5,6,7,8,9
+
+si le ponemos un tercer parametro al rango con el in range, ese numero significa el numero de saltos q da para imprimir el rango de numero a numero, ej --->   for x in range(5,28,3): imprime del 5 al 27 en saltos de 3
+
+Tambien podemos usar dentro del rango el tamaño de uan avriable , es decir, len()
+
+
+
+
+
