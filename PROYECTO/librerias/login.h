@@ -40,27 +40,32 @@ int acceso_sistema(usuarios *estructura_usuarios){ //Funcion que permitira a los
     if(j==1){           //Si se ha encontrado el nick del usuario:
 
         printf("\nBienvenid@ %s, a continuacion introduzca su password: ",estructura_usuarios[aux].nombre_usuario);
-        etiqueta1:   //Esta etiqueta me servirá para volver a ella en caso de que posteriormente escriba mala contraseña,
-                    // así podrá intentarlo de nuevo
-
         fgets(p,9,stdin);
         fflush(stdin);
 
-        if(strcmp(p,estructura_usuarios[aux].usuario_password)==1){     //Comprueba la coincidencia de la contraseña
+        if(strcmp(p,estructura_usuarios[aux].usuario_password)==1){
 
             printf("\nPassword correcta, puede acceder al sistema como %s",estructura_usuarios[aux].usuario_perfil);
             return estructura_usuarios[aux].usuario_id;    //Devuelvo el perfil del usuario para saber que menú usa
+
         }
+
         else{
 
-            printf("\nPassword incorrecta,vuelve a introducirla: ");
-            goto etiqueta1;                                //Va a la etiqueta para volver a introducir la contraseña
+            while(strcmp(p,estructura_usuarios[aux].usuario_password)!=1) {      //Comprueba la coincidencia de la contraseña
+
+            printf("\nPassword incorrecta, introduzcala de nuevo");
+            fgets(p,9,stdin);
+            fflush(stdin);
+             }
         }
 
     }
+
     else{
+
         printf("\nNo existe ningun usuario con tu nick, registrate primero");
-        return 1;                   //En caso de que no esté registrado el usuario, devuelve 1
+        return 1;  //En caso de que no esté registrado el usuario, devuelve 1
     }
 }
 

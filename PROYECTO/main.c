@@ -1,7 +1,6 @@
 //LIBRERIAS
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include "librerias/core.h"
 #include "librerias/login.h"
@@ -15,6 +14,7 @@
 int main() {
 
     //Creamos las variables tipo estructuras
+
     configuracion estructura_config;
     usuarios *estructura_usuarios;
     plantillas *estructura_plantillas;
@@ -25,11 +25,11 @@ int main() {
     //Volcamos todos los datos de los ficheros en sus respectivas variables estructuras anteriormente declaradas
 
     volcar_configuracion(&estructura_config);
-    volcar_futbolistas(&estructura_futbolistas);
+    volcar_futbolistas(estructura_futbolistas);
     volcar_equipos(estructura_equipos);
-    volcar_usuarios(&estructura_usuarios);
-    volcar_plantillas(&estructura_plantillas);
-    volcar_jugadores_plantillas(&estructura_jugadores_plantillas);
+    volcar_usuarios(estructura_usuarios);
+    volcar_plantillas(estructura_plantillas);
+    volcar_jugadores_plantillas(estructura_jugadores_plantillas);
 
     //VARIABLES_LOCALES
 
@@ -38,7 +38,7 @@ int main() {
 
     //INICIO
 
-    etiqueta1:
+    do {
 
     printf("Bienvenid@ a la liga fantastica!!\n\n");
     printf("1) Acceso al sistema (cuenta ya existente)\n");
@@ -47,47 +47,45 @@ int main() {
 
     scanf("%i",&i);
 
-    if(i==1){
+        if (i == 1) {
 
-        id = acceso_sistema(estructura_usuarios);
+            id = acceso_sistema(estructura_usuarios);
 
-        if (id ==1){
+            if (id == 1) {
 
-            goto etiqueta1;
-        }
+                return 0;
+            }
 
-        for(i=0 ; i<=sizeof(estructura_usuarios) ; i++){
+            for (i = 0; i <= sizeof(estructura_usuarios); i++) {
 
-            if(estructura_usuarios[i].usuario_id == id){
-                strcpy(perfil,estructura_usuarios[i].usuario_perfil);
+                if (estructura_usuarios[i].usuario_id == id) {
+                    strcpy(perfil, estructura_usuarios[i].usuario_perfil);
+                }
+            }
+            if (strcmp(perfil, "participante") == 0) {
+
+                menu_participantes(&id, &estructura_config, estructura_jugadores_plantillas, estructura_equipos,
+                                   estructura_usuarios, estructura_futbolistas, estructura_plantillas);
+
+            }
+            if (strcmp(perfil, "cronista") == 0) {
+
+                menu_cronista(&estructura_config, estructura_futbolistas, estructura_equipos,
+                              estructura_usuarios, estructura_plantillas,
+                              estructura_jugadores_plantillas);
+
+            }
+        } else {
+
+            if (i == 2) {
+
+                registro(estructura_usuarios);
+
             }
         }
-        if (strcmp(perfil,"participante")==0){
 
-            menu_participantes(&id,&estructura_config,estructura_jugadores_plantillas,estructura_equipos,estructura_usuarios,estructura_futbolistas,estructura_plantillas);
+        return 0;
 
-        }
-        if (strcmp(perfil,"cronista")==0){
+    } while(i<1 || i>2);
 
-            menu_cronista(&estructura_config, estructura_futbolistas, estructura_equipos,
-                          estructura_usuarios, estructura_plantillas,
-                          estructura_jugadores_plantillas);
-
-        }
-    }
-    
-    else {
-
-        if(i==2){
-
-            registro(estructura_usuarios);
-            goto etiqueta1;
-
-        }
-        else{
-            goto etiqueta1;
-        }
-    }
-
-    return 0;
 }
