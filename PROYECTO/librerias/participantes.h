@@ -85,7 +85,7 @@ void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plant
             num_plantillas++;
         }
     }
-    if(num_plantillas == 3){
+    if(num_plantillas == estructura_config->max_plantillas_participante){
         printf("Numero maximo de plantillas alcanzado.\n");
         menu_participantes(id,estructura_config,estructura_jugadores_plantillas,estructura_equipos,estructura_usuarios,
                            estructura_futbolistas,estructura_plantillas);
