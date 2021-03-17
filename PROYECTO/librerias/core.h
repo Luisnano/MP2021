@@ -102,16 +102,12 @@ void volcar_configuracion(configuracion *estructura_config){
 
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","r");
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-    if(f_configuracion==NUL){printf("Fallo de apertura de fichero\n"));}
-=======
-    assert(f_configuracion != NULL || printf("Fallo de apertura del fichero de configuracion\n"));
->>>>>>> master
-=======
+
+    if(f_configuracion==NULL){printf("Fallo de apertura de fichero\n");}
+
     if(f_configuracion == NULL){
         printf("Error de apertura del fichero de configuracion");
->>>>>>> Stashed changes
+
 
     //Vuelcan datos del fichero
 
@@ -132,23 +128,21 @@ void volcar_futbolistas(futbolistas **estructura_futbolistas,configuracion *estr
     int i;
     //Reservamos la memoria dinámica
 
-<<<<<<< HEAD
+
     estructura_futbolistas = (futbolistas*)malloc(estructura_config->max_futbolistas*sizeof(int));
     if(estructura_futbolistas==NULL){printf("Fallo de reserva de memoria\n"));}
-=======
+
     *estructura_futbolistas = (futbolistas*)malloc(estructura_config->max_futbolistas*sizeof(futbolistas));
     assert(*estructura_futbolistas != NULL || printf("Fallo de reserva de memoria\n"));
->>>>>>> master
 
     //Apertura del fichero
 
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/futbolistas.txt", "r");
-<<<<<<< Updated upstream
+
     if(f_futbolistas==NUL){printf("Fallo de apertura de fichero\n"));}
-=======
+
     if(f_futbolistas == NULL) printf("Error de apertura del fichero de futbolistas");
->>>>>>> Stashed changes
 
     //Rellena estructura_futbolistas
 
@@ -168,24 +162,24 @@ void volcar_equipos(equipos **estructura_equipos,configuracion *estructura_confi
 
     //Reserva memoria al vector dinamico
 
-<<<<<<< HEAD
+
     estructura_equipos = (equipos*)malloc(estructura_config->max_equipos*sizeof(int));
     if(estructura_equipos==NULL){printf("Fallo de reserva de memoria\n"));}
-=======
+
     *estructura_equipos = (equipos*)malloc(estructura_config->max_equipos*sizeof(equipos));
     assert(estructura_equipos != NULL || printf("Fallo de reserva de memoria\n"));
->>>>>>> master
+
 
     //Apertura_fichero
 
     FILE *f_equipos;
     f_equipos = fopen("files/equipos.txt", "r");
-<<<<<<< Updated upstream
+
     if(f_equipos==NUL){printf("Fallo de apertura de fichero\n"));}
-=======
+
     if(f_equipos == NULL){
         printf("Error de apertura del fichero de equipos");
->>>>>>> Stashed changes
+
 
     //Rellena la estructura_equipos
 
@@ -205,24 +199,24 @@ void volcar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_c
 
     //Reserva memoria en el vector dinamico
 
-<<<<<<< HEAD
+
     estructura_usuarios =(usuarios*)malloc(3*sizeof(int));  // El 3 es porque al principio hay solo 3 usuarios en el fichero
     if(estructura_usuarios==NULL){printf("Fallo de reserva de memoria\n"));}
-=======
+
     *estructura_usuarios =(usuarios*)malloc(estructura_config->max_usuarios *sizeof(usuarios));  // El 3 es porque al principio hay solo 3 usuarios en el fichero
     assert(estructura_usuarios != NULL || printf("Fallo de reserva de memoria\n"));
->>>>>>> master
+
 
     //Apertura del fichero
 
     FILE *f_usuarios;
     f_usuarios = fopen("files/usuarios.txt", "r");
-<<<<<<< Updated upstream
+
     if(f_usuarios==NUL){printf("Fallo de apertura de fichero\n"));}
-=======
+
     if(f_usuarios == NULL){
         printf("Error de apertura del fichero de usuarios");
->>>>>>> Stashed changes
+
 
     //Rellena la estructura_usuarios
 
@@ -240,26 +234,26 @@ void volcar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_c
 void volcar_plantillas(plantillas **estructura_plantillas, configuracion *estructura_config){       // Fichero plantillas empieza vacio , creamos unicamente la variable estructura
 
 
-<<<<<<< HEAD
+
     estructura_plantillas = (plantillas*)malloc(1*sizeof(int));     // Le damos 1 espacio al vector dinamico, si se añaden plantillas se aumentara el tamano
     if(estructura_plantillas==NULL){printf("Fallo de reserva de memoria\n"));}
-=======
+
     *estructura_plantillas = (plantillas*)malloc(1 * sizeof(plantillas));     // Le damos 1 espacio al vector dinamico, si se añaden plantillas se aumentara el tamano
     assert(estructura_plantillas != NULL || printf("Fallo de reserva de memoria\n"));
->>>>>>> master
+
 }
 
 void volcar_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_plantillas){        //Fichero jugadores_plantillas empieza vacio, creamos unicamente la variable estructura
 
 
 
-<<<<<<< HEAD
+
     estructura_jugadores_plantillas = (jugadores_plantillas*)malloc(1*sizeof(int));     //Le damos un espacio al vector dinamico, si se añaden futbolistas a las plantillas se aumentara el tamaño
     if(estructura_jugadores_plantillas==NULL){printf("Fallo de reserva de memoria\n"));}
-=======
+
     *estructura_jugadores_plantillas = (jugadores_plantillas*)malloc( 1 *sizeof (jugadores_plantillas));     //Le damos un espacio al vector dinamico, si se añaden futbolistas a las plantillas se aumentara el tamaño
     assert(estructura_jugadores_plantillas != NULL || printf("Fallo de reserva de memoria\n"));
->>>>>>> master
+
 }
 
 void escribir_configuracion(configuracion *estructura_config){
@@ -268,12 +262,12 @@ void escribir_configuracion(configuracion *estructura_config){
 
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","w");
-<<<<<<< Updated upstream
+
     if(f_configuracion==NUL){printf("Fallo de apertura de fichero\n"));}
-=======
+
     if(f_configuracion == NULL){
         printf("Error de apertura del fichero de configuracion");
->>>>>>> Stashed changes
+
 
     //Escribir datos del vector estructura_configuracion en el fichero configuracion
 
@@ -298,12 +292,12 @@ void escribir_futbolistas(futbolistas **estructura_futbolistas, configuracion *e
 
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/futbolistas.txt", "w");
-<<<<<<< Updated upstream
+
     if(f_futbolistas==NUL){printf("Fallo de apertura de fichero\n"));}
-=======
+
     if(f_futbolistas == NULL){
         printf("Error de apertura del fichero de futbolistas");
->>>>>>> Stashed changes
+
 
     //Escribimos en el fichero futbolistas los datos de estructura_futbolistas
 
@@ -335,12 +329,12 @@ void escribir_equipos(equipos **estructura_equipos, configuracion *estructura_co
 
     FILE *f_equipos;
     f_equipos = fopen("files/equipos.txt","w");
-<<<<<<< Updated upstream
+
     if(f_equipos==NUL){printf("Fallo de apertura de fichero\n"));}
-=======
+
     if(f_equipos == NULL){
         printf("Error de apertura del fichero de equipos");
->>>>>>> Stashed changes
+
 
     //Escribimos los datos de la estructura_equipos en el fichero equipos
 
@@ -366,12 +360,12 @@ void escribir_usuarios(usuarios **estructura_usuarios, configuracion *estructura
 
     FILE *f_usuarios;
     f_usuarios = fopen("files/usuarios.txt", "w");
-<<<<<<< Updated upstream
+
     if(f_usuarios==NUL){printf("Fallo de apertura de fichero\n"));}
-=======
+
     if(f_usuarios == NULL){
         printf("Error de apertura del fichero de usuarios");
->>>>>>> Stashed changes
+
 
     //Escribimos en el fichero usuarios los datos de su respectiva estructura
 
@@ -404,7 +398,7 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
     FILE *f_plantillas;
     f_plantillas = fopen("files/plantillas.txt", "w");
-<<<<<<< Updated upstream
+
     if(f_plantillas==NUL){printf("Fallo de apertura de fichero\n"));}
 
     //Escribimos en el fichero plantillas el vector dinamico estructura_plantillas
@@ -422,10 +416,10 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
         fprintf(f_plantillas,"%i",estructura_plantillas[i]->puntuacion_acum);
         fprintf(f_plantillas, "%s", "\n");
     }
-=======
+
     if (f_plantillas == NULL) {
         printf("Error de apertura del fichero de plantillas");
->>>>>>> Stashed changes
+
 
         //Escribimos en el fichero plantillas el vector dinamico estructura_plantillas
 
@@ -450,13 +444,13 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
         free(estructura_plantillas);
     }
 
-<<<<<<< Updated upstream
+
     FILE *f_jugadores_plantillas;
     f_jugadores_plantillas = fopen("files/jugadores_plantillas.txt", "w");
     if(f_jugadores_plantillas==NUL){printf("Fallo de apertura de fichero\n"));}
-=======
+
     void escribir_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_plantillas) {
->>>>>>> Stashed changes
+
 
         int i;
 
@@ -585,5 +579,5 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
         return 0;
 
     }
-}s
+}
 #endif //PROYECTO_CORE_H    // Si no hay + codigo abajo lo acaba
