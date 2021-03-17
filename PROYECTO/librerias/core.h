@@ -112,7 +112,7 @@ void volcar_configuracion(configuracion *estructura_config){
     fclose(f_configuracion);
 }
 
-void volcar_futbolistas(futbolistas *estructura_futbolistas,configuracion *estructura_config){
+void volcar_futbolistas(futbolistas *estructura_futbolistas){
 
     //Usamos la estructura_config ya que necesitamos el parametro max_jugadores para saber el tamaño del vector dinamicos
 
@@ -161,7 +161,7 @@ void volcar_futbolistas(futbolistas *estructura_futbolistas,configuracion *estru
     fclose(f_futbolistas);
 }
 
-void volcar_equipos(equipos *estructura_equipos,configuracion *estructura_config){
+void volcar_equipos(equipos *estructura_equipos){
 
     int i,tam = 1;
     char c;
@@ -208,7 +208,7 @@ void volcar_equipos(equipos *estructura_equipos,configuracion *estructura_config
     fclose(f_equipos);
 }
 
-void volcar_usuarios(usuarios *estructura_usuarios, configuracion *estructura_config){
+void volcar_usuarios(usuarios *estructura_usuarios){
 
     int i,tam = 1;
     char c;
@@ -257,7 +257,7 @@ void volcar_usuarios(usuarios *estructura_usuarios, configuracion *estructura_co
 
 // Fichero plantillas empieza vacio , creamos unicamente la variable estructura
 
-void volcar_plantillas(plantillas *estructura_plantillas, configuracion *estructura_config){
+void volcar_plantillas(plantillas *estructura_plantillas){
 
 
     // Le damos 1 espacio al vector dinamico, si se añaden plantillas se aumentara el tamano
