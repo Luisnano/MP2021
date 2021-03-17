@@ -151,11 +151,11 @@ void volcar_futbolistas(futbolistas *estructura_futbolistas){
     //Rellena estructura_futbolistas
 
     for (i=0; i<tam; i++){
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->futbolista_id);
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->equipo_id);
-        fscanf(f_futbolistas, "%s", estructura_futbolistas[i]->nombre_futbolista);
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->futbolista_precio);
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->valoracion);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_id);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].equipo_id);
+        fscanf(f_futbolistas, "%s", estructura_futbolistas[i].nombre_futbolista);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].futbolista_precio);
+        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i].valoracion);
     }
 
     fclose(f_futbolistas);
@@ -185,7 +185,7 @@ void volcar_equipos(equipos *estructura_equipos){
         }
     }
 
-    tam = tam/2         //Dividimos entre 2 puesto que en el fichero equipos cada dato ocupa una linea
+    tam = tam/2;         //Dividimos entre 2 puesto que en el fichero equipos cada dato ocupa una linea
                         //Es decir, 2 lineas por usuario
 
     //Reserva memoria al vector dinamico
@@ -200,8 +200,8 @@ void volcar_equipos(equipos *estructura_equipos){
 
     for (i=0; i<tam; i++){
 
-        fscanf(f_equipos, "%i", &estructura_equipos[i]->equipo_id);
-        fscanf(f_equipos, "%s", estructura_equipos[i]->nombre_equipo);
+        fscanf(f_equipos, "%i", &estructura_equipos[i].equipo_id);
+        fscanf(f_equipos, "%s", estructura_equipos[i].nombre_equipo);
     }
 
 
@@ -246,11 +246,11 @@ void volcar_usuarios(usuarios *estructura_usuarios){
 
     for (i=0;i<tam;i++){
 
-        fscanf(f_usuarios,"%i",&estructura_usuarios[i]->usuario_id);
-        fscanf(f_usuarios,"%s",estructura_usuarios[i]->nombre_usuario);
-        fscanf(f_usuarios,"%s",estructura_usuarios[i]->usuario_perfil);
-        fscanf(f_usuarios,"%s",estructura_usuarios[i]->usuario_nick);
-        fscanf(f_usuarios,"%s",estructura_usuarios[i]->usuario_password);
+        fscanf(f_usuarios,"%i",&estructura_usuarios[i].usuario_id);
+        fscanf(f_usuarios,"%s",estructura_usuarios[i].nombre_usuario);
+        fscanf(f_usuarios,"%s",estructura_usuarios[i].usuario_perfil);
+        fscanf(f_usuarios,"%s",estructura_usuarios[i].usuario_nick);
+        fscanf(f_usuarios,"%s",estructura_usuarios[i].usuario_password);
     }
     fclose(f_usuarios);
 }
@@ -321,15 +321,15 @@ void escribir_futbolistas(futbolistas *estructura_futbolistas){
 
     for (i=0; i<=sizeof(estructura_futbolistas); i++){
 
-        fprintf(f_futbolistas, "%i", estructura_futbolistas[i]->futbolista_id);
+        fprintf(f_futbolistas, "%i", estructura_futbolistas[i].futbolista_id);
         fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "%i", estructura_futbolistas[i]->equipo_id);
+        fprintf(f_futbolistas, "%i", estructura_futbolistas[i].equipo_id);
         fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "%s", estructura_futbolistas[i]->nombre_futbolista);
+        fprintf(f_futbolistas, "%s", estructura_futbolistas[i].nombre_futbolista);
         fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "%i", estructura_futbolistas[i]->futbolista_precio);
+        fprintf(f_futbolistas, "%i", estructura_futbolistas[i].futbolista_precio);
         fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "%i", estructura_futbolistas[i]->valoracion);
+        fprintf(f_futbolistas, "%i", estructura_futbolistas[i].valoracion);
         fprintf(f_futbolistas,"%s","\n");
     }
 
@@ -356,9 +356,9 @@ void escribir_equipos(equipos *estructura_equipos){
 
     for (i=0; i<=sizeof(estructura_equipos); i++){
 
-        fprintf(f_equipos, "%i", estructura_equipos[i]->equipo_id);
+        fprintf(f_equipos, "%i", estructura_equipos[i].equipo_id);
         fprintf(f_equipos, "%s", "\n");
-        fprintf(f_equipos, "%s", estructura_equipos[i]->nombre_equipo);
+        fprintf(f_equipos, "%s", estructura_equipos[i].nombre_equipo);
         fprintf(f_equipos, "%s", "\n");
     }
 
@@ -385,15 +385,15 @@ void escribir_usuarios(usuarios *estructura_usuarios){
 
     for(i=0 ; i<=sizeof(estructura_usuarios) ; i++){
 
-        fprintf(f_usuarios,"%i",estructura_usuarios[i]->usuario_id);
+        fprintf(f_usuarios,"%i",estructura_usuarios[i].usuario_id);
         fprintf(f_usuarios, "%s", "\n");
-        fprintf(f_usuarios,"%s",estructura_usuarios[i]->nombre_usuario);
+        fprintf(f_usuarios,"%s",estructura_usuarios[i].nombre_usuario);
         fprintf(f_usuarios, "%s", "\n");
-        fprintf(f_usuarios,"%s",estructura_usuarios[i]->usuario_perfil);
+        fprintf(f_usuarios,"%s",estructura_usuarios[i].usuario_perfil);
         fprintf(f_usuarios, "%s", "\n");
-        fprintf(f_usuarios,"%s",estructura_usuarios[i]->usuario_nick);
+        fprintf(f_usuarios,"%s",estructura_usuarios[i].usuario_nick);
         fprintf(f_usuarios, "%s", "\n");
-        fprintf(f_usuarios,"%s",estructura_usuarios[i]->usuario_password);
+        fprintf(f_usuarios,"%s",estructura_usuarios[i].usuario_password);
         fprintf(f_usuarios, "%s", "\n");
 
     }
@@ -419,15 +419,15 @@ void escribir_plantillas(plantillas *estructura_plantillas) {
 
     for(i=0 ; i<=sizeof(estructura_plantillas) ; i++){
 
-        fprintf(f_plantillas,"%i",estructura_plantillas[i]->usuario_id);
+        fprintf(f_plantillas,"%i",estructura_plantillas[i].usuario_id);
         fprintf(f_plantillas, "%s", "\n");
-        fprintf(f_plantillas,"%i",estructura_plantillas[i]->plantilla_id);
+        fprintf(f_plantillas,"%i",estructura_plantillas[i].plantilla_id);
         fprintf(f_plantillas, "%s", "\n");
-        fprintf(f_plantillas,"%s",estructura_plantillas[i]->nombre_plantilla);
+        fprintf(f_plantillas,"%s",estructura_plantillas[i].nombre_plantilla);
         fprintf(f_plantillas, "%s", "\n");
-        fprintf(f_plantillas,"%i",estructura_plantillas[i]->presupuesto_disp);
+        fprintf(f_plantillas,"%i",estructura_plantillas[i].presupuesto_disp);
         fprintf(f_plantillas, "%s", "\n");
-        fprintf(f_plantillas,"%i",estructura_plantillas[i]->puntuacion_acum);
+        fprintf(f_plantillas,"%i",estructura_plantillas[i].puntuacion_acum);
         fprintf(f_plantillas, "%s", "\n");
     }
 
@@ -455,9 +455,9 @@ void escribir_plantillas(plantillas *estructura_plantillas) {
 
         for (i = 0; i <= sizeof(estructura_jugadores_plantillas); i++) {
 
-            fprintf(f_jugadores_plantillas, "%i", estructura_jugadores_plantillas[i]->jugador_platilla_id);
+            fprintf(f_jugadores_plantillas, "%i", estructura_jugadores_plantillas[i].jugador_platilla_id);
             fprintf(f_jugadores_plantillas, "%s", "\n");
-            fprintf(f_jugadores_plantillas, "%i", estructura_jugadores_plantillas[i]->plantilla_id);
+            fprintf(f_jugadores_plantillas, "%i", estructura_jugadores_plantillas[i].plantilla_id);
             fprintf(f_jugadores_plantillas, "%s", "\n");
         }
         fclose(f_jugadores_plantillas);
@@ -485,11 +485,11 @@ void escribir_plantillas(plantillas *estructura_plantillas) {
         int i;
         for (i = 0; i <= sizeof(estructura_futbolistas); i++) {
 
-            printf("%i,", estructura_futbolistas[i]->futbolista_id);
-            printf("%i,", estructura_futbolistas[i]->equipo_id);
-            printf("%s,", estructura_futbolistas[i]->nombre_futbolista);
-            printf("%i,", estructura_futbolistas[i]->futbolista_precio);
-            printf("%i\n", estructura_futbolistas[i]->valoracion);
+            printf("%i,", estructura_futbolistas[i].futbolista_id);
+            printf("%i,", estructura_futbolistas[i].equipo_id);
+            printf("%s,", estructura_futbolistas[i].nombre_futbolista);
+            printf("%i,", estructura_futbolistas[i].futbolista_precio);
+            printf("%i\n", estructura_futbolistas[i].valoracion);
         }
     }
 
@@ -500,8 +500,8 @@ void escribir_plantillas(plantillas *estructura_plantillas) {
         int i;
         for (i = 0; i <= sizeof(estructura_equipos); i++) {
 
-            printf("%i,", estructura_equipos[i]->equipo_id);
-            printf("%s\n", estructura_equipos[i]->nombre_equipo);
+            printf("%i,", estructura_equipos[i].equipo_id);
+            printf("%s\n", estructura_equipos[i].nombre_equipo);
         }
     }
 
@@ -513,11 +513,11 @@ void escribir_plantillas(plantillas *estructura_plantillas) {
 
         for (i = 0; i <= sizeof(estructura_usuarios); i++) {
 
-            printf("%i,", estructura_usuarios[i]->usuario_id);
-            printf("%s,", estructura_usuarios[i]->nombre_usuario);
-            printf("%s,", estructura_usuarios[i]->usuario_perfil);
-            printf("%s,", estructura_usuarios[i]->usuario_nick);
-            printf("%s \n", estructura_usuarios[i]->usuario_password);
+            printf("%i,", estructura_usuarios[i].usuario_id);
+            printf("%s,", estructura_usuarios[i].nombre_usuario);
+            printf("%s,", estructura_usuarios[i].usuario_perfil);
+            printf("%s,", estructura_usuarios[i].usuario_nick);
+            printf("%s \n", estructura_usuarios[i].usuario_password);
 
         }
 
@@ -531,11 +531,11 @@ void escribir_plantillas(plantillas *estructura_plantillas) {
 
         for (i = 0; i <= sizeof(estructura_plantillas); i++) {
 
-            printf("%i,", estructura_plantillas[i]->usuario_id);
-            printf("%i,", estructura_plantillas[i]->plantilla_id);
-            printf("%s,", estructura_plantillas[i]->nombre_plantilla);
-            printf("%i,", estructura_plantillas[i]->presupuesto_disp);
-            printf("%i \n", estructura_plantillas[i]->puntuacion_acum);
+            printf("%i,", estructura_plantillas[i].usuario_id);
+            printf("%i,", estructura_plantillas[i].plantilla_id);
+            printf("%s,", estructura_plantillas[i].nombre_plantilla);
+            printf("%i,", estructura_plantillas[i].presupuesto_disp);
+            printf("%i \n", estructura_plantillas[i].puntuacion_acum);
 
         }
 
@@ -549,8 +549,8 @@ void escribir_plantillas(plantillas *estructura_plantillas) {
 
         for (i = 0; i <= sizeof(estructura_jugadores_plantillas); i++) {
 
-            printf("%i,", estructura_jugadores_plantillas[i]->jugador_platilla_id);
-            printf("%i \n", estructura_jugadores_plantillas[i]->plantilla_id);
+            printf("%i,", estructura_jugadores_plantillas[i].jugador_platilla_id);
+            printf("%i \n", estructura_jugadores_plantillas[i].plantilla_id);
         }
 
     }
@@ -569,5 +569,5 @@ void escribir_plantillas(plantillas *estructura_plantillas) {
         return 0;
 
     }
-}
+
 #endif //PROYECTO_CORE_H    // Si no hay + codigo abajo lo acaba
