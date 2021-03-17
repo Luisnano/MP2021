@@ -9,6 +9,8 @@
 
 //MAIN PROGRAM
 
+//AUN TENEMOS Q QUITAR LAS ETIQUETAS Y COMENTAR
+
 int main() {
 
     //Creamos las variables tipo estructuras
@@ -20,8 +22,8 @@ int main() {
     equipos *estructura_equipos;
 
     //Volcamos todos los datos de los ficheros en sus respectivas variables estructuras anteriormente declaradas
-    volcar_configuracion(&estructura_config);
 
+    volcar_configuracion(&estructura_config);
     volcar_futbolistas(&estructura_futbolistas,&estructura_config);
     volcar_equipos(estructura_equipos,&estructura_config);
     volcar_usuarios(&estructura_usuarios);
@@ -34,20 +36,6 @@ int main() {
     char perfil[15];            //15 es el espacio max del campo usuario_perfil, ya que aquí guardare el perfil del usuario que accede al sistema
 
     //INICIO
-
-
-
-
-    volcar_futbolistas(estructura_futbolistas,&estructura_config);
-
-    volcar_equipos(&estructura_equipos,&estructura_config);
-    volcar_usuarios(&estructura_usuarios, &estructura_config);
-    volcar_plantillas(&estructura_plantillas, &estructura_config);
-    volcar_jugadores_plantillas(&estructura_jugadores_plantillas);
-
-    mostrar_configuracion(&estructura_config);
-    escribir_configuracion(&estructura_config);
-    mostrar_futbolistas(&estructura_futbolistas, estructura_config);
 
     etiqueta1:
 
@@ -83,10 +71,9 @@ int main() {
             menu_cronista(estructura_equipos);
 
         }
-
     }
     
-    else{
+    else {
 
         if(i==2){
 
@@ -98,10 +85,6 @@ int main() {
             goto etiqueta1;
         }
     }
-
-
-
-
 
     return 0;
 }
