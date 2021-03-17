@@ -183,9 +183,22 @@ con in range se puede usar intervalo, ej: for x in range(5,10): i valdrá 5,6,7,
 
 si le ponemos un tercer parametro al rango con el in range, ese numero significa el numero de saltos q da para imprimir el rango de numero a numero, ej --->   for x in range(5,28,3): imprime del 5 al 27 en saltos de 3
 
-Tambien podemos usar dentro del rango el tamaño de uan avriable , es decir, len()
+Tambien podemos usar dentro del rango el tamaño de una variable , es decir, len()
+
+----------------------------------------------------------------------------------------------------
+
+BUCLES WHILE    forma:   while condicion:
+
+El break lo que hace es salir del bucle while/for/if donde está , va con punto y coma ;
+
+---------------------------------------------------------------------------------------------------
+
+La instruccion continue se usa dentro de los bucles for, cuando la lee no sigue esa iteracion del bucle y empieza la siguiente
+	
+	Ej: continue a secas
 
 
+-----------------------------------------------------------------------------
 
 
 
