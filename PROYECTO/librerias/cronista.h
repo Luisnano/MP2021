@@ -67,62 +67,48 @@ void valorar_equipos(futbolistas *estructura_futbolistas){
     int i;
     int selec;
 
-    //ETIQUETA QUE UTILIZAREMOS MAS TARDE POR SI EL USUARIO QUIERE CAMBIAR DE EQUIPO
-    etiqueta_seleccion_equipos:
+    do {
 
-    printf(".....INTRODUZCA UN ID DE EQUIPO.....\n");
-    printf("                           \n");
-    printf(">");
-    scanf("%d", &id_equipo);
+        printf(".....INTRODUZCA UN ID DE EQUIPO.....\n");
+        printf("                           \n");
+        printf(">");
+        scanf("%d", &id_equipo);
 
-    etiqueta_vuelta_valoracion:                               //ETIQUETA QUE UTILIZAREMOS MAS TARDE POR SI EL USUARIO QUIERE CAMBIAR DE JUGADOR A VALORAR(DENTRO DEL MISMO EQUIPO)
+        do {
+            
+            for (i = 0; i <=
+                        sizeof(estructura_futbolistas); i++) {       //VAMOS A ENSEñAR TODOS LOS FUTBOLISTAS QUE FORMAN PARTE DE ESE EQUIPO EN UN PEQUEñO MENU, ENSEñANDO TODOS LOS CAMPOS DEL FUTBOLISTA
+                if (id_equipo == estructura_futbolistas[i].equipo_id) {
+                    printf("-------------------------------\n");
+                    printf("      ID: %d\n", estructura_futbolistas[i].futbolista_id);
+                    printf("      NOMBRE: %s\n", estructura_futbolistas[i].nombre_futbolista);
+                    printf("      PRECIO: %d MILLONES\n", estructura_futbolistas[i].futbolista_precio);
+                    printf("      VALORACION: %d\n", estructura_futbolistas[i].valoracion);
+                    printf("-------------------------------\n");
+                }
+            }
 
-    for (i=0; i<sizeof (estructura_futbolistas); i++) {       //VAMOS A ENSEñAR TODOS LOS FUTBOLISTAS QUE FORMAN PARTE DE ESE EQUIPO EN UN PEQUEñO MENU, ENSEñANDO TODOS LOS CAMPOS DEL FUTBOLISTA
-        if (id_equipo == estructura_futbolistas[i].equipo_id) {
-            printf("-------------------------------\n");
-            printf("      ID: %d\n", estructura_futbolistas[i].futbolista_id);
-            printf("      NOMBRE: %s\n", estructura_futbolistas[i].nombre_futbolista);
-            printf("      PRECIO: %d MILLONES\n", estructura_futbolistas[i].futbolista_precio);
-            printf("      VALORACION: %d\n", estructura_futbolistas[i].valoracion);
-            printf("-------------------------------\n");
-        }
-    }
+            printf(".....INTRODUZCA EL ID DEL FUTBOLISTA A VALORAR.....\n");
+            scanf("%d", &id_futbolista);
 
-    printf(".....INTRODUZCA EL ID DEL FUTBOLISTA A VALORAR.....\n");
-    scanf("%d", &id_futbolista);
-
-    for (i=0; i<sizeof (estructura_futbolistas); i++){        //LO PRINCIPAL: EL USUARIO INTRODUCIRA EL ID DEL JUGADOR DEL CUAL DESEA CAMBIAR LA VALORACION
-        if(id_futbolista == estructura_futbolistas[i].futbolista_id){
-            printf(".....INTRODUZCA LA NUEVA VALORACION DEL FUTBOLISTA.....\n");
+            for (i = 0; i <=
+                        sizeof(estructura_futbolistas); i++) {        //LO PRINCIPAL: EL USUARIO INTRODUCIRA EL ID DEL JUGADOR DEL CUAL DESEA CAMBIAR LA VALORACION
+                if (id_futbolista == estructura_futbolistas[i].futbolista_id) {
+                    printf(".....INTRODUZCA LA NUEVA VALORACION DEL FUTBOLISTA.....\n");
+                    printf("                           \n");
+                    printf(">");
+                    scanf("%d", &estructura_futbolistas[i].valoracion);
+                }
+            }
+            printf(".....ELIJA UNA OPCION......\n");
+            printf("                           \n");
+            printf("       1.- SEGUIR VALORANDO\n");
+            printf("       2.- CAMBIAR DE EQUIPO\n");
             printf("                           \n");
             printf(">");
-            scanf("%d", &estructura_futbolistas[i].valoracion);
-        }
-    }
-    printf(".....ELIJA UNA OPCION......\n");
-    printf("                           \n");
-    printf("       1.- SEGUIR VALORANDO\n");
-    printf("       2.- CAMBIAR DE EQUIPO\n");
-    printf("       3.- SALIR DE VALORAR EQUIPOS\n");
-    printf("                           \n");
-    printf(">");
-    scanf("%d", &selec);
-
-    do {
-        switch (selec) {
-            case 1:
-                goto etiqueta_vuelta_valoracion;
-                break;
-            case 2:
-                goto etiqueta_seleccion_equipos;
-                break;
-            case 3:
-                goto etiqueta_final;
-                break;
-        }
-    } while (selec > 0 && selec < 4 );
-
-    etiqueta_final:                                         //ETIQUETA PARA TERMINAR YA ESTA FUNCION
+            scanf("%d", &selec);
+        }while(selec == 1)
+    }while (selec == 2);
 }
 
 #endif //PROYECTO_CRONISTA_H
