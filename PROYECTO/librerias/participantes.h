@@ -20,7 +20,7 @@ void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_
 void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
                            equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
                            plantillas *estructura_plantillas);
-void eliminar_plantillas(plantillas *estructura_plantillas, jugadores_plantillas *estructura_jugadores_plantillas);
+void eliminar_plantillas(int *id,plantillas *estructura_plantillas, jugadores_plantillas *estructura_jugadores_plantillas);
 void ranking(plantillas *estructura_plantillas);
 void listar_jugadores_plantillas(int *plantilla, jugadores_plantillas *estructura_jugadores_plantillas,
                                  futbolistas *estructura_futbolistas);
@@ -64,7 +64,7 @@ void menu_participantes(int *id, configuracion *estructura_config, jugadores_pla
             case 3: mostrar_plantillas(estructura_plantillas);
             break;
 
-            case 4: eliminar_plantillas(estructura_plantillas,estructura_jugadores_plantillas);
+            case 4: eliminar_plantillas(&id,estructura_plantillas,estructura_jugadores_plantillas);
             break;
 
             case 5: ranking(estructura_plantillas);
@@ -209,6 +209,8 @@ void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_
         }
     }while(opcion > 0 && opcion < 6);
 
+
+
 }
 
 void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_plantillas *estructura_jugadores_plantillas){
@@ -254,7 +256,7 @@ void ranking(plantillas *estructura_plantillas) {
 
     for (i = 0; i <= sizeof(estructura_plantillas); i++) {
 
-        for (j = i; j <= sizeof(estructura_plantillas); j++) {
+        for (j = 0; j <= sizeof(estructura_plantillas); j++) {
 
 
             if (ranking[j] > ranking[j + 1]) {    //ES MAYOR QUE EL SIGUIENTE. SI LO ES, SE INTERCAMBIAN.
@@ -271,12 +273,13 @@ void ranking(plantillas *estructura_plantillas) {
 
     for(i=0; i <= sizeof(estructura_plantillas); i++){
 
-        printf("%i , %s => %i PUNTOS\n", estructura_plantillas[i].plantilla_id, estructura_plantillas[i].nombre_plantilla, ranking[i]);
+        printf("%i , %s => %i PUNTOS\n", estructura_plantillas[i].plantilla_id,
+               estructura_plantillas[i].nombre_plantilla, ranking[i]);
 
     }
 }
 
-void eliminar_plantillas(plantillas *estructura_plantillas, jugadores_plantillas *estructura_jugadores_plantillas){
+void eliminar_plantillas(int *id, plantillas *estructura_plantillas, jugadores_plantillas *estructura_jugadores_plantillas){
 
     int i ,plantilla,v[3];
     char aux;
@@ -285,9 +288,14 @@ void eliminar_plantillas(plantillas *estructura_plantillas, jugadores_plantillas
 
     for(i = 0; i <= sizeof(estructura_plantillas); i++){        //Mostramos las plantillas
 
+        //Comprobamos que se impriman las plantillas del usuario
+
+        if(*id == estructura_plantillas[i].usuario_id){
+
         printf("\n%i, %s, presupuesto: %i, puntuacion: %i", estructura_plantillas[i].plantilla_id,
                estructura_plantillas[i].nombre_plantilla,estructura_plantillas[i].presupuesto_disp,
                estructura_plantillas[i].puntuacion_acum);
+        }
     }
 
     printf("\nId plantilla:");
@@ -392,35 +400,25 @@ void listar_jugadores_plantillas(int *plantilla, jugadores_plantillas *estructur
 }
 
 void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas *estructura_jugadores_plantillas,
-                                futbolistas *estructura_futbolistas,plantillas *estructura_plantillas){
+                                futbolistas *estructura_futbolistas,plantillas *estructura_plantillas) {
 
-    int i,j,opcion,aux1,aux2;
+    int i, j, opcion, aux1, aux2;
 
-    printf("\n\nLos futbolistas que pertenecen a la plantilla %i son:",*plantilla);
+    printf("\n\nLos futbolistas que pertenecen a la plantilla %i son:", *plantilla);
 
-    for(i=0 ; i<=sizeof(estructura_jugadores_plantillas) ; i++){
+    for (i = 0; i <= sizeof(estructura_jugadores_plantillas); i++) {
 
         //Identifico a los futbolistas de esa plantilla ya que plantilla_id es el mismo dato en jugadores_plantillas
         //Y en plantillas
 
-        if (*plantilla == estructura_jugadores_plantillas[i].plantilla_id){
+        if (*plantilla == estructura_jugadores_plantillas[i].plantilla_id) {
 
-            //Busco al futbolista mediante su campo futbolista_id para imprimir sus datos
+            //Muestro sus datos
 
-            for(j=0 ; j<=sizeof(estructura_futbolistas) ; j++){
+            printf("\n%i , equipo:%i, %s, precio:%i, valoracion:%i\n", estructura_futbolistas[i].futbolista_id,
+                   estructura_futbolistas[i].equipo_id, estructura_futbolistas[i].nombre_futbolista,
+                   estructura_futbolistas[i].futbolista_precio, estructura_futbolistas[i].valoracion);
 
-                //Identifico al futbolista
-
-                if(estructura_jugadores_plantillas[i].jugador_platilla_id == estructura_futbolistas[j].futbolista_id){
-
-                    //Muestro sus datos
-
-                    printf("\n%i , equipo:%i, %s, precio:%i, valoracion:%i\n",estructura_futbolistas[j].futbolista_id,
-                           estructura_futbolistas[j].equipo_id,estructura_futbolistas[j].nombre_futbolista,
-                           estructura_futbolistas[j].futbolista_precio,estructura_futbolistas[j].valoracion);
-
-                }
-            }
         }
     }
 
@@ -531,8 +529,8 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
             //Comprobar coincidencia del futbolista_id y su plantilla_id
 
-            if(estructura_jugadores_plantillas[i].jugador_platilla_id == aux1 ||
-            estructura_jugadores_plantillas[i].plantilla_id == aux2 ){
+            if(estructura_jugadores_plantillas[i].jugador_platilla_id == aux1+1 ||
+            estructura_jugadores_plantillas[i].plantilla_id == aux2+1 ){
 
                 printf("\nEl futbolista seleccionado no esta disponible\n\n");
 
@@ -554,8 +552,8 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
         //Relleno los datos del nuevo espacio reservado con los datos del futbolista seleccionado
         //Los cuales estan guardados en aux1 y aux2
 
-        estructura_jugadores_plantillas[sizeof(estructura_jugadores_plantillas)].jugador_platilla_id = aux1;
-        estructura_jugadores_plantillas[sizeof(estructura_jugadores_plantillas)].plantilla_id = aux2;
+        estructura_jugadores_plantillas[sizeof(estructura_jugadores_plantillas)].jugador_platilla_id = aux1+1;
+        estructura_jugadores_plantillas[sizeof(estructura_jugadores_plantillas)].plantilla_id = aux2+1;
     }
 
 }
