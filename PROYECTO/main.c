@@ -25,11 +25,11 @@ int main() {
     //Volcamos todos los datos de los ficheros en sus respectivas variables estructuras anteriormente declaradas
 
     volcar_configuracion(&estructura_config);
-    volcar_futbolistas(estructura_futbolistas);
-    volcar_equipos(estructura_equipos);
-    volcar_usuarios(estructura_usuarios);
-    volcar_plantillas(estructura_plantillas);
-    volcar_jugadores_plantillas(estructura_jugadores_plantillas);
+    volcar_futbolistas(estructura_futbolistas,&estructura_config);
+    volcar_equipos(estructura_equipos,&estructura_config);
+    volcar_usuarios(estructura_usuarios,&estructura_config);
+    volcar_plantillas(estructura_plantillas,&estructura_config);
+    volcar_jugadores_plantillas(estructura_jugadores_plantillas,&estructura_config);
 
     //VARIABLES_LOCALES
 
@@ -49,25 +49,41 @@ int main() {
 
         if (i == 1) {
 
-            id = acceso_sistema(estructura_usuarios);
+            id = acceso_sistema(estructura_usuarios,&estructura_config);
+
+            //Si acceso al sistema devuelve 1 significa que el usuario no está aun registrado
 
             if (id == 1) {
 
                 return 0;
             }
 
-            for (i = 0; i <= sizeof(estructura_usuarios); i++) {
+            //Una vez se ha verificado que el usuario ha accedido al sistema hay que buscar su rol
+            //Para enviarlo a su menu acorde a su rol
+
+            for (i = 0; i < estructura_config.tam_usuarios; i++) {
+
+                //Buscamos al usuario ay que id tendra su usuario_id
 
                 if (estructura_usuarios[i].usuario_id == id) {
+
+                    //Guardamos su rol para referirnos a el posteriormente
+
                     strcpy(perfil, estructura_usuarios[i].usuario_perfil);
                 }
             }
+
+            //Vemos si el usuario es participante
+
             if (strcmp(perfil, "participante") == 0) {
 
                 menu_participantes(&id, &estructura_config, estructura_jugadores_plantillas, estructura_equipos,
                                    estructura_usuarios, estructura_futbolistas, estructura_plantillas);
 
             }
+
+            //Comprobamos si el usuario es cronista
+
             if (strcmp(perfil, "cronista") == 0) {
 
                 menu_cronista(&estructura_config, estructura_futbolistas, estructura_equipos,
@@ -75,17 +91,23 @@ int main() {
                               estructura_jugadores_plantillas);
 
             }
-        } else {
+        }
+
+        //Si no ha seleccionado la opcion acceso al sistema y si la opcion registro:
+
+        else {
 
             if (i == 2) {
 
-                registro(estructura_usuarios);
+                registro(estructura_usuarios,&estructura_config);
 
             }
         }
 
         return 0;
 
-    } while(i<1 || i>2);
+    //Si el usuario no introduce ni 1 (acceso al sistema) ni 2 (registro) se sigue repitiendo hasta que elija bien
+
+    } while(i<1 || i>2 || i == 0);
 
 }

@@ -12,7 +12,7 @@
 void menu_cronista(configuracion *estructura_config, futbolistas *estructura_futbolistas, equipos *estructura_equipos,
                    usuarios *estructura_usuarios, plantillas *estructura_plantillas,
                    jugadores_plantillas *estructura_jugadores_plantillas);
-void valorar_equipos(futbolistas *estructura_jugadores);
+void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estructura_configuracion);
 
 //FUNCIONES
 
@@ -44,16 +44,21 @@ void menu_cronista(configuracion *estructura_config, futbolistas *estructura_fut
     do {
         switch (selec) {
             case 1:
-                escribir_equipos(estructura_equipos);
+                mostrar_equipos(estructura_equipos, estructura_config);
                 break;   //LLAMAMOS A LA FUNCION QUE ESCRIBE TODOS LOS EQUIPOS POR PANTALLA (DECLARADA EN CORE.H)
             case 2:
-                valorar_equipos(estructura_equipos);
+                valorar_equipos(estructura_futbolistas, estructura_config);
                 break;
             case 3:
                 salir_programa(estructura_config, estructura_futbolistas, estructura_equipos, estructura_usuarios,
                                estructura_plantillas, estructura_jugadores_plantillas);
                 break; //FUNCION SALIR DEL PROGRAMA (DECLARADA EN CORE.H)
+
+            default:    printf("\n\nPor favor seleccione una opcion correcta\n\n");
+
+                break;
         }
+
     } while (selec > 0 && selec < 4);
 }
 
@@ -63,7 +68,7 @@ void menu_cronista(configuracion *estructura_config, futbolistas *estructura_fut
 //      de futbolistas de dicho equipo junto con su valoración actual. A continuación, el cronista irá
 //      seleccionando futbolistas e introduciendo sus nuevas valoraciones (0-10).
 
-void valorar_equipos(futbolistas *estructura_futbolistas){
+void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estructura_configuracion){
 
     int valoracion;
     int id_equipo;
@@ -79,10 +84,14 @@ void valorar_equipos(futbolistas *estructura_futbolistas){
         scanf("%d", &id_equipo);
 
         do {
-            
-            for (i = 0; i <=
-                        sizeof(estructura_futbolistas); i++) {       //VAMOS A ENSEñAR TODOS LOS FUTBOLISTAS QUE FORMAN PARTE DE ESE EQUIPO EN UN PEQUEñO MENU, ENSEñANDO TODOS LOS CAMPOS DEL FUTBOLISTA
+
+            //VAMOS A ENSEñAR TODOS LOS FUTBOLISTAS QUE FORMAN PARTE DE ESE EQUIPO EN UN PEQUEñO MENU,
+            // ENSEñANDO TODOS LOS CAMPOS DEL FUTBOLISTA
+
+            for (i = 0 ; i < estructura_configuracion->tam_futbolistas ; i++) {
+
                 if (id_equipo == estructura_futbolistas[i].equipo_id) {
+
                     printf("-------------------------------\n");
                     printf("      ID: %d\n", estructura_futbolistas[i].futbolista_id);
                     printf("      NOMBRE: %s\n", estructura_futbolistas[i].nombre_futbolista);
@@ -95,15 +104,19 @@ void valorar_equipos(futbolistas *estructura_futbolistas){
             printf(".....INTRODUZCA EL ID DEL FUTBOLISTA A VALORAR.....\n");
             scanf("%d", &id_futbolista);
 
-            for (i = 0; i <=
-                        sizeof(estructura_futbolistas); i++) {        //LO PRINCIPAL: EL USUARIO INTRODUCIRA EL ID DEL JUGADOR DEL CUAL DESEA CAMBIAR LA VALORACION
+            //LO PRINCIPAL: EL USUARIO INTRODUCIRA EL ID DEL JUGADOR DEL CUAL DESEA CAMBIAR LA VALORACION
+
+            for (i = 0 ; i < estructura_configuracion->tam_futbolistas ; i++) {
+
                 if (id_futbolista == estructura_futbolistas[i].futbolista_id) {
+
                     printf(".....INTRODUZCA LA NUEVA VALORACION DEL FUTBOLISTA.....\n");
                     printf("                           \n");
                     printf(">");
                     scanf("%d", &estructura_futbolistas[i].valoracion);
                 }
             }
+
             printf(".....ELIJA UNA OPCION......\n");
             printf("                           \n");
             printf("       1.- SEGUIR VALORANDO\n");
@@ -111,7 +124,9 @@ void valorar_equipos(futbolistas *estructura_futbolistas){
             printf("                           \n");
             printf(">");
             scanf("%d", &selec);
+
         }while(selec == 1);
+
     }while (selec == 2);
 }
 

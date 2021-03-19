@@ -13,22 +13,34 @@
 void menu_participantes(int *id, configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
                         equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
                         plantillas *estructura_plantillas);
+
 void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
                       equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
                       plantillas *estructura_plantillas);
-void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_plantillas *estructura_jugadores_plantillas);
+
+void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_plantillas *estructura_jugadores_plantillas,
+                                  configuracion *estructura_config);
+
 void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
                            equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
                            plantillas *estructura_plantillas);
-void eliminar_plantillas(int *id,plantillas *estructura_plantillas, jugadores_plantillas *estructura_jugadores_plantillas);
-void ranking(plantillas *estructura_plantillas);
+
+void eliminar_plantillas(int *id,plantillas *estructura_plantillas, jugadores_plantillas *estructura_jugadores_plantillas,
+                         configuracion *estructura_config);
+
+void ranking(plantillas *estructura_plantillas, configuracion *estructura_config);
+
 void listar_jugadores_plantillas(int *plantilla, jugadores_plantillas *estructura_jugadores_plantillas,
-                                 futbolistas *estructura_futbolistas);
+                                 futbolistas *estructura_futbolistas, configuracion *estructura_config);
+
 void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas *estructura_jugadores_plantillas,
-                                futbolistas *estructura_futbolistas,plantillas *estructura_plantillas);
-void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
-                               equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
-                               plantillas *estructura_plantillas);
+                                futbolistas *estructura_futbolistas,plantillas *estructura_plantillas,
+                                 configuracion *estructura_config);
+
+void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura_config,
+                               jugadores_plantillas *estructura_jugadores_plantillas,
+                               equipos *estructura_equipos, usuarios *estructura_usuarios,
+                               futbolistas *estructura_futbolistas,plantillas *estructura_plantillas);
 
 //FUNCIONES
 
@@ -61,18 +73,22 @@ void menu_participantes(int *id, configuracion *estructura_config, jugadores_pla
                                           estructura_usuarios, estructura_futbolistas,estructura_plantillas);
             break;
 
-            case 3: mostrar_plantillas(estructura_plantillas);
+            case 3: mostrar_plantillas(estructura_plantillas,estructura_config);
             break;
 
-            case 4: eliminar_plantillas(&id,estructura_plantillas,estructura_jugadores_plantillas);
+            case 4: eliminar_plantillas(id,estructura_plantillas,estructura_jugadores_plantillas, estructura_config);
             break;
 
-            case 5: ranking(estructura_plantillas);
+            case 5: ranking(estructura_plantillas,estructura_config);
             break;
 
             case 6: salir_programa(estructura_config,estructura_futbolistas,estructura_equipos,estructura_usuarios,
                                    estructura_plantillas,
                                    estructura_jugadores_plantillas);
+            break;
+
+            default:    printf("\n\nSelecciona una opcion correcta por favor\n\n");
+
             break;
 
             }
@@ -86,35 +102,41 @@ void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plant
 
     int i, num_plantillas = 0;
 
-    for(i = 0; i <= sizeof(estructura_plantillas); i++){
+    for(i = 0 ; i <= estructura_config->tam_plantillas ; i++){
+
         if(estructura_plantillas[i].usuario_id == *id){
             num_plantillas++;
         }
     }
+
     if(num_plantillas == estructura_config->max_plantillas_participante){
+
         printf("Numero maximo de plantillas alcanzado.\n");
         menu_participantes(id,estructura_config,estructura_jugadores_plantillas,estructura_equipos,estructura_usuarios,
                            estructura_futbolistas,estructura_plantillas);
     }
+
     else{
+
         printf("Se procede a crear una plantilla: \n");
 
-            estructura_plantillas = (plantillas *)realloc(estructura_plantillas, (sizeof(estructura_plantillas)+1)*sizeof(int));
+            estructura_plantillas = (plantillas *)realloc(estructura_plantillas,
+                                                          (estructura_config->tam_plantillas+1)*sizeof(int));
             if(estructura_plantillas==NULL){
                 printf("Fallo de reserva de memoria\n");
             }
 
-            estructura_plantillas[sizeof(estructura_plantillas)].usuario_id = id;
+            estructura_plantillas[estructura_config->tam_plantillas].usuario_id = *id;
 
-            estructura_plantillas[sizeof(estructura_plantillas)].plantilla_id = sizeof(estructura_plantillas);
+            estructura_plantillas[estructura_config->tam_plantillas].plantilla_id = estructura_config->tam_plantillas;
 
             printf("\nIntroduce el nombre de la plantilla: ");
-            fgets(estructura_plantillas[sizeof(estructura_plantillas)].nombre_plantilla,31,stdin);
+            fgets(estructura_plantillas[estructura_config->tam_plantillas].nombre_plantilla,31,stdin);
             fflush(stdin);
 
-            estructura_plantillas[sizeof(estructura_plantillas)].presupuesto_disp = estructura_config->presupuesto_defecto;
+            estructura_plantillas[estructura_config->tam_plantillas].presupuesto_disp = estructura_config->presupuesto_defecto;
 
-            estructura_plantillas[sizeof(estructura_plantillas)].puntuacion_acum = 0;
+            estructura_plantillas[estructura_config->tam_plantillas].puntuacion_acum = 0;
 
         printf("\nLa plantilla se ha creado con exito.\n");
         menu_participantes(id,estructura_config,estructura_jugadores_plantillas,estructura_equipos,estructura_usuarios,
@@ -131,7 +153,7 @@ void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_
 
     printf("A continuacion, mostraremos tus plantillas actuales.");
 
-    for(i = 0; i <= sizeof(estructura_plantillas); i++){
+    for(i = 0 ; i < estructura_config->tam_plantillas ; i++){
 
         printf("%i, %s, presupuesto: %i, puntuacion: %i", estructura_plantillas[i].plantilla_id,
                estructura_plantillas[i].nombre_plantilla,estructura_plantillas[i].presupuesto_disp,
@@ -155,16 +177,18 @@ void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_
     do {
         switch(opcion){
 
-            case 1:     listar_jugadores_plantillas(&plantilla,estructura_jugadores_plantillas,estructura_futbolistas);
+            case 1:     listar_jugadores_plantillas(&plantilla,estructura_jugadores_plantillas,estructura_futbolistas,
+                                                    estructura_config);
                 break;
 
-            case 2:     listar_jugadores_disponibles(estructura_futbolistas,estructura_jugadores_plantillas);
+            case 2:     listar_jugadores_disponibles(estructura_futbolistas,estructura_jugadores_plantillas,
+                                                     estructura_config);
                 break;
 
             case 3:     //Antes de llamar a la funcion comprobamos si la plantilla ya tiene 11 futbolistas
                         //En ese caso vuelve al menu otra vez
 
-                        for(i=0 ; i<=sizeof(estructura_jugadores_plantillas) ; i++){
+                        for(i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
 
                             if(plantilla == estructura_jugadores_plantillas[i].plantilla_id){
 
@@ -184,28 +208,31 @@ void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_
 
                             //Volvemos al menu configurar_plantillas
 
-                            configurar_plantillas(&id,&estructura_config,
+                            configurar_plantillas(id,estructura_config,
                                                   estructura_jugadores_plantillas,estructura_equipos,
                                                   estructura_usuarios,estructura_futbolistas,estructura_plantillas);
 
                         }
 
-                         else{
+                        else{
 
-                             anadir_jugador_plantillas( &id,&plantilla,&estructura_config,estructura_jugadores_plantillas,
+                             anadir_jugador_plantillas( id,&plantilla,estructura_config,estructura_jugadores_plantillas,
                                     estructura_equipos,estructura_usuarios,estructura_futbolistas,estructura_plantillas);
-                         }
+                        }
 
                 break;
 
             case 4:     eliminar_jugador_plantillas(&plantilla,estructura_jugadores_plantillas,estructura_futbolistas,
-                                                    estructura_plantillas);
+                                                    estructura_plantillas, estructura_config);
                 break;
 
-            case 5:     menu_participantes(&id,&estructura_config,estructura_jugadores_plantillas,estructura_equipos,
+            case 5:     menu_participantes(id,estructura_config,estructura_jugadores_plantillas,estructura_equipos,
                                            estructura_usuarios,estructura_futbolistas,estructura_plantillas);
                 break;
 
+            default:    printf("\n\nIntrododuce una opcion valida por favor\n\n");
+
+                break;
         }
     }while(opcion > 0 && opcion < 6);
 
@@ -213,11 +240,12 @@ void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_
 
 }
 
-void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_plantillas *estructura_jugadores_plantillas){
+void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_plantillas *estructura_jugadores_plantillas,
+                                  configuracion *estructura_config){
 
     int i,j,aux;
 
-    for(i=0 ; i<=sizeof(estructura_futbolistas) ; i++){
+    for(i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
 
         if(aux==1){
 
@@ -228,7 +256,7 @@ void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_
 
         aux = 1;
 
-        for(j=0 ; j<=sizeof(estructura_jugadores_plantillas) && aux == 1 ; j++){
+        for(j = 0 ; j < estructura_config->tam_jugadores_plantillas && aux == 1 ; j++){
 
             if(estructura_futbolistas[i].futbolista_id == estructura_jugadores_plantillas[j].jugador_platilla_id){
 
@@ -241,22 +269,22 @@ void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,jugadores_
 }
 
 
-void ranking(plantillas *estructura_plantillas) {
+void ranking(plantillas *estructura_plantillas, configuracion *estructura_config) {
 
     int i, j, aux;
 
-    int ranking[sizeof(estructura_plantillas)];    //PASAMOS LA ESTRUCTURA A UN VECTOR RANKING PARA PODER ASI ORDENARLOS
+    int ranking[estructura_config->tam_plantillas];    //PASAMOS LA ESTRUCTURA A UN VECTOR RANKING PARA PODER ASI ORDENARLOS
 
-    for (i = 0; i <= sizeof(estructura_plantillas); i++) {
+    for (i = 0; i < estructura_config->tam_plantillas ; i++) {
 
         ranking[i] = estructura_plantillas[i].puntuacion_acum;
     }
 
     //AHORA HACEMOS UN ALGORITMO DE ORDENACION SIMPLE, CON AYUDA DE UN AUX COMPARAMOS SI EL ELEMENTO ACTUAL
 
-    for (i = 0; i <= sizeof(estructura_plantillas); i++) {
+    for (i = 0 ; i < estructura_config->tam_plantillas ; i++) {
 
-        for (j = 0; j <= sizeof(estructura_plantillas); j++) {
+        for (j = 0 ; j < estructura_config->tam_plantillas ; j++) {
 
 
             if (ranking[j] > ranking[j + 1]) {    //ES MAYOR QUE EL SIGUIENTE. SI LO ES, SE INTERCAMBIAN.
@@ -271,7 +299,7 @@ void ranking(plantillas *estructura_plantillas) {
          }
     }
 
-    for(i=0; i <= sizeof(estructura_plantillas); i++){
+    for(i = 0 ; i < estructura_config->tam_plantillas ; i++){
 
         printf("%i , %s => %i PUNTOS\n", estructura_plantillas[i].plantilla_id,
                estructura_plantillas[i].nombre_plantilla, ranking[i]);
@@ -279,14 +307,15 @@ void ranking(plantillas *estructura_plantillas) {
     }
 }
 
-void eliminar_plantillas(int *id, plantillas *estructura_plantillas, jugadores_plantillas *estructura_jugadores_plantillas){
+void eliminar_plantillas(int *id, plantillas *estructura_plantillas, jugadores_plantillas *estructura_jugadores_plantillas,
+                         configuracion *estructura_config){
 
-    int i ,plantilla,v[3];
+    int i ,plantilla,v[4];
     char aux;
 
     printf("\nSeleccione el id de su plantilla que desea eliminar , las cuales son:");
 
-    for(i = 0; i <= sizeof(estructura_plantillas); i++){        //Mostramos las plantillas
+    for(i = 0 ; i < estructura_config->tam_plantillas ; i++){        //Mostramos las plantillas
 
         //Comprobamos que se impriman las plantillas del usuario
 
@@ -306,7 +335,7 @@ void eliminar_plantillas(int *id, plantillas *estructura_plantillas, jugadores_p
     //Con estos auxiliares guardamos los datos de la plantilla para intercambair su posicion en estructura_plantillas
     //Con la ultima plantilla, así al hacer el realloc eliminamos la plantilla seleccionada
 
-    for (i=0 ; i<=sizeof(estructura_plantillas) ; i++){
+    for (i = 0 ; i < estructura_config->tam_plantillas ; i++){
 
         if(plantilla == estructura_plantillas[i].plantilla_id){     //Para localizar la plantilla introducida
 
@@ -314,32 +343,32 @@ void eliminar_plantillas(int *id, plantillas *estructura_plantillas, jugadores_p
             v[1] = estructura_plantillas[i].plantilla_id;
             v[2] = estructura_plantillas[i].presupuesto_disp;
             v[3] = estructura_plantillas[i].puntuacion_acum;
-            strcpy(aux,estructura_plantillas[i].nombre_plantilla);
+            strcpy(&aux,estructura_plantillas[i].nombre_plantilla);
 
-            estructura_plantillas[i].usuario_id = estructura_plantillas[sizeof(estructura_plantillas)].usuario_id;
-            estructura_plantillas[i].plantilla_id = estructura_plantillas[sizeof(estructura_plantillas)].plantilla_id;
-            estructura_plantillas[i].presupuesto_disp = estructura_plantillas[sizeof(estructura_plantillas)].presupuesto_disp;
-            estructura_plantillas[i].puntuacion_acum = estructura_plantillas[sizeof(estructura_plantillas)].puntuacion_acum;
-            strcpy(estructura_plantillas[i].nombre_plantilla , estructura_plantillas[sizeof(estructura_plantillas)].nombre_plantilla);
+            estructura_plantillas[i].usuario_id = estructura_plantillas[estructura_config->tam_plantillas].usuario_id;
+            estructura_plantillas[i].plantilla_id = estructura_plantillas[estructura_config->tam_plantillas].plantilla_id;
+            estructura_plantillas[i].presupuesto_disp = estructura_plantillas[estructura_config->tam_plantillas].presupuesto_disp;
+            estructura_plantillas[i].puntuacion_acum = estructura_plantillas[estructura_config->tam_plantillas].puntuacion_acum;
+            strcpy(estructura_plantillas[i].nombre_plantilla , estructura_plantillas[estructura_config->tam_plantillas].nombre_plantilla);
 
-            estructura_plantillas[sizeof(estructura_plantillas)].usuario_id = v[0];
-            estructura_plantillas[sizeof(estructura_plantillas)].plantilla_id = v[1];
-            estructura_plantillas[sizeof(estructura_plantillas)].presupuesto_disp = v[2];
-            estructura_plantillas[sizeof(estructura_plantillas)].puntuacion_acum = v[3];
-            strcpy(estructura_plantillas[sizeof(estructura_plantillas)].nombre_plantilla , aux);
+            estructura_plantillas[estructura_config->tam_plantillas].usuario_id = v[0];
+            estructura_plantillas[estructura_config->tam_plantillas].plantilla_id = v[1];
+            estructura_plantillas[estructura_config->tam_plantillas].presupuesto_disp = v[2];
+            estructura_plantillas[estructura_config->tam_plantillas].puntuacion_acum = v[3];
+            strcpy(estructura_plantillas[estructura_config->tam_plantillas].nombre_plantilla , &aux);
         }
     }
 
     //Redimensionamos el vector estructura_plantillas, al eliminar una plantilla, le quitamos un elemento
 
-    estructura_plantillas = (plantillas*)realloc(estructura_plantillas,(sizeof(estructura_plantillas)-1)*sizeof(int));
+    estructura_plantillas = (plantillas*)realloc(estructura_plantillas,(estructura_config->tam_plantillas-1)*sizeof(int));
     if(estructura_plantillas==NULL){printf("\nFallo de reserva de memoria");}
 
     //Ahora eliminamos todos los futbolistas de jugadores_plantillas con la id de la plantilla eliminada
     //El uso del do while se debe a que si cambio un futbolista de la plantilla seleccionada por el ultimo para
     //Hacer el realloc es posible que el ultimo futbolista tambien pertenezca a esa plantilla
 
-    for(i=0 ; i<=sizeof(estructura_jugadores_plantillas) ; i++){
+    for(i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
 
         do{
 
@@ -347,15 +376,15 @@ void eliminar_plantillas(int *id, plantillas *estructura_plantillas, jugadores_p
             v[1] = estructura_jugadores_plantillas[i].plantilla_id;
 
             estructura_jugadores_plantillas[i].jugador_platilla_id =
-                    estructura_jugadores_plantillas[sizeof(estructura_jugadores_plantillas)].jugador_platilla_id;
+                    estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas].jugador_platilla_id;
             estructura_jugadores_plantillas[i].plantilla_id =
-                    estructura_jugadores_plantillas[sizeof(estructura_jugadores_plantillas)].plantilla_id;
+                    estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas].plantilla_id;
 
-            estructura_jugadores_plantillas[sizeof(estructura_jugadores_plantillas)].jugador_platilla_id = v[0];
-            estructura_jugadores_plantillas[sizeof(estructura_jugadores_plantillas)].plantilla_id = v[1];
+            estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas].jugador_platilla_id = v[0];
+            estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas].plantilla_id = v[1];
 
             estructura_jugadores_plantillas = (jugadores_plantillas *)
-                    realloc(estructura_jugadores_plantillas,(sizeof(estructura_jugadores_plantillas)-1)*sizeof(int));
+                    realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas-1)*sizeof(int));
 
             if(estructura_jugadores_plantillas==NULL){printf("\nFallo de reserva de memoria");}
 
@@ -366,22 +395,22 @@ void eliminar_plantillas(int *id, plantillas *estructura_plantillas, jugadores_p
 }
 
 void listar_jugadores_plantillas(int *plantilla, jugadores_plantillas *estructura_jugadores_plantillas,
-                                futbolistas *estructura_futbolistas){
+                                futbolistas *estructura_futbolistas, configuracion *estructura_config){
 
     int i,j;
 
     printf("\n\nLos futbolistas que pertenecen a la plantilla %i son:",*plantilla);
 
-    for(i=0 ; i<=sizeof(estructura_jugadores_plantillas) ; i++){
+    for(i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
 
         //Identifico a los futbolistas de esa plantilla ya que plantilla_id es el mismo dato en jugadores_plantillas
         //Y en plantillas
 
-        if (*plantilla = estructura_jugadores_plantillas[i].plantilla_id){
+        if (*plantilla == estructura_jugadores_plantillas[i].plantilla_id){
 
             //Busco al futbolista mediante su campo futbolista_id para imprimir sus datos
 
-            for(j=0 ; j<=sizeof(estructura_futbolistas) ; j++){
+            for(j = 0 ; j < estructura_config->tam_futbolistas ; j++){
 
                 //Identifico al futbolista
 
@@ -400,13 +429,14 @@ void listar_jugadores_plantillas(int *plantilla, jugadores_plantillas *estructur
 }
 
 void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas *estructura_jugadores_plantillas,
-                                futbolistas *estructura_futbolistas,plantillas *estructura_plantillas) {
+                                futbolistas *estructura_futbolistas,plantillas *estructura_plantillas,
+                                 configuracion *estructura_config) {
 
     int i, j, opcion, aux1, aux2;
 
     printf("\n\nLos futbolistas que pertenecen a la plantilla %i son:", *plantilla);
 
-    for (i = 0; i <= sizeof(estructura_jugadores_plantillas); i++) {
+    for (i = 0; i < estructura_config->tam_jugadores_plantillas ; i++) {
 
         //Identifico a los futbolistas de esa plantilla ya que plantilla_id es el mismo dato en jugadores_plantillas
         //Y en plantillas
@@ -427,7 +457,7 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas *estructur
 
     //Busco al futbolista para poder hacer la suma de presupuesto de la plantilla
 
-    for(i=0 ; i<=sizeof(estructura_futbolistas) ; i++){
+    for(i = 0 ; i <estructura_config->tam_futbolistas ; i++){
 
         if(opcion == estructura_futbolistas[i].futbolista_id){
 
@@ -448,7 +478,7 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas *estructur
     //Por el ultimo, así al hacer el realloc lo borro , aux1 y aux2 me ayudaran a hacer el cambio ya que
     //Jugadores_plantillas tiene 2 parametros
 
-    for(i=0 ; i<=sizeof(estructura_jugadores_plantillas) ; i++){
+    for(i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
 
         if(opcion == estructura_jugadores_plantillas[i].jugador_platilla_id) {
 
@@ -464,7 +494,7 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas *estructur
             //Una vez cambiados los valores, procedo a hacer el realloc
 
             estructura_jugadores_plantillas = (jugadores_plantillas *)
-                    realloc(estructura_jugadores_plantillas,(sizeof(estructura_jugadores_plantillas)-1)*sizeof(int));
+                    realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas-1)*sizeof(int));
 
             if(estructura_jugadores_plantillas==NULL){printf("\nFallo de reserva de memoria");}
 
@@ -482,7 +512,7 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
     //Llamo a la funcion mostrar futbolista anteriormente declarada
 
-    mostrar_futbolistas(estructura_futbolistas);
+    mostrar_futbolistas(estructura_futbolistas,estructura_config);
 
     printf("\nIntroduce el ID del futbolista que quiera anadir a la plantilla:");
     scanf("%i",&futbolista);
@@ -499,7 +529,7 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
         }
     }
 
-    for(i=0 ; i<=sizeof(estructura_plantillas) ; i++){
+    for(i = 0 ; i < estructura_config->tam_plantillas ; i++){
 
         if(estructura_plantillas[i].plantilla_id == *plantilla){
 
@@ -515,7 +545,7 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
         printf("\nEl precio del futbolista que has seleccionado es superior al presupuesto de tu plantilla\n\n");
 
-        configurar_plantillas(&id,  &estructura_config,  estructura_jugadores_plantillas,
+        configurar_plantillas(id,  estructura_config,  estructura_jugadores_plantillas,
                  estructura_equipos,  estructura_usuarios,  estructura_futbolistas,
                  estructura_plantillas);
 
@@ -525,7 +555,7 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
         //Comprobamos si el futbolista ya esta en la plantilla o en otra, en ese caso no esta disponible
 
-        for(i=0 ; i<=sizeof(estructura_jugadores_plantillas) ; i++){
+        for(i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
 
             //Comprobar coincidencia del futbolista_id y su plantilla_id
 
@@ -534,7 +564,7 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
                 printf("\nEl futbolista seleccionado no esta disponible\n\n");
 
-                configurar_plantillas(&id,  &estructura_config,  estructura_jugadores_plantillas,
+                configurar_plantillas(id,  estructura_config,  estructura_jugadores_plantillas,
                                       estructura_equipos,  estructura_usuarios,  estructura_futbolistas,
                                       estructura_plantillas);
             }
@@ -545,15 +575,15 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
         //Con realloc aumentamos en 1 el tamaño de estructura_jugadores_plantillas
 
         estructura_jugadores_plantillas = (jugadores_plantillas *)
-                realloc(estructura_jugadores_plantillas,(sizeof(estructura_jugadores_plantillas)+1)*sizeof(int));
+                realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas+1)*sizeof(int));
 
         if(estructura_jugadores_plantillas==NULL){printf("\nFallo de reserva de memoria");}
 
         //Relleno los datos del nuevo espacio reservado con los datos del futbolista seleccionado
         //Los cuales estan guardados en aux1 y aux2
 
-        estructura_jugadores_plantillas[sizeof(estructura_jugadores_plantillas)].jugador_platilla_id = aux1+1;
-        estructura_jugadores_plantillas[sizeof(estructura_jugadores_plantillas)].plantilla_id = aux2+1;
+        estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas].jugador_platilla_id = aux1+1;
+        estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas].plantilla_id = aux2+1;
     }
 
 }
