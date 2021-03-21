@@ -6,6 +6,7 @@
 #include "librerias/login.h"
 #include "librerias/participantes.h"
 #include "librerias/cronista.h"
+#include "librerias/admin.h"
 
 //MAIN PROGRAM
 
@@ -90,6 +91,14 @@ int main() {
                               estructura_usuarios, estructura_plantillas,
                               estructura_jugadores_plantillas);
 
+            }
+
+            //Chequeamos si el usuario es Administrador
+
+            if(strcmp(perfil, "administrador") == 0) {
+
+                menuAdministrador(&estructura_config, estructura_equipos, estructura_futbolistas);
+                
             }
         }
 
