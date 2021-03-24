@@ -17,12 +17,12 @@ void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estruct
 //FUNCIONES
 
 
-//MENU CRONISTA:
-//      En caso de que el usuario sea cronista debe aparecer un menú:
-//      MENU CRONISTA
-//      1.- Listar Equipos
-//      2.- Valorar Equipos
-//      3.- Salir del programa
+//Cabecera: void menu_cronista(configuracion *estructura_config, futbolistas *estructura_futbolistas, equipos *estructura_equipos,
+//                   usuarios *estructura_usuarios, plantillas *estructura_plantillas,
+//                   jugadores_plantillas *estructura_jugadores_plantillas);
+//Precondicion: Entran todas las estructuras existentes que hemos volcado con anterioridad de los ficheros.
+//Postcondicion: Es una funcion MENU, es decir detalla todas las opciones que tiene el cronista, y dependiendo de la
+//                  eleccion del usuario, llamara a una funcion diferente o se saldra del programa.
 
 void menu_cronista(configuracion *estructura_config, futbolistas *estructura_futbolistas, equipos *estructura_equipos,
                    usuarios *estructura_usuarios, plantillas *estructura_plantillas,
@@ -30,7 +30,7 @@ void menu_cronista(configuracion *estructura_config, futbolistas *estructura_fut
 
     int selec;
 
-    printf("---------MENU CRONISTA----------\n");
+    printf("\n\n---------MENU CRONISTA----------\n");
     printf("                          \n");
     printf("      1.-Listar equipos    \n");
     printf("      2.-Valorar equipos   \n");
@@ -39,21 +39,29 @@ void menu_cronista(configuracion *estructura_config, futbolistas *estructura_fut
     printf(".....SELECCIONE UNA OPCION.....\n");
     printf("                           \n");
     printf(">");
-    scanf("%d", &selec);
+    scanf("%i", &selec);
 
     do {
         switch (selec) {
+            // 1.-Listar equipos
             case 1:
+                //LLAMAMOS A LA FUNCION QUE ESCRIBE TODOS LOS EQUIPOS POR PANTALLA (DECLARADA EN CORE.H)
                 mostrar_equipos(estructura_equipos, estructura_config);
-                break;   //LLAMAMOS A LA FUNCION QUE ESCRIBE TODOS LOS EQUIPOS POR PANTALLA (DECLARADA EN CORE.H)
+                break;
+
+            //2.-Valorar equipos
             case 2:
                 valorar_equipos(estructura_futbolistas, estructura_config);
                 break;
+
+            //3.-Salir del programa
             case 3:
+                //FUNCION SALIR DEL PROGRAMA (DECLARADA EN CORE.H)
                 salir_programa(estructura_config, estructura_futbolistas, estructura_equipos, estructura_usuarios,
                                estructura_plantillas, estructura_jugadores_plantillas);
-                break; //FUNCION SALIR DEL PROGRAMA (DECLARADA EN CORE.H)
+                break;
 
+            //En caso de que el usuario no elija ninguna de las opciones.
             default:    printf("\n\nPor favor seleccione una opcion correcta\n\n");
 
                 break;
@@ -62,26 +70,28 @@ void menu_cronista(configuracion *estructura_config, futbolistas *estructura_fut
     } while (selec > 0 && selec < 4);
 }
 
-//FUNCION VALORAR EQUIPOS:
-//      Permitirá al cronista actualizar las valoraciones de los futbolistas. Para ello,
+//Cabecera: void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estructura_configuracion);
+//Precondicion: Entran la estructura FUTBOLISTAS y la estructura CONFIGURACION
+//Postcondicion: Permitirá al cronista actualizar las valoraciones de los futbolistas. Para ello,
 //      el cronista seleccionará un identificador de un equipo y posteriormente le aparecerá la lista
 //      de futbolistas de dicho equipo junto con su valoración actual. A continuación, el cronista irá
 //      seleccionando futbolistas e introduciendo sus nuevas valoraciones (0-10).
 
 void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estructura_configuracion){
 
-    int valoracion;
     int id_equipo;
     int id_futbolista;
     int i;
     int selec;
 
+    //Dos bucles dowhile anidados, para el caso de que el usuario quiera volver atras, seguir valorando
+    //  jugadores del equipo introducido o cambiar de equipo.
     do {
 
         printf(".....INTRODUZCA UN ID DE EQUIPO.....\n");
         printf("                           \n");
         printf(">");
-        scanf("%d", &id_equipo);
+        scanf("%i", &id_equipo);
 
         do {
 
@@ -114,6 +124,7 @@ void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estruct
                     printf("                           \n");
                     printf(">");
                     scanf("%d", &estructura_futbolistas[i].valoracion);
+
                 }
             }
 
@@ -125,9 +136,9 @@ void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estruct
             printf(">");
             scanf("%d", &selec);
 
-        }while(selec == 1);
+        }while(selec == 1); //Si elige 1, volvera a la linea 97, en la cual podra seguir valorando a mas jugadores del mismo equipo.
 
-    }while (selec == 2);
+    }while (selec == 2); //Si elige 2, volvera a la linea 89, para asi introducir un nuevo id de equipo para poder valorarlo.
 }
 
 #endif //PROYECTO_CRONISTA_H
