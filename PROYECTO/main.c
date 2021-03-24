@@ -98,7 +98,7 @@ int main() {
             if(strcmp(perfil, "administrador") == 0) {
 
                 menuAdministrador(&estructura_config, estructura_equipos, estructura_futbolistas);
-                
+
             }
         }
 
