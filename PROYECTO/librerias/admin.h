@@ -15,7 +15,6 @@ void addUsuarios(usuarios *, configuracion *);
 void eliminarUsuarios(usuarios *, configuracion *);
 void modificarConfiguracion(configuracion *);
 
-
 void menuAdministrador(configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
                        equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
                        plantillas *estructura_plantillas) { //metodo general del menu administrador
@@ -119,11 +118,76 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas *e
 }
 
     void addEquipos(equipos *estructura_equipos, configuracion *estructura_config){
+    char c,temp[21];
+    int aux1;
+    do {
+        printf("\nIntroduce el nombre del nuevo equipo: ");
+        scanf("%s", temp);
+        for (int i = 0;i < estructura_config->tam_equipos; i++) {      //bucle para recorrer toda la estructura de equipos
+            if (strcmp(temp, estructura_equipos[i].nombre_equipo) == 0) {  //si temp coincide con algún nombre, aux1 valdrá 1
+                aux1 = 1;
+            }else aux1 = 0;
+        }
+        if (aux1 == 1) {        //si es 1, entonces ese nombre ya está en uso
+            printf("\nEl nombre del equipo ya esta en uso, Desea probar con otro nombre? (S o s para confirmar)");
+            scanf("%c", &c);
+        }
+    }while((c == 's' || c == 'S')&&aux1 == 1);   //mientras diga sí y el nombre esté en uso
+    printf("\nEl nombre se ha guardado con exito.");
+    equipos *estructura_equipos_temp = (equipos*)realloc(estructura_equipos,(estructura_config->tam_equipos + 1)*sizeof(equipos));
+    estructura_equipos = estructura_equipos_temp;
+    strcpy(estructura_equipos[estructura_config->tam_equipos].nombre_equipo, temp);
+    estructura_equipos[estructura_config->tam_equipos].equipo_id = estructura_config->tam_equipos;
 }
 
     void eliminarEquipos(equipos *estructura_equipos, configuracion *estructura_config) {
 }
 
+    void addUsuarios(usuarios *estructura_usuarios, configuracion *estructura_config){
+        char c,temp[21],perfil_temp[15],nick_temp[6],password_temp[9];
+        int aux1;
+        do {
+            printf("\nIntroduce el nombre del nuevo usuario: ");
+            scanf("%s", temp);
+            for (int i = 0;i < estructura_config->tam_usuarios; i++) {      //bucle para recorrer toda la estructura de usuarios
+                if (strcmp(temp, estructura_usuarios[i].nombre_usuario) == 0) {  //si temp coincide con algún nombre, aux1 valdrá 1
+                    aux1 = 1;
+                }else aux1 = 0;
+            }
+            if (aux1 == 1) {        //si es 1, entonces ese nombre ya está en uso
+                printf("\nEl nombre del usuario ya esta en uso, Desea probar con otro nombre? (S o s para confirmar)");
+                scanf("%c", &c);
+            }
+        }while((c == 's' || c == 'S')&&aux1 == 1);   //mientras diga sí y el nombre esté en uso
+        printf("\nEl nombre se ha guardado con exito.");
+        estructura_config->tam_usuarios += 1;
+        usuarios *estructura_usuarios_temp = (usuarios*)realloc(estructura_usuarios,(estructura_config->tam_usuarios)*sizeof(usuarios));
+        estructura_usuarios = estructura_usuarios_temp;
+        strcpy(estructura_usuarios[estructura_config->tam_usuarios].nombre_usuario, temp);
+        estructura_usuarios[estructura_config->tam_usuarios].usuario_id = estructura_config->tam_equipos;
+
+        do {
+            printf("Introduzca un perfil de usuario: ");
+            scanf("%s", perfil_temp);
+        } while (strcmp(perfil_temp, "Administrador") != 0 || strcmp(perfil_temp, "Participante") != 0 ||
+                 strcmp(perfil_temp, "Cronista") != 0);
+
+        do {
+            printf("\nIntroduzca ahora el nick:");  //nuevo nombre para el nick
+            scanf("%s", nick_temp);
+
+        } while (strlen(nick_temp) > strlen(estructura_usuarios[aux1].usuario_nick));  //regula que el nick no sea mayor que el tamaño predefinido
+
+        do {
+            printf("\nIntroduzca ahora la password:");  //nuevo password
+            scanf("%s", password_temp);
+
+        } while (strlen(password_temp) > strlen(estructura_usuarios[aux1].usuario_password));  //regula que la password no sea mayor que el tamaño predefinido
+
+        strcpy(estructura_usuarios[estructura_config->tam_usuarios].usuario_perfil,perfil_temp);        //copio el perfil en la estructura
+        strcpy(estructura_usuarios[estructura_config->tam_usuarios].usuario_nick,nick_temp);            //copio el nick en la estructura
+        strcpy(estructura_usuarios[estructura_config->tam_usuarios].usuario_password,password_temp);    //copio la password en la estructura
+    }
     void modificarUsuarios(usuarios *estructura_usuarios, configuracion *estructura_config) {
         char temp[21], c, nombre_temp[21], perfil_temp[15], nick_temp[5], password_temp[9];
         int aux1 = 0;
@@ -136,8 +200,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas *e
                     aux1 = i;
                 }
             }
-            if (aux1 ==
-                0) {//si no se ha almacenado un nuevo valor del iterador, entonces el nombre introducido no está en la estructura
+            if (aux1 ==0) {//si no se ha almacenado un nuevo valor del iterador, entonces el nombre introducido no está en la estructura
                 printf("\nEl nombre introducido de equipo no existe, Desea probar con otro nombre? (S o s para confirmar)");
                 scanf("%c", &c);
             }
@@ -160,7 +223,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas *e
                  strcmp(perfil_temp, "Cronista") != 0);
 
         do {
-            printf("\nIntroduzca ahora el nuevo nombre:");  //nuevo nombre para el nick
+            printf("\nIntroduzca ahora el nuevo nick:");  //nuevo nombre para el nick
             scanf("%s", nick_temp);
 
         } while (strlen(nick_temp) > strlen(estructura_usuarios[aux1].usuario_nick));  //regula que el nuevo nick no sea mayor que el tamaño predefinido
@@ -173,6 +236,89 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas *e
 
     }
 
+void eliminarUsuarios(usuarios *estructura_usuarios, configuracion *estructura_config){
+    char c,temp[21],perfil_temp[15],nick_temp[6],password_temp[9];
+    int aux1;
+    do {
+        printf("\nIntroduce el nombre del usuario a eliminar: ");
+        scanf("%s", temp);
+        for (int i = 0;i < estructura_config->tam_usuarios; i++) {      //bucle para recorrer toda la estructura de usuarios
+            if (strcmp(temp, estructura_usuarios[i].nombre_usuario) == 0) {  //si temp coincide con algún nombre, aux1 valdrá i
+                aux1 = i;
+            }else aux1 = 1;
+        }
+        if (aux1 == 1) {        //si es 1, entonces ese nombre no está registrado
+            printf("\nEl nombre del usuario no está registrado, Desea probar con otro nombre? (S o s para confirmar)");
+            scanf("%c", &c);
+        }
+    }while((c == 's' || c == 'S')&&aux1 == 1);   //mientras diga sí y el nombre esté en uso
+    printf("\nEl nombre se ha guardado con exito.");
+    strcpy(estructura_usuarios[aux1].nombre_usuario, "\0");  //cadena vacía
+    estructura_usuarios[aux1].usuario_id = 0;                        //cambio de id
+    estructura_config->tam_usuarios -= 1;
+    usuarios *estructura_usuarios_temp = (usuarios*)realloc(estructura_usuarios,(estructura_config->tam_usuarios)*sizeof(usuarios));
+    estructura_usuarios = estructura_usuarios_temp;
+
+
+    do {
+        printf("Introduzca un perfil de usuario: ");
+        scanf("%s", perfil_temp);
+    } while (strcmp(perfil_temp, "Administrador") != 0 || strcmp(perfil_temp, "Participante") != 0 ||
+             strcmp(perfil_temp, "Cronista") != 0);
+
+    do {
+        printf("\nIntroduzca ahora el nick:");  //nuevo nombre para el nick
+        scanf("%s", nick_temp);
+
+    } while (strlen(nick_temp) > strlen(estructura_usuarios[aux1].usuario_nick));  //regula que el nick no sea mayor que el tamaño predefinido
+
+    do {
+        printf("\nIntroduzca ahora la password:");  //nuevo password
+        scanf("%s", password_temp);
+
+    } while (strlen(password_temp) > strlen(estructura_usuarios[aux1].usuario_password));  //regula que la password no sea mayor que el tamaño predefinido
+
+    strcpy(estructura_usuarios[estructura_config->tam_usuarios].usuario_perfil,perfil_temp);        //copio el perfil en la estructura
+    strcpy(estructura_usuarios[estructura_config->tam_usuarios].usuario_nick,nick_temp);            //copio el nick en la estructura
+    strcpy(estructura_usuarios[estructura_config->tam_usuarios].usuario_password,password_temp);    //copio la password en la estructura
+}
+
         void modificarConfiguracion(configuracion *estructura_config) {
+        int a=0, presupuestoTemp=0, maxPlanParTemp=0, maxFutPlan=0;
+        char c;
+        do{
+            printf("\nQue desea modificar?");
+            printf("\n1. Presupuesto por defecto.");
+            printf("\n2. Maximo de futbolistas por plantilla.");
+            printf("\n3. Maximo de plantillas por jugador.");
+            scanf("%i",&a);
+            switch(a){
+                case 1:
+                        do{
+                            printf("\nIntroduce un nuevo valor para el presupuesto por defecto: ");
+                            scanf("%i",&presupuestoTemp);
+                        }while(presupuestoTemp < 0 || presupuestoTemp > 999999);
+                            printf("\nValor actualizado.");
+                            estructura_config->presupuesto_defecto = presupuestoTemp;break;
+                case 2:
+                        do {
+                            printf("\nIntroduce un nuevo valor para el maximo de futbolistas por plantilla: ");
+                            scanf("%i", &maxFutPlan);
+                        }while(maxFutPlan < 0 || maxFutPlan > 15);
+                            printf("\nValor actualizado.");
+                            estructura_config->max_futbolistas_plantilla = maxFutPlan;break;
+                case 3:
+                        do {
+                            printf("\nIntroduce un nuevo valor para el maximo de plantillas por participante: ");
+                            scanf("%i", &maxPlanParTemp);
+                        }while(maxFutPlan < 0 || maxFutPlan > 6);
+                        printf("\nValor actualizado.");
+                        estructura_config->max_plantillas_participante = maxPlanParTemp;break;
+
+                default: exit(EXIT_FAILURE);
+            }
+            printf("Desea seguir modificando la configuracion? (Pulse 's' o 'S' para continuar)");
+            scanf("%c",&c);
+        }while (c == 's' || c == 'S');
         }
 #endif //PROYECTO_ADMIN_H
