@@ -546,32 +546,9 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas *estructur
 
     int i, j, opcion, aux1, aux2;
 
-    printf("\n\nLos futbolistas que pertenecen a la plantilla %i son:", *plantilla);
+    //Mostramos los futbolistas mediante la función previamente definida en core.h
 
-    for (i = 0; i < estructura_config->tam_jugadores_plantillas ; i++) {
-
-        //Identifico a los futbolistas de esa plantilla ya que plantilla_id es el mismo dato en jugadores_plantillas
-        //Y en plantillas
-
-        if (*plantilla == estructura_jugadores_plantillas[i].plantilla_id) {
-
-            for(j = 0 ; j < estructura_config->tam_futbolistas ; j++){
-
-                //Identifico al futbolista
-
-                if(estructura_jugadores_plantillas[i].jugador_platilla_id == estructura_futbolistas[j].futbolista_id){
-
-                    //Muestro sus datos
-
-                    printf("\n%i , equipo:%i, %s, precio:%i, valoracion:%i\n",estructura_futbolistas[j].futbolista_id,
-                           estructura_futbolistas[j].equipo_id,estructura_futbolistas[j].nombre_futbolista,
-                           estructura_futbolistas[j].futbolista_precio,estructura_futbolistas[j].valoracion);
-
-                }
-            }
-
-        }
-    }
+    mostrar_futbolistas(estructura_futbolistas,estructura_config);
 
     printf("\n\nAhora elija la ID del jugador a eliminar:");
     scanf("%i",&opcion);
@@ -599,31 +576,60 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas *estructur
     //Por el ultimo, así al hacer el realloc lo borro , aux1 y aux2 me ayudaran a hacer el cambio ya que
     //Jugadores_plantillas tiene 2 parametros
 
-    for(i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
+    //Comprobamos si el futbolista a borrar es el ultimo de jugadores_futbolistas, para ahorrar todo el proceso comentado
+    //anteriormente, si no, se realiza el algoritmo de la burbuja
 
-        if(opcion == estructura_jugadores_plantillas[i].jugador_platilla_id) {
+    if (opcion == estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas].jugador_platilla_id){
 
-            aux1 = estructura_jugadores_plantillas[opcion].jugador_platilla_id;
-            aux2 = estructura_jugadores_plantillas[opcion].plantilla_id;
+        estructura_jugadores_plantillas = (jugadores_plantillas *)
+                realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas-1)*sizeof(int));
 
-            estructura_jugadores_plantillas[opcion].jugador_platilla_id = estructura_jugadores_plantillas[i].jugador_platilla_id;
-            estructura_jugadores_plantillas[opcion].plantilla_id = estructura_jugadores_plantillas[i].plantilla_id;
+        //Reducimos en 1 el tamaño de jugadores plantilla
 
-            estructura_jugadores_plantillas[i].jugador_platilla_id = aux1;
-            estructura_jugadores_plantillas[i].plantilla_id = aux2;
+        estructura_config->tam_jugadores_plantillas--;
 
-            //Una vez cambiados los valores, procedo a hacer el realloc
+        if(estructura_jugadores_plantillas == NULL){printf("\nFallo de reserva de memoria");}
 
-            estructura_jugadores_plantillas = (jugadores_plantillas *)
-                    realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas-1)*sizeof(int));
-
-            estructura_config->tam_jugadores_plantillas--; //Reducimos en 1 el tamaño de jugadores plantilla
-
-            if(estructura_jugadores_plantillas == NULL){printf("\nFallo de reserva de memoria");}
-
-        }
     }
 
+    else {
+
+        for (i = 0; i < estructura_config->tam_jugadores_plantillas; i++) {
+
+            if (opcion == estructura_jugadores_plantillas[i].jugador_platilla_id) {
+
+                //Los auxiliares toman el valor de los datos del futbolista a borrar
+
+                aux1 = estructura_jugadores_plantillas[opcion].jugador_platilla_id;
+                aux2 = estructura_jugadores_plantillas[opcion].plantilla_id;
+
+                //Los datos de la posición del futbolista a borrar son cambiados por los del ultimo
+
+                estructura_jugadores_plantillas[opcion].jugador_platilla_id =
+                        estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas].jugador_platilla_id;
+                estructura_jugadores_plantillas[opcion].plantilla_id =
+                        estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas].plantilla_id;
+
+                //Los datos del ultimo futbolistas son cambiados por los guardados en aux1 y aux2
+
+                estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas].jugador_platilla_id = aux1;
+                estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas].plantilla_id = aux2;
+
+                //Una vez cambiados los valores, procedo a hacer el realloc
+
+                estructura_jugadores_plantillas = (jugadores_plantillas *)
+                        realloc(estructura_jugadores_plantillas,
+                                (estructura_config->tam_jugadores_plantillas - 1) * sizeof(int));
+
+                //Reducimos en 1 el tamaño de jugadores plantilla
+
+                estructura_config->tam_jugadores_plantillas--;
+
+                if (estructura_jugadores_plantillas == NULL) { printf("\nFallo de reserva de memoria"); }
+
+            }
+        }
+    }
 }
 
 //Cabecera: void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura_config,
