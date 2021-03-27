@@ -105,6 +105,9 @@ int salir_programa(configuracion *estructura_config,futbolistas *estructura_futb
 
 //FUNCIONES
 
+//Cabecera: void volcar_configuracion(configuracion *estructura_config);
+//Precondición: La función recibe el vector dinamico de estructura_config
+//Postcondición: Se volca toda la informacion del fichero configuracion.txt en estructura_config
 
 void volcar_configuracion(configuracion *estructura_config){
 
@@ -122,6 +125,9 @@ void volcar_configuracion(configuracion *estructura_config){
 
     fclose(f_configuracion);
 }
+//Cabecera: void volcar_futbolistas(futbolistas *estructura_futbolistas, configuracion *estructura_config);
+//Precondición: La función recibe el vector dinámico de estructura_futbolistas y estructura_config
+//Postcondición: Vuelca toda la información del fichero futbolistas.txt en estructura_futbolistas
 
 void volcar_futbolistas(futbolistas *estructura_futbolistas, configuracion *estructura_config){
 
@@ -176,6 +182,10 @@ void volcar_futbolistas(futbolistas *estructura_futbolistas, configuracion *estr
 
     fclose(f_futbolistas);
 }
+
+//Cabecera: void volcar_equipos(equipos *estructura_equipos, configuracion *estructura_config);
+//Precondición: La función recibe el vector dinámico estructura_equipos y estructura_config
+//Postcondición: Se vuelca toda la información del fichero equipos.txt en estructura_equipos
 
 void volcar_equipos(equipos *estructura_equipos, configuracion *estructura_config){
 
@@ -260,12 +270,13 @@ void volcar_usuarios(usuarios *estructura_usuarios, configuracion *estructura_co
 
     //Reserva memoria en el vector dinamico
 
-    estructura_usuarios =(usuarios*)calloc(estructura_config->tam_usuarios,sizeof(int));  // El 3 es porque al principio hay solo 3 usuarios en el fichero
+    estructura_usuarios =(usuarios*)calloc(estructura_config->tam_usuarios,sizeof(int));
+    // El 3 es porque al principio hay solo 3 usuarios en el fichero
     if(estructura_usuarios==NULL){printf("Fallo de reserva de memoria\n");}
 
     //Rellena la estructura_usuarios
 
-    for (i=0 ; i<estructura_config->tam_usuarios ; i++){
+    for (i = 0 ; i < estructura_config->tam_usuarios ; i++){
 
         fscanf(f_usuarios,"%i",&estructura_usuarios[i].usuario_id);
         fscanf(f_usuarios,"%s",estructura_usuarios[i].nombre_usuario);
@@ -276,33 +287,108 @@ void volcar_usuarios(usuarios *estructura_usuarios, configuracion *estructura_co
     fclose(f_usuarios);
 }
 
-// Fichero plantillas empieza vacio , creamos unicamente la variable estructura
+//Cabecera: void volcar_plantillas(plantillas *estructura_plantillas, configuracion *estructura_config);
+//Precondicion: La función recibe el vector dinámico de estructura_plantillas y estructura_config
+//Postcondición: Es volcada la informacion del fichero plantillas.txt en estructura_plantillas
 
 void volcar_plantillas(plantillas *estructura_plantillas, configuracion *estructura_config){
 
+    int  i , tam = 1;
+    char c;
 
-    // Le damos 1 espacio al vector dinamico, si se añaden plantillas se aumentara el tamano
+    FILE *f_plantillas;
+    f_plantillas = fopen("files/usuarios.txt", "r");
 
-    estructura_config->tam_plantillas = 1;
+    if(f_plantillas==NULL){printf("Fallo de apertura de fichero\n");}
 
-    estructura_plantillas = (plantillas*)calloc(estructura_config->tam_plantillas,sizeof(int));
+    //Contamos el numero de lineas del fichero usuarios mediante tam
+
+    while(c!=EOF){
+
+        c = fgetc(f_plantillas);
+
+        if(c == '\n'){
+
+            tam++;
+
+        }
+    }
+
+    estructura_config->tam_plantillas = tam / 5;
+
+    //Dividimos el numero de lineas (tam) entre 5, ya que la estructura plantillas tiene 5 campos
+    //Como el fichero está hecho de manera que cada campo ocupa una linea,
+    //El resultado de la división será el número de plantillas
+
+    estructura_plantillas =(plantillas*)calloc(estructura_config->tam_plantillas,sizeof(int));
     if(estructura_plantillas==NULL){printf("Fallo de reserva de memoria\n");}
 
+    //Volcamos los datos
+
+    for (i = 0 ; i < estructura_config->tam_plantillas ; i++){
+
+        fscanf(f_plantillas,"%i", &estructura_plantillas->usuario_id);
+        fscanf(f_plantillas,"%i", &estructura_plantillas->plantilla_id);
+        fscanf(f_plantillas,"%s", estructura_plantillas->nombre_plantilla);
+        fscanf(f_plantillas,"%i", &estructura_plantillas->presupuesto_disp);
+        fscanf(f_plantillas,"%i", &estructura_plantillas->puntuacion_acum);
+    }
+
+    fclose(f_plantillas);
 
 }
 
-//Fichero jugadores_plantillas empieza vacio, creamos unicamente la variable estructura
+//Cabecera: void volcar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas,
+//                                           configuracion *estructura_config);
+//Precondicion: La función recibe el vector dinámico de estructura_jugadores_plantillas y estructura_config
+//Postcondición: La funcion vuelca toda la informacion del fichero jugadores_plantillas.txt en estructura_jugadores_plantillas
 
 void volcar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas , configuracion *estructura_config){
 
-    //Le damos un espacio al vector dinamico, si se añaden futbolistas a las plantillas se aumentara el tamaño
+    int  i , tam = 1;
+    char c;
 
-    estructura_config->tam_jugadores_plantillas = 1;
+    FILE *f_jugadores_plantillas;
+    f_jugadores_plantillas = fopen("files/usuarios.txt", "r");
 
-    estructura_jugadores_plantillas = (jugadores_plantillas*)calloc(estructura_config->tam_jugadores_plantillas,sizeof(int));
+    if(f_jugadores_plantillas==NULL){printf("Fallo de apertura de fichero\n");}
+
+    //Contamos el numero de lineas del fichero usuarios con tam
+
+    while(c!=EOF){
+
+        c = fgetc(f_jugadores_plantillas);
+
+        if(c == '\n'){
+
+            tam++;
+
+        }
+    }
+
+    estructura_config->tam_jugadores_plantillas = tam / 2;
+
+    //Divido el número de lineas(tam) entre 2 ya que la estructura jugadores_plantillas tiene 2 campos
+    //Y dado que en el fichero cada campo ocupa 1 linea, el resultado de la división será el número de jugadores_plantillas
+
+    estructura_jugadores_plantillas =(jugadores_plantillas *)calloc(estructura_config->tam_jugadores_plantillas,sizeof(int));
     if(estructura_jugadores_plantillas==NULL){printf("Fallo de reserva de memoria\n");}
 
+    //Se vuelcan los datos
+
+    for (i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
+
+        fscanf(f_jugadores_plantillas,"%i", &estructura_jugadores_plantillas->plantilla_id);
+        fscanf(f_jugadores_plantillas,"%i", &estructura_jugadores_plantillas->jugador_platilla_id);
+    }
+
+    fclose(f_jugadores_plantillas);
+
 }
+
+//Cabecera: void escribir_configuracion(configuracion *estructura_config);
+//Precondición: La función recibe la variable estructura_configuracion
+//Postcondición: Se escriben en el fichero configuración.txt los datos de estructura_configuracion
 
 void escribir_configuracion(configuracion *estructura_config){
 
@@ -335,6 +421,10 @@ void escribir_configuracion(configuracion *estructura_config){
 
     fclose(f_configuracion);
 }
+
+//Cabecera: void escribir_futbolistas(futbolistas *estructura_futbolistas, configuracion *estructura_config);
+//Precondición: La función recibe la variable dinámica estructura_fitbolistas y estructura_configuracion
+//Postcondición: Se escriben en el fichero futbolistas.txt los datos de estructura_futbolistas
 
 void escribir_futbolistas(futbolistas *estructura_futbolistas, configuracion *estructura_config){
 
@@ -370,6 +460,10 @@ void escribir_futbolistas(futbolistas *estructura_futbolistas, configuracion *es
     free(estructura_futbolistas);
 }
 
+//Cabecera: void escribir_equipos(equipos *estructura_equipos, configuracion *estructura_config);
+//Precondición: La función recibe el vector dinámico estructura_equipos y la estructura_configuracion
+//Postcondición: Se escriben en el fichero equipos.txt los datos de estructura_equipos
+
 void escribir_equipos(equipos *estructura_equipos, configuracion *estructura_config){
 
     int i;
@@ -398,6 +492,10 @@ void escribir_equipos(equipos *estructura_equipos, configuracion *estructura_con
 
     free(estructura_equipos);
 }
+
+//Cabecera: void escribir_usuarios(usuarios *estructura_usuarios, configuracion *estructura_config);
+//Precondición: La función recibe el vector dinámico estructura_usuarios y la estructura_configuracion
+//Postcondición: Se escriben en el fichero usuarios.txt los datos de estructura_usuarios
 
 void escribir_usuarios(usuarios *estructura_usuarios, configuracion *estructura_config){
 
@@ -434,6 +532,10 @@ void escribir_usuarios(usuarios *estructura_usuarios, configuracion *estructura_
     free(estructura_usuarios);
 }
 
+//Cabecera: void escribir_plantillas(plantillas *estructura_plantillas, configuracion *estructura_config);
+//Precondición: La función recibe el vector dinámico estructura_plantillas y la estructura_configuracion
+//Postcondición: Se escriben en el fichero plantillas.txt los datos de estructura_plantillas
+
 void escribir_plantillas(plantillas *estructura_plantillas, configuracion *estructura_config) {
 
     int i;
@@ -468,6 +570,10 @@ void escribir_plantillas(plantillas *estructura_plantillas, configuracion *estru
         free(estructura_plantillas);
     }
 
+//Cabecera: void escribir_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas,
+//                                             configuracion *estructura_config);
+//Precondición: La función recibe el vector dinámico estructura_jugadores_plantillas y la estructura_configuracion
+//Postcondición: Se escriben en el fichero jugadores_plantillas.txt los datos de estructura_jugadores_plantillas
 
     void escribir_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas,
                                        configuracion *estructura_config) {
@@ -499,7 +605,9 @@ void escribir_plantillas(plantillas *estructura_plantillas, configuracion *estru
 
     }
 
-//Mostrar los parametros actuales de estructura_config
+//Cabecera: void mostrar_configuracion(configuracion *estructura_config);
+//Precondición: La función recibe el vector estructura_config
+//Postcondición: La función muestra los datos de estructura_config
 
     void mostrar_configuracion(configuracion *estructura_config) {
 
@@ -509,7 +617,9 @@ void escribir_plantillas(plantillas *estructura_plantillas, configuracion *estru
                estructura_config->max_plantillas_participante);
     }
 
-//Mostrar los datos de los futbolistas actuales de estructura_futbolistas
+//Cabecera: void mostrar_futbolistas(futbolistas *estructura_futbolistas, configuracion *estructura_config);
+//Precondición: La función recibe el vector dinámico estructura_futbolistas y la estructura_config
+//Postcondición: La función muestra los datos de estructura_futbolistas
 
     void mostrar_futbolistas(futbolistas *estructura_futbolistas, configuracion *estructura_config) {
 
@@ -524,7 +634,9 @@ void escribir_plantillas(plantillas *estructura_plantillas, configuracion *estru
         }
     }
 
-//Mostrar los datos de los equipos actules de la estructura_equipos
+//Cabecera: void mostrar_equipos(equipos *estructura_equipos, configuracion *estructura_config);
+//Precondición: La función recibe el vector dinámico estructura_equipos y la estructura_config
+//Postcondición: La función muestra los datos de estructura_equipos
 
     void mostrar_equipos(equipos *estructura_equipos, configuracion *estructura_config) {
 
@@ -536,7 +648,9 @@ void escribir_plantillas(plantillas *estructura_plantillas, configuracion *estru
         }
     }
 
-//Mostrar los usuarios actuales de estructura_usuarios
+//Cabecera: void mostrar_usuarios(usuarios *estructura_usuarios , configuracion *estructura_config);
+//Precondición: La función recibe el vector dinámico estructura_usuarios y la estructura_config
+//Postcondición: La función muestra los datos de estructura_usuarios
 
     void mostrar_usuarios(usuarios *estructura_usuarios, configuracion *estructura_config) {
 
@@ -554,7 +668,9 @@ void escribir_plantillas(plantillas *estructura_plantillas, configuracion *estru
 
     }
 
-//Mostrar las plantillas actuales de estructura_plantillas
+//Cabecera: void mostrar_plantillas(plantillas *estructura_plantillas, configuracion *estructura_config);
+//Precondición: La función recibe el vector dinámico estructura_plantillas y la estructura_config
+//Postcondición: La función muestra los datos de estructura_plantillas
 
     void mostrar_plantillas(plantillas *estructura_plantillas, configuracion *estructura_config) {
 
@@ -572,7 +688,9 @@ void escribir_plantillas(plantillas *estructura_plantillas, configuracion *estru
 
     }
 
-//Mostrar los jugadores actuales asignados a las plantillas en la estructura_jugadores_plantillas
+//Cabecera: void mostrar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas, configuracion *estructura_config);
+//Precondición: La función recibe el vector dinámico estructura_jugadores_plantillas y la estructura_config
+//Postcondición: La función muestra los datos de estructura_jugadores_plantillas
 
     void mostrar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plantillas,configuracion *estructura_config) {
 
@@ -586,7 +704,12 @@ void escribir_plantillas(plantillas *estructura_plantillas, configuracion *estru
 
     }
 
-    //Funcion que se usará para salir de Liga Fantastica
+//Cabecera: int salir_programa(configuracion *estructura_config, futbolistas *estructura_futbolistas,
+//                             equipos *estructura_equipos,usuarios *estructura_usuarios,
+//                             plantillas *estructura_plantillas,jugadores_plantillas *estructura_jugadores_plantillas);
+//Precondición: La funcion recibe todos los vectores dinamicos de estructura y estructura_config
+//Postcondición: La función llama a todas las funciones para que escriban los datos modificados y añadidos durante el programa
+//              , y acaba saliendo del programa
 
     int salir_programa(configuracion *estructura_config, futbolistas *estructura_futbolistas, equipos *estructura_equipos,
                    usuarios *estructura_usuarios, plantillas *estructura_plantillas,
