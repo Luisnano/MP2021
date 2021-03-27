@@ -115,13 +115,21 @@ void volcar_configuracion(configuracion *estructura_config){
 
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","r");
-    if(f_configuracion==NULL){printf("Fallo de apertura de fichero\n");}
+
+    if(f_configuracion==NULL){
+        printf("Fallo de apertura de fichero\n");
+        exit(EXIT_FAILURE);}
 
     //Vuelcan datos del fichero
 
     fscanf(f_configuracion,"%i",&estructura_config->presupuesto_defecto);
     fscanf(f_configuracion,"%i",&estructura_config->max_futbolistas_plantilla);
     fscanf(f_configuracion,"%i",&estructura_config->max_plantillas_participante);
+    fscanf(f_configuracion,"%i",&estructura_config->tam_equipos);
+    fscanf(f_configuracion,"%i",&estructura_config->tam_futbolistas);
+    fscanf(f_configuracion,"%i",&estructura_config->tam_jugadores_plantillas);
+    fscanf(f_configuracion,"%i",&estructura_config->tam_plantillas);
+    fscanf(f_configuracion,"%i",&estructura_config->tam_usuarios);
 
     fclose(f_configuracion);
 }
@@ -140,7 +148,12 @@ void volcar_futbolistas(futbolistas *estructura_futbolistas, configuracion *estr
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/futbolistas.txt", "r");
 
-    if(f_futbolistas==NULL){printf("Fallo de apertura de fichero\n");}
+    if(f_futbolistas==NULL){
+
+        printf("Fallo de apertura de fichero\n");
+        exit(EXIT_FAILURE);
+
+    }
 
     //Contamos el numero de lineas del fichero futbolistas
 
@@ -197,7 +210,12 @@ void volcar_equipos(equipos *estructura_equipos, configuracion *estructura_confi
     FILE *f_equipos;
     f_equipos = fopen("files/equipos.txt", "r");
 
-    if(f_equipos==NULL){printf("Fallo de apertura de fichero\n");}
+    if(f_equipos==NULL){
+
+        printf("Fallo de apertura de fichero\n");
+        exit(EXIT_FAILURE);
+
+    }
 
     //Contamos el numero de lineas del fichero equipos
 
@@ -246,7 +264,12 @@ void volcar_usuarios(usuarios *estructura_usuarios, configuracion *estructura_co
     FILE *f_usuarios;
     f_usuarios = fopen("files/usuarios.txt", "r");
 
-    if(f_usuarios==NULL){printf("Fallo de apertura de fichero\n");}
+    if(f_usuarios==NULL){
+
+        printf("Fallo de apertura de fichero\n");
+        exit(EXIT_FAILURE);
+
+    }
 
     //Contamos el numero de lineas del fichero usuarios
 
@@ -299,7 +322,12 @@ void volcar_plantillas(plantillas *estructura_plantillas, configuracion *estruct
     FILE *f_plantillas;
     f_plantillas = fopen("files/usuarios.txt", "r");
 
-    if(f_plantillas==NULL){printf("Fallo de apertura de fichero\n");}
+    if(f_plantillas==NULL){
+
+        printf("Fallo de apertura de fichero\n");
+        exit(EXIT_FAILURE);
+
+    }
 
     //Contamos el numero de lineas del fichero usuarios mediante tam
 
@@ -351,7 +379,12 @@ void volcar_jugadores_plantillas(jugadores_plantillas *estructura_jugadores_plan
     FILE *f_jugadores_plantillas;
     f_jugadores_plantillas = fopen("files/usuarios.txt", "r");
 
-    if(f_jugadores_plantillas==NULL){printf("Fallo de apertura de fichero\n");}
+    if(f_jugadores_plantillas==NULL){
+
+        printf("Fallo de apertura de fichero\n");
+        exit(EXIT_FAILURE);
+
+    }
 
     //Contamos el numero de lineas del fichero usuarios con tam
 
@@ -511,7 +544,7 @@ void escribir_usuarios(usuarios *estructura_usuarios, configuracion *estructura_
 
     //Escribimos en el fichero usuarios los datos de su respectiva estructura
 
-    for(i=0 ; i < estructura_config->tam_usuarios ; i++){
+    for(i = 0 ; i < estructura_config->tam_usuarios ; i++){
 
         fprintf(f_usuarios,"%i",estructura_usuarios[i].usuario_id);
         fprintf(f_usuarios, "%s", "\n");

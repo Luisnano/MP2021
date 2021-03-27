@@ -110,7 +110,7 @@ int main() {
             if (i == 2) {
 
                 registro(estructura_usuarios,&estructura_config);
-
+                acceso_sistema(estructura_usuarios,&estructura_config);
             }
         }
 

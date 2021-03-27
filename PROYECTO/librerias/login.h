@@ -28,6 +28,7 @@ int acceso_sistema(usuarios *estructura_usuarios, configuracion *estructura_conf
     int i = 0, j = 0, aux;
     char u[6], p[9];                    //Mismos tamaños(6 y 9) que el campo nick_usuario/password_usuario en usuario.txt
 
+    fflush(stdin);
     printf("Introduzca su usuario: ");
     fgets(u,6,stdin);
     fflush(stdin);
@@ -82,38 +83,75 @@ int acceso_sistema(usuarios *estructura_usuarios, configuracion *estructura_conf
 //Cabecera: void registro(usuarios *estructura_usuarios, configuracion *estructura_config).
 //Precondición: la función recibe los contenidos de la estructura usuarios y de la estructura configuración.
 //Poscondición: se registra un usuario de tipo participante.
+
 void registro(usuarios *estructura_usuarios, configuracion *estructura_config){
 
+
+    int i,j;        //J y aux serán auxiliares que servirán para saber cuando el nick o la contraseña ya existen
+    char aux[6];    //Tamaño 6 pues el tamaño del campo nick en usuarios es 6
+
     //Le asignamos un espacio más al vector dinámico usuarios.
-    estructura_usuarios = (usuarios*)realloc(estructura_usuarios,(estructura_config->tam_usuarios+1)*sizeof(int));
+
+    estructura_config->tam_usuarios++;
+
+    estructura_usuarios = (usuarios*)realloc(estructura_usuarios,(estructura_config->tam_usuarios)*sizeof(int));
 
     if(estructura_usuarios == NULL){printf("Fallo de reserva de memoria\n");}
 
-    printf("A continuacion se le pediran sus datos necesarios para el registro\n\n");
+    printf("\nA continuacion se le pediran sus datos necesarios para el registro\n");
     estructura_usuarios[estructura_config->tam_usuarios].usuario_id = estructura_config->tam_usuarios;
+
+    do {
+
+        j = 1;
+
+        //En aux guardamos el nick en un principio para verificar si es valido
+
+        fflush(stdin);
+        printf("\nIntroduce tu nick de usuario(no mayor a 5 caracteres): ");
+        //Ya que el ultimo elemento del string está reservado.
+        fgets(aux, 6, stdin);
+        fflush(stdin);
+
+        for(i = 0 ; i < estructura_config->tam_usuarios ; i++) {
+
+            if (estructura_usuarios[i].usuario_nick == aux) {
+
+                printf("\nEse nick ya existe, prueba otro!");
+                //j a 0 para repetir el proceso hasta que introduzca un nick valido
+                j = 0;
+
+            }
+        }
+
+    } while(j == 0);
+
+    //Si el nick es valido, lo guardamos en su lugar adecuado
+
+    strcpy(estructura_usuarios[estructura_config->tam_usuarios].usuario_nick,aux);
+
+    printf("\nIntroduce tu password (no mayor a 8 caracteres): ");
+    //Ya que el ultimo elemento del string está reservado.
+    fgets(estructura_usuarios[estructura_config->tam_usuarios].usuario_password, 9, stdin);
+    fflush(stdin);
 
     //El ID del usuario se asigna automáticamente al siguiente espacio disponible. Esto es, el uso del espacio reservado
     //en pasos previos.
 
+    fflush(stdin);
     printf("\nEscriba su nombre y primer apellido:");
     fgets(estructura_usuarios[estructura_config->tam_usuarios].nombre_usuario,21,stdin);
     fflush(stdin);
-    printf("\nPor defecto, serás un usuario tipo participante");
 
-    //Le asigno el perfil participante.
-    strcpy(estructura_usuarios[estructura_config->tam_usuarios].usuario_perfil,"participante");
-    fflush(stdin);
-
-    printf("\nTu nombre de usuario(no mayor a 5 caracteres): ");   //Ya que el ultimo elemento del string está reservado.
-    fgets(estructura_usuarios[estructura_config->tam_usuarios].usuario_nick,6,stdin);
-    fflush(stdin);
-
-    printf("\nPor ultimo, tu contraseña(no mayor a 8 caracteres): "); //Ya que el ultimo elemento del string está reservado.
-    fgets(estructura_usuarios[estructura_config->tam_usuarios].usuario_password,9,stdin);
-    fflush(stdin);
+    printf("\nEl rol que puedes ser es por defecto participante\n");
+    strcpy(estructura_usuarios[estructura_config->tam_usuarios].usuario_perfil, "participante");
 
     printf("\n\nEl resgistro ha sido realizado con exito."
-           "Puedes seleccionar la opcion de acceder al sistema del menu principal\n\n");
+           "Se procede a acceder al sistema\n\n");
+
+    //Escribimos el nuevo usuario en el fichero
+
+    escribir_usuarios(estructura_usuarios,estructura_config);
 
 }
 

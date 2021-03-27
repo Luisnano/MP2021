@@ -581,12 +581,11 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas *estructur
 
     if (opcion == estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas].jugador_platilla_id){
 
-        estructura_jugadores_plantillas = (jugadores_plantillas *)
-                realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas-1)*sizeof(int));
-
         //Reducimos en 1 el tamaño de jugadores plantilla
-
         estructura_config->tam_jugadores_plantillas--;
+
+        estructura_jugadores_plantillas = (jugadores_plantillas *)
+                realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas)*sizeof(int));
 
         if(estructura_jugadores_plantillas == NULL){printf("\nFallo de reserva de memoria");}
 
@@ -617,13 +616,14 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas *estructur
 
                 //Una vez cambiados los valores, procedo a hacer el realloc
 
+                //Reducimos en 1 el tamaño de jugadores plantilla
+                estructura_config->tam_jugadores_plantillas--;
+
                 estructura_jugadores_plantillas = (jugadores_plantillas *)
                         realloc(estructura_jugadores_plantillas,
-                                (estructura_config->tam_jugadores_plantillas - 1) * sizeof(int));
+                                (estructura_config->tam_jugadores_plantillas) * sizeof(int));
 
-                //Reducimos en 1 el tamaño de jugadores plantilla
 
-                estructura_config->tam_jugadores_plantillas--;
 
                 if (estructura_jugadores_plantillas == NULL) { printf("\nFallo de reserva de memoria"); }
 
@@ -712,12 +712,14 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
         printf("\nEl futbolista seleccionado es valido\n");
 
+        //Incrementamos en 1 el tamaño de jugadores_plantillas
+
+        estructura_config->tam_jugadores_plantillas++;
+
         //Con realloc aumentamos en 1 el tamaño de estructura_jugadores_plantillas
 
         estructura_jugadores_plantillas = (jugadores_plantillas *)
-                realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas+1)*sizeof(int));
-
-        estructura_config->tam_jugadores_plantillas++; //Incrementamos en 1 el tamaño de jugadores_plantillas
+                realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas)*sizeof(int));
 
         if(estructura_jugadores_plantillas==NULL){printf("\nFallo de reserva de memoria");}
 
