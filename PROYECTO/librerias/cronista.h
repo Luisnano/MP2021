@@ -9,10 +9,10 @@
 //DECLARACION DE FUNCIONES
 
 
-void menu_cronista(configuracion *estructura_config, futbolistas *estructura_futbolistas, equipos *estructura_equipos,
-                   usuarios *estructura_usuarios, plantillas *estructura_plantillas,
-                   jugadores_plantillas *estructura_jugadores_plantillas);
-void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estructura_configuracion);
+void menu_cronista(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
+                   usuarios **estructura_usuarios, plantillas **estructura_plantillas,
+                   jugadores_plantillas **estructura_jugadores_plantillas);
+void valorar_equipos(futbolistas **estructura_futbolistas, configuracion *estructura_configuracion);
 
 //FUNCIONES
 
@@ -24,9 +24,9 @@ void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estruct
 //Postcondicion: Es una funcion MENU, es decir detalla todas las opciones que tiene el cronista, y dependiendo de la
 //                  eleccion del usuario, llamara a una funcion diferente o se saldra del programa.
 
-void menu_cronista(configuracion *estructura_config, futbolistas *estructura_futbolistas, equipos *estructura_equipos,
-                   usuarios *estructura_usuarios, plantillas *estructura_plantillas,
-                   jugadores_plantillas *estructura_jugadores_plantillas){
+void menu_cronista(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
+                   usuarios **estructura_usuarios, plantillas **estructura_plantillas,
+                   jugadores_plantillas **estructura_jugadores_plantillas){
 
     int selec;
 
@@ -77,7 +77,7 @@ void menu_cronista(configuracion *estructura_config, futbolistas *estructura_fut
 //      de futbolistas de dicho equipo junto con su valoración actual. A continuación, el cronista irá
 //      seleccionando futbolistas e introduciendo sus nuevas valoraciones (0-10).
 
-void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estructura_configuracion){
+void valorar_equipos(futbolistas **estructura_futbolistas, configuracion *estructura_configuracion){
 
     int id_equipo;
     int id_futbolista;
@@ -100,13 +100,13 @@ void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estruct
 
             for (i = 0 ; i < estructura_configuracion->tam_futbolistas ; i++) {
 
-                if (id_equipo == estructura_futbolistas[i].equipo_id) {
+                if (id_equipo == estructura_futbolistas[i]->equipo_id) {
 
                     printf("-------------------------------\n");
-                    printf("      ID: %d\n", estructura_futbolistas[i].futbolista_id);
-                    printf("      NOMBRE: %s\n", estructura_futbolistas[i].nombre_futbolista);
-                    printf("      PRECIO: %d MILLONES\n", estructura_futbolistas[i].futbolista_precio);
-                    printf("      VALORACION: %d\n", estructura_futbolistas[i].valoracion);
+                    printf("      ID: %d\n", estructura_futbolistas[i]->futbolista_id);
+                    printf("      NOMBRE: %s\n", estructura_futbolistas[i]->nombre_futbolista);
+                    printf("      PRECIO: %d MILLONES\n", estructura_futbolistas[i]->futbolista_precio);
+                    printf("      VALORACION: %d\n", estructura_futbolistas[i]->valoracion);
                     printf("-------------------------------\n");
                 }
             }
@@ -118,12 +118,12 @@ void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estruct
 
             for (i = 0 ; i < estructura_configuracion->tam_futbolistas ; i++) {
 
-                if (id_futbolista == estructura_futbolistas[i].futbolista_id) {
+                if (id_futbolista == estructura_futbolistas[i]->futbolista_id) {
 
                     printf(".....INTRODUZCA LA NUEVA VALORACION DEL FUTBOLISTA.....\n");
                     printf("                           \n");
                     printf(">");
-                    scanf("%d", &estructura_futbolistas[i].valoracion);
+                    scanf("%d", &estructura_futbolistas[i]->valoracion);
 
                 }
             }

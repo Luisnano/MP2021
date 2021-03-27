@@ -26,11 +26,11 @@ int main() {
     //Volcamos todos los datos de los ficheros en sus respectivas variables estructuras anteriormente declaradas
 
     volcar_configuracion(&estructura_config);
-    volcar_futbolistas(estructura_futbolistas,&estructura_config);
-    volcar_equipos(estructura_equipos,&estructura_config);
-    volcar_usuarios(estructura_usuarios,&estructura_config);
-    volcar_plantillas(estructura_plantillas,&estructura_config);
-    volcar_jugadores_plantillas(estructura_jugadores_plantillas,&estructura_config);
+    volcar_futbolistas(&estructura_futbolistas,&estructura_config);
+    volcar_equipos(&estructura_equipos,&estructura_config);
+    volcar_usuarios(&estructura_usuarios,&estructura_config);
+    volcar_plantillas(&estructura_plantillas,&estructura_config);
+    volcar_jugadores_plantillas(&estructura_jugadores_plantillas,&estructura_config);
 
     //VARIABLES_LOCALES
 
