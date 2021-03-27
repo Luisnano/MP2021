@@ -94,7 +94,7 @@ void registro(usuarios **estructura_usuarios, configuracion *estructura_config){
 
     estructura_config->tam_usuarios++;
 
-    estructura_usuarios = (usuarios*)realloc(estructura_usuarios,(estructura_config->tam_usuarios)*sizeof(int));
+    *estructura_usuarios = (usuarios*)realloc(estructura_usuarios,(estructura_config->tam_usuarios)*sizeof(int));
 
     if(estructura_usuarios == NULL){printf("Fallo de reserva de memoria\n");}
 

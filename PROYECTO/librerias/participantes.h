@@ -150,7 +150,7 @@ void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plant
 
         //Aumentamos el tamaño del vector dinamico en 1 ya que creamos 1 plantilla
 
-            estructura_plantillas = (plantillas *)realloc(estructura_plantillas,
+            *estructura_plantillas = (plantillas *)realloc(estructura_plantillas,
                                                           (estructura_config->tam_plantillas+1)*sizeof(int));
 
             estructura_config->tam_plantillas++;    //Aumentamos en 1 el tamaño de plantillas
@@ -455,7 +455,9 @@ void eliminar_plantillas(int *id, plantillas **estructura_plantillas, jugadores_
 
     //Redimensionamos el vector estructura_plantillas, al eliminar una plantilla, le quitamos un elemento
 
-    estructura_plantillas = (plantillas*)realloc(estructura_plantillas,(estructura_config->tam_plantillas-1)*sizeof(int));
+    estructura_config->tam_plantillas --;
+
+    *estructura_plantillas = (plantillas*)realloc(estructura_plantillas,(estructura_config->tam_plantillas)*sizeof(int));
     if(estructura_plantillas == NULL){printf("\nFallo de reserva de memoria");}
 
     //Ahora eliminamos todos los futbolistas de jugadores_plantillas con la id de la plantilla eliminada
@@ -479,7 +481,7 @@ void eliminar_plantillas(int *id, plantillas **estructura_plantillas, jugadores_
             estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->jugador_platilla_id = v[0];
             estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->plantilla_id = v[1];
 
-            estructura_jugadores_plantillas = (jugadores_plantillas *)
+            *estructura_jugadores_plantillas = (jugadores_plantillas *)
                     realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas-1)*sizeof(int));
 
             estructura_config->tam_jugadores_plantillas--; // El tamaño de jugadores plantillas se reduce en 1
@@ -585,7 +587,7 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas **estructu
         //Reducimos en 1 el tamaño de jugadores plantilla
         estructura_config->tam_jugadores_plantillas--;
 
-        estructura_jugadores_plantillas = (jugadores_plantillas *)
+        *estructura_jugadores_plantillas = (jugadores_plantillas *)
                 realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas)*sizeof(int));
 
         if(estructura_jugadores_plantillas == NULL){printf("\nFallo de reserva de memoria");}
@@ -620,7 +622,7 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas **estructu
                 //Reducimos en 1 el tamaño de jugadores plantilla
                 estructura_config->tam_jugadores_plantillas--;
 
-                estructura_jugadores_plantillas = (jugadores_plantillas *)
+                *estructura_jugadores_plantillas = (jugadores_plantillas *)
                         realloc(estructura_jugadores_plantillas,
                                 (estructura_config->tam_jugadores_plantillas) * sizeof(int));
 
@@ -719,7 +721,7 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
         //Con realloc aumentamos en 1 el tamaño de estructura_jugadores_plantillas
 
-        estructura_jugadores_plantillas = (jugadores_plantillas *)
+        *estructura_jugadores_plantillas = (jugadores_plantillas *)
                 realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas)*sizeof(int));
 
         if(estructura_jugadores_plantillas==NULL){printf("\nFallo de reserva de memoria");}

@@ -50,7 +50,7 @@ int main() {
 
         if (i == 1) {
 
-            id = acceso_sistema(estructura_usuarios,&estructura_config);
+            id = acceso_sistema(&estructura_usuarios,&estructura_config);
 
             //Si acceso al sistema devuelve 1 significa que el usuario no está aun registrado
 
@@ -78,8 +78,8 @@ int main() {
 
             if (strcmp(perfil, "participante") == 0) {
 
-                menu_participantes(&id, &estructura_config, estructura_jugadores_plantillas, estructura_equipos,
-                                   estructura_usuarios, estructura_futbolistas, estructura_plantillas);
+                menu_participantes(&id, &estructura_config, &estructura_jugadores_plantillas, &estructura_equipos,
+                                   &estructura_usuarios, &estructura_futbolistas, &estructura_plantillas);
 
             }
 
@@ -87,9 +87,9 @@ int main() {
 
             if (strcmp(perfil, "cronista") == 0) {
 
-                menu_cronista(&estructura_config, estructura_futbolistas, estructura_equipos,
-                              estructura_usuarios, estructura_plantillas,
-                              estructura_jugadores_plantillas);
+                menu_cronista(&estructura_config, &estructura_futbolistas, &estructura_equipos,
+                              &estructura_usuarios, &estructura_plantillas,
+                              &estructura_jugadores_plantillas);
 
             }
 
@@ -109,8 +109,8 @@ int main() {
 
             if (i == 2) {
 
-                registro(estructura_usuarios,&estructura_config);
-                acceso_sistema(estructura_usuarios,&estructura_config);
+                registro(&estructura_usuarios,&estructura_config);
+                acceso_sistema(&estructura_usuarios,&estructura_config);
             }
         }
 
