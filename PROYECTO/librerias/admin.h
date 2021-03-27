@@ -194,7 +194,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas *e
         estructura_usuarios = estructura_usuarios_temp;
         strcpy(estructura_usuarios[estructura_config->tam_usuarios].nombre_usuario, temp);
         estructura_usuarios[estructura_config->tam_usuarios].usuario_id = estructura_config->tam_equipos;
-
+        
         do {
             printf("Introduzca un perfil de usuario: ");
             scanf("%s", perfil_temp);
