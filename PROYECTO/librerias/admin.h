@@ -15,6 +15,10 @@ void addUsuarios(usuarios *, configuracion *);
 void eliminarUsuarios(usuarios *, configuracion *);
 void modificarConfiguracion(configuracion *);
 
+//cabecera: void menuAdministrador(configuracion *, jugadores_plantillas *, equipos *, usuarios *, futbolistas *, plantillas *);
+//precondicion: metodo que recibe todas las estructuras inicializadas.
+//postcondicion: realiza las diferentes funciones del menú administrador.
+
 void menuAdministrador(configuracion *estructura_config, jugadores_plantillas *estructura_jugadores_plantillas,
                        equipos *estructura_equipos, usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
                        plantillas *estructura_plantillas) { //metodo general del menu administrador
@@ -91,6 +95,10 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas *e
         }
     } while (op < 1 || op > 4);
 }
+    //cabecera:
+    //precondicion:
+    //postcondicion:
+
     void modificarEquipos( equipos *estructura_equipos, configuracion *estructura_config){
     char c,temp[21],nombre[21];
     int aux1=0;
@@ -141,6 +149,27 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas *e
 }
 
     void eliminarEquipos(equipos *estructura_equipos, configuracion *estructura_config) {
+        char c,temp[21];
+        int aux1;
+        do {
+            printf("\nIntroduce el nombre del usuario a eliminar: ");
+            scanf("%s", temp);
+            for (int i = 0;i < estructura_config->tam_usuarios; i++) {      //bucle para recorrer toda la estructura de equipos
+                if (strcmp(temp, estructura_equipos[i].nombre_equipo) == 0) {  //si temp coincide con algún nombre, aux1 valdrá i
+                    aux1 = i;
+                }else aux1 = 1;
+            }
+            if (aux1 == 1) {        //si es 1, entonces ese nombre no está registrado
+                printf("\nEl nombre del equipo no está registrado, Desea probar con otro nombre? (S o s para confirmar)");
+                scanf("%c", &c);
+            }
+        }while((c == 's' || c == 'S')&&aux1 == 1);   //mientras diga sí y el nombre esté en uso
+        printf("\nEl nombre se ha guardado con exito.");
+        strcpy(estructura_equipos[aux1].nombre_equipo, "\0");  //cadena vacía
+        estructura_equipos[aux1].equipo_id = 0;                        //cambio de id
+        estructura_config->tam_usuarios -= 1;
+        equipos *estructura_equipos_temp = (equipos*)realloc(estructura_equipos,(estructura_config->tam_equipos)*sizeof(equipos));
+        estructura_equipos = estructura_equipos_temp;
 }
 
     void addUsuarios(usuarios *estructura_usuarios, configuracion *estructura_config){
@@ -258,8 +287,6 @@ void eliminarUsuarios(usuarios *estructura_usuarios, configuracion *estructura_c
     estructura_config->tam_usuarios -= 1;
     usuarios *estructura_usuarios_temp = (usuarios*)realloc(estructura_usuarios,(estructura_config->tam_usuarios)*sizeof(usuarios));
     estructura_usuarios = estructura_usuarios_temp;
-
-
     do {
         printf("Introduzca un perfil de usuario: ");
         scanf("%s", perfil_temp);
