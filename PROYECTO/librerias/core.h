@@ -184,7 +184,7 @@ void volcar_futbolistas(futbolistas **estructura_futbolistas, configuracion *est
 
     //Rellena estructura_futbolistas
 
-    for (i=0 ; i<estructura_config->tam_futbolistas ; i++){
+    for (i = 0 ; i < estructura_config->tam_futbolistas ; i++){
 
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->futbolista_id);
         fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->equipo_id);
@@ -294,7 +294,7 @@ void volcar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_c
 
     //Reserva memoria en el vector dinamico
 
-    *estructura_usuarios =(usuarios*)calloc(estructura_config->tam_usuarios,sizeof(int));
+    *estructura_usuarios =(usuarios*)calloc(estructura_config->tam_usuarios,sizeof(usuarios));
     if(estructura_usuarios==NULL){printf("Fallo de reserva de memoria\n");}
 
     //Rellena la estructura_usuarios
