@@ -35,7 +35,8 @@ int main() {
     //VARIABLES_LOCALES
 
     int i,id;
-    char perfil[15];            //15 es el espacio max del campo usuario_perfil, ya que aquí guardare el perfil del usuario que accede al sistema
+    char perfil[15];       //15 es el espacio max del campo usuario_perfil,
+                           // ya que aquí guardare el perfil del usuario que accede al sistema
 
     //INICIO
 

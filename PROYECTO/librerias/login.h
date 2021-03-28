@@ -29,7 +29,7 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
     char u[6], p[9];                    //Mismos tamaños(6 y 9) que el campo nick_usuario/password_usuario en usuario.txt
 
     fflush(stdin);
-    printf("Introduzca su usuario: ");
+    printf("\nIntroduzca su usuario: ");
     fgets(u,6,stdin);
     fflush(stdin);
 
