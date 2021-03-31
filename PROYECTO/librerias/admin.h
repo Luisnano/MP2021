@@ -95,10 +95,6 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
         }
     } while (op < 1 || op > 4);
 }
-    //cabecera:
-    //precondicion:
-    //postcondicion:
-
 
     //cabecera: void modificarEquipos( equipos *estructura_equipos, configuracion *estructura_config);
     //precondicion: metodo que recibe las estructuras de equipos y configuracion inicializadas.
@@ -152,9 +148,13 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
     }while((c == 's' || c == 'S')&&aux1 == 1);   //mientras diga sí y el nombre esté en uso
     printf("\nEl nombre se ha guardado con exito.");
     equipos *estructura_equipos_temp = (equipos*)realloc(estructura_equipos,(estructura_config->tam_equipos + 1)*sizeof(equipos));
-    *estructura_equipos = estructura_equipos_temp;
-    strcpy(estructura_equipos[estructura_config->tam_equipos]->nombre_equipo, temp);
-    estructura_equipos[estructura_config->tam_equipos]->equipo_id = estructura_config->tam_equipos;
+    if(estructura_equipos_temp == NULL){
+        printf("\nError en la redimension del vector.");
+    }else{
+        *estructura_equipos = estructura_equipos_temp;
+        strcpy(estructura_equipos[estructura_config->tam_equipos]->nombre_equipo, temp);
+        estructura_equipos[estructura_config->tam_equipos]->equipo_id = estructura_config->tam_equipos;
+    }
 }
 
     //cabecera: void eliminarEquipos(equipos *estructura_equipos, configuracion *estructura_config);
@@ -189,7 +189,11 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
 
         estructura_config->tam_usuarios -= 1;
         equipos *estructura_equipos_temp = (equipos*)realloc(estructura_equipos,(estructura_config->tam_equipos)*sizeof(equipos));
-        *estructura_equipos = estructura_equipos_temp;
+        if(estructura_equipos_temp == NULL){
+            printf("\nFallo en la redimension del vector.");
+        }else {
+            *estructura_equipos = estructura_equipos_temp;
+        }
 }
 
     //cabecera: void addUsuarios(usuarios *estructura_usuarios, configuracion *estructura_config);
@@ -326,7 +330,11 @@ void eliminarUsuarios(usuarios **estructura_usuarios, configuracion *estructura_
 
     estructura_config->tam_usuarios -= 1;
     usuarios *estructura_usuarios_temp = (usuarios*)realloc(estructura_usuarios,(estructura_config->tam_usuarios)*sizeof(usuarios));
-    *estructura_usuarios = estructura_usuarios_temp;
+    if(estructura_usuarios_temp == NULL){
+        printf("\nFallo en la redimension del vector.");
+    }else {
+        *estructura_usuarios = estructura_usuarios_temp;
+    }
 }
 
     //cabecera: void modificarConfiguracion(configuracion *estructura_config);
@@ -334,10 +342,10 @@ void eliminarUsuarios(usuarios **estructura_usuarios, configuracion *estructura_
     //postcondicion: Permite al usuario administrador modificar la configuración.
 
     void modificarConfiguracion(configuracion *estructura_config) {
-    int a=0, presupuestoTemp=0, maxPlanParTemp=0, maxFutPlan=0;
+    int a=0, presupuestoTemp=0, maxPlanParTemp=0, maxFutPlan=0; //variables temporales para almacenar los valores
     char c;
     do{
-        mostrar_configuracion(estructura_config);
+        mostrar_configuracion(estructura_config);   //seleccion de las diferentes opciones
         printf("\nQue desea modificar?");
         printf("\n1. Presupuesto por defecto.");
         printf("\n2. Maximo de futbolistas por plantilla.");
@@ -348,29 +356,28 @@ void eliminarUsuarios(usuarios **estructura_usuarios, configuracion *estructura_
                 do{
                     printf("\nIntroduce un nuevo valor para el presupuesto por defecto: ");
                     scanf("%i",&presupuestoTemp);
-                    }while(presupuestoTemp < 0 || presupuestoTemp > 999999);
+                    }while(presupuestoTemp < 0 || presupuestoTemp > 999999);    //mientras no salga de ese rango
                     printf("\nValor actualizado.");
-                    estructura_config->presupuesto_defecto = presupuestoTemp;
-                    break;
+                    estructura_config->presupuesto_defecto = presupuestoTemp;break;   //almaceno valor en la estructura
                     case 2:
                         do {
                             printf("\nIntroduce un nuevo valor para el maximo de futbolistas por plantilla: ");
                             scanf("%i", &maxFutPlan);
-                        }while(maxFutPlan < 0 || maxFutPlan > 15);
+                        }while(maxFutPlan < 0 || maxFutPlan > 15);  //mientras no salga del rango
                             printf("\nValor actualizado.");
-                            estructura_config->max_futbolistas_plantilla = maxFutPlan;break;
+                            estructura_config->max_futbolistas_plantilla = maxFutPlan;break;    //almaceno valor en la estructura
                 case 3:
                         do {
                             printf("\nIntroduce un nuevo valor para el maximo de plantillas por participante: ");
                             scanf("%i", &maxPlanParTemp);
-                        }while(maxFutPlan < 0 || maxFutPlan > 6);
+                        }while(maxFutPlan < 0 || maxFutPlan > 6);   //mientras no salga de rango
                         printf("\nValor actualizado.");
-                        estructura_config->max_plantillas_participante = maxPlanParTemp;break;
+                        estructura_config->max_plantillas_participante = maxPlanParTemp;break;  //almaceno valor en estructura
 
                 default: exit(EXIT_FAILURE);
             }
             printf("Desea seguir modificando la configuracion? (Pulse 's' o 'S' para continuar)");
             scanf("%c",&c);
-        }while (c == 's' || c == 'S');
+        }while (c == 's' || c == 'S');  //mientras sea 's' o 'S', se repite el bucle
         }
 #endif //PROYECTO_ADMIN_H
