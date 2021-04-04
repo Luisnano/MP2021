@@ -102,7 +102,6 @@ int salir_programa(configuracion *estructura_config,futbolistas **estructura_fut
                    usuarios **estructura_usuarios,plantillas **estructura_plantillas,
                    jugadores_plantillas **estructura_jugadores_plantillas);
 
-
 //FUNCIONES
 
 //Cabecera: void volcar_configuracion(configuracion *estructura_config);
@@ -111,21 +110,41 @@ int salir_programa(configuracion *estructura_config,futbolistas **estructura_fut
 
 void volcar_configuracion(configuracion *estructura_config){
 
-    //Apertura del fichero
+    //String auxiliar para poder hacer los fgets
 
-    char c[5];
-    int i;
+    char c[10];
+
+    //Apertura del fichero
 
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","r");
 
     if(f_configuracion==NULL){
+
         printf("Fallo de apertura de fichero\n");
         exit(EXIT_FAILURE);}
 
-    //Vuelcan datos del fichero, cada dato ocupa una linea del fichero, por lo tanto guardamos después de encontrar \n
+    //Guardar los datos de cada linea del fichero en su respectivo campo
+    //Ya que los datos en configuracion.txt están organizados de la manera que sea 1 dato por linea
+    //Como todos los datos son valores enteros, los covertimos en del string c a entero mediante función atoi
+    //El tamaño de los fgets depende del tamaño del entero + el /n y /0
 
-   
+        fgets(c,5,f_configuracion);
+        estructura_config->presupuesto_defecto = atoi(c);
+        fgets(c,4,f_configuracion);
+        estructura_config->max_futbolistas_plantilla = atoi(c);
+        fgets(c,3,f_configuracion);
+        estructura_config->max_plantillas_participante = atoi(c);
+        fgets(c,4,f_configuracion);
+        estructura_config->tam_equipos = atoi(c);
+        fgets(c,5,f_configuracion);
+        estructura_config->tam_futbolistas = atoi(c);
+        fgets(c,3,f_configuracion);
+        estructura_config->tam_jugadores_plantillas = atoi(c);
+        fgets(c,3,f_configuracion);
+        estructura_config->tam_plantillas = atoi(c);
+        fgets(c,3,f_configuracion);
+        estructura_config->tam_usuarios = atoi(c);
 
     fclose(f_configuracion);
 }
@@ -136,8 +155,8 @@ void volcar_configuracion(configuracion *estructura_config){
 void volcar_futbolistas(futbolistas **estructura_futbolistas, configuracion *estructura_config){
 
 
-    int i,tam = 1;   //Tam contará el numero de lineas del fichero futbolista, empieza en 1 porque empieza en una linea
-    char c;
+    int i,j,N,tam = 1;   //Tam contará el numero de lineas del fichero futbolista, empieza en 1 porque empieza en una linea
+    char c, aux[21];     //Aux tiene tamaño 21 ya que el tamaño máximo de los campos de futbolistas (nombre_futbolista)
 
     //Apertura del fichero
 
@@ -164,13 +183,10 @@ void volcar_futbolistas(futbolistas **estructura_futbolistas, configuracion *est
         }
     } while(c!=EOF);
 
-     estructura_config->tam_futbolistas = tam/5;
+    //Como cada futbolista ocupa una linea del fichero y tam guarda el número de lineas
+    //Entonces el tamaño del vector dinámico de futbolistas es igual a tam
 
-    //Dividimos entre 5 puesto que en el fichero futbolistas escribimos cada 1 de sus campos por linea
-    //Es decir cada futbolista son 5 lineas del fichero futbolistas
-    //Este resultado, que será el tamaño de estrura_futbolistas
-    //Se guarda en su respectiva variable en estructura_config
-
+     estructura_config->tam_futbolistas = tam;
 
     //Reservamos la memoria dinámica
 
@@ -178,16 +194,137 @@ void volcar_futbolistas(futbolistas **estructura_futbolistas, configuracion *est
     if(estructura_futbolistas==NULL){printf("Fallo de reserva de memoria\n");}
 
 
-    //Rellena estructura_futbolistas
+    //Rellena estructura_futbolistas, campo a campo, los cuales estan separados por comas
 
-    for (i = 0 ; i < estructura_config->tam_futbolistas ; i++){
+    //Este bucle será el bucle principal que acabará cuando se llegue al final del fichero, i simboliza el futbolista
 
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->futbolista_id);
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->equipo_id);
-        fscanf(f_futbolistas, "%s", estructura_futbolistas[i]->nombre_futbolista);
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->futbolista_precio);
-        fscanf(f_futbolistas, "%i", &estructura_futbolistas[i]->valoracion);
+    for (i = 0 ; !feof(f_futbolistas) ; i++ ){
+
+        //Primero, el campo futbolista_id
+
+        c = '0';
+
+        //Guardamos en el string aux hasta la primera coma, es decir, hasta el final del primer campo, futbolista_id
+
+        for(j = 0 ; c != ',' ; j++){
+
+            c = fgetc(f_futbolistas);
+
+            if (c != ','){
+
+                aux[j] = c;
+            }
+        }
+
+        //Transformamos lo recogido en un entero ya que futbolista_id es un dato entero
+
+        estructura_futbolistas[i]->futbolista_id = atoi(aux);
+
+        //Ahora el campo equipo_id
+
+        //Vaciamos auxiliar para usarlo de nuevo
+
+        for (tam = 0 ; tam < 21 ; tam++){
+
+            aux[tam] = '\0';
+
+        }
+
+        //Guardamos en aux  hasta la segunda coma que es donde finaliza equipo_id
+
+        for(j = 0 ; c != ',' ; j++){
+
+            c = fgetc(f_futbolistas);
+
+            if (c != ','){
+
+                aux[j] = c;
+            }
+        }
+
+        //Como equipo_id es un dato entero, transformamos lo recogido en aux en entero
+
+        estructura_futbolistas[i]->equipo_id = atoi(aux);
+
+        //Ahora el campo nombre_futbolista
+
+        //Vaciamos auxiliar para usarlo de nuevo
+
+        for (tam = 0 ; tam < 21 ; tam++){
+
+            aux[tam] = '\0';
+
+        }
+
+        //Guardamos en aux  hasta la tercera coma que es donde finaliza nombre_futbolista
+
+        for(j = 0 ; c != ',' ; j++){
+
+            c = fgetc(f_futbolistas);
+
+            if (c != ','){
+
+                aux[j] = c;
+            }
+        }
+
+        //Guardamos el nombre del futbolista que está en aux en su respectivo campo
+
+        strcpy(estructura_futbolistas[i]->nombre_futbolista, aux);
+
+        //Ahora el campo futbolista_precio
+
+        //Vaciamos auxiliar para usarlo de nuevo
+
+        for (tam = 0 ; tam < 21 ; tam++){
+
+            aux[tam] = '\0';
+
+        }
+
+        //Guardamos en aux  hasta la cuarta coma que es donde finaliza futbolista_precio
+
+        for(j = 0 ; c != ',' ; j++){
+
+            c = fgetc(f_futbolistas);
+
+            if (c != ','){
+
+                aux[j] = c;
+            }
+        }
+
+        //Como futbolista_precio es un dato entero, transformamos lo recogido en aux en entero
+
+        estructura_futbolistas[i]->futbolista_precio = atoi(aux);
+
+        //Ahora el campo valoracion
+
+        //Vaciamos auxiliar para usarlo de nuevo
+
+        for (tam = 0 ; tam < 21 ; tam++){
+
+            aux[tam] = '\0';
+
+        }
+
+        //Guardamos en aux hasta el \n que es donde finaliza valoracion, ya que es el ultimo campo
+
+        for(j = 0 ; c != '\n' ; j++){
+
+            c = fgetc(f_futbolistas);
+
+            if (c != '\n'){
+
+                aux[j] = c;
+            }
+        }
+
+        //Como valoración es un dato entero, transformamos lo recogido en aux en entero
+
+        estructura_futbolistas[i]->valoracion = atoi(aux);
     }
+
 
     fclose(f_futbolistas);
 }
@@ -198,8 +335,8 @@ void volcar_futbolistas(futbolistas **estructura_futbolistas, configuracion *est
 
 void volcar_equipos(equipos **estructura_equipos, configuracion *estructura_config){
 
-    int i,tam = 1;
-    char c;
+    int i,j,tam = 1;    //Tam empieza valiendo 1 pues va a contar el número de lineas, y empieza ya contando una
+    char c,aux[21];     //Aux tiene valor 21 ya que es el mayor tamaño de los campos de equipos (nombre_equipo)
 
     //Apertura_fichero
 
@@ -226,13 +363,10 @@ void volcar_equipos(equipos **estructura_equipos, configuracion *estructura_conf
 
     } while(c!=EOF);
 
-    estructura_config->tam_equipos = tam/2;
+    estructura_config->tam_equipos = tam;
 
-    //Dividimos entre 2 puesto que en el fichero equipos cada dato ocupa una linea
-    //Es decir, 2 lineas por usuario
-    //El resultado será el tamaño de estructura_usuarios
-    // Que se guardará en su respectiva variable en estructura_config
-
+    //Como cada equipo en el fichero ocupa 1 linea, entonces tam que ha guardado el numero de estas
+    //Será el tamaño del vector dinamico de equipos
     //Reserva memoria al vector dinamico
 
     *estructura_equipos = (equipos*)calloc(estructura_config->tam_equipos,sizeof(int));
@@ -241,20 +375,67 @@ void volcar_equipos(equipos **estructura_equipos, configuracion *estructura_conf
 
     //Rellena la estructura_equipos
 
-    for (i=0; i<estructura_config->tam_equipos; i++){
+    //Rellena estructura_equipos, campo a campo, los cuales estan separados por comas
 
-        fscanf(f_equipos, "%i", &estructura_equipos[i]->equipo_id);
-        fscanf(f_equipos, "%s", estructura_equipos[i]->nombre_equipo);
+    //Este bucle será el bucle principal que acabará cuando se llegue al final del fichero, i simboliza el equipo
+
+    for (i = 0 ; !feof(f_equipos) ; i++ ) {
+
+        //Primero, el campo equipo_id
+
+        c = '0';
+
+        //Guardamos en el string aux hasta la primera coma, es decir, hasta el final del primer campo, equipo_id
+
+        for (j = 0; c != ','; j++) {
+
+            c = fgetc(f_equipos);
+
+            if (c != ',') {
+
+                aux[j] = c;
+            }
+        }
+
+        //Transformamos lo recogido en un entero ya que equipo_id es un dato entero
+
+        estructura_equipos[i]->equipo_id = atoi(aux);
+
+        //Ahora el campo nombre_equipo
+
+        //Vaciamos auxiliar para usarlo de nuevo
+
+        for (tam = 0; tam < 21; tam++) {
+
+            aux[tam] = '\0';
+
+        }
+
+        //Guardamos en aux  hasta el final de linea, ya que nombre_equipo es el último campo
+
+        for (j = 0; c != '\n'; j++) {
+
+            c = fgetc(f_equipos);
+
+            if (c != '\n') {
+
+                aux[j] = c;
+            }
+        }
+
+        //Guardamos el nombre del equipo que está en aux en su respectivo campo
+
+        strcpy(estructura_equipos[i]->nombre_equipo, aux);
     }
 
 
-    fclose(f_equipos);
+        fclose(f_equipos);
 }
 
 void volcar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_config){
 
-    int i,tam = 1;
-    char c;
+    int i,j,tam = 1;    //Tam comienza en 1 ya que contará el nº de lineas y ya se empieza contando una
+    char c,aux[21];     //Aux tiene tamaño 21 ya que es el tamaño maximo de los campos de usuarios(nombre_usuario)
 
     //Apertura del fichero
 
@@ -281,28 +462,148 @@ void volcar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_c
         }
     }while(c!=EOF);
 
-    estructura_config->tam_usuarios = tam/5;
+    estructura_config->tam_usuarios = tam;
 
-    //Dividimos el numero de lineas entre 5 ya que en el fichero usuario cada dato ocupa una linea
-    //Es decir, 5 lineas por usuario
-    //El resultado será el tamaño de estructura_usuarios
-    //El cual se guardará en su respectiva variable en estructura_config
-
+    //Cada usuario ocupa 1 linea del fichero, lo cual está contabilizado en tam
+    //Por lo tanto tam es el tamaño del vector dinámico de usuarios
     //Reserva memoria en el vector dinamico
 
     *estructura_usuarios =(usuarios*)calloc(estructura_config->tam_usuarios,sizeof(usuarios));
     if(estructura_usuarios==NULL){printf("Fallo de reserva de memoria\n");}
 
-    //Rellena la estructura_usuarios
+    //Rellena la estructura_equipos
 
-    for (i = 0 ; i < estructura_config->tam_usuarios ; i++){
+    //Rellena estructura_usuarios, campo a campo, los cuales estan separados por comas
 
-        fscanf(f_usuarios,"%i",&estructura_usuarios[i]->usuario_id);
-        fscanf(f_usuarios,"%s",estructura_usuarios[i]->nombre_usuario);
-        fscanf(f_usuarios,"%s",estructura_usuarios[i]->usuario_perfil);
-        fscanf(f_usuarios,"%s",estructura_usuarios[i]->usuario_nick);
-        fscanf(f_usuarios,"%s",estructura_usuarios[i]->usuario_password);
+    //Este bucle será el bucle principal que acabará cuando se llegue al final del fichero, i simboliza al usuario
+
+    for (i = 0 ; !feof(f_usuarios) ; i++ ) {
+
+        //Primero, el campo usuario_id
+
+        c = '0';
+
+        //Guardamos en el string aux hasta la primera coma, es decir, hasta el final del primer campo, usuario_id
+
+        for (j = 0; c != ','; j++) {
+
+            c = fgetc(f_usuarios);
+
+            if (c != ',') {
+
+                aux[j] = c;
+            }
+        }
+
+        //Transformamos lo recogido en un entero ya que usuario_id es un dato entero
+
+        estructura_usuarios[i]->usuario_id = atoi(aux);
+
+        //Ahora el campo nombre_usuario
+
+        //Vaciamos auxiliar para usarlo de nuevo
+
+        for (tam = 0; tam < 21; tam++) {
+
+            aux[tam] = '\0';
+
+        }
+
+        //Guardamos en aux  hasta el final de la segunda coma, ya que nombre_usuario abarca hasta ahí
+
+        for (j = 0; c != ','; j++) {
+
+            c = fgetc(f_usuarios);
+
+            if (c != ',') {
+
+                aux[j] = c;
+            }
+        }
+
+        //Guardamos el nombre del usuario que está en aux en su respectivo campo
+
+        strcpy(estructura_usuarios[i]->nombre_usuario, aux);
+
+        //Ahora el campo usuario_perfil
+
+        //Vaciamos auxiliar para usarlo de nuevo
+
+        for (tam = 0; tam < 21; tam++) {
+
+            aux[tam] = '\0';
+
+        }
+
+        //Guardamos en aux hasta la tercera coma, ya que usuario_perfil abarca hasta ahí
+
+        for (j = 0; c != ','; j++) {
+
+            c = fgetc(f_usuarios);
+
+            if (c != ',') {
+
+                aux[j] = c;
+            }
+        }
+
+        //Guardamos el perfil del ususario que está en aux en su respectivo campo
+
+        strcpy(estructura_usuarios[i]->usuario_perfil, aux);
+
+        //Ahora el campo usuario_nick
+
+        //Vaciamos auxiliar para usarlo de nuevo
+
+        for (tam = 0; tam < 21; tam++) {
+
+            aux[tam] = '\0';
+
+        }
+
+        //Guardamos en aux hasta la cuarta coma ya que usuario_nick es el último campo
+
+        for (j = 0; c != '\n'; j++) {
+
+            c = fgetc(f_equipos);
+
+            if (c != '\n') {
+
+                aux[j] = c;
+            }
+        }
+
+        //Guardamos el nombre del equipo que está en aux en su respectivo campo
+
+        strcpy(estructura_equipos[i]->nombre_equipo, aux);
+
+        //Ahora el campo nombre_equipo
+
+        //Vaciamos auxiliar para usarlo de nuevo
+
+        for (tam = 0; tam < 21; tam++) {
+
+            aux[tam] = '\0';
+
+        }
+
+        //Guardamos en aux  hasta el final de linea, ya que nombre_equipo es el último campo
+
+        for (j = 0; c != '\n'; j++) {
+
+            c = fgetc(f_equipos);
+
+            if (c != '\n') {
+
+                aux[j] = c;
+            }
+        }
+
+        //Guardamos el nombre del equipo que está en aux en su respectivo campo
+
+        strcpy(estructura_equipos[i]->nombre_equipo, aux);
     }
+
     fclose(f_usuarios);
 }
 
