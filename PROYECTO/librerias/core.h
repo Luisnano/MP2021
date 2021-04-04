@@ -113,6 +113,9 @@ void volcar_configuracion(configuracion *estructura_config){
 
     //Apertura del fichero
 
+    char c[5];
+    int i;
+
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion.txt","r");
 
@@ -120,16 +123,9 @@ void volcar_configuracion(configuracion *estructura_config){
         printf("Fallo de apertura de fichero\n");
         exit(EXIT_FAILURE);}
 
-    //Vuelcan datos del fichero
+    //Vuelcan datos del fichero, cada dato ocupa una linea del fichero, por lo tanto guardamos después de encontrar \n
 
-    fscanf(f_configuracion,"%i",&estructura_config->presupuesto_defecto);
-    fscanf(f_configuracion,"%i",&estructura_config->max_futbolistas_plantilla);
-    fscanf(f_configuracion,"%i",&estructura_config->max_plantillas_participante);
-    fscanf(f_configuracion,"%i",&estructura_config->tam_equipos);
-    fscanf(f_configuracion,"%i",&estructura_config->tam_futbolistas);
-    fscanf(f_configuracion,"%i",&estructura_config->tam_jugadores_plantillas);
-    fscanf(f_configuracion,"%i",&estructura_config->tam_plantillas);
-    fscanf(f_configuracion,"%i",&estructura_config->tam_usuarios);
+   
 
     fclose(f_configuracion);
 }
