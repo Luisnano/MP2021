@@ -194,19 +194,19 @@ void volcar_futbolistas(futbolistas **estructura_futbolistas, configuracion *est
             //Con atoi para transformar aquellos datos que son enteros, y stcpy para los datos que son cadenas
 
             token = strtok(linea,"-");
-            (*estructura_futbolistas)[estructura_config->tam_futbolistas].futbolista_id = atoi(token);
+            (*estructura_futbolistas)[(*estructura_config).tam_futbolistas].futbolista_id = atoi(token);
 
             token = strtok(NULL,"-");
-            (*estructura_futbolistas)[estructura_config->tam_futbolistas].equipo_id = atoi(token);
+            (*estructura_futbolistas)[(*estructura_config).tam_futbolistas].equipo_id = atoi(token);
 
             token = strtok(NULL,"-");
-            strcpy((*estructura_futbolistas)[estructura_config->tam_futbolistas].nombre_futbolista, token);
+            strcpy((*estructura_futbolistas)[(*estructura_config).tam_futbolistas].nombre_futbolista, token);
 
             token = strtok(NULL,"-");
-            (*estructura_futbolistas)[estructura_config->tam_futbolistas].futbolista_precio = atoi(token);
+            (*estructura_futbolistas)[(*estructura_config).tam_futbolistas].futbolista_precio = atoi(token);
 
             token = strtok(NULL,"-");
-            (*estructura_futbolistas)[estructura_config->tam_futbolistas].valoracion = atoi(token);
+            (*estructura_futbolistas)[(*estructura_config).tam_futbolistas].valoracion = atoi(token);
 
             //Aumenta el tamaño en 1 ya que hemos añadido un futbolista
 
@@ -241,13 +241,13 @@ void volcar_equipos(equipos **estructura_equipos, configuracion *estructura_conf
     }
 
     char *token;        //El token donde se guardan los campos de las lineas del fichero
-    char linea[30];     //Linea donde se guarda las lineas del fichero
+    char linea[24];     //Linea donde se guarda las lineas del fichero
 
     *estructura_equipos = NULL;     //Empieza en null ya que al hacer el realloc puede tener basura
 
     do{
 
-        fgets(linea, 30, f_equipos);       //Guarda en linea las lineas del fichero
+        fgets(linea, 24, f_equipos);       //Guarda en linea las lineas del fichero
 
         if (strcmp(linea,"\0") != 0){          //Si la linea no es nula
 
@@ -260,10 +260,10 @@ void volcar_equipos(equipos **estructura_equipos, configuracion *estructura_conf
             //Con atoi para transformar aquellos datos que son enteros, y stcpy para los datos que son cadenas
 
             token = strtok(linea,"-");
-            (*estructura_equipos)[estructura_config->tam_equipos].equipo_id = atoi(token);
+            (*estructura_equipos)[(*estructura_config).tam_equipos].equipo_id = atoi(token);
 
             token = strtok(NULL,"-");
-            strcpy((*estructura_equipos)[estructura_config->tam_equipos].nombre_equipo, token);
+            strcpy((*estructura_equipos)[(*estructura_config).tam_equipos].nombre_equipo, token);
 
 
             //Aumenta el tamaño en 1 ya que hemos añadido un equipo
@@ -295,13 +295,13 @@ void volcar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_c
     }
 
     char *token;        //El token donde se guardan los campos de las lineas del fichero
-    char linea[80];     //Linea donde se guarda las lineas del fichero
+    char linea[65];     //Linea donde se guarda las lineas del fichero
 
     *estructura_usuarios = NULL;     //Empieza en null ya que al hacer el realloc puede tener basura
 
     do{
 
-        fgets(linea, 80, f_usuarios);       //Guarda en linea las lineas del fichero
+        fgets(linea, 65, f_usuarios);       //Guarda en linea las lineas del fichero
 
         if (strcmp(linea,"\0") != 0){          //Si la linea no es nula
 
@@ -314,19 +314,19 @@ void volcar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_c
             //Con atoi para transformar aquellos datos que son enteros, y stcpy para los datos que son cadenas
 
             token = strtok(linea,"-");
-            (*estructura_usuarios)[estructura_config->tam_usuarios].usuario_id = atoi(token);
+            (*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_id = atoi(token);
 
             token = strtok(NULL,"-");
-            strcpy((*estructura_usuarios)[estructura_config->tam_usuarios].nombre_usuario, token);
+            strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].nombre_usuario, token);
 
             token = strtok(NULL,"-");
-            strcpy((*estructura_usuarios)[estructura_config->tam_usuarios].usuario_perfil, token);
+            strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_perfil, token);
 
             token = strtok(NULL,"-");
-            strcpy((*estructura_usuarios)[estructura_config->tam_usuarios].usuario_nick, token);
+            strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_nick, token);
 
             token = strtok(NULL,"-");
-            strcpy((*estructura_usuarios)[estructura_config->tam_usuarios].usuario_password, token);
+            strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_password, token);
 
             //Aumenta el tamaño en 1 ya que hemos añadido un usuario
 
@@ -377,19 +377,19 @@ void volcar_plantillas(plantillas **estructura_plantillas, configuracion *estruc
             //Con atoi para transformar aquellos datos que son enteros, y stcpy para los datos que son cadenas
 
             token = strtok(linea,"-");
-            (*estructura_plantillas)[estructura_config->tam_plantillas].usuario_id = atoi(token);
+            (*estructura_plantillas)[(*estructura_config).tam_plantillas].usuario_id = atoi(token);
 
             token = strtok(NULL,"-");
-            (*estructura_plantillas)[estructura_config->tam_plantillas].plantilla_id = atoi(token);
+            (*estructura_plantillas)[(*estructura_config).tam_plantillas].plantilla_id = atoi(token);
 
             token = strtok(NULL,"-");
-            strcpy((*estructura_plantillas)[estructura_config->tam_plantillas].nombre_plantilla, token);
+            strcpy((*estructura_plantillas)[(*estructura_config).tam_plantillas].nombre_plantilla, token);
 
             token = strtok(NULL,"-");
-            (*estructura_plantillas)[estructura_config->tam_plantillas].presupuesto_disp = atoi(token);
+            (*estructura_plantillas)[(*estructura_config).tam_plantillas].presupuesto_disp = atoi(token);
 
             token = strtok(NULL,"-");
-            (*estructura_plantillas)[estructura_config->tam_plantillas].puntuacion_acum = atoi(token);
+            (*estructura_plantillas)[(*estructura_config).tam_plantillas].puntuacion_acum = atoi(token);
 
             //Aumenta el tamaño en 1 ya que hemos añadido una plantilla
 
@@ -442,10 +442,10 @@ void volcar_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_pla
             //Con atoi para transformar aquellos datos que son enteros, y stcpy para los datos que son cadenas
 
             token = strtok(linea,"-");
-            (*estructura_jugadores_plantillas)[estructura_config->tam_jugadores_plantillas].jugador_platilla_id = atoi(token);
+            (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].jugador_platilla_id = atoi(token);
 
             token = strtok(NULL,"-");
-            (*estructura_jugadores_plantillas)[estructura_config->tam_jugadores_plantillas].plantilla_id = atoi(token);
+            (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].plantilla_id = atoi(token);
 
 
 
@@ -471,29 +471,16 @@ void escribir_configuracion(configuracion *estructura_config){
     //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
 
     FILE *f_configuracion;
-    f_configuracion = fopen("files/configuracion.txt","w");
+    f_configuracion = fopen("files/configuracion_prueba.txt","w");
 
     if(f_configuracion==NULL){printf("Fallo de apertura de fichero\n");}
 
     //Escribir datos del vector estructura_configuracion en el fichero configuracion
 
-    fprintf(f_configuracion,"%i",estructura_config->presupuesto_defecto);
-    fprintf(f_configuracion,"%s","\n");
-    fprintf(f_configuracion,"%i",estructura_config->max_futbolistas_plantilla);
-    fprintf(f_configuracion,"%s","\n");
-    fprintf(f_configuracion,"%i",estructura_config->max_plantillas_participante);
-    fprintf(f_configuracion,"%s","\n");
-    fprintf(f_configuracion,"%i",estructura_config->tam_equipos);
-    fprintf(f_configuracion,"%s","\n");
-    fprintf(f_configuracion,"%i",estructura_config->tam_futbolistas);
-    fprintf(f_configuracion,"%s","\n");
-    fprintf(f_configuracion,"%i",estructura_config->tam_jugadores_plantillas);
-    fprintf(f_configuracion,"%s","\n");
-    fprintf(f_configuracion,"%i",estructura_config->tam_plantillas);
-    fprintf(f_configuracion,"%s","\n");
-    fprintf(f_configuracion,"%i",estructura_config->tam_usuarios);
-    fprintf(f_configuracion,"%s","\n");
-
+    fprintf(f_configuracion,"%i-%i-%i-%i-%i-%i-%i-%i",estructura_config->presupuesto_defecto,
+            estructura_config->max_futbolistas_plantilla,estructura_config->max_plantillas_participante,
+            estructura_config->tam_equipos,estructura_config->tam_futbolistas,estructura_config->tam_jugadores_plantillas,
+            estructura_config->tam_plantillas,estructura_config->tam_usuarios);
 
     fclose(f_configuracion);
 }
@@ -509,24 +496,18 @@ void escribir_futbolistas(futbolistas **estructura_futbolistas, configuracion *e
     //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
 
     FILE *f_futbolistas;
-    f_futbolistas = fopen("files/futbolistas.txt", "w");
+    f_futbolistas = fopen("files/futbolistas_prueba.txt", "w");
 
     if(f_futbolistas==NULL){printf("Fallo de apertura de fichero\n");}
 
     //Escribimos en el fichero futbolistas los datos de estructura_futbolistas
 
-    for (i=0 ; i < estructura_config->tam_futbolistas ; i++){
+    for (i=0 ; i < (*estructura_config).tam_futbolistas ; i++){
 
-        fprintf(f_futbolistas, "%i", estructura_futbolistas[i]->futbolista_id);
-        fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "%i", estructura_futbolistas[i]->equipo_id);
-        fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "%s", estructura_futbolistas[i]->nombre_futbolista);
-        fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "%i", estructura_futbolistas[i]->futbolista_precio);
-        fprintf(f_futbolistas,"%s","\n");
-        fprintf(f_futbolistas, "%i", estructura_futbolistas[i]->valoracion);
-        fprintf(f_futbolistas,"%s","\n");
+        fprintf(f_futbolistas, "%i-%i-%s-%i-%i", (*estructura_futbolistas)[i].futbolista_id, (*estructura_futbolistas)[i].equipo_id,
+                (*estructura_futbolistas)[i].nombre_futbolista,(*estructura_futbolistas)[i].futbolista_precio,
+                (*estructura_futbolistas)[i].valoracion);
+        fprintf(f_futbolistas, "%s", "\n");
     }
 
     fclose(f_futbolistas);
@@ -544,19 +525,16 @@ void escribir_equipos(equipos **estructura_equipos, configuracion *estructura_co
     //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
 
     FILE *f_equipos;
-    f_equipos = fopen("files/equipos.txt","w");
+    f_equipos = fopen("files/equipos_prueba.txt","w");
 
     if(f_equipos==NULL){printf("Fallo de apertura de fichero\n");}
 
 
     //Escribimos los datos de la estructura_equipos en el fichero equipos
 
-    for (i=0; i < estructura_config->tam_equipos ; i++){
+    for (i=0; i < (*estructura_config).tam_equipos ; i++){
 
-        fprintf(f_equipos, "%i", estructura_equipos[i]->equipo_id);
-        fprintf(f_equipos, "%s", "\n");
-        fprintf(f_equipos, "%s", estructura_equipos[i]->nombre_equipo);
-        fprintf(f_equipos, "%s", "\n");
+        fprintf(f_equipos, "%i-%s", (*estructura_equipos)[i].equipo_id,(*estructura_equipos)[i].nombre_equipo);
     }
 
     fclose(f_equipos);
@@ -574,26 +552,18 @@ void escribir_usuarios(usuarios **estructura_usuarios, configuracion *estructura
     //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
 
     FILE *f_usuarios;
-    f_usuarios = fopen("files/usuarios.txt", "w");
+    f_usuarios = fopen("files/usuarios_prueba.txt", "w");
 
     if(f_usuarios==NULL){printf("Fallo de apertura de fichero\n");}
 
 
     //Escribimos en el fichero usuarios los datos de su respectiva estructura
 
-    for(i = 0 ; i < estructura_config->tam_usuarios ; i++){
+    for(i = 0 ; i < (*estructura_config).tam_usuarios ; i++){
 
-        fprintf(f_usuarios,"%i",estructura_usuarios[i]->usuario_id);
-        fprintf(f_usuarios, "%s", "\n");
-        fprintf(f_usuarios,"%s",estructura_usuarios[i]->nombre_usuario);
-        fprintf(f_usuarios, "%s", "\n");
-        fprintf(f_usuarios,"%s",estructura_usuarios[i]->usuario_perfil);
-        fprintf(f_usuarios, "%s", "\n");
-        fprintf(f_usuarios,"%s",estructura_usuarios[i]->usuario_nick);
-        fprintf(f_usuarios, "%s", "\n");
-        fprintf(f_usuarios,"%s",estructura_usuarios[i]->usuario_password);
-        fprintf(f_usuarios, "%s", "\n");
-
+        fprintf(f_usuarios,"%i-%s-%s-%s-%s",(*estructura_usuarios)[i].usuario_id,(*estructura_usuarios)[i].nombre_usuario,
+                (*estructura_usuarios)[i].usuario_perfil,(*estructura_usuarios)[i].usuario_nick,
+                (*estructura_usuarios)[i].usuario_password);
     }
 
     fclose(f_usuarios);
@@ -617,7 +587,7 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
     //Escribimos en el fichero plantillas el vector dinamico estructura_plantillas
 
-    for(i=0 ; i < estructura_config->tam_plantillas ; i++){
+    for(i=0 ; i < (*estructura_config).tam_plantillas ; i++){
 
         fprintf(f_plantillas,"%i",estructura_plantillas[i]->usuario_id);
         fprintf(f_plantillas, "%s", "\n");
@@ -655,7 +625,7 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
         //Escribimos en el fichero jugadores_plantillas los datos del vector dinamico estrucutura_jugadores_plantillas
 
-        for (i = 0; i < estructura_config->tam_jugadores_plantillas; i++) {
+        for (i = 0; i < (*estructura_config).tam_jugadores_plantillas; i++) {
 
             fprintf(f_jugadores_plantillas, "%i", estructura_jugadores_plantillas[i]->jugador_platilla_id);
             fprintf(f_jugadores_plantillas, "%s", "\n");
@@ -676,6 +646,11 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
         printf("El numero maximo de futbolistas por plantilla es: %i \n", estructura_config->max_futbolistas_plantilla);
         printf("El numero maximo de plantillas por participantes: %i \n",
                estructura_config->max_plantillas_participante);
+        printf("El numero actual de equipos es: %i \n", estructura_config->tam_equipos);
+        printf("El numero actual de futbolistas es: %i \n", estructura_config->tam_futbolistas);
+        printf("El numero actual de jugadores por plantilla es: %i \n", estructura_config->tam_jugadores_plantillas);
+        printf("El numero actual de plantillas es: %i \n", estructura_config->tam_plantillas);
+        printf("El numero actual usuarios es: %i \n", estructura_config->tam_usuarios);
     }
 
 //Cabecera: void mostrar_futbolistas(futbolistas *estructura_futbolistas, configuracion *estructura_config);
@@ -685,13 +660,13 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
     void mostrar_futbolistas(futbolistas **estructura_futbolistas, configuracion *estructura_config) {
 
         int i;
-        for (i = 0; i < estructura_config->tam_futbolistas ; i++) {
+        for (i = 0; i < (*estructura_config).tam_futbolistas ; i++) {
 
-            printf("%i,", estructura_futbolistas[i]->futbolista_id);
-            printf("%i,", estructura_futbolistas[i]->equipo_id);
-            printf("%s,", estructura_futbolistas[i]->nombre_futbolista);
-            printf("%i,", estructura_futbolistas[i]->futbolista_precio);
-            printf("%i\n", estructura_futbolistas[i]->valoracion);
+            printf("%i-", (*estructura_futbolistas)[i].futbolista_id);
+            printf("%i-", (*estructura_futbolistas)[i].equipo_id);
+            printf("%s-", (*estructura_futbolistas)[i].nombre_futbolista);
+            printf("%i-", (*estructura_futbolistas)[i].futbolista_precio);
+            printf("%i\n", (*estructura_futbolistas)[i].valoracion);
         }
     }
 
@@ -702,10 +677,10 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
     void mostrar_equipos(equipos **estructura_equipos, configuracion *estructura_config) {
 
         int i;
-        for (i = 0; i < estructura_config->tam_equipos ; i++) {
+        for (i = 0; i < (*estructura_config).tam_equipos ; i++) {
 
-            printf("%i,", estructura_equipos[i]->equipo_id);
-            printf("%s\n", estructura_equipos[i]->nombre_equipo);
+            printf("%i-", (*estructura_equipos)[i].equipo_id);
+            printf("%s\n", (*estructura_equipos)[i].nombre_equipo);
         }
     }
 
@@ -717,14 +692,13 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
         int i;
 
-        for (i = 0 ; i < estructura_config->tam_usuarios ; i++) {
+        for (i = 0 ; i < (*estructura_config).tam_usuarios ; i++) {
 
-            printf("%i,", estructura_usuarios[i]->usuario_id);
-            printf("%s,", estructura_usuarios[i]->nombre_usuario);
-            printf("%s,", estructura_usuarios[i]->usuario_perfil);
-            printf("%s,", estructura_usuarios[i]->usuario_nick);
-            printf("%s \n", estructura_usuarios[i]->usuario_password);
-
+            printf("%i-", (*estructura_usuarios)[i].usuario_id);
+            printf("%s-", (*estructura_usuarios)[i].nombre_usuario);
+            printf("%s-", (*estructura_usuarios)[i].usuario_perfil);
+            printf("%s-", (*estructura_usuarios)[i].usuario_nick);
+            printf("%s\n", (*estructura_usuarios)[i].usuario_password);
         }
 
     }
@@ -737,7 +711,7 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
         int i;
 
-        for (i = 0 ; i < estructura_config->tam_plantillas ; i++) {
+        for (i = 0 ; i < (*estructura_config).tam_plantillas ; i++) {
 
             printf("%i,", estructura_plantillas[i]->usuario_id);
             printf("%i,", estructura_plantillas[i]->plantilla_id);
@@ -757,10 +731,10 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
         int i;
 
-        for (i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++) {
+        for (i = 0 ; i < (*estructura_config).tam_jugadores_plantillas ; i++) {
 
-            printf("%i,", estructura_jugadores_plantillas[i]->jugador_platilla_id);
-            printf("%i \n", estructura_jugadores_plantillas[i]->plantilla_id);
+            printf("%i,", (*estructura_jugadores_plantillas)[i].jugador_platilla_id);
+            printf("%i \n", (*estructura_jugadores_plantillas)[i].plantilla_id);
         }
 
     }

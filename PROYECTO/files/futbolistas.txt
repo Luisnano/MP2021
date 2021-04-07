@@ -53,7 +53,7 @@
 53-11-Idrissa_Doumbia-03-00
 54-11-Pedro_Lopez-01-00
 55-11-Andres_Fernandez-01-00
-56-12-Jose_Campaña-22-00
+56-12-Jose_Campana-22-00
 57-12-Aitor_Fernandez-08-00
 58-12-Ruen_Vezo-08-00
 59-12-Nemanja_Radoja-03-00
@@ -77,7 +77,7 @@
 77-16-Miguel_Angel_Moya-01-00
 78-16-Robin_Le_Normand-20-00
 79-16-Aritz_Elustondo-15-00
-80-16-Aihen_Muñoz-06-00
+80-16-Aihen_Munoz-06-00
 81-17-Joaquin_Fernandez-03-00
 82-17-Kiko_Olivas-01-00
 83-17-Lucas_Olaza-06-00
@@ -86,7 +86,7 @@
 86-18-Bono-15-00
 87-18-Tomas_Vaclik-08-00
 88-18-Jules_Kounde-50-00
-89-18-Marcos_Acuña-14-00
+89-18-Marcos_Acuna-14-00
 90-18-Sergio_Escudero-03-00
 91-19-Jaume_Domenech-06-00
 92-19-Gabriel_Pulista-15-00
@@ -95,5 +95,6 @@
 95-19-Daniel_Wass-08-00
 96-20-Raul_Albiol-03-00
 97-20-Francis_Coquelin-06-00
-98-20-Ruben_Peña-04-00
+98-20-Ruben_Pena-04-00
 99-20-Jaume_Costa-02-00
+100-20-Mateo_Matao-03-00
