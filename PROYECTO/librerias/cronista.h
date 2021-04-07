@@ -123,7 +123,7 @@ void valorar_equipos(futbolistas **estructura_futbolistas, configuracion *estruc
                     printf(".....INTRODUZCA LA NUEVA VALORACION DEL FUTBOLISTA.....\n");
                     printf("                           \n");
                     printf(">");
-                    scanf("%d", &estructura_futbolistas[i]->valoracion);
+                    scanf("%d", &(*estructura_futbolistas)[i].valoracion); //SUSCEPTIBLE A CAMBIO
 
                 }
             }
