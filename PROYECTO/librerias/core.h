@@ -795,11 +795,11 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
         //Liberamos la memoria dinamica
 
-        free(estructura_futbolistas);
-        free(estructura_equipos);
-        free(estructura_usuarios);
-        free(estructura_plantillas);
-        free(estructura_jugadores_plantillas);
+        free(*estructura_futbolistas);
+        free(*estructura_equipos);
+        free(*estructura_usuarios);
+        free(*estructura_plantillas);
+        free(*estructura_jugadores_plantillas);
 
         return 0;
 

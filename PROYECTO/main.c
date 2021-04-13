@@ -30,12 +30,6 @@ int main() {
     volcar_plantillas(&estructura_plantillas,&estructura_config);
     volcar_jugadores_plantillas(&estructura_jugadores_plantillas,&estructura_config);
 
-    escribir_usuarios(&estructura_usuarios,&estructura_config);
-    escribir_futbolistas(&estructura_futbolistas,&estructura_config);
-    escribir_equipos(&estructura_equipos,&estructura_config);
-    escribir_plantillas(&estructura_plantillas,&estructura_config);
-    escribir_jugadores_plantillas(&estructura_jugadores_plantillas,&estructura_config);
-    escribir_configuracion(&estructura_config);
     //VARIABLES_LOCALES
 
     int i,id;
@@ -48,7 +42,8 @@ int main() {
 
     printf("Bienvenid@ a la liga fantastica!!\n\n");
     printf("1) Acceso al sistema (cuenta ya existente)\n");
-    printf("2) Registrarse (cuenta no existente)\n\n");
+    printf("2) Registrarse (cuenta no existente)\n");
+    printf("3) Salir del sistema\n\n");
     printf("Selecciona una de las opciones posibles: ");
 
     scanf("%i",&i);
@@ -112,7 +107,7 @@ int main() {
 
             //Si acceso al sistema devuelve 1 significa que el usuario no está aun registrado
 
-            while (id == 1) {
+            while (id == 0) {
                 registro(&estructura_usuarios,&estructura_config);
                 id = acceso_sistema(&estructura_usuarios,&estructura_config);
             }
@@ -159,9 +154,13 @@ int main() {
                                   &estructura_usuarios , &estructura_futbolistas , &estructura_plantillas);
 
             }
+        }else if(i == 3){
+            salir_programa(&estructura_config, &estructura_futbolistas, &estructura_equipos, &estructura_usuarios,
+                           &estructura_plantillas, &estructura_jugadores_plantillas);
+
         }
 
     //Si el usuario no introduce ni 1 (acceso al sistema) ni 2 (registro) se sigue repitiendo hasta que elija bien
 
-    } while(i<1 || i>2);
+    } while(i<1 || i>3);
 }

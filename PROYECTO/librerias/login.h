@@ -33,16 +33,14 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
     u[strcspn(u, "\n")] = 0;    //funcion que encuentra el primer '\n' o '\r', y esta la igualamos a 0
     fflush(stdin);                 //Evitamos el salto de linea implicito del fgets
 
-    while(i < (*estructura_config).tam_usuarios){     //Recorre el vector dinámico de usuarios
-                                                    //para verificar si existe algun susuario con ese nick.
-
+    while(i < (*estructura_config).tam_usuarios){       //Recorre el vector dinámico de usuarios
+                                                        //para verificar si existe algun susuario con ese nick.
         if(strcmp(u, (*estructura_usuarios)[i].usuario_nick) == 0){       //Verifica si hay coincidencia.
 
             j = 1;                  //Para afirmar que se ha encontrado coincidencia,
             aux = i;                //guardo en aux el usuario para poder referirme a sus campos mas adelante.
 
         }
-
         i++;
     }
 
@@ -57,7 +55,7 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
 
             printf("\nPassword correcta, puede acceder al sistema como %s", (*estructura_usuarios)[aux].usuario_perfil);
 
-            return aux;    //Devuelvo el perfil del usuario para saber que menú usa;
+            return aux + 1;    //Devuelvo el perfil del usuario para saber que menú usa;
         }
 
         else{
@@ -70,12 +68,12 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
             p[strcspn(p, "\n")] = 0;
             fflush(stdin);
              }
-            return aux;
+            return aux + 1;
         }
     }
 
         printf("\nNo existe ningun usuario con tu nick. Registrate primero.");
-        return 1;  //En caso de que no esté registrado el usuario, devuelve 1.
+        return 0;  //En caso de que no esté registrado el usuario, devuelve 1.
 }
 
 //Función para que los usuarios se puedan registrar.
