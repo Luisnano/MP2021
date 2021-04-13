@@ -28,7 +28,7 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
     char u[6], p[9];                    //Mismos tamaños(6 y 9) que el campo nick_usuario/password_usuario en usuario.txt.
 
     fflush(stdin);
-    printf("\nIntroduzca su usuario: ");
+    printf("\nIntroduzca su nick: ");
     fgets(u,6,stdin);
     u[strcspn(u, "\n")] = 0;    //funcion que encuentra el primer '\n' o '\r', y esta la igualamos a 0
     fflush(stdin);                 //Evitamos el salto de linea implicito del fgets
@@ -50,7 +50,6 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
 
         printf("\nBienvenid@ %s, a continuacion introduzca su password: ", (*estructura_usuarios)[aux].nombre_usuario);
         fgets(p,9,stdin);
-        (*estructura_usuarios)[aux].nombre_usuario[strcspn((*estructura_usuarios)[aux].nombre_usuario, "\n")] = 0;
         fflush(stdin);
 
         if(strcmp(p, (*estructura_usuarios)[aux].usuario_password) == 0){
