@@ -351,6 +351,7 @@ void volcar_plantillas(plantillas **estructura_plantillas, configuracion *estruc
 
 
     FILE *f_plantillas;
+
     f_plantillas = fopen("files/plantillas.txt", "r");
 
     if(f_plantillas==NULL){
@@ -361,13 +362,13 @@ void volcar_plantillas(plantillas **estructura_plantillas, configuracion *estruc
     }
 
     char *token;        //El token donde se guardan los campos de las lineas del fichero
-    char linea[65];     //Linea donde se guarda las lineas del fichero
+    char linea[50];     //Linea donde se guarda las lineas del fichero
 
     *estructura_plantillas = NULL;     //Empieza en null ya que al hacer el realloc puede tener basura
 
     do{
 
-        fgets(linea, 65, f_plantillas);       //Guarda en linea las lineas del fichero
+        fgets(linea, 50, f_plantillas);       //Guarda en linea las lineas del fichero
 
         if (strcmp(linea,"\0") != 0){          //Si la linea no es nula
 
