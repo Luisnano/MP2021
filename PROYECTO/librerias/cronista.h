@@ -17,8 +17,8 @@ void valorar_equipos(futbolistas **estructura_futbolistas, configuracion *estruc
 //FUNCIONES
 
 
-//Cabecera: void menu_cronista(configuracion *estructura_config, futbolistas *estructura_futbolistas, equipos *estructura_equipos,
-//                   usuarios *estructura_usuarios, plantillas *estructura_plantillas,
+//Cabecera: void menu_cronista(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
+//                   usuarios **estructura_usuarios, plantillas **estructura_plantillas,
 //                   jugadores_plantillas *estructura_jugadores_plantillas);
 //Precondicion: Entran todas las estructuras existentes que hemos volcado con anterioridad de los ficheros.
 //Postcondicion: Es una funcion MENU, es decir detalla todas las opciones que tiene el cronista, y dependiendo de la
@@ -70,7 +70,7 @@ void menu_cronista(configuracion *estructura_config, futbolistas **estructura_fu
     } while (selec > 0 && selec < 4);
 }
 
-//Cabecera: void valorar_equipos(futbolistas *estructura_futbolistas, configuracion *estructura_configuracion);
+//Cabecera: void valorar_equipos(futbolistas **estructura_futbolistas, configuracion *estructura_configuracion);
 //Precondicion: Entran la estructura FUTBOLISTAS y la estructura CONFIGURACION
 //Postcondicion: Permitirá al cronista actualizar las valoraciones de los futbolistas. Para ello,
 //      el cronista seleccionará un identificador de un equipo y posteriormente le aparecerá la lista

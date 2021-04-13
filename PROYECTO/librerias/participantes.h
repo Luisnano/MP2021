@@ -46,9 +46,9 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
 
 //Cabecera: void menu_participantes(int *id, configuracion *estructura_config,
-//                                  jugadores_plantillas *estructura_jugadores_plantillas, equipos *estructura_equipos,
-//                                  usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
-//                                  plantillas *estructura_plantillas);
+//                                  jugadores_plantillas **estructura_jugadores_plantillas, equipos **estructura_equipos,
+//                                  usuarios **estructura_usuarios, futbolistas **estructura_futbolistas,
+//                                  plantillas **estructura_plantillas);
 //Precondición: La función recibe la id del participante , junto con todos los vectores de estructuras
 //Postcondición: La función muestra las distintas opciones del menu participante para poder acceder a ellas
 
@@ -108,9 +108,9 @@ void menu_participantes(int *id, configuracion *estructura_config, jugadores_pla
 
 
 //Cabecera: void crear_plantillas(int *id, configuracion *estructura_config,
-//                                jugadores_plantillas *estructura_jugadores_plantillas,equipos *estructura_equipos,
-//                                usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
-//                                plantillas *estructura_plantillas);
+//                                jugadores_plantillas **estructura_jugadores_plantillas,equipos **estructura_equipos,
+//                                usuarios **estructura_usuarios, futbolistas **estructura_futbolistas,
+//                                plantillas **estructura_plantillas);
 //Precondición: Recibe la id del participante y todas  los demas vectores estructura
 //Postcondición: Crea una nueva plantilla para el participante en caso de que sea posible
 
@@ -193,9 +193,9 @@ void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plant
 }
 
 //Cabecera: void configurar_plantillas(int *id, configuracion *estructura_config,
-//                                     jugadores_plantillas *estructura_jugadores_plantillas,equipos *estructura_equipos
-//                                     , usuarios *estructura_usuarios, futbolistas *estructura_futbolistas,
-//                                     plantillas *estructura_plantillas);
+//                                     jugadores_plantillas **estructura_jugadores_plantillas,equipos **estructura_equipos
+//                                     , usuarios **estructura_usuarios, futbolistas **estructura_futbolistas,
+//                                     plantillas **estructura_plantillas);
 //Precondicion: La función recibe el id del participante junto con todos los demas vectores de estructura
 //Postcondición: La funcion muestra un menu para configurar mediante funciones una de las plantillas del participante
 
@@ -302,8 +302,8 @@ void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_
 
 }
 
-//Cabecera: void listar_jugadores_disponibles(futbolistas *estructura_futbolistas,
-//                                            jugadores_plantillas *estructura_jugadores_plantillas,
+//Cabecera: void listar_jugadores_disponibles(futbolistas **estructura_futbolistas,
+//                                            jugadores_plantillas **estructura_jugadores_plantillas,
 //                                            configuracion *estructura_config);
 //Precondición: La función recibe los vectores de estructuras para futbolistas, jugadores_plantillas, y configuracion
 //Postcondición: La funcion muestra al participante los futbolistas que no están asignados a ninguna plantilla
@@ -345,7 +345,7 @@ void listar_jugadores_disponibles(futbolistas **estructura_futbolistas,jugadores
 
 }
 
-//Cabecera: void ranking(plantillas *estructura_plantillas, configuracion *estructura_config);
+//Cabecera: void ranking(plantillas **estructura_plantillas, configuracion *estructura_config);
 //Precondición: La función recibe los vectores de estructura plantillas y configuración
 //Postcondición: La función muestra al usuario una lista ordenada actual de las plantillas con mayor puntuación
 
@@ -391,8 +391,8 @@ void ranking(plantillas **estructura_plantillas, configuracion *estructura_confi
     }
 }
 
-//Cabecera: void eliminar_plantillas(int *id,plantillas *estructura_plantillas,
-//                                   jugadores_plantillas *estructura_jugadores_plantillas,
+//Cabecera: void eliminar_plantillas(int *id,plantillas **estructura_plantillas,
+//                                   jugadores_plantillas **estructura_jugadores_plantillas,
 //                                   configuracion *estructura_config);
 //Precondición: La función recibe el id del participante y los vectores de estructura de
 //              plantillas, jugadores_plantillas y configuración
@@ -506,8 +506,8 @@ void eliminar_plantillas(int *id, plantillas **estructura_plantillas, jugadores_
 
 }
 
-//Cabecera: void listar_jugadores_plantillas(int *plantilla, jugadores_plantillas *estructura_jugadores_plantillas,
-//                                           futbolistas *estructura_futbolistas, configuracion *estructura_config);
+//Cabecera: void listar_jugadores_plantillas(int *plantilla, jugadores_plantillas **estructura_jugadores_plantillas,
+//                                           futbolistas **estructura_futbolistas, configuracion *estructura_config);
 //Precondición: La función recibe la plantilla a listar sus jugadores junto a los vectores dinamicos de estructura
 //                jugadores_plantillas , futbolistas y configuración
 //Postcondición: La funcion muestra los futbolistas de la plantilla que recibe la función
@@ -546,8 +546,8 @@ void listar_jugadores_plantillas(int *plantilla, jugadores_plantillas **estructu
     }
 }
 
-//Cabecera: void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas *estructura_jugadores_plantillas,
-//                                           futbolistas *estructura_futbolistas,plantillas *estructura_plantillas,
+//Cabecera: void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas **estructura_jugadores_plantillas,
+//                                           futbolistas **estructura_futbolistas,plantillas **estructura_plantillas,
 //                                           configuracion *estructura_config);
 //Precondición: La función recibe la plantilla a configurar, junto con los vectores dinámicos de estructura
 //                jugadores_plantillas, futbolistas, plantillas y configuracion
@@ -656,9 +656,9 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas **estructu
 }
 
 //Cabecera: void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura_config,
-//                                         jugadores_plantillas *estructura_jugadores_plantillas,
-//                                         equipos *estructura_equipos, usuarios *estructura_usuarios,
-//                                         futbolistas *estructura_futbolistas,plantillas *estructura_plantillas);
+//                                         jugadores_plantillas **estructura_jugadores_plantillas,
+//                                         equipos **estructura_equipos, usuarios **estructura_usuarios,
+//                                         futbolistas **estructura_futbolistas,plantillas **estructura_plantillas);
 //Precondición: La funcion recibe la id del participante, la plantilla a la cual añadir futbolistas, y todos
 //              los vectores dinámicos de estructuras.
 //Postcondición: La funcion lista los futbolista que no tienen plantilla , de los cuales el participante elige uno

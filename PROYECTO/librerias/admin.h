@@ -15,7 +15,7 @@ void addUsuarios(usuarios **, configuracion *);
 void eliminarUsuarios(usuarios **, configuracion *);
 void modificarConfiguracion(configuracion *);
 
-//cabecera: void menuAdministrador(configuracion *, jugadores_plantillas *, equipos *, usuarios *, futbolistas *, plantillas *);
+//cabecera: void menuAdministrador(configuracion *, jugadores_plantillas **, equipos **, usuarios **, futbolistas **, plantillas **);
 //precondicion: metodo que recibe todas las estructuras inicializadas.
 //postcondicion: realiza las diferentes funciones del menú administrador.
 
@@ -96,7 +96,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
     } while (op < 1 || op > 4);
 }
 
-    //cabecera: void modificarEquipos( equipos *estructura_equipos, configuracion *estructura_config);
+    //cabecera: void modificarEquipos( equipos **estructura_equipos, configuracion *estructura_config);
     //precondicion: metodo que recibe las estructuras de equipos y configuracion inicializadas.
     //postcondicion: Permite al usuario modificar los equipos (nombre).
 
@@ -127,7 +127,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
     strcpy((*estructura_equipos)[aux1].nombre_equipo,nombre);
 }
 
-    //cabecera: void addEquipos(equipos *estructura_equipos, configuracion *estructura_config);
+    //cabecera: void addEquipos(equipos **estructura_equipos, configuracion *estructura_config);
     //precondicion: metodo que recibe las estructuras de equipos y configuracion inicializadas.
     //postcondicion: Permite al usuario añadir equipos.
 
@@ -162,7 +162,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
     }
 }
 
-    //cabecera: void eliminarEquipos(equipos *estructura_equipos, configuracion *estructura_config);
+    //cabecera: void eliminarEquipos(equipos **estructura_equipos, configuracion *estructura_config);
     //precondicion: metodo que recibe las estructuras de equipos y configuracion inicializadas.
     //postcondicion: Permite al usuario eliminar equipos.
 
@@ -205,7 +205,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
         }
 }
 
-    //cabecera: void addUsuarios(usuarios *estructura_usuarios, configuracion *estructura_config);
+    //cabecera: void addUsuarios(usuarios **estructura_usuarios, configuracion *estructura_config);
     //precondicion: metodo que recibe las estructuras de usuarios y configuracion inicializadas.
     //postcondicion: Permite al usuario añador un usuario.
 
@@ -256,7 +256,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
         strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_password,password_temp);    //copio la password en la estructura
     }
 
-    //cabecera: void modificarUsuarios(usuarios *estructura_usuarios, configuracion *estructura_config);
+    //cabecera: void modificarUsuarios(usuarios **estructura_usuarios, configuracion *estructura_config);
     //precondicion: metodo que recibe las estructuras de usuarios y configuracion inicializadas.
     //postcondicion: Permite al usuario modificar los usuarios.
 
@@ -308,7 +308,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
 
     }
 
-    //cabecera: void eliminarUsuarios(usuarios *estructura_usuarios, configuracion *estructura_config);
+    //cabecera: void eliminarUsuarios(usuarios **estructura_usuarios, configuracion *estructura_config);
     //precondicion: metodo que recibe las estructuras de usuarios y configuracion inicializadas.
     //postcondicion: Permite al usuario eliminar un usuario.
 

@@ -50,6 +50,7 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
 
         printf("\nBienvenid@ %s, a continuacion introduzca su password: ", (*estructura_usuarios)[aux].nombre_usuario);
         fgets(p,9,stdin);
+        p[strcspn(p, "\n")] = 0;
         fflush(stdin);
 
         if(strcmp(p, (*estructura_usuarios)[aux].usuario_password) == 0){
@@ -61,10 +62,12 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
 
         else{
 
-            while(strcmp(p, (*estructura_usuarios)[aux].usuario_password) != 0 ){      //Comprueba la coincidencia de la contraseña
+            while(strcmp(p, (*estructura_usuarios)[aux].usuario_password) != 0 ){
+                //Comprueba la coincidencia de la contraseña
 
-            printf("\nPassword incorrecta. Iintroduzcala de nuevo.");
+            printf("\nPassword incorrecta. Introduzcala de nuevo.");
             fgets(p,9,stdin);
+            p[strcspn(p, "\n")] = 0;
             fflush(stdin);
              }
             return aux;
