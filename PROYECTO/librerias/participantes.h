@@ -125,9 +125,9 @@ void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plant
 
     // El siguiente bucle cuenta el nº de plantillas que tiene el participante
 
-    for(i = 0 ; i <= estructura_config->tam_plantillas ; i++){
+    for(i = 0 ; i <= (*estructura_config).tam_plantillas ; i++){
 
-        if(estructura_plantillas[i]->usuario_id == *id){
+        if((*estructura_plantillas)[i].usuario_id == *id){
 
             num_plantillas++;     //Si detecta plantilla del participante aumenta el contador
         }
@@ -135,7 +135,7 @@ void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plant
 
     //Si el participante ha alcanzado el nº máximo de plantillas permitido entonces no puede seguir y vuelta al menu
 
-    if(num_plantillas == estructura_config->max_plantillas_participante){
+    if(num_plantillas == (*estructura_config).max_plantillas_participante){
 
         printf("Numero maximo de plantillas alcanzado.\n");
         menu_participantes(id,estructura_config,estructura_jugadores_plantillas,estructura_equipos,estructura_usuarios,
@@ -150,38 +150,39 @@ void crear_plantillas(int *id, configuracion *estructura_config, jugadores_plant
 
         //Aumentamos el tamaño del vector dinamico en 1 ya que creamos 1 plantilla
 
-            *estructura_plantillas = (plantillas *)realloc(estructura_plantillas,
-                                                          (estructura_config->tam_plantillas+1)*sizeof(int));
+        *estructura_plantillas = (plantillas *)realloc((*estructura_plantillas),
+                                                          ((*estructura_config).tam_plantillas+1)*sizeof(plantillas));
 
-            estructura_config->tam_plantillas++;    //Aumentamos en 1 el tamaño de plantillas
+        (*estructura_config).tam_plantillas++;    //Aumentamos en 1 el tamaño de plantillas
 
-            if(estructura_plantillas == NULL){
+        if(estructura_plantillas == NULL){
 
-                printf("Fallo de reserva de memoria\n");
+            printf("Fallo de reserva de memoria\n");
+            exit(EXIT_FAILURE);
 
-            }
+        }
 
-            //Empezamos a darle datos a la nueva plantilla
-            //Algunos de ellos ya lo sabemos y otros los pedimos por teclado
+        //Empezamos a darle datos a la nueva plantilla
+        //Algunos de ellos ya lo sabemos y otros los pedimos por teclado
+        //La id del dueño de la plantilla es la del participante:
 
-            //La id del dueño de la plantilla es la del participante:
+        (*estructura_plantillas)[(*estructura_config).tam_plantillas].usuario_id = *id;
 
-            estructura_plantillas[estructura_config->tam_plantillas]->usuario_id = *id;
+        //El ID de la plantilla será el tamaño maximo del vector,
+        //Ya que este tamaño va parejo con la última plantilla existente
 
-            //El ID de la plantilla será el tamaño maximo del vector,
-            //Ya que este tamaño va parejo con la última plantilla existente
+        (*estructura_plantillas)[(*estructura_config).tam_plantillas].plantilla_id =
+                                                                                     (*estructura_config).tam_plantillas;
 
-            estructura_plantillas[estructura_config->tam_plantillas]->plantilla_id = estructura_config->tam_plantillas;
+        printf("\nIntroduce el nombre de la plantilla: ");
+        fgets((*estructura_plantillas)[(*estructura_config).tam_plantillas].nombre_plantilla,31,stdin);
+        fflush(stdin);
 
-            printf("\nIntroduce el nombre de la plantilla: ");
-            fgets(estructura_plantillas[estructura_config->tam_plantillas]->nombre_plantilla,31,stdin);
-            fflush(stdin);
+        (*estructura_plantillas)[(*estructura_config).tam_plantillas].presupuesto_disp =
+                                                                            (*estructura_config).presupuesto_defecto;
+        //La puntuación empieza en 0 en todas las plantillas creadas
 
-            estructura_plantillas[estructura_config->tam_plantillas]->presupuesto_disp = estructura_config->presupuesto_defecto;
-
-            //La puntuación empieza en 0 en todas las plantillas creadas
-
-            estructura_plantillas[estructura_config->tam_plantillas]->puntuacion_acum = 0;
+        (*estructura_plantillas)[(*estructura_config).tam_plantillas].puntuacion_acum = 0;
 
         printf("\nLa plantilla se ha creado con exito.\n");
 
@@ -210,11 +211,11 @@ void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_
 
     printf("\nA continuacion, mostraremos tus plantillas actuales.\n");
 
-    for(i = 0 ; i < estructura_config->tam_plantillas ; i++){
+    for(i = 0 ; i < (*estructura_config).tam_plantillas ; i++){
 
-        printf("\n%i, %s, presupuesto: %i, puntuacion: %i", estructura_plantillas[i]->plantilla_id,
-               estructura_plantillas[i]->nombre_plantilla,estructura_plantillas[i]->presupuesto_disp,
-               estructura_plantillas[i]->puntuacion_acum);
+        printf("\n%i, %s, presupuesto: %i, puntuacion: %i", (*estructura_plantillas)[i].plantilla_id,
+               (*estructura_plantillas)[i].nombre_plantilla,(*estructura_plantillas)[i].presupuesto_disp,
+               (*estructura_plantillas)[i].puntuacion_acum);
     }
 
     printf("\nSelecciona una de ellas para configurarla:\n\n");
@@ -248,9 +249,9 @@ void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_
                         //Vemos si la plantilla ya tiene 11 futbolistas
                         //En ese caso vuelve al menu otra vez
 
-                        for(i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
+                        for(i = 0 ; i < (*estructura_config).tam_jugadores_plantillas ; i++){
 
-                            if(plantilla == estructura_jugadores_plantillas[i]->plantilla_id){
+                            if(plantilla == (*estructura_jugadores_plantillas)[i].plantilla_id){
 
                                 //Con j controlo el numero de futbolistas de esa plantilla
 
@@ -261,7 +262,7 @@ void configurar_plantillas(int *id, configuracion *estructura_config, jugadores_
 
                         //Comparo si ya hay 11 futbolistas, si no, llamo funcion anadir_futbolista
 
-                        if(j == estructura_config->max_futbolistas_plantilla){
+                        if(j == (*estructura_config).max_futbolistas_plantilla){
 
                             printf("\nLa plantilla seleccionada ya tiene 11 futbolistas,"
                                    " si deseas anadir otro, primero elimina uno\n\n");
@@ -318,13 +319,13 @@ void listar_jugadores_disponibles(futbolistas **estructura_futbolistas,jugadores
     //Recorremos la estructura jugadores_plantilla ya que aquí están guardados todos los futbolistas
     //que están en una plantilla , los que estén disponibles se mostrarán por pantalla
 
-    for(i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
+    for(i = 0 ; i < (*estructura_config).tam_jugadores_plantillas ; i++){
 
         aux = 1;
 
-        for(j = 0 ; j < estructura_config->tam_jugadores_plantillas && aux == 1 ; j++){
+        for(j = 0 ; j < (*estructura_config).tam_jugadores_plantillas && aux == 1 ; j++){
 
-            if(estructura_futbolistas[i]->futbolista_id == estructura_jugadores_plantillas[j]->jugador_platilla_id){
+            if((*estructura_futbolistas)[i].futbolista_id == (*estructura_jugadores_plantillas)[j].jugador_platilla_id){
 
                 aux = 0;
 
@@ -336,9 +337,9 @@ void listar_jugadores_disponibles(futbolistas **estructura_futbolistas,jugadores
             //Los mostramos por pantalla
 
             printf("%i , %i , %s , %i , %i\n",
-                   estructura_futbolistas[i-1]->futbolista_id,estructura_futbolistas[i-1]->equipo_id,
-                   estructura_futbolistas[i-1]->nombre_futbolista,estructura_futbolistas[i-1]->futbolista_precio,
-                   estructura_futbolistas[i-1]->valoracion);
+                   (*estructura_futbolistas)[i-1].futbolista_id,(*estructura_futbolistas)[i-1].equipo_id,
+                   (*estructura_futbolistas)[i-1].nombre_futbolista,(*estructura_futbolistas)[i-1].futbolista_precio,
+                   (*estructura_futbolistas)[i-1].valoracion);
         }
     }
 
@@ -354,18 +355,18 @@ void ranking(plantillas **estructura_plantillas, configuracion *estructura_confi
 
     int i, j, aux;
 
-    int ranking[estructura_config->tam_plantillas];    //PASAMOS LA ESTRUCTURA A UN VECTOR RANKING PARA PODER ASI ORDENARLOS
+    int ranking[(*estructura_config).tam_plantillas];    //PASAMOS LA ESTRUCTURA A UN VECTOR RANKING PARA PODER ASI ORDENARLOS
 
-    for (i = 0; i < estructura_config->tam_plantillas ; i++) {
+    for (i = 0; i < (*estructura_config).tam_plantillas ; i++) {
 
-        ranking[i] = estructura_plantillas[i]->puntuacion_acum;
+        ranking[i] = (*estructura_plantillas)[i].puntuacion_acum;
     }
 
     //AHORA HACEMOS UN ALGORITMO DE ORDENACION SIMPLE, CON AYUDA DE UN AUX COMPARAMOS SI EL ELEMENTO ACTUAL
 
-    for (i = 0 ; i < estructura_config->tam_plantillas ; i++) {
+    for (i = 0 ; i < (*estructura_config).tam_plantillas ; i++) {
 
-        for (j = 0 ; j < estructura_config->tam_plantillas ; j++) {
+        for (j = 0 ; j < (*estructura_config).tam_plantillas ; j++) {
 
 
             if (ranking[j] > ranking[j + 1]) {    //ES MAYOR QUE EL SIGUIENTE. SI LO ES, SE INTERCAMBIAN.
@@ -382,10 +383,10 @@ void ranking(plantillas **estructura_plantillas, configuracion *estructura_confi
 
     //MUESTRA EL RANKING
 
-    for(i = 0 ; i < estructura_config->tam_plantillas ; i++){
+    for(i = 0 ; i < (*estructura_config).tam_plantillas ; i++){
 
-        printf("%i , %s => %i PUNTOS\n", estructura_plantillas[i]->plantilla_id,
-               estructura_plantillas[i]->nombre_plantilla, ranking[i]);
+        printf("%i , %s => %i PUNTOS\n", (*estructura_plantillas)[i].plantilla_id,
+               (*estructura_plantillas)[i].nombre_plantilla, ranking[i]);
 
     }
 }
@@ -409,15 +410,15 @@ void eliminar_plantillas(int *id, plantillas **estructura_plantillas, jugadores_
 
     printf("\nSeleccione el id de su plantilla que desea eliminar , las cuales son:");
 
-    for(i = 0 ; i < estructura_config->tam_plantillas ; i++){        //Mostramos las plantillas
+    for(i = 0 ; i < (*estructura_config).tam_plantillas ; i++){        //Mostramos las plantillas
 
         //Comprobamos que se impriman las plantillas del usuario
 
-        if(*id == estructura_plantillas[i]->usuario_id){
+        if(*id == (*estructura_plantillas)[i].usuario_id){
 
-        printf("\n%i, %s, presupuesto: %i, puntuacion: %i", estructura_plantillas[i]->plantilla_id,
-               estructura_plantillas[i]->nombre_plantilla,estructura_plantillas[i]->presupuesto_disp,
-               estructura_plantillas[i]->puntuacion_acum);
+        printf("\n%i, %s, presupuesto: %i, puntuacion: %i", (*estructura_plantillas)[i].plantilla_id,
+               (*estructura_plantillas)[i].nombre_plantilla,(*estructura_plantillas)[i].presupuesto_disp,
+               (*estructura_plantillas)[i].puntuacion_acum);
         }
     }
 
@@ -429,66 +430,77 @@ void eliminar_plantillas(int *id, plantillas **estructura_plantillas, jugadores_
     //Con estos auxiliares guardamos los datos de la plantilla para intercambair su posicion en estructura_plantillas
     //con la ultima plantilla, así al hacer el realloc eliminamos la plantilla seleccionada
 
-    for (i = 0 ; i < estructura_config->tam_plantillas ; i++){
+    for (i = 0 ; i < (*estructura_config).tam_plantillas ; i++){
 
-        if(plantilla == estructura_plantillas[i]->plantilla_id){     //Para localizar la plantilla introducida
+        if(plantilla == (*estructura_plantillas)[i].plantilla_id){     //Para localizar la plantilla introducida
 
-            v[0] = estructura_plantillas[i]->usuario_id;
-            v[1] = estructura_plantillas[i]->plantilla_id;
-            v[2] = estructura_plantillas[i]->presupuesto_disp;
-            v[3] = estructura_plantillas[i]->puntuacion_acum;
-            strcpy(&aux,estructura_plantillas[i]->nombre_plantilla);
+            v[0] = (*estructura_plantillas)[i].usuario_id;
+            v[1] = (*estructura_plantillas)[i].plantilla_id;
+            v[2] = (*estructura_plantillas)[i].presupuesto_disp;
+            v[3] = (*estructura_plantillas)[i].puntuacion_acum;
+            strcpy(&aux,(*estructura_plantillas)[i].nombre_plantilla);
 
-            estructura_plantillas[i]->usuario_id = estructura_plantillas[estructura_config->tam_plantillas]->usuario_id;
-            estructura_plantillas[i]->plantilla_id = estructura_plantillas[estructura_config->tam_plantillas]->plantilla_id;
-            estructura_plantillas[i]->presupuesto_disp = estructura_plantillas[estructura_config->tam_plantillas]->presupuesto_disp;
-            estructura_plantillas[i]->puntuacion_acum = estructura_plantillas[estructura_config->tam_plantillas]->puntuacion_acum;
-            strcpy(estructura_plantillas[i]->nombre_plantilla, estructura_plantillas[estructura_config->tam_plantillas]->nombre_plantilla);
+            (*estructura_plantillas)[i].usuario_id = (*estructura_plantillas)[(*estructura_config).tam_plantillas].usuario_id;
+            (*estructura_plantillas)[i].plantilla_id = (*estructura_plantillas)[(*estructura_config).tam_plantillas].plantilla_id;
+            (*estructura_plantillas)[i].presupuesto_disp = (*estructura_plantillas)[(*estructura_config).tam_plantillas].presupuesto_disp;
+            (*estructura_plantillas)[i].puntuacion_acum = (*estructura_plantillas)[(*estructura_config).tam_plantillas].puntuacion_acum;
+            strcpy((*estructura_plantillas)[i].nombre_plantilla, (*estructura_plantillas)[(*estructura_config).tam_plantillas].nombre_plantilla);
 
-            estructura_plantillas[estructura_config->tam_plantillas]->usuario_id = v[0];
-            estructura_plantillas[estructura_config->tam_plantillas]->plantilla_id = v[1];
-            estructura_plantillas[estructura_config->tam_plantillas]->presupuesto_disp = v[2];
-            estructura_plantillas[estructura_config->tam_plantillas]->puntuacion_acum = v[3];
-            strcpy(estructura_plantillas[estructura_config->tam_plantillas]->nombre_plantilla , &aux);
+            (*estructura_plantillas)[(*estructura_config).tam_plantillas].usuario_id = v[0];
+            (*estructura_plantillas)[(*estructura_config).tam_plantillas].plantilla_id = v[1];
+            (*estructura_plantillas)[(*estructura_config).tam_plantillas].presupuesto_disp = v[2];
+            (*estructura_plantillas)[(*estructura_config).tam_plantillas].puntuacion_acum = v[3];
+            strcpy((*estructura_plantillas)[(*estructura_config).tam_plantillas].nombre_plantilla , &aux);
         }
     }
 
     //Redimensionamos el vector estructura_plantillas, al eliminar una plantilla, le quitamos un elemento
 
-    estructura_config->tam_plantillas --;
+    (*estructura_config).tam_plantillas --;
 
-    *estructura_plantillas = (plantillas*)realloc(estructura_plantillas,(estructura_config->tam_plantillas)*sizeof(int));
-    if(estructura_plantillas == NULL){printf("\nFallo de reserva de memoria");}
+    *estructura_plantillas = (plantillas*)realloc((*estructura_plantillas),
+                                                  ((*estructura_config).tam_plantillas)*sizeof(plantillas));
+
+    if(estructura_plantillas == NULL){
+
+        printf("\nFallo de reserva de memoria");
+        exit(EXIT_FAILURE);
+    }
 
     //Ahora eliminamos todos los futbolistas de jugadores_plantillas con la id de la plantilla eliminada
     //El uso del do while se debe a que
     //si cambio un futbolista de la plantilla seleccionada por el ultimo futbolista de jugadores_plantillas para
     //hacer el realloc es posible que el ultimo futbolista tambien pertenezca a esa plantilla
 
-    for(i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
+    for(i = 0 ; i < (*estructura_config).tam_jugadores_plantillas ; i++){
 
         do{
             //Algoritmo de la burbuja, haciendo así el cambio usando las variables auxiliares creadas
 
-            v[0] = estructura_jugadores_plantillas[i]->jugador_platilla_id;
-            v[1] = estructura_jugadores_plantillas[i]->plantilla_id;
+            v[0] = (*estructura_jugadores_plantillas)[i].jugador_platilla_id;
+            v[1] = (*estructura_jugadores_plantillas)[i].plantilla_id;
 
-            estructura_jugadores_plantillas[i]->jugador_platilla_id =
-                    estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->jugador_platilla_id;
-            estructura_jugadores_plantillas[i]->plantilla_id =
-                    estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->plantilla_id;
+            (*estructura_jugadores_plantillas)[i].jugador_platilla_id =
+                    (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].jugador_platilla_id;
+            (*estructura_jugadores_plantillas)[i].plantilla_id =
+                    (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].plantilla_id;
 
-            estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->jugador_platilla_id = v[0];
-            estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->plantilla_id = v[1];
+            (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].jugador_platilla_id = v[0];
+            (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].plantilla_id = v[1];
 
             *estructura_jugadores_plantillas = (jugadores_plantillas *)
-                    realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas-1)*sizeof(int));
+                    realloc((*estructura_jugadores_plantillas),
+                            ((*estructura_config).tam_jugadores_plantillas-1)*sizeof(jugadores_plantillas));
 
-            estructura_config->tam_jugadores_plantillas--; // El tamaño de jugadores plantillas se reduce en 1
+            (*estructura_config).tam_jugadores_plantillas--; // El tamaño de jugadores plantillas se reduce en 1
 
-            if(estructura_jugadores_plantillas == NULL){printf("\nFallo de reserva de memoria");}
+            if(estructura_jugadores_plantillas == NULL){
 
-        } while(plantilla == estructura_jugadores_plantillas[i]->plantilla_id);
+                printf("\nFallo de reserva de memoria");
+                exit(EXIT_FAILURE);
+            }
+
+        } while(plantilla == (*estructura_jugadores_plantillas)[i].plantilla_id);
 
     }
 
@@ -507,26 +519,26 @@ void listar_jugadores_plantillas(int *plantilla, jugadores_plantillas **estructu
 
     printf("\n\nLos futbolistas que pertenecen a la plantilla %i son:",*plantilla);
 
-    for(i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
+    for(i = 0 ; i < (*estructura_config).tam_jugadores_plantillas ; i++){
 
         //Identifico a los futbolistas de esa plantilla ya que plantilla_id es el mismo dato en jugadores_plantillas
         //Y en plantillas
 
-        if (*plantilla == estructura_jugadores_plantillas[i]->plantilla_id){
+        if (*plantilla == (*estructura_jugadores_plantillas)[i].plantilla_id){
 
             //Busco al futbolista mediante su campo futbolista_id para imprimir sus datos
 
-            for(j = 0 ; j < estructura_config->tam_futbolistas ; j++){
+            for(j = 0 ; j < (*estructura_config).tam_futbolistas ; j++){
 
                 //Identifico al futbolista
 
-                if(estructura_jugadores_plantillas[i]->jugador_platilla_id == estructura_futbolistas[j]->futbolista_id){
+                if((*estructura_jugadores_plantillas)[i].jugador_platilla_id == (*estructura_futbolistas)[j].futbolista_id){
 
                     //Muestro sus datos
 
-                    printf("\n%i , equipo:%i, %s, precio:%i, valoracion:%i\n",estructura_futbolistas[j]->futbolista_id,
-                           estructura_futbolistas[j]->equipo_id,estructura_futbolistas[j]->nombre_futbolista,
-                           estructura_futbolistas[j]->futbolista_precio,estructura_futbolistas[j]->valoracion);
+                    printf("\n%i , equipo:%i, %s, precio:%i, valoracion:%i\n",(*estructura_futbolistas)[j].futbolista_id,
+                           (*estructura_futbolistas)[j].equipo_id,(*estructura_futbolistas)[j].nombre_futbolista,
+                           (*estructura_futbolistas)[j].futbolista_precio,(*estructura_futbolistas)[j].valoracion);
 
                 }
             }
@@ -558,9 +570,9 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas **estructu
 
     //Busco al futbolista para poder hacer la suma de presupuesto de la plantilla
 
-    for(i = 0 ; i < estructura_config->tam_futbolistas ; i++){
+    for(i = 0 ; i < (*estructura_config).tam_futbolistas ; i++){
 
-        if(opcion == estructura_futbolistas[i]->futbolista_id){
+        if(opcion == (*estructura_futbolistas)[i].futbolista_id){
 
             //En j guardo el indicador de ese futbolista concreto en la estructura para poder referirme a el
             //Uso j pues no la voy a volver a usar en la funcion
@@ -572,8 +584,8 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas **estructu
 
     //Le sumo al presupuesto de la plantilla seleccinada el precio del futbolista eliminado
 
-    estructura_plantillas[*plantilla]->presupuesto_disp =
-            estructura_plantillas[*plantilla]->presupuesto_disp + estructura_futbolistas[j]->futbolista_precio;
+    (*estructura_plantillas)[*plantilla].presupuesto_disp =
+            (*estructura_plantillas)[*plantilla].presupuesto_disp + (*estructura_futbolistas)[j].futbolista_precio;
 
     //Para hacer el realoc restando 1 espacio a estructura_jugadores_plantillas , intercambio el futbolista sellecionado
     //Por el ultimo, así al hacer el realloc lo borro , aux1 y aux2 me ayudaran a hacer el cambio ya que
@@ -582,53 +594,61 @@ void eliminar_jugador_plantillas(int *plantilla, jugadores_plantillas **estructu
     //Comprobamos si el futbolista a borrar es el ultimo de jugadores_futbolistas, para ahorrar todo el proceso comentado
     //anteriormente, si no, se realiza el algoritmo de la burbuja
 
-    if (opcion == estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->jugador_platilla_id){
+    if (opcion == (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].jugador_platilla_id){
 
         //Reducimos en 1 el tamaño de jugadores plantilla
-        estructura_config->tam_jugadores_plantillas--;
+        (*estructura_config).tam_jugadores_plantillas--;
 
         *estructura_jugadores_plantillas = (jugadores_plantillas *)
-                realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas)*sizeof(int));
+                realloc((*estructura_jugadores_plantillas),((*estructura_config).tam_jugadores_plantillas)*sizeof(jugadores_plantillas));
 
-        if(estructura_jugadores_plantillas == NULL){printf("\nFallo de reserva de memoria");}
+        if(estructura_jugadores_plantillas == NULL){
+
+            printf("\nFallo de reserva de memoria");
+            exit(EXIT_FAILURE);
+        }
 
     }
 
     else {
 
-        for (i = 0; i < estructura_config->tam_jugadores_plantillas; i++) {
+        for (i = 0; i < (*estructura_config).tam_jugadores_plantillas; i++) {
 
-            if (opcion == estructura_jugadores_plantillas[i]->jugador_platilla_id) {
+            if (opcion == (*estructura_jugadores_plantillas)[i].jugador_platilla_id) {
 
                 //Los auxiliares toman el valor de los datos del futbolista a borrar
 
-                aux1 = estructura_jugadores_plantillas[opcion]->jugador_platilla_id;
-                aux2 = estructura_jugadores_plantillas[opcion]->plantilla_id;
+                aux1 = (*estructura_jugadores_plantillas)[opcion].jugador_platilla_id;
+                aux2 = (*estructura_jugadores_plantillas)[opcion].plantilla_id;
 
                 //Los datos de la posición del futbolista a borrar son cambiados por los del ultimo
 
-                estructura_jugadores_plantillas[opcion]->jugador_platilla_id =
-                        estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->jugador_platilla_id;
-                estructura_jugadores_plantillas[opcion]->plantilla_id =
-                        estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->plantilla_id;
+                (*estructura_jugadores_plantillas)[opcion].jugador_platilla_id =
+                        (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].jugador_platilla_id;
+                (*estructura_jugadores_plantillas)[opcion].plantilla_id =
+                        (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].plantilla_id;
 
                 //Los datos del ultimo futbolistas son cambiados por los guardados en aux1 y aux2
 
-                estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->jugador_platilla_id = aux1;
-                estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->plantilla_id = aux2;
+                (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].jugador_platilla_id = aux1;
+                (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].plantilla_id = aux2;
 
                 //Una vez cambiados los valores, procedo a hacer el realloc
 
                 //Reducimos en 1 el tamaño de jugadores plantilla
-                estructura_config->tam_jugadores_plantillas--;
+                (*estructura_config).tam_jugadores_plantillas--;
 
                 *estructura_jugadores_plantillas = (jugadores_plantillas *)
-                        realloc(estructura_jugadores_plantillas,
-                                (estructura_config->tam_jugadores_plantillas) * sizeof(int));
+                        realloc((*estructura_jugadores_plantillas),
+                                ((*estructura_config).tam_jugadores_plantillas) * sizeof(jugadores_plantillas));
 
 
 
-                if (estructura_jugadores_plantillas == NULL) { printf("\nFallo de reserva de memoria"); }
+                if (estructura_jugadores_plantillas == NULL) {
+
+                    printf("\nFallo de reserva de memoria");
+                    exit(EXIT_FAILURE);
+                }
 
             }
         }
@@ -660,9 +680,9 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
     //Identifico al futbolista
 
-    for(i = 0 ; i < estructura_config->tam_futbolistas ; i++){
+    for(i = 0 ; i < (*estructura_config).tam_futbolistas ; i++){
 
-        if(futbolista == estructura_futbolistas[i]->futbolista_id){
+        if(futbolista == (*estructura_futbolistas)[i].futbolista_id){
 
             //Aux1 toma el indicador del futbolista para poder referirme a el mas adelante
 
@@ -670,9 +690,9 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
         }
     }
 
-    for(i = 0 ; i < estructura_config->tam_plantillas ; i++){
+    for(i = 0 ; i < (*estructura_config).tam_plantillas ; i++){
 
-        if(estructura_plantillas[i]->plantilla_id == *plantilla){
+        if((*estructura_plantillas)[i].plantilla_id == *plantilla){
 
             //Aux2 toma el indicador de la plantilla para poder referirme a el mas adelante
 
@@ -682,7 +702,7 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
     }
     //Comprobamos si la plantilla dispone de suficiente presupuesto para comprar al jugador
 
-    if(estructura_futbolistas[aux1]->futbolista_precio > estructura_plantillas[aux2]->presupuesto_disp){
+    if((*estructura_futbolistas)[aux1].futbolista_precio > (*estructura_plantillas)[aux2].presupuesto_disp){
 
         printf("\nEl precio del futbolista que has seleccionado es superior al presupuesto de tu plantilla\n\n");
 
@@ -695,15 +715,15 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
         //Comprobamos si el futbolista ya esta en una plantilla , en ese caso no está disponible
 
-        for(i = 0 ; i < estructura_config->tam_jugadores_plantillas ; i++){
+        for(i = 0 ; i < (*estructura_config).tam_jugadores_plantillas ; i++){
 
             //Comprobar coincidencia del futbolista_id y su plantilla_id,
             // aux1 + 1 se debe a que las ID de los futbolistas empiezan por 1 ,
             // pero aux1 tomó el valor de i, q empezó valiendo 0, de ahi el +1
             //Lo mismo con aux2
 
-            if(estructura_jugadores_plantillas[i]->jugador_platilla_id == aux1+1 ||
-            estructura_jugadores_plantillas[i]->plantilla_id == aux2+1 ){
+            if((*estructura_jugadores_plantillas)[i].jugador_platilla_id == aux1+1 ||
+            (*estructura_jugadores_plantillas)[i].plantilla_id == aux2+1 ){
 
                 printf("\nEl futbolista seleccionado no esta disponible\n\n");
 
@@ -717,20 +737,24 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
         //Incrementamos en 1 el tamaño de jugadores_plantillas
 
-        estructura_config->tam_jugadores_plantillas++;
+        (*estructura_config).tam_jugadores_plantillas++;
 
         //Con realloc aumentamos en 1 el tamaño de estructura_jugadores_plantillas
 
         *estructura_jugadores_plantillas = (jugadores_plantillas *)
-                realloc(estructura_jugadores_plantillas,(estructura_config->tam_jugadores_plantillas)*sizeof(int));
+                realloc((*estructura_jugadores_plantillas),((*estructura_config).tam_jugadores_plantillas)*sizeof(jugadores_plantillas));
 
-        if(estructura_jugadores_plantillas==NULL){printf("\nFallo de reserva de memoria");}
+        if(estructura_jugadores_plantillas==NULL){
+
+            printf("\nFallo de reserva de memoria");
+            exit(EXIT_FAILURE);
+        }
 
         //Relleno los datos del nuevo espacio reservado con los datos del futbolista seleccionado
         //Los cuales estan guardados en aux1 y aux2
 
-        estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->jugador_platilla_id = aux1+1;
-        estructura_jugadores_plantillas[estructura_config->tam_jugadores_plantillas]->plantilla_id = aux2+1;
+        (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].jugador_platilla_id = aux1+1;
+        (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].plantilla_id = aux2+1;
     }
 
 }

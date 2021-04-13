@@ -475,6 +475,15 @@ void escribir_configuracion(configuracion *estructura_config){
 
     if(f_configuracion==NULL){printf("Fallo de apertura de fichero\n");}
 
+    //Para cuando volvamos a volcar los datos no de error y empieze leyendo de cero
+    //Inicializamos los tamaños a 0
+
+    (*estructura_config).tam_futbolistas = 0;
+    (*estructura_config).tam_equipos = 0;
+    (*estructura_config).tam_usuarios = 0;
+    (*estructura_config).tam_plantillas = 0;
+    (*estructura_config).tam_jugadores_plantillas = 0;
+
     //Escribir datos del vector estructura_configuracion en el fichero configuracion
 
     fprintf(f_configuracion,"%i-%i-%i-%i-%i-%i-%i-%i",estructura_config->presupuesto_defecto,
@@ -589,15 +598,11 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
     for(i=0 ; i < (*estructura_config).tam_plantillas ; i++){
 
-        fprintf(f_plantillas,"%i",estructura_plantillas[i]->usuario_id);
-        fprintf(f_plantillas, "%s", "\n");
-        fprintf(f_plantillas,"%i",estructura_plantillas[i]->plantilla_id);
-        fprintf(f_plantillas, "%s", "\n");
-        fprintf(f_plantillas,"%s",estructura_plantillas[i]->nombre_plantilla);
-        fprintf(f_plantillas, "%s", "\n");
-        fprintf(f_plantillas,"%i",estructura_plantillas[i]->presupuesto_disp);
-        fprintf(f_plantillas, "%s", "\n");
-        fprintf(f_plantillas,"%i",estructura_plantillas[i]->puntuacion_acum);
+        fprintf(f_plantillas,"%i-",(*estructura_plantillas)[i].usuario_id);
+        fprintf(f_plantillas,"%i-",(*estructura_plantillas)[i].plantilla_id);
+        fprintf(f_plantillas,"%s-",(*estructura_plantillas)[i].nombre_plantilla);
+        fprintf(f_plantillas,"%i-",(*estructura_plantillas)[i].presupuesto_disp);
+        fprintf(f_plantillas,"%i",(*estructura_plantillas)[i].puntuacion_acum);
         fprintf(f_plantillas, "%s", "\n");
     }
 
@@ -627,9 +632,8 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
         for (i = 0; i < (*estructura_config).tam_jugadores_plantillas; i++) {
 
-            fprintf(f_jugadores_plantillas, "%i", estructura_jugadores_plantillas[i]->jugador_platilla_id);
-            fprintf(f_jugadores_plantillas, "%s", "\n");
-            fprintf(f_jugadores_plantillas, "%i", estructura_jugadores_plantillas[i]->plantilla_id);
+            fprintf(f_jugadores_plantillas, "%i-", (*estructura_jugadores_plantillas)[i].jugador_platilla_id);
+            fprintf(f_jugadores_plantillas, "%i", (*estructura_jugadores_plantillas)[i].plantilla_id);
             fprintf(f_jugadores_plantillas, "%s", "\n");
         }
         fclose(f_jugadores_plantillas);
@@ -642,15 +646,15 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
     void mostrar_configuracion(configuracion *estructura_config) {
 
-        printf("El presupuesto por defecto es: %i \n", estructura_config->presupuesto_defecto);
-        printf("El numero maximo de futbolistas por plantilla es: %i \n", estructura_config->max_futbolistas_plantilla);
+        printf("El presupuesto por defecto es: %i \n", (*estructura_config).presupuesto_defecto);
+        printf("El numero maximo de futbolistas por plantilla es: %i \n", (*estructura_config).max_futbolistas_plantilla);
         printf("El numero maximo de plantillas por participantes: %i \n",
-               estructura_config->max_plantillas_participante);
-        printf("El numero actual de equipos es: %i \n", estructura_config->tam_equipos);
-        printf("El numero actual de futbolistas es: %i \n", estructura_config->tam_futbolistas);
-        printf("El numero actual de jugadores por plantilla es: %i \n", estructura_config->tam_jugadores_plantillas);
-        printf("El numero actual de plantillas es: %i \n", estructura_config->tam_plantillas);
-        printf("El numero actual usuarios es: %i \n", estructura_config->tam_usuarios);
+               (*estructura_config).max_plantillas_participante);
+        printf("El numero actual de equipos es: %i \n", (*estructura_config).tam_equipos);
+        printf("El numero actual de futbolistas es: %i \n", (*estructura_config).tam_futbolistas);
+        printf("El numero actual de jugadores por plantilla es: %i \n", (*estructura_config).tam_jugadores_plantillas);
+        printf("El numero actual de plantillas es: %i \n", (*estructura_config).tam_plantillas);
+        printf("El numero actual usuarios es: %i \n", (*estructura_config).tam_usuarios);
     }
 
 //Cabecera: void mostrar_futbolistas(futbolistas *estructura_futbolistas, configuracion *estructura_config);
@@ -713,11 +717,11 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
         for (i = 0 ; i < (*estructura_config).tam_plantillas ; i++) {
 
-            printf("%i,", estructura_plantillas[i]->usuario_id);
-            printf("%i,", estructura_plantillas[i]->plantilla_id);
-            printf("%s,", estructura_plantillas[i]->nombre_plantilla);
-            printf("%i,", estructura_plantillas[i]->presupuesto_disp);
-            printf("%i \n", estructura_plantillas[i]->puntuacion_acum);
+            printf("%i,", (*estructura_plantillas)[i].usuario_id);
+            printf("%i,", (*estructura_plantillas)[i].plantilla_id);
+            printf("%s,", (*estructura_plantillas)[i].nombre_plantilla);
+            printf("%i,", (*estructura_plantillas)[i].presupuesto_disp);
+            printf("%i \n", (*estructura_plantillas)[i].puntuacion_acum);
 
         }
 
@@ -750,12 +754,21 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
                    usuarios **estructura_usuarios, plantillas **estructura_plantillas,
                    jugadores_plantillas **estructura_jugadores_plantillas) {
 
-        escribir_configuracion(estructura_config);
+        //Para que se lean bien los ficheros para la siguiente vez que se ejecute el salir_programa
+        //Inicializamos todos los tamaos actuales
+
+
         escribir_futbolistas(estructura_futbolistas,estructura_config);
         escribir_equipos(estructura_equipos,estructura_config);
         escribir_usuarios(estructura_usuarios,estructura_config);
         escribir_plantillas(estructura_plantillas,estructura_config);
         escribir_jugadores_plantillas(estructura_jugadores_plantillas,estructura_config);
+
+        //El último es escribir_configuracion ya que contiene el tamaño de los ficheros que escribiremos como ceros
+        //Y como necesitamos esos tamaños para escribir esos ficheros, lo dejamos para el final una vez
+        //Los demas han sido escritos
+
+        escribir_configuracion(estructura_config);
 
         //Liberamos la memoria dinamica
 

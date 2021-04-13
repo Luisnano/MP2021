@@ -32,10 +32,10 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
     fgets(u,6,stdin);
     fflush(stdin);
 
-    while(i < estructura_config->tam_usuarios){     //Recorre el vector dinámico de usuarios
+    while(i < (*estructura_config).tam_usuarios){     //Recorre el vector dinámico de usuarios
                                                     //para verificar si existe algun susuario con ese nick.
 
-        if(strcmp(u, estructura_usuarios[i]->usuario_nick) == 0){       //Verifica si hay coincidencia.
+        if(strcmp(u, (*estructura_usuarios)[i].usuario_nick) == 0){       //Verifica si hay coincidencia.
 
             j = 1;                  //Para afirmar que se ha encontrado coincidencia,
             aux = i;                //guardo en aux el usuario para poder referirme a sus campos mas adelante.
@@ -47,21 +47,21 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
 
     if(j == 1){           //Si se ha encontrado el nick del usuario:
 
-        printf("\nBienvenid@ %s, a continuacion introduzca su password: ", estructura_usuarios[aux]->nombre_usuario);
+        printf("\nBienvenid@ %s, a continuacion introduzca su password: ", (*estructura_usuarios)[aux].nombre_usuario);
         fgets(p,9,stdin);
         fflush(stdin);
 
-        if(strcmp(p, estructura_usuarios[aux]->usuario_password) == 0){
+        if(strcmp(p, (*estructura_usuarios)[aux].usuario_password) == 0){
 
-            printf("\nPassword correcta, puede acceder al sistema como %s", estructura_usuarios[aux]->usuario_perfil);
+            printf("\nPassword correcta, puede acceder al sistema como %s", (*estructura_usuarios)[aux].usuario_perfil);
 
-            return estructura_usuarios[aux]->usuario_id;    //Devuelvo el perfil del usuario para saber que menú usa.
+            return (*estructura_usuarios)[aux].usuario_id;    //Devuelvo el perfil del usuario para saber que menú usa.
 
         }
 
         else{
 
-            while(strcmp(p, estructura_usuarios[aux]->usuario_password) != 0 ){      //Comprueba la coincidencia de la contraseña
+            while(strcmp(p, (*estructura_usuarios)[aux].usuario_password) != 0 ){      //Comprueba la coincidencia de la contraseña
 
             printf("\nPassword incorrecta. Iintroduzcala de nuevo.");
             fgets(p,9,stdin);
@@ -90,9 +90,10 @@ void registro(usuarios **estructura_usuarios, configuracion *estructura_config){
 
     //Le asignamos un espacio más al vector dinámico usuarios.
 
-    estructura_config->tam_usuarios++;
+    (*estructura_config).tam_usuarios++;
 
-    *estructura_usuarios = (usuarios*)realloc(estructura_usuarios,(estructura_config->tam_usuarios)*sizeof(usuarios));
+    *estructura_usuarios = (usuarios*)realloc
+                                    ((*estructura_usuarios),((*estructura_config).tam_usuarios)*sizeof(usuarios));
 
     if(estructura_usuarios == NULL){printf("Fallo de reserva de memoria\n");}
 
@@ -110,9 +111,9 @@ void registro(usuarios **estructura_usuarios, configuracion *estructura_config){
         fgets(aux, 6, stdin);
         fflush(stdin);
 
-        for(i = 0 ; i < estructura_config->tam_usuarios ; i++) {
+        for(i = 0 ; i < (*estructura_config).tam_usuarios ; i++) {
 
-            if (estructura_usuarios[i]->usuario_nick == aux) {
+            if ((*estructura_usuarios)[i].usuario_nick == aux) {
 
                 printf("\nEse nick ya existe, prueba otro!");
                 //j a 0 para repetir el proceso hasta que introduzca un nick valido
@@ -125,23 +126,23 @@ void registro(usuarios **estructura_usuarios, configuracion *estructura_config){
 
     //Si el nick es valido, lo guardamos en su lugar adecuado
 
-    strcpy(estructura_usuarios[estructura_config->tam_usuarios-1]->usuario_nick,aux);
+    strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_nick , aux);
 
     printf("\nIntroduce tu password (no mayor a 8 caracteres): ");
     //Ya que el ultimo elemento del string está reservado.
-    fgets(estructura_usuarios[estructura_config->tam_usuarios]->usuario_password, 9, stdin);
+    fgets((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_password, 9, stdin);
     fflush(stdin);
 
     //El ID del usuario se asigna automáticamente al siguiente espacio disponible.
-    estructura_usuarios[estructura_config->tam_usuarios]->usuario_id = estructura_config->tam_usuarios;
+    (*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_id = (*estructura_config).tam_usuarios;
 
     fflush(stdin);
     printf("\nEscriba su nombre y primer apellido:");
-    fgets(estructura_usuarios[estructura_config->tam_usuarios]->nombre_usuario,21,stdin);
+    fgets((*estructura_usuarios)[(*estructura_config).tam_usuarios].nombre_usuario,21,stdin);
     fflush(stdin);
 
     printf("\nEl rol que puedes ser es por defecto participante\n");
-    strcpy(estructura_usuarios[estructura_config->tam_usuarios]->usuario_perfil, "participante");
+    strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_perfil, "participante");
 
     printf("\n\nEl resgistro ha sido realizado con exito."
            "Se procede a acceder al sistema\n\n");
