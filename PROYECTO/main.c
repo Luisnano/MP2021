@@ -47,15 +47,68 @@ int main() {
 
     scanf("%i",&i);
 
-        if (i == 1) {
+        if (i == 2) {
+
+            registro(&estructura_usuarios,&estructura_config);
+            id = acceso_sistema(&estructura_usuarios,&estructura_config);
+
+            while (id == 1) {
+                registro(&estructura_usuarios,&estructura_config);
+                id = acceso_sistema(&estructura_usuarios,&estructura_config);
+            }
+
+            //Una vez se ha verificado que el usuario ha accedido al sistema hay que buscar su rol
+            //Para enviarlo a su menu acorde a su rol
+
+            for (i = 0; i < estructura_config.tam_usuarios; i++) {
+
+                //Buscamos al usuario ay que id tendra su usuario_id
+
+                if (estructura_usuarios[i].usuario_id == id) {
+
+                    //Guardamos su rol para referirnos a el posteriormente
+
+                    strcpy(perfil, estructura_usuarios[i].usuario_perfil);
+                }
+            }
+
+            //Vemos si el usuario es participante
+
+            if (strcmp(perfil, "participante") == 0) {
+
+                menu_participantes(&id, &estructura_config, &estructura_jugadores_plantillas, &estructura_equipos,
+                                   &estructura_usuarios, &estructura_futbolistas, &estructura_plantillas);
+
+            }
+
+            //Comprobamos si el usuario es cronista
+
+            if (strcmp(perfil, "cronista") == 0) {
+
+                menu_cronista(&estructura_config, &estructura_futbolistas, &estructura_equipos,
+                              &estructura_usuarios, &estructura_plantillas,
+                              &estructura_jugadores_plantillas);
+
+            }
+
+            //Chequeamos si el usuario es Administrador
+
+            if(strcmp(perfil, "administrador") == 0) {
+
+                menuAdministrador(&estructura_config , &estructura_jugadores_plantillas ,&estructura_equipos,
+                                  &estructura_usuarios , &estructura_futbolistas , &estructura_plantillas);
+
+            }
+
+        }else if (i == 1) {
 
             id = acceso_sistema(&estructura_usuarios,&estructura_config);
 
             //Si acceso al sistema devuelve 1 significa que el usuario no está aun registrado
 
-            if (id == 1) {
-
-                return 0;
+            while (id == 1) {
+                registro(&estructura_usuarios,&estructura_config);
+                id = acceso_sistema(&estructura_usuarios,&estructura_config);
             }
 
             //Una vez se ha verificado que el usuario ha accedido al sistema hay que buscar su rol
@@ -102,21 +155,7 @@ int main() {
             }
         }
 
-        //Si no ha seleccionado la opcion acceso al sistema y si la opcion registro:
-
-        else {
-
-            if (i == 2) {
-
-                registro(&estructura_usuarios,&estructura_config);
-                acceso_sistema(&estructura_usuarios,&estructura_config);
-            }
-        }
-
-        return 0;
-
     //Si el usuario no introduce ni 1 (acceso al sistema) ni 2 (registro) se sigue repitiendo hasta que elija bien
 
-    } while(i<1 || i>2 || i == 0);
-
+    } while(i<1 || i>2);
 }

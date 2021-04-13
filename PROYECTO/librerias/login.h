@@ -30,8 +30,8 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
     fflush(stdin);
     printf("\nIntroduzca su usuario: ");
     fgets(u,6,stdin);
-    u[strcspn(u, "\n")] = 0;
-    fflush(stdin);
+    u[strcspn(u, "\n")] = 0;    //funcion que encuentra el primer '\n' o '\r', y esta la igualamos a 0
+    fflush(stdin);                 //Evitamos el salto de linea implicito del fgets
 
     while(i < (*estructura_config).tam_usuarios){     //Recorre el vector dinámico de usuarios
                                                     //para verificar si existe algun susuario con ese nick.
@@ -57,8 +57,7 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
 
             printf("\nPassword correcta, puede acceder al sistema como %s", (*estructura_usuarios)[aux].usuario_perfil);
 
-            return (*estructura_usuarios)[aux].usuario_id;    //Devuelvo el perfil del usuario para saber que menú usa.
-
+            return aux;    //Devuelvo el perfil del usuario para saber que menú usa;
         }
 
         else{
@@ -67,16 +66,14 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
 
             printf("\nPassword incorrecta. Iintroduzcala de nuevo.");
             fgets(p,9,stdin);
-                p[strcspn(p, "\n")] = 0;
             fflush(stdin);
              }
+            return aux;
         }
-
     }
 
         printf("\nNo existe ningun usuario con tu nick. Registrate primero.");
         return 1;  //En caso de que no esté registrado el usuario, devuelve 1.
-        
 }
 
 //Función para que los usuarios se puedan registrar.
@@ -153,10 +150,7 @@ void registro(usuarios **estructura_usuarios, configuracion *estructura_config){
     printf("\n\nEl resgistro ha sido realizado con exito."
            "Se procede a acceder al sistema\n\n");
 
-    //Escribimos el nuevo usuario en el fichero
-
-    escribir_usuarios(estructura_usuarios,estructura_config);
-
+    escribir_usuarios(estructura_usuarios, estructura_config);
 }
 
 #endif //PROYECTO_LOGIN_H   //Si no hay + codigo abajo lo acaba
