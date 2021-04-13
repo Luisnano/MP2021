@@ -30,6 +30,12 @@ int main() {
     volcar_plantillas(&estructura_plantillas,&estructura_config);
     volcar_jugadores_plantillas(&estructura_jugadores_plantillas,&estructura_config);
 
+    escribir_usuarios(&estructura_usuarios,&estructura_config);
+    escribir_futbolistas(&estructura_futbolistas,&estructura_config);
+    escribir_equipos(&estructura_equipos,&estructura_config);
+    escribir_plantillas(&estructura_plantillas,&estructura_config);
+    escribir_jugadores_plantillas(&estructura_jugadores_plantillas,&estructura_config);
+    escribir_configuracion(&estructura_config);
     //VARIABLES_LOCALES
 
     int i,id;

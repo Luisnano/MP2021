@@ -111,7 +111,7 @@ int salir_programa(configuracion *estructura_config,futbolistas **estructura_fut
 void volcar_configuracion(configuracion *estructura_config){
 
     char *token;        //El token que guardara los campos de las lineas
-    char linea[40];     //Donde guardamos la linea del fichero para dividirla en tokens
+    char linea[40] = "";     //Donde guardamos la linea del fichero para dividirla en tokens
 
     //Apertura del fichero
 
@@ -175,7 +175,7 @@ void volcar_futbolistas(futbolistas **estructura_futbolistas, configuracion *est
     }
 
     char *token;        //El token donde se guardan los campos de las lineas del fichero
-    char linea[60];     //Linea donde se guarda las lineas del fichero
+    char linea[60] = "";     //Linea donde se guarda las lineas del fichero
 
     *estructura_futbolistas = NULL;     //Empieza en null ya que al hacer el realloc puede tener basura
 
@@ -241,7 +241,7 @@ void volcar_equipos(equipos **estructura_equipos, configuracion *estructura_conf
     }
 
     char *token;        //El token donde se guardan los campos de las lineas del fichero
-    char linea[24];     //Linea donde se guarda las lineas del fichero
+    char linea[24] = "";     //Linea donde se guarda las lineas del fichero
 
     *estructura_equipos = NULL;     //Empieza en null ya que al hacer el realloc puede tener basura
 
@@ -298,7 +298,7 @@ void volcar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_c
     }
 
     char *token;        //El token donde se guardan los campos de las lineas del fichero
-    char linea[65];     //Linea donde se guarda las lineas del fichero
+    char linea[65] = "";     //Linea donde se guarda las lineas del fichero
 
     *estructura_usuarios = NULL;     //Empieza en null ya que al hacer el realloc puede tener basura
 
@@ -362,7 +362,7 @@ void volcar_plantillas(plantillas **estructura_plantillas, configuracion *estruc
     }
 
     char *token;        //El token donde se guardan los campos de las lineas del fichero
-    char linea[50];     //Linea donde se guarda las lineas del fichero
+    char linea[50] = "";     //Linea donde se guarda las lineas del fichero
 
     *estructura_plantillas = NULL;     //Empieza en null ya que al hacer el realloc puede tener basura
 
@@ -427,7 +427,7 @@ void volcar_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_pla
     }
 
     char *token;        //El token donde se guardan los campos de las lineas del fichero
-    char linea[10];     //Linea donde se guarda las lineas del fichero
+    char linea[10] = "";     //Linea donde se guarda las lineas del fichero
 
     *estructura_jugadores_plantillas = NULL;     //Empieza en null ya que al hacer el realloc puede tener basura
 
@@ -609,7 +609,7 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
     //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
 
     FILE *f_plantillas;
-    f_plantillas = fopen("files/plantillas.txt", "w");
+    f_plantillas = fopen("files/plantillas_prueba.txt", "w");
 
     if(f_plantillas==NULL){
 
@@ -644,7 +644,7 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
         //Abrimos el fichero en modo w para borrar los datos anteriores y escribir los actualizados desipues de salir del juego
 
         FILE *f_jugadores_plantillas;
-        f_jugadores_plantillas = fopen("files/jugadores_plantillas.txt", "w");
+        f_jugadores_plantillas = fopen("files/jugadores_plantillas_prueba.txt", "w");
 
         if(f_jugadores_plantillas==NULL){
 
