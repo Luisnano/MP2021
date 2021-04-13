@@ -473,7 +473,11 @@ void escribir_configuracion(configuracion *estructura_config){
     FILE *f_configuracion;
     f_configuracion = fopen("files/configuracion_prueba.txt","w");
 
-    if(f_configuracion==NULL){printf("Fallo de apertura de fichero\n");}
+    if(f_configuracion==NULL){
+
+        printf("Fallo de apertura de fichero\n");
+        exit(EXIT_FAILURE);
+    }
 
     //Para cuando volvamos a volcar los datos no de error y empieze leyendo de cero
     //Inicializamos los tamaños a 0
@@ -507,7 +511,11 @@ void escribir_futbolistas(futbolistas **estructura_futbolistas, configuracion *e
     FILE *f_futbolistas;
     f_futbolistas = fopen("files/futbolistas_prueba.txt", "w");
 
-    if(f_futbolistas==NULL){printf("Fallo de apertura de fichero\n");}
+    if(f_futbolistas==NULL){
+
+        printf("Fallo de apertura de fichero\n");
+        exit(EXIT_FAILURE);
+    }
 
     //Escribimos en el fichero futbolistas los datos de estructura_futbolistas
 
@@ -536,7 +544,11 @@ void escribir_equipos(equipos **estructura_equipos, configuracion *estructura_co
     FILE *f_equipos;
     f_equipos = fopen("files/equipos_prueba.txt","w");
 
-    if(f_equipos==NULL){printf("Fallo de apertura de fichero\n");}
+    if(f_equipos==NULL){
+
+        printf("Fallo de apertura de fichero\n");
+        exit(EXIT_FAILURE);
+    }
 
 
     //Escribimos los datos de la estructura_equipos en el fichero equipos
@@ -563,16 +575,22 @@ void escribir_usuarios(usuarios **estructura_usuarios, configuracion *estructura
     FILE *f_usuarios;
     f_usuarios = fopen("files/usuarios_prueba.txt", "w");
 
-    if(f_usuarios==NULL){printf("Fallo de apertura de fichero\n");}
+    if(f_usuarios==NULL){
+
+        printf("Fallo de apertura de fichero\n");
+        exit(EXIT_FAILURE);
+    }
 
 
     //Escribimos en el fichero usuarios los datos de su respectiva estructura
 
     for(i = 0 ; i < (*estructura_config).tam_usuarios ; i++){
 
-        fprintf(f_usuarios,"%i-%s-%s-%s-%s",(*estructura_usuarios)[i].usuario_id,(*estructura_usuarios)[i].nombre_usuario,
-                (*estructura_usuarios)[i].usuario_perfil,(*estructura_usuarios)[i].usuario_nick,
-                (*estructura_usuarios)[i].usuario_password);
+        fprintf(f_usuarios,"%i-",(*estructura_usuarios)[i].usuario_id);
+        fprintf(f_usuarios,"%s-",(*estructura_usuarios)[i].nombre_usuario);
+        fprintf(f_usuarios,"%s-",(*estructura_usuarios)[i].usuario_perfil);
+        fprintf(f_usuarios,"%s-",(*estructura_usuarios)[i].usuario_nick);
+        fprintf(f_usuarios,"%s",(*estructura_usuarios)[i].usuario_password);
     }
 
     fclose(f_usuarios);
@@ -592,18 +610,22 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
     FILE *f_plantillas;
     f_plantillas = fopen("files/plantillas.txt", "w");
 
-    if(f_plantillas==NULL){printf("Fallo de apertura de fichero\n");}
+    if(f_plantillas==NULL){
+
+        printf("Fallo de apertura de fichero\n");
+        exit(EXIT_FAILURE);
+    }
 
     //Escribimos en el fichero plantillas el vector dinamico estructura_plantillas
 
     for(i=0 ; i < (*estructura_config).tam_plantillas ; i++){
 
-        fprintf(f_plantillas,"%i-",(*estructura_plantillas)[i].usuario_id);
-        fprintf(f_plantillas,"%i-",(*estructura_plantillas)[i].plantilla_id);
-        fprintf(f_plantillas,"%s-",(*estructura_plantillas)[i].nombre_plantilla);
-        fprintf(f_plantillas,"%i-",(*estructura_plantillas)[i].presupuesto_disp);
+        fprintf(f_plantillas,"%i",(*estructura_plantillas)[i].usuario_id);
+        fprintf(f_plantillas,"-%i-",(*estructura_plantillas)[i].plantilla_id);
+        fprintf(f_plantillas,"%s",(*estructura_plantillas)[i].nombre_plantilla);
+        fprintf(f_plantillas,"-%i-",(*estructura_plantillas)[i].presupuesto_disp);
         fprintf(f_plantillas,"%i",(*estructura_plantillas)[i].puntuacion_acum);
-        fprintf(f_plantillas, "%s", "\n");
+
     }
 
         fclose(f_plantillas);
@@ -626,7 +648,11 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
         FILE *f_jugadores_plantillas;
         f_jugadores_plantillas = fopen("files/jugadores_plantillas.txt", "w");
 
-        if(f_jugadores_plantillas==NULL){printf("Fallo de apertura de fichero\n");}
+        if(f_jugadores_plantillas==NULL){
+
+            printf("Fallo de apertura de fichero\n");
+            exit(EXIT_FAILURE);
+        }
 
         //Escribimos en el fichero jugadores_plantillas los datos del vector dinamico estrucutura_jugadores_plantillas
 

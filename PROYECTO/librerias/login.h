@@ -126,23 +126,26 @@ void registro(usuarios **estructura_usuarios, configuracion *estructura_config){
 
     //Si el nick es valido, lo guardamos en su lugar adecuado
 
-    strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_nick , aux);
+    strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios-1].usuario_nick , aux);
 
     printf("\nIntroduce tu password (no mayor a 8 caracteres): ");
-    //Ya que el ultimo elemento del string está reservado.
-    fgets((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_password, 9, stdin);
+
+    //Ya que el ultimo elemento del string está reservado(tamaño de password).
+
     fflush(stdin);
+    fgets((*estructura_usuarios)[(*estructura_config).tam_usuarios-1].usuario_password, 9, stdin);
+
 
     //El ID del usuario se asigna automáticamente al siguiente espacio disponible.
-    (*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_id = (*estructura_config).tam_usuarios;
+    (*estructura_usuarios)[(*estructura_config).tam_usuarios-1].usuario_id = (*estructura_config).tam_usuarios;
 
     fflush(stdin);
     printf("\nEscriba su nombre y primer apellido:");
-    fgets((*estructura_usuarios)[(*estructura_config).tam_usuarios].nombre_usuario,21,stdin);
+    fgets((*estructura_usuarios)[(*estructura_config).tam_usuarios-1].nombre_usuario,21,stdin);
     fflush(stdin);
 
     printf("\nEl rol que puedes ser es por defecto participante\n");
-    strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_perfil, "participante");
+    strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios-1].usuario_perfil, "participante");
 
     printf("\n\nEl resgistro ha sido realizado con exito."
            "Se procede a acceder al sistema\n\n");

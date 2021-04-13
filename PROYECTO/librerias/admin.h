@@ -151,7 +151,10 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
     equipos *estructura_equipos_temp = (equipos*)realloc((*estructura_equipos),
                                                          ((*estructura_config).tam_equipos + 1)*sizeof(equipos));
     if(estructura_equipos_temp == NULL){
+
         printf("\nError en la redimension del vector.");
+        exit(EXIT_FAILURE);
+
     }else{
         *estructura_equipos = estructura_equipos_temp;
         strcpy((*estructura_equipos)[(*estructura_config).tam_equipos].nombre_equipo, temp);
@@ -193,7 +196,10 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
         equipos *estructura_equipos_temp = (equipos*)realloc((*estructura_equipos),
                                                              ((*estructura_config).tam_equipos)*sizeof(equipos));
         if(estructura_equipos_temp == NULL){
+
             printf("\nFallo en la redimension del vector.");
+            exit(EXIT_FAILURE);
+
         }else {
             *estructura_equipos = estructura_equipos_temp;
         }
@@ -336,7 +342,10 @@ void eliminarUsuarios(usuarios **estructura_usuarios, configuracion *estructura_
     usuarios *estructura_usuarios_temp = (usuarios*)realloc((*estructura_usuarios),
                                                             ((*estructura_config).tam_usuarios)*sizeof(usuarios));
     if(estructura_usuarios_temp == NULL){
+
         printf("\nFallo en la redimension del vector.");
+        exit(EXIT_FAILURE);
+
     }else {
         *estructura_usuarios = estructura_usuarios_temp;
     }
