@@ -81,7 +81,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
                     default:
                         exit(EXIT_FAILURE);
                 }
-
+            break;
             case 3:     //redireccion al menu de configuracion(solo edicion de este)
                 printf("Bienvenido al menú de configuracion\n");
                 modificarConfiguracion(estructura_config);
@@ -261,22 +261,25 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
     //postcondicion: Permite al usuario modificar los usuarios.
 
     void modificarUsuarios(usuarios **estructura_usuarios, configuracion *estructura_config){
-        char temp[21], c, nombre_temp[21], perfil_temp[15], nick_temp[5], password_temp[9];
-        int aux1 = 0;
+        char temp[21], c, nombre_temp[21], perfil_temp[15], nick_temp[6], password_temp[9];
+        int aux1 = 0,error=0;
+        fflush(stdin);
         do {
             printf("\nIntroduce el nombre del usuario a modificar: ");
-            scanf("%s", temp);
+            fgets(temp,21, stdin);
+            temp[strcspn(temp, "\n")] = 0;
+            fflush(stdin);
             for (int i = 0;
                  i < (*estructura_config).tam_usuarios; i++) {      //bucle para recorrer toda la estructura de equipos
                 if (strcmp(temp, (*estructura_usuarios)[i].nombre_usuario) == 0) {  //si temp coincide con algún nombre, almaceno el iterador
                     aux1 = i;
-                }
+                }else error++;
             }
-            if (aux1 ==0) {//si no se ha almacenado un nuevo valor del iterador, entonces el nombre introducido no está en la estructura
-                printf("\nEl nombre introducido de equipo no existe, Desea probar con otro nombre? (S o s para confirmar)");
+            if (error == (*estructura_config).tam_usuarios) {//si no se ha almacenado un nuevo valor del iterador, entonces el nombre introducido no está en la estructura
+                printf("\nEl nombre introducido de usuario no existe, Desea probar con otro nombre? (S o s para confirmar)");
                 scanf("%c", &c);
             }
-        } while ((c == 's' || c == 'S') && aux1 == 0);   //mientras no diga si y se cumpla que el nombre exista
+        } while ((c == 's' || c == 'S') && error == (*estructura_config).tam_usuarios);   //mientras no diga si y se cumpla que el nombre exista
         printf("Hemos encontrado un usuario con ese nombre: ");
         printf("\nId: %d.\nNombre: %s.\nPerfil: %s.\nNick: %s.\nPassword: %s.", (*estructura_usuarios)[aux1].usuario_id,
                (*estructura_usuarios)[aux1].nombre_usuario, (*estructura_usuarios)[aux1].usuario_perfil,
@@ -284,25 +287,34 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
         do {
 
             printf("\nIntroduzca ahora el nuevo nombre:");  //nuevo nombre para el usuario
-            scanf("%s", nombre_temp);
+            fgets(nombre_temp,21, stdin);
+            nombre_temp[strcspn(nombre_temp, "\n")] = 0;
+            fflush(stdin);
 
         } while (strlen(nombre_temp) > strlen((*estructura_usuarios)[aux1].nombre_usuario));  //regula que el nuevo nombre no sea mayor que el tamaño predefinido
 
         do {
             printf("Introduzca un perfil de usuario: ");
-            scanf("%s", perfil_temp);
-        } while (strcmp(perfil_temp, "administrador") != 0 || strcmp(perfil_temp, "participante") != 0 ||
+            fgets(perfil_temp,15, stdin);
+            perfil_temp[strcspn(perfil_temp, "\n")] = 0;
+            fflush(stdin);
+
+        } while (strcmp(perfil_temp, "administrador") != 0 && strcmp(perfil_temp, "participante") != 0 &&
                  strcmp(perfil_temp, "cronista") != 0);
 
         do {
             printf("\nIntroduzca ahora el nuevo nick:");  //nuevo nombre para el nick
-            scanf("%s", nick_temp);
+            fgets(nick_temp,6, stdin);
+            nick_temp[strcspn(nick_temp, "\n")] = 0;
+            fflush(stdin);
 
         } while (strlen(nick_temp) > strlen((*estructura_usuarios)[aux1].usuario_nick));  //regula que el nuevo nick no sea mayor que el tamaño predefinido
 
         do {
             printf("\nIntroduzca ahora la nueva password:");  //nuevo password
-            scanf("%s", password_temp);
+            fgets(password_temp,9, stdin);
+            password_temp[strcspn(password_temp, "\n")] = 0;
+            fflush(stdin);
 
         } while (strlen(password_temp) > strlen((*estructura_usuarios)[aux1].usuario_password));  //regula que el nuevo nick no sea mayor que el tamaño predefinido
 
