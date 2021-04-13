@@ -26,25 +26,19 @@ int main() {
     //Volcamos todos los datos de los ficheros en sus respectivas variables estructuras anteriormente declaradas
 
     volcar_configuracion(&estructura_config);
-    mostrar_configuracion(&estructura_config);
+    //mostrar_configuracion(&estructura_config);
 
     volcar_futbolistas(&estructura_futbolistas,&estructura_config);
-    mostrar_futbolistas(&estructura_futbolistas,&estructura_config);
+    //mostrar_futbolistas(&estructura_futbolistas,&estructura_config);
 
     volcar_equipos(&estructura_equipos,&estructura_config);
-    mostrar_equipos(&estructura_equipos,&estructura_config);
+    //mostrar_equipos(&estructura_equipos,&estructura_config);
 
     volcar_usuarios(&estructura_usuarios,&estructura_config);
-    mostrar_usuarios(&estructura_usuarios,&estructura_config);
-
-    escribir_configuracion(&estructura_config);
-    escribir_usuarios(&estructura_usuarios,&estructura_config);
-    escribir_futbolistas(&estructura_futbolistas,&estructura_config);
-    escribir_equipos(&estructura_equipos,&estructura_config);
+    //mostrar_usuarios(&estructura_usuarios,&estructura_config);
     //volcar_plantillas(&estructura_plantillas,&estructura_config);
     //volcar_jugadores_plantillas(&estructura_jugadores_plantillas,&estructura_config);
 
-    /*
     //VARIABLES_LOCALES
 
     int i,id;
@@ -133,7 +127,7 @@ int main() {
     //Si el usuario no introduce ni 1 (acceso al sistema) ni 2 (registro) se sigue repitiendo hasta que elija bien
 
     } while(i<1 || i>2 || i == 0);
-*/
+
     free(estructura_futbolistas);
     free(estructura_equipos);
     free(estructura_usuarios);
