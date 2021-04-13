@@ -30,6 +30,7 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
     fflush(stdin);
     printf("\nIntroduzca su usuario: ");
     fgets(u,6,stdin);
+    u[strcspn(u, "\n")] = 0;
     fflush(stdin);
 
     while(i < (*estructura_config).tam_usuarios){     //Recorre el vector dinámico de usuarios
@@ -49,6 +50,7 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
 
         printf("\nBienvenid@ %s, a continuacion introduzca su password: ", (*estructura_usuarios)[aux].nombre_usuario);
         fgets(p,9,stdin);
+        (*estructura_usuarios)[aux].nombre_usuario[strcspn((*estructura_usuarios)[aux].nombre_usuario, "\n")] = 0;
         fflush(stdin);
 
         if(strcmp(p, (*estructura_usuarios)[aux].usuario_password) == 0){
@@ -65,6 +67,7 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
 
             printf("\nPassword incorrecta. Iintroduzcala de nuevo.");
             fgets(p,9,stdin);
+                p[strcspn(p, "\n")] = 0;
             fflush(stdin);
              }
         }
@@ -95,8 +98,6 @@ void registro(usuarios **estructura_usuarios, configuracion *estructura_config){
     *estructura_usuarios = (usuarios*)realloc
                                     ((*estructura_usuarios),((*estructura_config).tam_usuarios)*sizeof(usuarios));
 
-    if(estructura_usuarios == NULL){printf("Fallo de reserva de memoria\n");}
-
     printf("\nA continuacion se le pediran sus datos necesarios para el registro\n");
 
     do {
@@ -109,6 +110,7 @@ void registro(usuarios **estructura_usuarios, configuracion *estructura_config){
         printf("\nIntroduce tu nick de usuario(no mayor a 5 caracteres): ");
         //Ya que el ultimo elemento del string está reservado.
         fgets(aux, 6, stdin);
+        aux[strcspn(aux, "\n")] = 0;
         fflush(stdin);
 
         for(i = 0 ; i < (*estructura_config).tam_usuarios ; i++) {
@@ -134,7 +136,7 @@ void registro(usuarios **estructura_usuarios, configuracion *estructura_config){
 
     fflush(stdin);
     fgets((*estructura_usuarios)[(*estructura_config).tam_usuarios-1].usuario_password, 9, stdin);
-
+    (*estructura_usuarios)[(*estructura_config).tam_usuarios-1].usuario_password[strcspn((*estructura_usuarios)[(*estructura_config).tam_usuarios-1].usuario_password, "\n")] = 0;
 
     //El ID del usuario se asigna automáticamente al siguiente espacio disponible.
     (*estructura_usuarios)[(*estructura_config).tam_usuarios-1].usuario_id = (*estructura_config).tam_usuarios;
@@ -142,6 +144,7 @@ void registro(usuarios **estructura_usuarios, configuracion *estructura_config){
     fflush(stdin);
     printf("\nEscriba su nombre y primer apellido:");
     fgets((*estructura_usuarios)[(*estructura_config).tam_usuarios-1].nombre_usuario,21,stdin);
+    (*estructura_usuarios)[(*estructura_config).tam_usuarios-1].nombre_usuario[strcspn((*estructura_usuarios)[(*estructura_config).tam_usuarios-1].nombre_usuario, "\n")] = 0;
     fflush(stdin);
 
     printf("\nEl rol que puedes ser es por defecto participante\n");

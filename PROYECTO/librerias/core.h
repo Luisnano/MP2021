@@ -146,7 +146,7 @@ void volcar_configuracion(configuracion *estructura_config){
             estructura_config->tam_jugadores_plantillas = atoi(token);
             token = strtok(NULL,"-");
             estructura_config->tam_plantillas = atoi(token);
-            token = strtok(NULL,"-");
+            token = strtok(NULL,"\n");
             estructura_config->tam_usuarios = atoi(token);
 
         }
@@ -205,7 +205,7 @@ void volcar_futbolistas(futbolistas **estructura_futbolistas, configuracion *est
             token = strtok(NULL,"-");
             (*estructura_futbolistas)[(*estructura_config).tam_futbolistas].futbolista_precio = atoi(token);
 
-            token = strtok(NULL,"-");
+            token = strtok(NULL,"\n");
             (*estructura_futbolistas)[(*estructura_config).tam_futbolistas].valoracion = atoi(token);
 
             //Aumenta el tamaño en 1 ya que hemos añadido un futbolista
@@ -262,7 +262,7 @@ void volcar_equipos(equipos **estructura_equipos, configuracion *estructura_conf
             token = strtok(linea,"-");
             (*estructura_equipos)[(*estructura_config).tam_equipos].equipo_id = atoi(token);
 
-            token = strtok(NULL,"-");
+            token = strtok(NULL,"\n");
             strcpy((*estructura_equipos)[(*estructura_config).tam_equipos].nombre_equipo, token);
 
 
@@ -325,7 +325,7 @@ void volcar_usuarios(usuarios **estructura_usuarios, configuracion *estructura_c
             token = strtok(NULL,"-");
             strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_nick, token);
 
-            token = strtok(NULL,"-");
+            token = strtok(NULL,"\n");
             strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_password, token);
 
             //Aumenta el tamaño en 1 ya que hemos añadido un usuario
@@ -388,7 +388,7 @@ void volcar_plantillas(plantillas **estructura_plantillas, configuracion *estruc
             token = strtok(NULL,"-");
             (*estructura_plantillas)[(*estructura_config).tam_plantillas].presupuesto_disp = atoi(token);
 
-            token = strtok(NULL,"-");
+            token = strtok(NULL,"\n");
             (*estructura_plantillas)[(*estructura_config).tam_plantillas].puntuacion_acum = atoi(token);
 
             //Aumenta el tamaño en 1 ya que hemos añadido una plantilla
@@ -444,7 +444,7 @@ void volcar_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_pla
             token = strtok(linea,"-");
             (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].jugador_platilla_id = atoi(token);
 
-            token = strtok(NULL,"-");
+            token = strtok(NULL,"\n");
             (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].plantilla_id = atoi(token);
 
 
@@ -521,10 +521,9 @@ void escribir_futbolistas(futbolistas **estructura_futbolistas, configuracion *e
 
     for (i=0 ; i < (*estructura_config).tam_futbolistas ; i++){
 
-        fprintf(f_futbolistas, "%i-%i-%s-%i-%i", (*estructura_futbolistas)[i].futbolista_id, (*estructura_futbolistas)[i].equipo_id,
+        fprintf(f_futbolistas, "%i-%i-%s-%i-%i\n", (*estructura_futbolistas)[i].futbolista_id, (*estructura_futbolistas)[i].equipo_id,
                 (*estructura_futbolistas)[i].nombre_futbolista,(*estructura_futbolistas)[i].futbolista_precio,
                 (*estructura_futbolistas)[i].valoracion);
-        fprintf(f_futbolistas, "%s", "\n");
     }
 
     fclose(f_futbolistas);
@@ -555,7 +554,7 @@ void escribir_equipos(equipos **estructura_equipos, configuracion *estructura_co
 
     for (i=0; i < (*estructura_config).tam_equipos ; i++){
 
-        fprintf(f_equipos, "%i-%s", (*estructura_equipos)[i].equipo_id,(*estructura_equipos)[i].nombre_equipo);
+        fprintf(f_equipos, "%i-%s\n", (*estructura_equipos)[i].equipo_id,(*estructura_equipos)[i].nombre_equipo);
     }
 
     fclose(f_equipos);
@@ -586,11 +585,9 @@ void escribir_usuarios(usuarios **estructura_usuarios, configuracion *estructura
 
     for(i = 0 ; i < (*estructura_config).tam_usuarios ; i++){
 
-        fprintf(f_usuarios,"%i-",(*estructura_usuarios)[i].usuario_id);
-        fprintf(f_usuarios,"%s-",(*estructura_usuarios)[i].nombre_usuario);
-        fprintf(f_usuarios,"%s-",(*estructura_usuarios)[i].usuario_perfil);
-        fprintf(f_usuarios,"%s-",(*estructura_usuarios)[i].usuario_nick);
-        fprintf(f_usuarios,"%s",(*estructura_usuarios)[i].usuario_password);
+        fprintf(f_usuarios,"%i-%s-%s-%s-%s\n",(*estructura_usuarios)[i].usuario_id,(*estructura_usuarios)[i].nombre_usuario,
+                (*estructura_usuarios)[i].usuario_perfil,(*estructura_usuarios)[i].usuario_nick,
+                (*estructura_usuarios)[i].usuario_password);
     }
 
     fclose(f_usuarios);
@@ -620,12 +617,9 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
     for(i=0 ; i < (*estructura_config).tam_plantillas ; i++){
 
-        fprintf(f_plantillas,"%i",(*estructura_plantillas)[i].usuario_id);
-        fprintf(f_plantillas,"-%i-",(*estructura_plantillas)[i].plantilla_id);
-        fprintf(f_plantillas,"%s",(*estructura_plantillas)[i].nombre_plantilla);
-        fprintf(f_plantillas,"-%i-",(*estructura_plantillas)[i].presupuesto_disp);
-        fprintf(f_plantillas,"%i",(*estructura_plantillas)[i].puntuacion_acum);
-
+        fprintf(f_plantillas,"%i-%i-%s-%i-%i\n",(*estructura_plantillas)[i].usuario_id,(*estructura_plantillas)[i].plantilla_id,
+                (*estructura_plantillas)[i].nombre_plantilla,(*estructura_plantillas)[i].presupuesto_disp,
+                (*estructura_plantillas)[i].puntuacion_acum);
     }
 
         fclose(f_plantillas);
@@ -658,9 +652,8 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
         for (i = 0; i < (*estructura_config).tam_jugadores_plantillas; i++) {
 
-            fprintf(f_jugadores_plantillas, "%i-", (*estructura_jugadores_plantillas)[i].jugador_platilla_id);
-            fprintf(f_jugadores_plantillas, "%i", (*estructura_jugadores_plantillas)[i].plantilla_id);
-            fprintf(f_jugadores_plantillas, "%s", "\n");
+            fprintf(f_jugadores_plantillas, "%i-%i\n", (*estructura_jugadores_plantillas)[i].jugador_platilla_id,
+                    (*estructura_jugadores_plantillas)[i].plantilla_id);
         }
         fclose(f_jugadores_plantillas);
 
