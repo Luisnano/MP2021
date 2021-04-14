@@ -12,7 +12,9 @@
 void menu_cronista(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
                    usuarios **estructura_usuarios, plantillas **estructura_plantillas,
                    jugadores_plantillas **estructura_jugadores_plantillas);
-void valorar_equipos(futbolistas **estructura_futbolistas, configuracion *estructura_config);
+void valorar_equipos(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
+                     usuarios **estructura_usuarios, plantillas **estructura_plantillas,
+                     jugadores_plantillas **estructura_jugadores_plantillas);
 
 //FUNCIONES
 
@@ -47,11 +49,19 @@ void menu_cronista(configuracion *estructura_config, futbolistas **estructura_fu
             case 1:
                 //LLAMAMOS A LA FUNCION QUE ESCRIBE TODOS LOS EQUIPOS POR PANTALLA (DECLARADA EN CORE.H)
                 mostrar_equipos(estructura_equipos, estructura_config);
+                menu_cronista(estructura_config, estructura_futbolistas, estructura_equipos,
+                              estructura_usuarios, estructura_plantillas,
+                              estructura_jugadores_plantillas);
                 break;
 
             //2.-Valorar equipos
             case 2:
-                valorar_equipos(estructura_futbolistas, estructura_config);
+                valorar_equipos(estructura_config, estructura_futbolistas, estructura_equipos,
+                                estructura_usuarios, estructura_plantillas,
+                                estructura_jugadores_plantillas);
+                menu_cronista(estructura_config, estructura_futbolistas, estructura_equipos,
+                              estructura_usuarios, estructura_plantillas,
+                              estructura_jugadores_plantillas);
                 break;
 
             //3.-Salir del programa
@@ -70,19 +80,24 @@ void menu_cronista(configuracion *estructura_config, futbolistas **estructura_fu
     } while (selec > 0 && selec < 4);
 }
 
-//Cabecera: void valorar_equipos(futbolistas **estructura_futbolistas, configuracion *estructura_configuracion);
+//Cabecera: void valorar_equipos(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
+//                   usuarios **estructura_usuarios, plantillas **estructura_plantillas,
+//                   jugadores_plantillas **estructura_jugadores_plantillas);
 //Precondicion: Entran la estructura FUTBOLISTAS y la estructura CONFIGURACION
 //Postcondicion: Permitirá al cronista actualizar las valoraciones de los futbolistas. Para ello,
 //      el cronista seleccionará un identificador de un equipo y posteriormente le aparecerá la lista
 //      de futbolistas de dicho equipo junto con su valoración actual. A continuación, el cronista irá
 //      seleccionando futbolistas e introduciendo sus nuevas valoraciones (0-10).
 
-void valorar_equipos(futbolistas **estructura_futbolistas, configuracion *estructura_config){
+void valorar_equipos(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
+                     usuarios **estructura_usuarios, plantillas **estructura_plantillas,
+                     jugadores_plantillas **estructura_jugadores_plantillas){
 
     int id_equipo;
     int id_futbolista;
     int i;
     int selec;
+    int aux = 0;    //Aux ayuda a saber si no hay futbolistas de la ID de equipo que ha introducido el cronista
 
     //Dos bucles dowhile anidados, para el caso de que el usuario quiera volver atras, seguir valorando
     //  jugadores del equipo introducido o cambiar de equipo.
@@ -102,6 +117,8 @@ void valorar_equipos(futbolistas **estructura_futbolistas, configuracion *estruc
 
                 if (id_equipo == (*estructura_futbolistas)[i].equipo_id) {
 
+                    aux = 1;
+
                     printf("-------------------------------\n");
                     printf("      ID: %d\n", (*estructura_futbolistas)[i].futbolista_id);
                     printf("      NOMBRE: %s\n", (*estructura_futbolistas)[i].nombre_futbolista);
@@ -109,6 +126,17 @@ void valorar_equipos(futbolistas **estructura_futbolistas, configuracion *estruc
                     printf("      VALORACION: %d\n", (*estructura_futbolistas)[i].valoracion);
                     printf("-------------------------------\n");
                 }
+            }
+
+            //Si no hay ningun futbolista de ese equipo vuelta al menu
+
+            if (aux == 0){
+
+                printf("\nNo hay ningun futbolista de la ID que has introducido\n");
+                menu_cronista(estructura_config, estructura_futbolistas, estructura_equipos,
+                              estructura_usuarios, estructura_plantillas,
+                              estructura_jugadores_plantillas);
+
             }
 
             printf(".....INTRODUZCA EL ID DEL FUTBOLISTA A VALORAR.....\n");
