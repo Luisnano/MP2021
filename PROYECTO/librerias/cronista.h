@@ -32,13 +32,13 @@ void menu_cronista(configuracion *estructura_config, futbolistas **estructura_fu
 
     int selec;
 
-    printf("\n\n---------MENU CRONISTA----------\n");
-    printf("                          \n");
+    printf("\n\n-----MENU CRONISTA-----\n");
+    printf("                           \n");
     printf("      1.-Listar equipos    \n");
     printf("      2.-Valorar equipos   \n");
     printf("      3.-Salir del programa\n");
-    printf("                          \n");
-    printf(".....SELECCIONE UNA OPCION.....\n");
+    printf("                           \n");
+    printf("...SELECCIONE UNA OPCION...\n");
     printf("                           \n");
     printf(">");
     scanf("%i", &selec);
@@ -98,13 +98,13 @@ void valorar_futbolistas(configuracion *estructura_config, futbolistas **estruct
     int i;
     int selec;
     int aux = 0;    //Aux ayuda a saber si no hay futbolistas de la ID de equipo que ha introducido el cronista
+    int valoracion; //Donde guardaré la valoración temporal que se cambie
 
     //Dos bucles dowhile anidados, para el caso de que el usuario quiera volver atras, seguir valorando
     //  jugadores del equipo introducido o cambiar de equipo.
     do {
 
-        printf(".....INTRODUZCA UN ID DE EQUIPO.....\n");
-        printf("                           \n");
+        printf("\n.....INTRODUZCA UN ID DE EQUIPO.....\n\n");
         printf(">");
         scanf("%i", &id_equipo);
 
@@ -119,12 +119,12 @@ void valorar_futbolistas(configuracion *estructura_config, futbolistas **estruct
 
                     aux = 1;
 
-                    printf("-------------------------------\n");
-                    printf("      ID: %d\n", (*estructura_futbolistas)[i].futbolista_id);
-                    printf("      NOMBRE: %s\n", (*estructura_futbolistas)[i].nombre_futbolista);
-                    printf("      PRECIO: %d MILLONES\n", (*estructura_futbolistas)[i].futbolista_precio);
-                    printf("      VALORACION: %d\n", (*estructura_futbolistas)[i].valoracion);
-                    printf("-------------------------------\n");
+                    printf("\n\n");
+                    printf("ID: %d\n", (*estructura_futbolistas)[i].futbolista_id);
+                    printf("NOMBRE: %s\n", (*estructura_futbolistas)[i].nombre_futbolista);
+                    printf("PRECIO: %d MILLONES\n", (*estructura_futbolistas)[i].futbolista_precio);
+                    printf("VALORACION: %d\n", (*estructura_futbolistas)[i].valoracion);
+                    printf("\n");
                 }
             }
 
@@ -139,30 +139,65 @@ void valorar_futbolistas(configuracion *estructura_config, futbolistas **estruct
 
             }
 
-            printf(".....INTRODUZCA EL ID DEL FUTBOLISTA A VALORAR.....\n");
+            // aux = 1 vale en este momento
+
+            printf("\n.....INTRODUZCA EL ID DEL FUTBOLISTA A VALORAR.....\n");
             scanf("%d", &id_futbolista);
 
-            //LO PRINCIPAL: EL USUARIO INTRODUCIRA EL ID DEL JUGADOR DEL CUAL DESEA CAMBIAR LA VALORACION
+            //Verificamos que el id del futbolista que ha introducido el cronista sea de los futbolistas de ese equipo
+            //En la condición del bucle tambien esta mientras aux = 1 , porque cuando sea 0 habrá verificado que
+            //el id es correcto y no necesitará seguir buscando
 
-            for (i = 0 ; i < (*estructura_config).tam_futbolistas ; i++) {
+            for ( i = 0 ; i < (*estructura_config).tam_futbolistas && aux == 1 ; i++){
 
-                if (id_futbolista == (*estructura_futbolistas)[i].futbolista_id) {
+                if (id_futbolista == (*estructura_futbolistas)[i].futbolista_id){
 
-                    printf(".....INTRODUZCA LA NUEVA VALORACION DEL FUTBOLISTA.....\n");
-                    printf("                           \n");
-                    printf(">");
-                    scanf("%d", &(*estructura_futbolistas)[i].valoracion); //SUSCEPTIBLE A CAMBIO
+                    //Si coincide
 
+                    if ((*estructura_futbolistas)[i].equipo_id == id_equipo){
+
+                        aux = 0;
+
+                    }
                 }
             }
 
-            printf(".....ELIJA UNA OPCION......\n");
-            printf("                           \n");
-            printf("       1.- SEGUIR VALORANDO\n");
-            printf("       2.- CAMBIAR DE EQUIPO\n");
-            printf("                           \n");
-            printf(">");
-            scanf("%d", &selec);
+            if (aux == 0) {
+
+                //Procede a valorar futbolista
+
+                do {
+                    printf("\n.....INTRODUZCA LA NUEVA VALORACION DEL FUTBOLISTA.....\n");
+                    printf("                           \n");
+                    printf(">");
+                    scanf("%i", &valoracion); //SUSCEPTIBLE A CAMBIO
+
+                }while (valoracion < -1 || valoracion > 11);
+
+                //Una vez comprobamos el campo valoración está en un rango aceptable
+                //asignamos ese valor a su respectiva variable
+
+                (*estructura_futbolistas)[id_futbolista].valoracion = valoracion ;
+
+                printf("\n.....ELIJA UNA OPCION.....\n");
+                printf("                            \n");
+                printf("       1.-  SEGUIR VALORANDO\n");
+                printf("       2.- CAMBIAR DE EQUIPO\n");
+                printf("       3.-             SALIR\n");
+                printf("                            \n");
+                printf(">");
+                scanf("%d", &selec);
+            }
+
+            //Si aux = 1 , es decir , el id no es de un futbolista del equipo seleccionado, vuelve a hacer la función
+
+            else{
+
+                printf("\nNo has introducido una id de uno de los futbolista del equipo");
+                valorar_futbolistas(estructura_config, estructura_futbolistas, estructura_equipos,
+                                    estructura_usuarios, estructura_plantillas,
+                                    estructura_jugadores_plantillas);
+            }
 
         }while(selec == 1); //Si elige 1, volvera a la linea 97, en la cual podra seguir valorando a mas jugadores del mismo equipo.
 

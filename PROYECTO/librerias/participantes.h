@@ -459,12 +459,13 @@ void listar_jugadores_disponibles(int *id, configuracion *estructura_config, jug
         }
     }
 
-    //Si no hay futbolistas disponibles
+    //Si no hay futbolistas disponibles vuelve al menu configuración
 
     if(aux2 == 0){
 
         printf("\nNo hay futbolistas disponibles en este momento.\n");
-
+        configurar_plantillas(id, estructura_config, estructura_jugadores_plantillas, estructura_equipos,
+                              estructura_usuarios, estructura_futbolistas,estructura_plantillas);
 
     }
 
@@ -720,7 +721,7 @@ void eliminar_jugador_plantillas(int *plantilla,int *id, jugadores_plantillas **
                                  configuracion *estructura_config,equipos **estructura_equipos,
                                  usuarios **estructura_usuarios) {
 
-    int i, j, opcion, aux,aux1, aux2;
+    int i, j = -1 , opcion, aux,aux1, aux2;
 
     //Tenemos que mostrar los futbolistas de la plantilla para que pueda elegir el ID del futbolista que quiere borrar
 
@@ -767,7 +768,7 @@ void eliminar_jugador_plantillas(int *plantilla,int *id, jugadores_plantillas **
 
     //Busco al futbolista para poder hacer la suma de presupuesto de la plantilla
 
-    for(i = 0 ; i < (*estructura_config).tam_futbolistas ; i++){
+    for(i = 0 ; i < (*estructura_config).tam_futbolistas && j == -1 ; i++){
 
         if(opcion == (*estructura_futbolistas)[i].futbolista_id){
 
@@ -891,7 +892,7 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
                                usuarios **estructura_usuarios, futbolistas **estructura_futbolistas,
                                 plantillas **estructura_plantillas){
 
-    int i, aux1, aux2,futbolista;
+    int i,j, aux1 = -1, aux2,futbolista;
 
     //Llamo a la funcion que lista los jugadores disponibles sin plantilla anteriormente asignada
 
@@ -907,10 +908,32 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
         if(futbolista == (*estructura_futbolistas)[i].futbolista_id){
 
-            //Aux1 toma el indicador del futbolista para poder referirme a el mas adelante
+            for (j = 0 ; j < (*estructura_config).tam_jugadores_plantillas ; j++){
 
-            aux1 = i;
+                if((*estructura_futbolistas)[i].futbolista_id == (*estructura_jugadores_plantillas)[j].jugador_platilla_id){
+
+                   //Si el futbolista introducido ya está en una plantilla
+
+                   aux1 = -1;
+
+                }
+                else{
+
+                    //Aux1 toma el indicador del futbolista para poder referirme a el mas adelante
+
+                    aux1 = i;
+                }
+
+            }
         }
+    }
+
+    if( aux1 == -1){
+
+        printf("\nHas introducido una id de futbolista no valida");
+        anadir_jugador_plantillas( id,&plantilla,estructura_config,estructura_jugadores_plantillas,
+                                   estructura_equipos,estructura_usuarios,estructura_futbolistas,estructura_plantillas);
+
     }
 
     for(i = 0 ; i < (*estructura_config).tam_plantillas ; i++){
@@ -935,26 +958,6 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
     }
 
     else{
-
-        //Comprobamos si el futbolista ya esta en una plantilla , en ese caso no está disponible
-
-        for(i = 0 ; i < (*estructura_config).tam_jugadores_plantillas ; i++){
-
-            //Comprobar coincidencia del futbolista_id y su plantilla_id,
-            // aux1 + 1 se debe a que las ID de los futbolistas empiezan por 1 ,
-            // pero aux1 tomó el valor de i, q empezó valiendo 0, de ahi el +1
-            //Lo mismo con aux2
-
-            if((*estructura_jugadores_plantillas)[i].jugador_platilla_id == aux1+1 &&
-            (*estructura_jugadores_plantillas)[i].plantilla_id == aux2+1 ){
-
-                printf("\nEl futbolista seleccionado no esta disponible\n\n");
-
-                configurar_plantillas(id,  estructura_config,  estructura_jugadores_plantillas,
-                                      estructura_equipos,  estructura_usuarios,  estructura_futbolistas,
-                                      estructura_plantillas);
-            }
-        }
 
         printf("\nEl futbolista seleccionado es valido\n");
 
