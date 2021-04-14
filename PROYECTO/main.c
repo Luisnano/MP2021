@@ -50,8 +50,12 @@ int main() {
 
         if (i == 2) {
 
+            //Permitimos que después de registrarse pueda acceder al sistema consecutivamente
+
             registro(&estructura_usuarios,&estructura_config);
             id = acceso_sistema(&estructura_usuarios,&estructura_config);
+
+            //Si ha introducido mal su id o password se le permite volver a registrarse hasta que acceda al sistema
 
             while (id == 1) {
                 registro(&estructura_usuarios,&estructura_config);
@@ -154,13 +158,16 @@ int main() {
                                   &estructura_usuarios , &estructura_futbolistas , &estructura_plantillas);
 
             }
+
+            //Para salir del sistema
+
         }else if(i == 3){
             salir_programa(&estructura_config, &estructura_futbolistas, &estructura_equipos, &estructura_usuarios,
                            &estructura_plantillas, &estructura_jugadores_plantillas);
 
         }
 
-    //Si el usuario no introduce ni 1 (acceso al sistema) ni 2 (registro) se sigue repitiendo hasta que elija bien
+    //Si el usuario no introduce una opcion correcta se sigue repitiendo el menú
 
     } while(i<1 || i>3);
 }
