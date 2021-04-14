@@ -58,6 +58,7 @@ int main() {
             //Si ha introducido mal su id o password se le permite volver a registrarse hasta que acceda al sistema
 
             while (id == 1) {
+
                 registro(&estructura_usuarios,&estructura_config);
                 id = acceso_sistema(&estructura_usuarios,&estructura_config);
             }
@@ -104,6 +105,8 @@ int main() {
                                   &estructura_usuarios , &estructura_futbolistas , &estructura_plantillas);
 
             }
+
+            //Si selecciona acceder al sistema
 
         }else if (i == 1) {
 

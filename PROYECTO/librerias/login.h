@@ -150,7 +150,6 @@ void registro(usuarios **estructura_usuarios, configuracion *estructura_config){
     printf("\n\nEl resgistro ha sido realizado con exito."
            "Se procede a acceder al sistema\n\n");
 
-    escribir_usuarios(estructura_usuarios, estructura_config);
 }
 
 #endif //PROYECTO_LOGIN_H   //Si no hay + codigo abajo lo acaba
