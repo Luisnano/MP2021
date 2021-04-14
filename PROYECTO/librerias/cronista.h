@@ -12,7 +12,7 @@
 void menu_cronista(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
                    usuarios **estructura_usuarios, plantillas **estructura_plantillas,
                    jugadores_plantillas **estructura_jugadores_plantillas);
-void valorar_equipos(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
+void valorar_futbolistas(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
                      usuarios **estructura_usuarios, plantillas **estructura_plantillas,
                      jugadores_plantillas **estructura_jugadores_plantillas);
 
@@ -54,9 +54,9 @@ void menu_cronista(configuracion *estructura_config, futbolistas **estructura_fu
                               estructura_jugadores_plantillas);
                 break;
 
-            //2.-Valorar equipos
+            //2.-Valorar futbolistas
             case 2:
-                valorar_equipos(estructura_config, estructura_futbolistas, estructura_equipos,
+                valorar_futbolistas(estructura_config, estructura_futbolistas, estructura_equipos,
                                 estructura_usuarios, estructura_plantillas,
                                 estructura_jugadores_plantillas);
                 menu_cronista(estructura_config, estructura_futbolistas, estructura_equipos,
@@ -80,7 +80,7 @@ void menu_cronista(configuracion *estructura_config, futbolistas **estructura_fu
     } while (selec > 0 && selec < 4);
 }
 
-//Cabecera: void valorar_equipos(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
+//Cabecera: void valorar_futbolistas(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
 //                   usuarios **estructura_usuarios, plantillas **estructura_plantillas,
 //                   jugadores_plantillas **estructura_jugadores_plantillas);
 //Precondicion: Entran la estructura FUTBOLISTAS y la estructura CONFIGURACION
@@ -89,7 +89,7 @@ void menu_cronista(configuracion *estructura_config, futbolistas **estructura_fu
 //      de futbolistas de dicho equipo junto con su valoración actual. A continuación, el cronista irá
 //      seleccionando futbolistas e introduciendo sus nuevas valoraciones (0-10).
 
-void valorar_equipos(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
+void valorar_futbolistas(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
                      usuarios **estructura_usuarios, plantillas **estructura_plantillas,
                      jugadores_plantillas **estructura_jugadores_plantillas){
 
