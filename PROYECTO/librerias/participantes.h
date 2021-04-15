@@ -428,27 +428,27 @@ void listar_jugadores_disponibles(int *id, configuracion *estructura_config, jug
 
     printf("\nLos futbolistas disponibles que puedes anadir a tus plantilla son:\n");
 
-    int i, j, aux1,aux2 = 0;
+    int i, j, aux1 = 0 ,aux2 ;
 
     //Recorremos la estructura jugadores_plantilla ya que aquí están guardados todos los futbolistas
     //que están en una plantilla , los que estén disponibles se mostrarán por pantalla
 
-    for(i = 0 ; i < (*estructura_config).tam_futbolistas ; i++){
+    for(i = 1 ; i <= (*estructura_config).tam_futbolistas ; i++){
 
-        aux1 = 1;
+        aux2 = 1;
 
-        for(j = 0 ; j < (*estructura_config).tam_jugadores_plantillas && aux1 == 1 ; j++){
+        for(j = 1 ; j <= (*estructura_config).tam_jugadores_plantillas && aux2 == 1 ; j++){
 
-            if((*estructura_futbolistas)[i].futbolista_id == (*estructura_jugadores_plantillas)[j].jugador_platilla_id){
+            if((*estructura_futbolistas)[i-1].futbolista_id == (*estructura_jugadores_plantillas)[j-1].jugador_platilla_id){
 
-                aux1 = 0;
-                aux2 = 1;       //Como encuentra un futbolista disponible ya es imposible que no hay ninguno disponible
+                aux1 ++;
+                aux2 = 0;       //Como encuentra un futbolista disponible ya es imposible que no hay ninguno disponible
                                 //Por lo tanto no se cumplirá despues el bucle if para mostrar que no hay ningun futbolista
                                 //disponible
             }
         }
 
-        if(aux1 == 1){
+        if(aux2 == 1){
 
             //Los mostramos por pantalla
 
@@ -459,9 +459,10 @@ void listar_jugadores_disponibles(int *id, configuracion *estructura_config, jug
         }
     }
 
-    //Si no hay futbolistas disponibles vuelve al menu configuración
+    //Si no hay futbolistas disponibles vuelve al menu configuración , ya que aux1 aumenta en 1 cada vez que encuentra
+    //1 futbolista en jugadores_plantilla, si todos los futbolistas están ahí, implica que están todos pillados
 
-    if(aux2 == 0){
+    if(aux1 == (*estructura_config).tam_futbolistas){
 
         printf("\nNo hay futbolistas disponibles en este momento.\n");
         configurar_plantillas(id, estructura_config, estructura_jugadores_plantillas, estructura_equipos,
@@ -892,7 +893,7 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
                                usuarios **estructura_usuarios, futbolistas **estructura_futbolistas,
                                 plantillas **estructura_plantillas){
 
-    int i,j, aux1 = -1, aux2,futbolista;
+    int i,j, aux1, aux2 = 0,futbolista;
 
     //Llamo a la funcion que lista los jugadores disponibles sin plantilla anteriormente asignada
 
@@ -902,28 +903,26 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
     printf("\nIntroduce el ID del futbolista que quiera anadir a la plantilla:");
     scanf("%i",&futbolista);
 
-    //Identifico al futbolista
+    //Identifico al futbolista, el bucle dejara de buscar una vez identifique al futbolista para ahorrar iteraciones
+    //Para controlar esto se hace uso de aux1 que controla si el ftbolista no está disponible
+    //Y aux3 limita directamente las iteraciones una vez se encuentra al futbolista para que no siga comprobando los demas
 
-    for(i = 0 ; i < (*estructura_config).tam_futbolistas ; i++){
+    for(i = 1 ; i <= (*estructura_config).tam_futbolistas && aux2 == 0; i++){
 
-        if(futbolista == (*estructura_futbolistas)[i].futbolista_id){
+        if(futbolista == (*estructura_futbolistas)[i-1].futbolista_id){
 
-            for (j = 0 ; j < (*estructura_config).tam_jugadores_plantillas ; j++){
+            aux2 = 1;       //Evitando así que se repita mas el bucle for
+            aux1 = i-1;     //Guardo el espacio en futbolistas que ocupa el futbolista seleccionado
 
-                if((*estructura_futbolistas)[i].futbolista_id == (*estructura_jugadores_plantillas)[j].jugador_platilla_id){
+            for (j = 1 ; j <= (*estructura_config).tam_jugadores_plantillas && aux1 == i-1 ; j++){
+
+                if((*estructura_futbolistas)[i-1].futbolista_id == (*estructura_jugadores_plantillas)[j-1].jugador_platilla_id){
 
                    //Si el futbolista introducido ya está en una plantilla
 
                    aux1 = -1;
 
                 }
-                else{
-
-                    //Aux1 toma el indicador del futbolista para poder referirme a el mas adelante
-
-                    aux1 = i;
-                }
-
             }
         }
     }
@@ -936,19 +935,9 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
 
     }
 
-    for(i = 0 ; i < (*estructura_config).tam_plantillas ; i++){
-
-        if((*estructura_plantillas)[i].plantilla_id == *plantilla){
-
-            //Aux2 toma el indicador de la plantilla para poder referirme a el mas adelante
-
-            aux2 = i;
-        }
-
-    }
     //Comprobamos si la plantilla dispone de suficiente presupuesto para comprar al jugador
 
-    if((*estructura_futbolistas)[aux1].futbolista_precio > (*estructura_plantillas)[aux2].presupuesto_disp){
+    if((*estructura_futbolistas)[aux1].futbolista_precio > (*estructura_plantillas)[*plantilla-1].presupuesto_disp){
 
         printf("\nEl precio del futbolista que has seleccionado es superior al presupuesto de tu plantilla\n\n");
 
@@ -960,6 +949,11 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
     else{
 
         printf("\nEl futbolista seleccionado es valido\n");
+
+        //Restamos al presupuesto de la plantilla el precio del futbolista añadido
+
+        (*estructura_plantillas)[*plantilla-1].presupuesto_disp =
+                (*estructura_plantillas)[*plantilla-1].presupuesto_disp - (*estructura_futbolistas)[aux1].futbolista_precio
 
         //Incrementamos en 1 el tamaño de jugadores_plantillas
 
@@ -979,8 +973,8 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
         //Relleno los datos del nuevo espacio reservado con los datos del futbolista seleccionado
         //Los cuales estan guardados en aux1 y aux2
 
-        (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].jugador_platilla_id = aux1+1;
-        (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas].plantilla_id = aux2+1;
+        (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas-1].jugador_platilla_id = aux1+1;
+        (*estructura_jugadores_plantillas)[(*estructura_config).tam_jugadores_plantillas-1].plantilla_id = *plantilla;
     }
 
 }
