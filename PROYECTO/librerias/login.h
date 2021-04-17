@@ -53,7 +53,7 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
 
         if(strcmp(p, (*estructura_usuarios)[aux].usuario_password) == 0){
 
-            printf("\nPassword correcta, puede acceder al sistema como %s", (*estructura_usuarios)[aux].usuario_perfil);
+            printf("\nPassword correcta, puede acceder al sistema como %s\n", (*estructura_usuarios)[aux].usuario_perfil);
 
             return aux + 1;    //Devuelvo el perfil del usuario para saber que menú usa;
         }
