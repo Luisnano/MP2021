@@ -42,16 +42,28 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
                     scanf("%i", &op1);
                     switch (op1) {
                         case 1:
+                            fflush(stdin);
                             mostrar_equipos(estructura_equipos, estructura_config); //mostrar_equipos declarado en core.h
+                            menuAdministrador(estructura_config, estructura_jugadores_plantillas, estructura_equipos,
+                                              estructura_usuarios, estructura_futbolistas,estructura_plantillas);
                             break;
                         case 2:
+                            fflush(stdin);
                             modificarEquipos(estructura_equipos, estructura_config);
+                            menuAdministrador(estructura_config, estructura_jugadores_plantillas, estructura_equipos,
+                                              estructura_usuarios, estructura_futbolistas,estructura_plantillas);
                             break;
                         case 3:
+                            fflush(stdin);
                             addEquipos(estructura_equipos, estructura_config);
+                            menuAdministrador(estructura_config, estructura_jugadores_plantillas, estructura_equipos,
+                                              estructura_usuarios, estructura_futbolistas,estructura_plantillas);
                             break;
                         case 4:
+                            fflush(stdin);
                             eliminarEquipos(estructura_equipos, estructura_config);
+                            menuAdministrador(estructura_config, estructura_jugadores_plantillas, estructura_equipos,
+                                              estructura_usuarios, estructura_futbolistas,estructura_plantillas);
                             break;
                         default:
                             exit(EXIT_FAILURE); //salir del programa
@@ -67,24 +79,39 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
                 scanf("%d", &op2);
                 switch (op2) {
                     case 1:
+                        fflush(stdin);
                         mostrar_usuarios(estructura_usuarios, estructura_config);
+                        menuAdministrador(estructura_config, estructura_jugadores_plantillas, estructura_equipos,
+                                          estructura_usuarios, estructura_futbolistas,estructura_plantillas);
                         break;
                     case 2:
+                        fflush(stdin);
                         modificarUsuarios(estructura_usuarios, estructura_config);
+                        menuAdministrador(estructura_config, estructura_jugadores_plantillas, estructura_equipos,
+                                          estructura_usuarios, estructura_futbolistas,estructura_plantillas);
                         break;
                     case 3:
+                        fflush(stdin);
                         addUsuarios(estructura_usuarios, estructura_config);
+                        menuAdministrador(estructura_config, estructura_jugadores_plantillas, estructura_equipos,
+                                          estructura_usuarios, estructura_futbolistas,estructura_plantillas);
                         break;
                     case 4:
+                        fflush(stdin);
                         eliminarUsuarios(estructura_usuarios, estructura_config);
+                        menuAdministrador(estructura_config, estructura_jugadores_plantillas, estructura_equipos,
+                                          estructura_usuarios, estructura_futbolistas,estructura_plantillas);
                         break;
                     default:
                         exit(EXIT_FAILURE);
                 }
             break;
             case 3:     //redireccion al menu de configuracion(solo edicion de este)
+                fflush(stdin);
                 printf("Bienvenido al menú de configuracion\n");
                 modificarConfiguracion(estructura_config);
+                menuAdministrador(estructura_config, estructura_jugadores_plantillas, estructura_equipos,
+                                  estructura_usuarios, estructura_futbolistas,estructura_plantillas);
                 break;
 
             case 4:     //llamada a la funcion salir_programa
@@ -101,11 +128,14 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
     //postcondicion: Permite al usuario modificar los equipos (nombre).
 
     void modificarEquipos( equipos **estructura_equipos, configuracion *estructura_config){
-    char c,temp[21],nombre[21];
+    char c,temp[21],nombreTemp[21];
     int aux1=0;
     do {
         printf("\nIntroduce el nombre del equipo a modificar: ");
-        scanf("%s", temp);
+        fgets(temp,21,stdin);
+        temp[strcspn(temp, "\n")] = 0;
+        fflush(stdin);
+
         for (int i = 0;i < (*estructura_config).tam_equipos; i++) {      //bucle para recorrer toda la estructura de equipos
             if (strcmp(temp, (*estructura_equipos)[i].nombre_equipo) == 0) {  //si temp coincide con algún nombre, almaceno el iterador
                 aux1 = i;
@@ -121,10 +151,12 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
     do {
 
         printf("\nIntroduzca ahora el nuevo nombre:");  //nuevo nombre para el equipo
-        scanf("%s",nombre);
+        fgets(nombreTemp,21,stdin);
+        temp[strcspn(nombreTemp, "\n")] = 0;
+        fflush(stdin);
 
-    }while(strlen(nombre) > strlen((*estructura_equipos)[aux1].nombre_equipo));  //regula que el nuevo nombre no sea mayor que el tamaño predefinido
-    strcpy((*estructura_equipos)[aux1].nombre_equipo,nombre);
+    }while(strlen(nombreTemp) > sizeof((*estructura_equipos)[aux1].nombre_equipo));  //regula que el nuevo nombre no sea mayor que el tamaño predefinido
+    strcpy((*estructura_equipos)[aux1].nombre_equipo,nombreTemp);
 }
 
     //cabecera: void addEquipos(equipos **estructura_equipos, configuracion *estructura_config);
@@ -136,7 +168,10 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
     int aux1;
     do {
         printf("\nIntroduce el nombre del nuevo equipo: ");
-        scanf("%s", temp);
+        fgets(temp,21,stdin);
+        temp[strcspn(temp, "\n")] = 0;
+        fflush(stdin);
+
         for (int i = 0;i < (*estructura_config).tam_equipos; i++) {      //bucle para recorrer toda la estructura de equipos
             if (strcmp(temp, (*estructura_equipos)[i].nombre_equipo) == 0) {  //si temp coincide con algún nombre, aux1 valdrá 1
                 aux1 = 1;
@@ -148,18 +183,14 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
         }
     }while((c == 's' || c == 'S')&&aux1 == 1);   //mientras diga sí y el nombre esté en uso
     printf("\nEl nombre se ha guardado con exito.");
-    equipos *estructura_equipos_temp = (equipos*)realloc((*estructura_equipos),
+
+        *estructura_equipos = (equipos*)realloc((*estructura_equipos),
                                                          ((*estructura_config).tam_equipos + 1)*sizeof(equipos));
-    if(estructura_equipos_temp == NULL){
 
-        printf("\nError en la redimension del vector.");
-        exit(EXIT_FAILURE);
 
-    }else{
-        *estructura_equipos = estructura_equipos_temp;
+        (*estructura_equipos)[(*estructura_config).tam_equipos].equipo_id = (*estructura_config).tam_equipos + 1;
         strcpy((*estructura_equipos)[(*estructura_config).tam_equipos].nombre_equipo, temp);
-        (*estructura_equipos)[(*estructura_config).tam_equipos].equipo_id = (*estructura_config).tam_equipos;
-    }
+        (*estructura_config).tam_equipos++;
 }
 
     //cabecera: void eliminarEquipos(equipos **estructura_equipos, configuracion *estructura_config);
@@ -210,13 +241,16 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
     //postcondicion: Permite al usuario añador un usuario.
 
     void addUsuarios(usuarios **estructura_usuarios, configuracion *estructura_config){
-        char c,temp[21],perfil_temp[15],nick_temp[6],password_temp[9];
+        char c,temp[6],perfil_temp[15],nombre_temp[21],password_temp[9];
         int aux1;
         do {
             printf("\nIntroduce el nombre del nuevo usuario: ");
-            scanf("%s", temp);
+            fgets(temp,6,stdin);
+            temp[strcspn(temp, "\n")] = 0;
+            fflush(stdin);
+
             for (int i = 0;i < (*estructura_config).tam_usuarios; i++) {      //bucle para recorrer toda la estructura de usuarios
-                if (strcmp(temp, (*estructura_usuarios)[i].nombre_usuario) == 0) {  //si temp coincide con algún nombre, aux1 valdrá 1
+                if (strcmp(temp, (*estructura_usuarios)[i].usuario_nick) == 0) {  //si temp coincide con algún nombre, aux1 valdrá 1
                     aux1 = 1;
                 }else aux1 = 0;
             }
@@ -226,34 +260,32 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
             }
         }while((c == 's' || c == 'S')&&aux1 == 1);   //mientras diga sí y el nombre esté en uso
         printf("\nEl nombre se ha guardado con exito.");
-        (*estructura_config).tam_usuarios += 1;
-        usuarios *estructura_usuarios_temp = (usuarios*)realloc((*estructura_usuarios),
-                                                                ((*estructura_config).tam_usuarios)*sizeof(usuarios));
-        *estructura_usuarios = estructura_usuarios_temp;
-        strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].nombre_usuario, temp);
-        (*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_id = (*estructura_config).tam_equipos;
-
-        do {
-            printf("Introduzca un perfil de usuario: ");
-            scanf("%s", perfil_temp);
-        } while (strcmp(perfil_temp, "administrador") != 0 || strcmp(perfil_temp, "participante") != 0 ||
-                 strcmp(perfil_temp, "cronista") != 0);
 
         do {
             printf("\nIntroduzca ahora el nick:");  //nuevo nombre para el nick
-            scanf("%s", nick_temp);
+            fgets(nombre_temp,21,stdin);
+            nombre_temp[strcspn(nombre_temp, "\n")] = 0;
+            fflush(stdin);
 
-        } while (strlen(nick_temp) > strlen((*estructura_usuarios)[aux1].usuario_nick));  //regula que el nick no sea mayor que el tamaño predefinido
+        } while (strlen(nombre_temp) > sizeof((*estructura_usuarios)[aux1].nombre_usuario));  //regula que el nombre no sea mayor que el tamaño predefinido
 
         do {
             printf("\nIntroduzca ahora la password:");  //nuevo password
-            scanf("%s", password_temp);
+            fgets(password_temp,9,stdin);
+            password_temp[strcspn(password_temp, "\n")] = 0;
+            fflush(stdin);
 
-        } while (strlen(password_temp) > strlen((*estructura_usuarios)[aux1].usuario_password));  //regula que la password no sea mayor que el tamaño predefinido
+        } while (strlen(password_temp) > sizeof((*estructura_usuarios)[aux1].usuario_password));  //regula que la password no sea mayor que el tamaño predefinido
 
-        strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_perfil,perfil_temp);        //copio el perfil en la estructura
-        strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_nick,nick_temp);            //copio el nick en la estructura
-        strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_password,password_temp);    //copio la password en la estructura
+        *estructura_usuarios = (usuarios*)realloc((*estructura_usuarios),
+                                                                ((*estructura_config).tam_usuarios + 1)*sizeof(usuarios));
+
+        (*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_id = (*estructura_config).tam_usuarios + 1;
+        strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].nombre_usuario, nombre_temp);
+        strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_perfil,"participante");    //copio el perfil en la estructura
+        strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_nick,temp);                        //copio el nick en la estructura
+        strcpy((*estructura_usuarios)[(*estructura_config).tam_usuarios].usuario_password,password_temp);           //copio la password en la estructura
+        (*estructura_config).tam_usuarios++;
     }
 
     //cabecera: void modificarUsuarios(usuarios **estructura_usuarios, configuracion *estructura_config);
