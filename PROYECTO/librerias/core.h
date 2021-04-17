@@ -98,7 +98,7 @@ void volcar_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_pla
 void escribir_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_plantillas, configuracion *estructura_config);
 void mostrar_jugadores_plantillas(jugadores_plantillas **estructura_jugadores_plantillas, configuracion *estructura_config);
 
-int salir_programa(configuracion *estructura_config,futbolistas **estructura_futbolistas,equipos **estructura_equipos,
+void salir_programa(configuracion *estructura_config,futbolistas **estructura_futbolistas,equipos **estructura_equipos,
                    usuarios **estructura_usuarios,plantillas **estructura_plantillas,
                    jugadores_plantillas **estructura_jugadores_plantillas);
 
@@ -766,14 +766,14 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
 
     }
 
-//Cabecera: int salir_programa(configuracion *estructura_config, futbolistas **estructura_futbolistas,
+//Cabecera: void salir_programa(configuracion *estructura_config, futbolistas **estructura_futbolistas,
 //                             equipos **estructura_equipos,usuarios **estructura_usuarios,
 //                             plantillas **estructura_plantillas,jugadores_plantillas **estructura_jugadores_plantillas);
 //Precondición: La funcion recibe todos los vectores dinamicos de estructura y estructura_config
 //Postcondición: La función llama a todas las funciones para que escriban los datos modificados y añadidos durante el programa
 //              , y acaba saliendo del programa
 
-    int salir_programa(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
+    void salir_programa(configuracion *estructura_config, futbolistas **estructura_futbolistas, equipos **estructura_equipos,
                    usuarios **estructura_usuarios, plantillas **estructura_plantillas,
                    jugadores_plantillas **estructura_jugadores_plantillas) {
 
@@ -801,7 +801,9 @@ void escribir_plantillas(plantillas **estructura_plantillas, configuracion *estr
         free(*estructura_plantillas);
         free(*estructura_jugadores_plantillas);
 
-        return 0;
+        exit(1);
+
+
 
     }
 

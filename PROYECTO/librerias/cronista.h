@@ -148,13 +148,13 @@ void valorar_futbolistas(configuracion *estructura_config, futbolistas **estruct
             //En la condición del bucle tambien esta mientras aux = 1 , porque cuando sea 0 habrá verificado que
             //el id es correcto y no necesitará seguir buscando
 
-            for ( i = 0 ; i < (*estructura_config).tam_futbolistas && aux == 1 ; i++){
+            for ( i = 1 ; i <= (*estructura_config).tam_futbolistas && aux == 1 ; i++){
 
-                if (id_futbolista == (*estructura_futbolistas)[i].futbolista_id){
+                if (id_futbolista == (*estructura_futbolistas)[i-1].futbolista_id){
 
                     //Si coincide
 
-                    if ((*estructura_futbolistas)[i].equipo_id == id_equipo){
+                    if ((*estructura_futbolistas)[i-1].equipo_id == id_equipo){
 
                         aux = 0;
 
@@ -177,7 +177,7 @@ void valorar_futbolistas(configuracion *estructura_config, futbolistas **estruct
                 //Una vez comprobamos el campo valoración está en un rango aceptable
                 //asignamos ese valor a su respectiva variable
 
-                (*estructura_futbolistas)[id_futbolista].valoracion = valoracion ;
+                (*estructura_futbolistas)[id_futbolista-1].valoracion = valoracion ;
 
                 printf("\n.....ELIJA UNA OPCION.....\n");
                 printf("                            \n");
@@ -202,6 +202,12 @@ void valorar_futbolistas(configuracion *estructura_config, futbolistas **estruct
         }while(selec == 1); //Si elige 1, volvera a la linea 97, en la cual podra seguir valorando a mas jugadores del mismo equipo.
 
     }while (selec == 2); //Si elige 2, volvera a la linea 89, para asi introducir un nuevo id de equipo para poder valorarlo.
+
+    //Si elige la opcion salir (3) o culaquier otro valor (excepto 1 y 2), vuelve al menu cronista
+
+    menu_cronista(estructura_config, estructura_futbolistas, estructura_equipos,
+                  estructura_usuarios, estructura_plantillas,
+                  estructura_jugadores_plantillas);
 }
 
 #endif //PROYECTO_CRONISTA_H
