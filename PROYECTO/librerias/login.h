@@ -58,7 +58,7 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
             return aux + 1;    //Devuelvo el perfil del usuario para saber que menú usa;
         }
 
-        else{
+
 
             while(strcmp(p, (*estructura_usuarios)[aux].usuario_password) != 0 ){
                 //Comprueba la coincidencia de la contraseña
@@ -68,8 +68,9 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
                  p[strcspn(p, "\n")] = 0;
                 fflush(stdin);
              }
+            
             return aux + 1;
-        }
+
     }
 
     printf("\nNo existe ningun usuario con tu nick. Registrate primero.");
