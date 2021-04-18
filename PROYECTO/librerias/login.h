@@ -33,7 +33,7 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
     u[strcspn(u, "\n")] = 0;    //funcion que encuentra el primer '\n' o '\r', y esta la igualamos a 0
     fflush(stdin);                 //Evitamos el salto de linea implicito del fgets
 
-    while(i < (*estructura_config).tam_usuarios || j == 0){       //Recorre el vector dinámico de usuarios
+    while(i < (*estructura_config).tam_usuarios ){       //Recorre el vector dinámico de usuarios
                                                         //para verificar si existe algun susuario con ese nick.
         if(strcmp(u, (*estructura_usuarios)[i].usuario_nick) == 0){       //Verifica si hay coincidencia.
 
