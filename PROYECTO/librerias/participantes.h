@@ -893,7 +893,7 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
                                usuarios **estructura_usuarios, futbolistas **estructura_futbolistas,
                                 plantillas **estructura_plantillas){
 
-    int i,j, aux1, aux2 = 0,futbolista;
+    int i,j, aux1 = -1, aux2 = 0,futbolista;
 
     //Llamo a la funcion que lista los jugadores disponibles sin plantilla anteriormente asignada
 
