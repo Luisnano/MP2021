@@ -58,18 +58,16 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
             return aux + 1;    //Devuelvo el perfil del usuario para saber que menú usa;
         }
 
+        while(strcmp(p, (*estructura_usuarios)[aux].usuario_password) != 0 ){
+            //Comprueba la coincidencia de la contraseña
 
-
-            while(strcmp(p, (*estructura_usuarios)[aux].usuario_password) != 0 ){
-                //Comprueba la coincidencia de la contraseña
-
-                 printf("\nPassword incorrecta. Introduzcala de nuevo.");
-                 fgets(p,9,stdin);
-                 p[strcspn(p, "\n")] = 0;
-                fflush(stdin);
-             }
+            printf("\nPassword incorrecta. Introduzcala de nuevo.");
+            fgets(p,9,stdin);
+            p[strcspn(p, "\n")] = 0;
+            fflush(stdin);
+        }
             
-            return aux + 1;
+        return aux + 1;
 
     }
 
