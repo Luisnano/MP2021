@@ -307,9 +307,10 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
                 }else error++;
             }
             if (error == (*estructura_config).tam_usuarios) {//si no se ha almacenado un nuevo valor del iterador, entonces el nombre introducido no está en la estructura
-                printf("\nEl nick introducido de usuario no existe, Desea probar con otro nick? (S o s para confirmar)");
+                printf("\nEl nick introducido de usuario no existe, Desea probar con otro? (S o s para confirmar)");
                 scanf("%c", &c);
             }
+
         } while ((c == 's' || c == 'S') && error == (*estructura_config).tam_usuarios);   //mientras no diga si y se cumpla que el nombre exista
 
         printf("Hemos encontrado un usuario con ese nick: ");
@@ -318,7 +319,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
                (*estructura_usuarios)[aux1].usuario_nick, (*estructura_usuarios)[aux1].usuario_password);
 
         do {
-            printf("\nIntroduce el nick del nuevo usuario: ");
+            printf("\nIntroduce el nuevo nick del usuario: ");
             fgets(temp,6,stdin);
             temp[strcspn(temp, "\n")] = 0;
             fflush(stdin);
@@ -329,7 +330,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
                 }
             }
             if (aux1 == -1) {        //si es 1, entonces ese nombre ya está en uso
-                printf("\nEl nombre del usuario ya esta en uso, Desea probar con otro nombre? (S o s para confirmar)");
+                printf("\nEl nick introducido ya esta en uso, Desea probar con otro? (S o s para confirmar)");
                 scanf("%c", &c);
             }
         }while((c == 's' || c == 'S')&&aux1 == 1);   //mientras diga sí y el nombre esté en uso
@@ -341,7 +342,7 @@ void menuAdministrador(configuracion *estructura_config, jugadores_plantillas **
             nombre_temp[strcspn(nombre_temp, "\n")] = 0;
             fflush(stdin);
 
-        } while (strlen(nombre_temp) > strlen((*estructura_usuarios)[aux1].nombre_usuario));  //regula que el nuevo nombre no sea mayor que el tamaño predefinido
+        } while (strlen(nombre_temp) > sizeof((*estructura_usuarios)[aux1].nombre_usuario));  //regula que el nuevo nombre no sea mayor que el tamaño predefinido
 
         do {
             printf("\nIntroduzca un perfil de usuario: ");
