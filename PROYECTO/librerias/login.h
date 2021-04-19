@@ -58,22 +58,28 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
             return aux + 1;    //Devuelvo el perfil del usuario para saber que menú usa;
         }
 
-        while(strcmp(p, (*estructura_usuarios)[aux].usuario_password) != 0 ){
-            //Comprueba la coincidencia de la contraseña
+        else{
 
-            printf("\nPassword incorrecta. Introduzcala de nuevo.");
-            fgets(p,9,stdin);
-            p[strcspn(p, "\n")] = 0;
-            fflush(stdin);
+            while(strcmp(p, (*estructura_usuarios)[aux].usuario_password) != 0 ){
+                //Comprueba la coincidencia de la contraseña
+
+                printf("\nPassword incorrecta. Introduzcala de nuevo.");
+                fgets(p,9,stdin);
+                p[strcspn(p, "\n")] = 0;
+                fflush(stdin);
+            }
+
+            return aux + 1;
         }
-            
-        return aux + 1;
 
     }
 
-    printf("\nNo existe ningun usuario con tu nick. Registrate primero.");
-    return 0;  //En caso de que no esté registrado el usuario, devuelve 1.
-}
+    else {
+
+        printf("\nNo existe ningun usuario con tu nick. Registrate primero.");
+        return 0;  //En caso de que no esté registrado el usuario, devuelve 1.
+    }
+}   
 
 //Función para que los usuarios se puedan registrar.
 
