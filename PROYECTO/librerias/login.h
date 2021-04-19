@@ -79,7 +79,7 @@ int acceso_sistema(usuarios **estructura_usuarios, configuracion *estructura_con
         printf("\nNo existe ningun usuario con tu nick. Registrate primero.");
         return 0;  //En caso de que no esté registrado el usuario, devuelve 1.
     }
-}   
+}
 
 //Función para que los usuarios se puedan registrar.
 

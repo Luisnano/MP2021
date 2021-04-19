@@ -953,7 +953,7 @@ void anadir_jugador_plantillas(int *id,int *plantilla, configuracion *estructura
         //Restamos al presupuesto de la plantilla el precio del futbolista añadido
 
         (*estructura_plantillas)[*plantilla-1].presupuesto_disp =
-                (*estructura_plantillas)[*plantilla-1].presupuesto_disp - (*estructura_futbolistas)[aux1].futbolista_precio
+                (*estructura_plantillas)[*plantilla-1].presupuesto_disp - (*estructura_futbolistas)[aux1].futbolista_precio;
 
         //Incrementamos en 1 el tamaño de jugadores_plantillas
 
